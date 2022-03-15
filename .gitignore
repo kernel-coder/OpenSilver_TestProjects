@@ -1,3 +1,7 @@
+wwwroot/
 bin/
 obj/
 .vs/
+*.dll
+*.exe
+*.pdb

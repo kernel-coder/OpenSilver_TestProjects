@@ -228,7 +228,7 @@
                                         <ei:ControlStoryboardAction Storyboard="{StaticResource BusyAnimation}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                                <Border Background="#FF50004E" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Center">
+                                <Border Background="#FF50004E" BorderThickness="1" CornerRadius="2">
                                     <Border.BorderBrush>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                             <GradientStop Color="#FFA3AEB9" Offset="0"/>

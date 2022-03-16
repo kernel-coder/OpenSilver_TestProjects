@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALY_Tests_Sl.Web", "ALY_Button_Style\ALY_Tests_Sl.Web\ALY_Tests_Sl.Web.csproj", "{F2F3C549-B1E8-4F70-9DF1-22246E0B7E28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALY_Tests_Sl", "ALY_Button_Style\ALY_Button_Style\ALY_Tests_Sl.csproj", "{35A42D0A-0798-4558-8718-DDC0AB5155BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2F3C549-B1E8-4F70-9DF1-22246E0B7E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F3C549-B1E8-4F70-9DF1-22246E0B7E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F3C549-B1E8-4F70-9DF1-22246E0B7E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F3C549-B1E8-4F70-9DF1-22246E0B7E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A42D0A-0798-4558-8718-DDC0AB5155BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A42D0A-0798-4558-8718-DDC0AB5155BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A42D0A-0798-4558-8718-DDC0AB5155BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A42D0A-0798-4558-8718-DDC0AB5155BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

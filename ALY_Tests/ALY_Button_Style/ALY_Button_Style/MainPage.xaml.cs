@@ -7,11 +7,12 @@ using System.Windows.Controls;
 
 namespace ALY_Button_Style
 {
-    public partial class MainPage : Page
+    public partial class MainPage : UserControl
     {
         public MainPage()
         {
             this.InitializeComponent();
+
 
             // Enter construction logic here...
         }

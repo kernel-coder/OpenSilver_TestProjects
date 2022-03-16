@@ -1,14 +1,89 @@
-﻿<Page
-    x:Class="ALY_Button_Style.MainPage"
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    x:Class="ALY_Button_Style.MainPage"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:ALY_Button_Style"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Content="Button 1" Style="{StaticResource CoreOClockButtonStyle}"/>
-        <Button Content="Button 2"/>
-    </StackPanel>
-    
-</Page>
+    xmlns:ctls="clr-namespace:Virtuoso.Core.Controls"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    xmlns:local="clr-namespace:ALY_Button_Style">
+
+    <ctls:VirtuosoBusyIndicator x:Name="loginBusyIndicator" IsBusy="True">
+        <VisualStateManager.CustomVisualStateManager>
+            <ei:ExtendedVisualStateManager />
+        </VisualStateManager.CustomVisualStateManager>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="PopupStateGroup"
+                              ei:ExtendedVisualStateManager.UseFluidLayout="True">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition GeneratedDuration="0:0:0.75" />
+                </VisualStateGroup.Transitions>
+            </VisualStateGroup>
+            <!--<VisualStateGroup x:Name="FocusGroup">
+                <VisualState x:Name="NoFocus"></VisualState>
+                <VisualState x:Name="UserNameHasFocus">
+                    <Storyboard>
+                        --><!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SetFocusToUserName"
+                                                       Storyboard.TargetProperty="(FocusHelper.SetFocus)">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <sys:Boolean>false</sys:Boolean>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>-->
+                        <!--<ColorAnimation Storyboard.TargetName="usrbox" Storyboard.TargetProperty="(Control.Background)" 
+                                        To="Azure" Duration="0"/>-->
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="usrbox"
+                                                       Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Brush>Green</Brush>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>--><!--
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="UserNameNoFocus"></VisualState>
+                <VisualState x:Name="PasswordHasFocus"></VisualState>
+            </VisualStateGroup>-->
+        </VisualStateManager.VisualStateGroups>
+
+        <i:Interaction.Behaviors>
+            <!--<ei:DataStateBehavior TrueState="UserListVisible"
+                                  FalseState="UserListHidden"
+                                  Value="true"
+                                  Binding="{Binding UsersVisible}" />
+            <ei:DataStateBehavior TrueState="SecurityVisible"
+                                  FalseState="SecurityHidden"
+                                  Value="true"
+                                  Binding="{Binding SetSecurityVisible}" />
+            <ei:DataStateBehavior TrueState="ChangePwdVisible"
+                                  FalseState="ChangePwdHidden"
+                                  Value="true"
+                                  Binding="{Binding ChangePwdVisible}" />
+            <ei:DataStateBehavior TrueState="ForgotPwdVisible"
+                                  FalseState="ForgotPwdHidden"
+                                  Value="true"
+                                  Binding="{Binding ForgotPwdVisible}" />-->
+            <!--<ei:DataStateBehavior TrueState="UserNameHasFocus" FalseState="UserNameNoFocus" Value="true" Binding="{Binding UserNameHasFocus}"  />-->
+            <!--<ei:DataStateBehavior TrueState="PasswordHasFocus" FalseState="PasswordNoFocus"  Value="false" Binding="{Binding ChangePwdVisible}"  />-->
+        </i:Interaction.Behaviors>
+
+        <!-- Ensure password text box has focus whenever popups are not displayed -->
+        <i:Interaction.Triggers>
+            <ei:StoryboardCompletedTrigger>
+
+            </ei:StoryboardCompletedTrigger>
+
+        </i:Interaction.Triggers>
+        <Grid x:Name="LayoutRoot">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Content="Button 1" Style="{StaticResource CoreOClockButtonStyle}"/>
+                <Button Content="Button 2"/>
+            </StackPanel>
+        </Grid>
+    </ctls:VirtuosoBusyIndicator>
+</UserControl>

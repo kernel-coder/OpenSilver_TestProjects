@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Compile Include="App.xaml.cs" />
+    <Compile Include="Controls\VirtuosoBusyIndicator.cs" />
     <Compile Include="MainPage.xaml.cs" />
   </ItemGroup>
   

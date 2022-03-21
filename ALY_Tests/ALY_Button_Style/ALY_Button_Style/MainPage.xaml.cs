@@ -13,8 +13,8 @@ namespace ALY_Button_Style
         {
             this.InitializeComponent();
 
-
             // Enter construction logic here...
+
         }
     }
 }

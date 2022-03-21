@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     xmlns:local="clr-namespace:ALY_Button_Style">
 
-    <ctls:VirtuosoBusyIndicator x:Name="loginBusyIndicator" IsBusy="True">
+    <ctls:VirtuosoBusyIndicator x:Name="loginBusyIndicator" IsBusy="False">
         <VisualStateManager.CustomVisualStateManager>
             <ei:ExtendedVisualStateManager />
         </VisualStateManager.CustomVisualStateManager>
@@ -26,7 +26,8 @@
                 <VisualState x:Name="NoFocus"></VisualState>
                 <VisualState x:Name="UserNameHasFocus">
                     <Storyboard>
-                        --><!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SetFocusToUserName"
+                        -->
+            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SetFocusToUserName"
                                                        Storyboard.TargetProperty="(FocusHelper.SetFocus)">
                             <DiscreteObjectKeyFrame KeyTime="0:0:0">
                                 <DiscreteObjectKeyFrame.Value>
@@ -43,7 +44,8 @@
                                     <Brush>Green</Brush>
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>--><!--
+                        </ObjectAnimationUsingKeyFrames>-->
+            <!--
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="UserNameNoFocus"></VisualState>
@@ -80,9 +82,10 @@
 
         </i:Interaction.Triggers>
         <Grid x:Name="LayoutRoot">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Content="Button 1" Style="{StaticResource CoreOClockButtonStyle}"/>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Button Content="Button 1" Style="{StaticResource CoreButtonStyle}"/>
                 <Button Content="Button 2"/>
+                <TextBlock Text="This is a default styled text block"/>
             </StackPanel>
         </Grid>
     </ctls:VirtuosoBusyIndicator>

@@ -479,7 +479,7 @@
         <Setter Property="Padding"
                 Value="1,0,0,0" />
         <Setter Property="Margin"
-                Value="0,-34,0,0" />
+                Value="0,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dataPrimitives:DataGridColumnHeader">
@@ -572,7 +572,7 @@
                                     <SolidColorBrush Color="{StaticResource PurpleGrid3}" />
                                 </Rectangle.Fill>
                             </Rectangle>
-                            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            <Grid HorizontalAlignment="Stretch"
                                   Margin="{TemplateBinding Padding}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>

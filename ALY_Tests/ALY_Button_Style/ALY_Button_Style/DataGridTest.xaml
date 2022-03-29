@@ -257,7 +257,7 @@
                                       TabNavigation="Local"
                                       AutoGenerateColumns="False"
                                       BorderThickness="0"
-                                      Margin="0,34,0,0"
+                                      Margin="0,0,0,0"
                                       ColumnHeaderStyle="{StaticResource HomeDataGridColumnHeaderStyle}"
                                       RowStyle="{StaticResource PurpleGridRow}"
                                       CellStyle="{StaticResource TopCellStyle}">

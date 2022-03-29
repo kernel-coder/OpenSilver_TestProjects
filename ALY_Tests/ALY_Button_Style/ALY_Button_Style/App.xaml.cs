@@ -17,7 +17,7 @@ namespace ALY_Button_Style
 
 #if OPENSILVER
 
-            var mainPage = new MainPage();
+            var mainPage = new DataGridTest();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;
@@ -27,7 +27,7 @@ namespace ALY_Button_Style
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new MainPage();
+            this.RootVisual = new DataGridTest();
         }
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)

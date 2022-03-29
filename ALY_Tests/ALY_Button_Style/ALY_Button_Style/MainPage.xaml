@@ -4,14 +4,40 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ctls="clr-namespace:Virtuoso.Core.Controls"
+    xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     xmlns:local="clr-namespace:ALY_Button_Style">
+    <UserControl.Resources>
+        <Storyboard x:Name="storyTest">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                                                       Storyboard.TargetName="UserListRoot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness>0</Thickness>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames
+                            Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)"
+                            Storyboard.TargetName="UserListRoot">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <HorizontalAlignment>Stretch</HorizontalAlignment>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
 
-    <ctls:VirtuosoBusyIndicator x:Name="loginBusyIndicator" IsBusy="False">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MaxWidth)"
+                                                       Storyboard.TargetName="UserListRoot">
+                <EasingDoubleKeyFrame x:Name="widthKeyFrame" KeyTime="00:00:00" Value="{Binding ActualWidth, ElementName=LayoutRoot}" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <VirtuosoCoreControls:VirtuosoBusyIndicator x:Name="loginBusyIndicator" IsBusy="False">
         <VisualStateManager.CustomVisualStateManager>
             <ei:ExtendedVisualStateManager />
         </VisualStateManager.CustomVisualStateManager>
@@ -22,35 +48,6 @@
                     <VisualTransition GeneratedDuration="0:0:0.75" />
                 </VisualStateGroup.Transitions>
             </VisualStateGroup>
-            <!--<VisualStateGroup x:Name="FocusGroup">
-                <VisualState x:Name="NoFocus"></VisualState>
-                <VisualState x:Name="UserNameHasFocus">
-                    <Storyboard>
-                        -->
-            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SetFocusToUserName"
-                                                       Storyboard.TargetProperty="(FocusHelper.SetFocus)">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <sys:Boolean>false</sys:Boolean>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>-->
-                        <!--<ColorAnimation Storyboard.TargetName="usrbox" Storyboard.TargetProperty="(Control.Background)" 
-                                        To="Azure" Duration="0"/>-->
-                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="usrbox"
-                                                       Storyboard.TargetProperty="Background">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <Brush>Green</Brush>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>-->
-            <!--
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="UserNameNoFocus"></VisualState>
-                <VisualState x:Name="PasswordHasFocus"></VisualState>
-            </VisualStateGroup>-->
         </VisualStateManager.VisualStateGroups>
 
         <i:Interaction.Behaviors>
@@ -81,12 +78,15 @@
             </ei:StoryboardCompletedTrigger>
 
         </i:Interaction.Triggers>
-        <Grid x:Name="LayoutRoot">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                <Button Content="Button 1" Style="{StaticResource CoreButtonStyle}"/>
-                <Button Content="Button 2"/>
-                <TextBlock Text="This is a default styled text block"/>
-            </StackPanel>
+        <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch">
+            <Grid x:Name="UserListRoot"
+                  Margin="0,-650,0,0"
+                  HorizontalAlignment="Right"
+                  MaxWidth="0">
+                <VirtuosoCoreControls:ChangeUserPopup/>
+            </Grid>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click" Content="Start"/>
+            <Grid Background="Black" VerticalAlignment="Bottom" Height="50" MinWidth="20" Width="{Binding ActualWidth, ElementName=LayoutRoot}"/>
         </Grid>
-    </ctls:VirtuosoBusyIndicator>
+    </VirtuosoCoreControls:VirtuosoBusyIndicator>
 </UserControl>

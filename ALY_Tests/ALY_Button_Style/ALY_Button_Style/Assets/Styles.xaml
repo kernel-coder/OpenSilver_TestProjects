@@ -16,6 +16,19 @@
         <ResourceDictionary Source="Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Style x:Key="OuterPopupBorderStyle"
+           TargetType="Border">
+        <Setter Property="CornerRadius"
+                Value="3" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Padding"
+                Value="5" />
+        <Setter Property="Background"
+                Value="{StaticResource BorderBrush1Gradient}" />
+        <Setter Property="BorderBrush" Value="#FF7875AA"/>
+    </Style>
+    
     <Style x:Name="CoreTextBlockStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
         <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>

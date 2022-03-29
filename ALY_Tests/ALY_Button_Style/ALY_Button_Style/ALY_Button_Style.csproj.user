@@ -2,13 +2,51 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="DataGridTest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Assets\Brushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assets\CoreStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Assets\Fonts.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Assets\Icons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assets\SDKStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Assets\Styles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\CacheIconControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\CheckMark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\CheckMarkCoderReview.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\CheckMarkError.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\EncounterStatusMark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\OrderStatusMark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DataGridTest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Popups\ChangeUserPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

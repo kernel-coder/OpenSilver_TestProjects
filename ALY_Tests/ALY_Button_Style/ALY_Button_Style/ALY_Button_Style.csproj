@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-03-21-042413-6764a704" />
+    <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
+    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-03-29-063640-a1e8d587" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +19,37 @@
 	<Page Include="Assets\Brushes.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="Assets\CoreStyles.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="Assets\Fonts.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Assets\Icons.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Assets\SDKStyles.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\CacheIconControl.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\CheckMark.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\CheckMarkCoderReview.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\CheckMarkError.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\EncounterStatusMark.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\OrderStatusMark.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="DataGridTest.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
     <Page Include="MainPage.xaml">
@@ -26,12 +58,54 @@
     <Page Include="Assets\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\ChangeUserPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
     <Compile Include="App.xaml.cs" />
+    <Compile Include="Behaviors\ComboBoxExtensions.cs" />
+    <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
+    <Compile Include="Behaviors\TextBoxFilters.cs" />
+    <Compile Include="Controls\autoCompleteCombo.cs" />
+    <Compile Include="Controls\CacheIconControl.xaml.cs" />
+    <Compile Include="Controls\CheckMark.xaml.cs" />
+    <Compile Include="Controls\CheckMarkCoderReview.xaml.cs" />
+    <Compile Include="Controls\CheckMarkError.xaml.cs" />
+    <Compile Include="Controls\EncounterStatusMark.xaml.cs" />
+    <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />
+    <Compile Include="Controls\OrderStatusMark.xaml.cs" />
+    <Compile Include="Controls\vAsyncComboBox.cs" />
+    <Compile Include="Controls\vButton.cs" />
+    <Compile Include="Controls\vDatePicker.cs" />
     <Compile Include="Controls\VirtuosoBusyIndicator.cs" />
+    <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
+    <Compile Include="Converters\ComboBoxItemConverters.cs" />
+    <Compile Include="Converters\ContentFrameBrushConverter.cs" />
+    <Compile Include="Converters\DateTimeConverters.cs" />
+    <Compile Include="Converters\DebugDataBindingConverter.cs" />
+    <Compile Include="Converters\EmptyOrNullToDefaultConverter.cs" />
+    <Compile Include="Converters\FederalTaxIdConverters.cs" />
+    <Compile Include="Converters\FileUploadConverter.cs" />
+    <Compile Include="Converters\ImageToBytesConverter.cs" />
+    <Compile Include="Converters\LogLevelConverter.cs" />
+    <Compile Include="Converters\MedicationConverters.cs" />
+    <Compile Include="Converters\NullableValueConverter.cs" />
+    <Compile Include="Converters\NumberConverters.cs" />
+    <Compile Include="Converters\PhoneConverter.cs" />
+    <Compile Include="Converters\PhotoConverter.cs" />
+    <Compile Include="Converters\SequentialConverter.cs" />
+    <Compile Include="Converters\ServiceLineTypeCheckCheckedConverter.cs" />
+    <Compile Include="Converters\ServiceLineTypeRadioCheckedConverter.cs" />
+    <Compile Include="Converters\SSNConverter.cs" />
+    <Compile Include="Converters\TextConverters.cs" />
+    <Compile Include="Converters\VisibilityConverters.cs" />
+    <Compile Include="DataGridTest.xaml.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="MainPage.xaml.cs" />
+    <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
   </ItemGroup>
   
 </Project>

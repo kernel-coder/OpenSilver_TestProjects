@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.EncounterStatusMark"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+             mc:Ignorable="d">
+
+    <!--<Grid x:Name="LayoutRoot" Margin="0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Width="40" Height="30">-->
+    <Grid x:Name="LayoutRoot"
+          Margin="0"
+          VerticalAlignment="Top"
+          d:LayoutOverrides="HorizontalAlignment">
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center">
+            <VirtuosoCoreControls:CheckMark x:Name="completeCheckMark"
+                                            Width="16"
+                                            Height="16"
+                                            Visibility="Collapsed" />
+            <Grid x:Name="reviewCoder"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <Viewbox>
+                    <Path UseLayoutRounding="False"
+                          Stroke="Black"
+                          Stretch="Fill"
+                          StrokeLineJoin="Round"
+                          Fill="#FFFEDF00"
+                          Data="F1 M 31.08,77.87L 25.2933,78.6967C 25.1211,77.6031 24.7272,76.7785 24.1115,76.2231C 23.4958,75.6677 22.6992,75.39 21.7219,75.39C 20.4173,75.39 19.3775,75.8744 18.6025,76.8431C 17.8275,77.8119 17.44,79.4308 17.44,81.6998C 17.44,84.2271 17.8404,86.0118 18.6413,87.0537C 19.4421,88.0957 20.5163,88.6167 21.864,88.6167C 22.8758,88.6167 23.7024,88.3067 24.344,87.6867C 24.9855,87.0667 25.4397,85.9989 25.7067,84.4833L 31.4933,85.31C 30.925,87.9019 29.8357,89.8588 28.2254,91.1806C 26.6151,92.5024 24.4581,93.1633 21.7542,93.1633C 18.6757,93.1633 16.2226,92.1784 14.3949,90.2086C 12.5672,88.2389 11.6533,85.5102 11.6533,82.0227C 11.6533,78.4965 12.564,75.7517 14.3852,73.7883C 16.2065,71.825 18.6714,70.8433 21.78,70.8433C 24.3246,70.8433 26.3471,71.4224 27.8476,72.5806C 29.3481,73.7388 30.4256,75.5019 31.08,77.87 Z " />
+                </Viewbox>
+            </Grid>
+            <Grid x:Name="reviewOASIS"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <Viewbox>
+                    <Path UseLayoutRounding="False"
+                          Stroke="Black"
+                          Stretch="Fill"
+                          StrokeLineJoin="Round"
+                          Fill="#FFFEDF00"
+                          Data="F1 M 21.6533,33.9498C 21.6533,32.0726 22.113,30.2567 23.0322,28.5022C 23.9514,26.7477 25.2539,25.4076 26.9395,24.4819C 28.6251,23.5562 30.5077,23.0933 32.5873,23.0933C 35.7992,23.0933 38.431,24.1428 40.4826,26.2418C 42.5342,28.3407 43.56,30.9919 43.56,34.1952C 43.56,37.4244 42.5234,40.1014 40.4503,42.2261C 38.3772,44.3509 35.7691,45.4133 32.626,45.4133C 30.6799,45.4133 28.8242,44.9709 27.059,44.0861C 25.2937,43.2014 23.9514,41.9043 23.0322,40.195C 22.113,38.4857 21.6533,36.404 21.6533,33.9498 Z M 27.44,34.2533C 27.44,36.3889 27.9373,38.025 28.9319,39.1617C 29.9265,40.2983 31.1557,40.8667 32.6196,40.8667C 34.0792,40.8667 35.303,40.2983 36.2911,39.1617C 37.2793,38.025 37.7733,36.376 37.7733,34.2146C 37.7733,32.1049 37.2793,30.4817 36.2911,29.345C 35.303,28.2083 34.0792,27.64 32.6196,27.64C 31.1557,27.64 29.9265,28.2083 28.9319,29.345C 27.9373,30.4817 27.44,32.1178 27.44,34.2533 Z " />
+                </Viewbox>
+            </Grid>
+            <Grid x:Name="reviewHIS"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <Viewbox>
+                    <Path UseLayoutRounding="False"
+                          Stroke="Black"
+                          Stretch="Fill"
+                          StrokeLineJoin="Round"
+                          Fill="#FFFEDF00"
+                          Data="M 5,5 L 35,5 L 35,35 L 65,35 L 65,5 L 95,5 L 95,95 L 65,95 L 65,65 L 35,65 L 35,95 L 5,95 L 5,5 Z " />
+                </Viewbox>
+            </Grid>
+            <Grid x:Name="reviewPOCOrder"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <Viewbox>
+                    <Path UseLayoutRounding="False"
+                          Stroke="Black"
+                          Stretch="Fill"
+                          StrokeLineJoin="Round"
+                          Fill="#FFFEDF00"
+                          Data="F1 M 21.6533,33.9498C 21.6533,32.0726 22.113,30.2567 23.0322,28.5022C 23.9514,26.7477 25.2539,25.4076 26.9395,24.4819C 28.6251,23.5562 30.5077,23.0933 32.5873,23.0933C 35.7992,23.0933 38.431,24.1428 40.4826,26.2418C 42.5342,28.3407 43.56,30.9919 43.56,34.1952C 43.56,37.4244 42.5234,40.1014 40.4503,42.2261C 38.3772,44.3509 35.7691,45.4133 32.626,45.4133C 30.6799,45.4133 28.8242,44.9709 27.059,44.0861C 25.2937,43.2014 23.9514,41.9043 23.0322,40.195C 22.113,38.4857 21.6533,36.404 21.6533,33.9498 Z M 27.44,34.2533C 27.44,36.3889 27.9373,38.025 28.9319,39.1617C 29.9265,40.2983 31.1557,40.8667 32.6196,40.8667C 34.0792,40.8667 35.303,40.2983 36.2911,39.1617C 37.2793,38.025 37.7733,36.376 37.7733,34.2146C 37.7733,32.1049 37.2793,30.4817 36.2911,29.345C 35.303,28.2083 34.0792,27.64 32.6196,27.64C 31.1557,27.64 29.9265,28.2083 28.9319,29.345C 27.9373,30.4817 27.44,32.1178 27.44,34.2533 Z " />
+                </Viewbox>
+            </Grid>
+            <VirtuosoCoreControls:CheckMarkCoderReview x:Name="reviewCheckMark"
+                                                       Width="16"
+                                                       Height="16"
+                                                       Visibility="Collapsed" />
+        </StackPanel>
+        <ToolTipService.ToolTip>
+            <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                <ToolTip.Content>
+                    <TextBlock x:Name="toolTip"
+                               Text=""
+                               TextWrapping="Wrap" />
+                </ToolTip.Content>
+            </ToolTip>
+        </ToolTipService.ToolTip>
+    </Grid>
+</UserControl>

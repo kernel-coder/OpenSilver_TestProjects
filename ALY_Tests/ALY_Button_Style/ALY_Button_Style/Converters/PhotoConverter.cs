@@ -19,24 +19,7 @@ namespace Virtuoso.Core.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string uri_string = "/Virtuoso;component/Assets/Images/Crescendo_Icon-on-Side_White.png";
-#if !OPENSILVER
-            if (System.Windows.Application.Current.IsRunningOutOfBrowserOrOpenSilver() == false)
-            {
-                // NOTE: When SILVERLIGHT and running in browser for the install - no MEF.
-                
-                BitmapImage bi = new BitmapImage();
-                StreamResourceInfo sr = System.Windows.Application.GetResourceStream(new Uri(uri_string, UriKind.Relative));
-                bi.SetSource(sr.Stream);
-                return bi;
-            }
-            else
-#endif
-            {
-                //var appFeatures = VirtuosoContainer.Current.GetInstance<IAppFeatures>();
-                //return appFeatures.CreateBitmapSource(uri_string);
-                return null;
-            }
-
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

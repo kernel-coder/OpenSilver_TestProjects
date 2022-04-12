@@ -5,6 +5,9 @@
     <Compile Update="DataGridTest.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TestView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Assets\Brushes.xaml">
@@ -47,6 +50,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Popups\ChangeUserPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TestView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

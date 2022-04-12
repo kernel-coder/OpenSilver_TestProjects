@@ -245,7 +245,15 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <sdk:DataGrid x:Name="gridTest"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Button Content="Load Data" HorizontalAlignment="Center" Click="Button_Click" />
+        </Grid>
+        
+        <sdk:DataGrid Grid.Row="1" x:Name="gridTest"
                                       Style="{StaticResource CoreDataGridStyle}"
                                       Background="{StaticResource HighlightLightBrush}"
                                       HorizontalAlignment="Stretch"
@@ -257,12 +265,12 @@
                                       TabNavigation="Local"
                                       AutoGenerateColumns="False"
                                       BorderThickness="0"
-                                      Margin="0,0,0,0"
+                                      Margin="{StaticResource HomeDataGridMarging}"
                                       ColumnHeaderStyle="{StaticResource HomeDataGridColumnHeaderStyle}"
                                       RowStyle="{StaticResource PurpleGridRow}"
                                       CellStyle="{StaticResource TopCellStyle}">
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Patient"
+                <sdk:DataGridTemplateColumn Header="Patient" MinWidth="100"
                                                             Width="Auto"
                                                             SortMemberPath="FullNameWithMRN"
                                                             CellTemplate="{StaticResource PatientCaseLoad}">
@@ -296,14 +304,10 @@
                                                         Header="ServiceLine"
                                                         IsReadOnly="True"
                                                         Width="*" />
-                <sdk:DataGridTemplateColumn Header="Exclude" 
-                                                            SortMemberPath="Exclude">
+                <sdk:DataGridTemplateColumn Header="Exclude" SortMemberPath="Exclude">
                     <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Exclude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                      Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Path=DataContext.ExcludeCheckBoxCommand}"
-                                                      CommandParameter="{Binding}">
-                            </CheckBox>
+                            <CheckBox IsChecked="{Binding Exclude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

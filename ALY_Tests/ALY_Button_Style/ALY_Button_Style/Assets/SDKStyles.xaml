@@ -479,7 +479,7 @@
         <Setter Property="Padding"
                 Value="1,0,0,0" />
         <Setter Property="Margin"
-                Value="0,0,0,0" />
+                Value="{StaticResource HomeDataGridHeaderMargin}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dataPrimitives:DataGridColumnHeader">

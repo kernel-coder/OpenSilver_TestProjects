@@ -336,5 +336,8 @@
 
 
     <!-- Brushes End -->
+
+    <Thickness x:Key="HomeDataGridMarging">0,34,0,0</Thickness>
+    <Thickness x:Key="HomeDataGridHeaderMargin">0,-34,0,0</Thickness>
 </ResourceDictionary>
 

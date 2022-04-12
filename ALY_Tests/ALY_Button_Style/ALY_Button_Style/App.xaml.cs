@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace ALY_Button_Style
 {
@@ -12,8 +13,10 @@ namespace ALY_Button_Style
         public App()
         {
             this.InitializeComponent();
+            UpdateResDic(App.Current.Resources);
 
-            // Enter construction logic here...
+            //File.ReadAllBytes("test.txt");
+            //Directory.Delete("filename.txt");
 
 #if OPENSILVER
 
@@ -25,9 +28,38 @@ namespace ALY_Button_Style
 #endif
         }
 
+        private void UpdateResDic(ResourceDictionary dic)
+        {
+            if (dic.ContainsKey("HomeDataGridMarging"))
+            {
+                dic.Remove("HomeDataGridMarging");
+                dic.Add("HomeDataGridMarging", new Thickness(0));
+            }
+
+            if (dic.ContainsKey("HomeDataGridColumnHeaderStyle"))
+            {
+                var headerStyle = dic["HomeDataGridColumnHeaderStyle"] as Style;
+                foreach (Setter item in headerStyle.Setters)
+                {
+                    if (item.Property == DataGridColumnHeader.MarginProperty)
+                    {
+                        headerStyle.Setters.Remove(item);
+                        Setter setter = new Setter(DataGridColumnHeader.MarginProperty, new Thickness(0));
+                        headerStyle.Setters.Add(setter);
+                        break;
+                    }
+                }
+            }
+
+            foreach (var mrd in dic.MergedDictionaries)
+            {
+                UpdateResDic(mrd);
+            }
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new DataGridTest();
+           // this.RootVisual = new DataGridTest();
         }
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)

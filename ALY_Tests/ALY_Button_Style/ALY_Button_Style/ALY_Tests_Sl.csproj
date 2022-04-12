@@ -61,6 +61,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.SL5">
+      <HintPath>..\..\Lib\Mvvm Light Toolkit\GalaSoft.MvvmLight.Extras.SL5.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.SL5">
+      <HintPath>..\..\Lib\Mvvm Light Toolkit\GalaSoft.MvvmLight.SL5.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\Lib\Mvvm Light Toolkit\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -124,11 +133,79 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\BindableDialogResult.cs" />
+    <Compile Include="Behaviors\CheckChangedBehavior.cs" />
+    <Compile Include="Behaviors\ClippingBehavior.cs" />
+    <Compile Include="Behaviors\ComboBoxExtensions.cs" />
+    <Compile Include="Behaviors\DataGridDoubleClickBehavior.cs" />
+    <Compile Include="Behaviors\DoubleClickInvokeCommandBehavior.cs" />
+    <Compile Include="Behaviors\FocusBehavior.cs" />
+    <Compile Include="Behaviors\NullOrEmptyBehavior.cs" />
+    <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
+    <Compile Include="Behaviors\ScrollIntoViewBehavior.cs" />
+    <Compile Include="Behaviors\SetFocusTrigger.cs" />
+    <Compile Include="Behaviors\TextBoxEnterKey.cs" />
+    <Compile Include="Behaviors\TextBoxFilters.cs" />
+    <Compile Include="Behaviors\TrimTextBoxBehavior.cs" />
+    <Compile Include="Controls\autoCompleteCombo.cs" />
+    <Compile Include="Controls\CacheIconControl.xaml.cs">
+      <DependentUpon>CacheIconControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckMark.xaml.cs">
+      <DependentUpon>CheckMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckMarkCoderReview.xaml.cs">
+      <DependentUpon>CheckMarkCoderReview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckMarkError.xaml.cs">
+      <DependentUpon>CheckMarkError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EncounterStatusMark.xaml.cs">
+      <DependentUpon>EncounterStatusMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />
+    <Compile Include="Controls\OrderStatusMark.xaml.cs">
+      <DependentUpon>OrderStatusMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vAsyncComboBox.cs" />
+    <Compile Include="Controls\vButton.cs" />
+    <Compile Include="Controls\vDatePicker.cs" />
     <Compile Include="Controls\VirtuosoBusyIndicator.cs" />
+    <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
+    <Compile Include="Converters\ComboBoxItemConverters.cs" />
+    <Compile Include="Converters\ContentFrameBrushConverter.cs" />
+    <Compile Include="Converters\DateTimeConverters.cs" />
+    <Compile Include="Converters\DebugDataBindingConverter.cs" />
+    <Compile Include="Converters\EmptyOrNullToDefaultConverter.cs" />
+    <Compile Include="Converters\FederalTaxIdConverters.cs" />
+    <Compile Include="Converters\FileUploadConverter.cs" />
+    <Compile Include="Converters\ImageToBytesConverter.cs" />
+    <Compile Include="Converters\MedicationConverters.cs" />
+    <Compile Include="Converters\NullableValueConverter.cs" />
+    <Compile Include="Converters\NumberConverters.cs" />
+    <Compile Include="Converters\PhoneConverter.cs" />
+    <Compile Include="Converters\PhotoConverter.cs" />
+    <Compile Include="Converters\SequentialConverter.cs" />
+    <Compile Include="Converters\ServiceLineTypeCheckCheckedConverter.cs" />
+    <Compile Include="Converters\ServiceLineTypeRadioCheckedConverter.cs" />
+    <Compile Include="Converters\SSNConverter.cs" />
+    <Compile Include="Converters\TextConverters.cs" />
+    <Compile Include="Converters\VisibilityConverters.cs" />
+    <Compile Include="DataGridTest.xaml.cs">
+      <DependentUpon>DataGridTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Popups\ChangeUserPopup.xaml.cs">
+      <DependentUpon>ChangeUserPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -139,7 +216,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Assets\CoreStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\SDKStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -147,9 +236,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\CacheIconControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CheckMark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CheckMarkCoderReview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CheckMarkError.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EncounterStatusMark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OrderStatusMark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ChangeUserPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -27,32 +27,39 @@ namespace ALY_Button_Style
         public int PatientKey { get; set; }
 
         public int AdmissionKey { get; set; }
+        public DateTime SOCDate { get; set; }
+        public string CareCoordinator { get; set; }
+        public string ServiceLineName { get; set; }
+
+        public bool Exclude { get; set; } = false;
     }
+
     public partial class DataGridTest : UserControl
     {
         public DataGridTest()
         {
+            this.InitializeComponent();
+        }
 
-            try
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var list = new List<CaseLoadPM>();
+            for (int i = 0; i < 200; i++)
             {
-                this.InitializeComponent();
-                var list = new List<CaseLoadPM>();
-                for(int i = 0; i < 2; i++)
+                list.Add(new CaseLoadPM()
                 {
-                    list.Add(new CaseLoadPM()
-                    {
-                        FullNameInformal = $"Informal {i + 1}",
-                        FullNameWithMRN = $"MRN {i + 1}",
-                        AdmissionStatusAndDate = DateTime.Now.ToString(),
-                        LastVisitDateForCurrentUser = DateTime.Now.ToString()
-                    });
-                }
-                gridTest.ItemsSource = list;
+                    FullNameInformal = $"Informal {i + 1}",
+                    FullNameWithMRN = $"MRN {i + 1}",
+                    CareCoordinator = $"Coordinator {i + 1}",
+                    SOCDate = DateTime.Now,
+                    LastVisitAndClinician = $"LastVisit {i + 1}",
+                    ServiceLineName = $"Line {i + 1}",
+                    AdmissionStatusAndDate = DateTime.Now.ToString(),
+                    LastVisitDateForCurrentUser = DateTime.Now.ToString()
+                });
             }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+
+            gridTest.ItemsSource = list;
         }
     }
 }

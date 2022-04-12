@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-03-29-063640-a1e8d587" />
+    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-04-12-051418-c05da0c0" />
+    <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
+    <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
+    <PackageReference Include="Silverlight.Controls.ToolTips.OpenSilver" Version="1.0.0-private-2022-03-07-122116-31770396" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
@@ -61,6 +65,9 @@
     <Page Include="Popups\ChangeUserPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -106,6 +113,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
+    <Compile Include="TestView.xaml.cs" />
   </ItemGroup>
   
 </Project>

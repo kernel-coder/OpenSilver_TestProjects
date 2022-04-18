@@ -12,14 +12,18 @@ namespace ALY_Button_Style
     {
         public App()
         {
+#if OPENSILVER
+            App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotLoaded = true;
+            App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
+#endif
             this.InitializeComponent();
-            UpdateResDic(App.Current.Resources);
+
 
             //File.ReadAllBytes("test.txt");
             //Directory.Delete("filename.txt");
 
 #if OPENSILVER
-
+            UpdateResDic(App.Current.Resources);
             var mainPage = new DataGridTest();
             Window.Current.Content = mainPage;
 #else
@@ -28,6 +32,7 @@ namespace ALY_Button_Style
 #endif
         }
 
+#if OPENSILVER
         private void UpdateResDic(ResourceDictionary dic)
         {
             if (dic.ContainsKey("HomeDataGridMarging"))
@@ -56,6 +61,7 @@ namespace ALY_Button_Style
                 UpdateResDic(mrd);
             }
         }
+#endif
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {

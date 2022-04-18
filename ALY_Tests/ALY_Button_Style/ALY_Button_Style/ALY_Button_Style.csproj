@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-04-12-051418-c05da0c0" />
+    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-04-15-061348-deaec892" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="Silverlight.Controls.ToolTips.OpenSilver" Version="1.0.0-private-2022-03-07-122116-31770396" />
@@ -35,6 +35,9 @@
 	<Page Include="Assets\SDKStyles.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="ComboItemsTestDlg.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="Controls\CacheIconControl.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
@@ -56,6 +59,9 @@
 	<Page Include="DataGridTest.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="ImageBrushSample.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,6 +81,7 @@
     <Compile Include="Behaviors\ComboBoxExtensions.cs" />
     <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
     <Compile Include="Behaviors\TextBoxFilters.cs" />
+    <Compile Include="ComboItemsTestDlg.xaml.cs" />
     <Compile Include="Controls\autoCompleteCombo.cs" />
     <Compile Include="Controls\CacheIconControl.xaml.cs" />
     <Compile Include="Controls\CheckMark.xaml.cs" />
@@ -111,9 +118,18 @@
     <Compile Include="Converters\VisibilityConverters.cs" />
     <Compile Include="DataGridTest.xaml.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="ImageBrushSample.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
     <Compile Include="TestView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\back.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\Background.jpg" />
   </ItemGroup>
   
 </Project>

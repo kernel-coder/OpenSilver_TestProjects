@@ -3266,7 +3266,7 @@
                              BorderBrush="{StaticResource ComboBoxPopupBrush}"
                              Background="{StaticResource WhiteBrush}">
 
-                        <ScrollViewer x:Name="ScrollViewer"
+                                <ScrollViewer x:Name="ScrollViewer" MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                       BorderThickness="0"
                                       Padding="1"
                                       VerticalScrollBarVisibility="Auto"
@@ -7496,7 +7496,7 @@
                   </VisualStateManager.VisualStateGroups>
                   <Border x:Name="ContentPresenterBorder">
                      <Grid>
-                        <ToggleButton x:Name="DropDownToggle" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" Margin="0" Style="{StaticResource comboToggleStyle}" VerticalAlignment="Stretch">
+                          <ToggleButton x:Name="DropDownToggle" MinHeight="28" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" Margin="0" Style="{StaticResource comboToggleStyle}" VerticalAlignment="Stretch">
                            <Path x:Name="BtnArrow" Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z " HorizontalAlignment="Right" Height="4" Margin="0,0,6,0" Stretch="Uniform" Width="8">
                               <Path.Fill>
                                  <SolidColorBrush x:Name="BtnArrowColor" Color="{StaticResource Gray3}"/>
@@ -7540,7 +7540,7 @@
                      <Border Effect="{StaticResource DropShadowBrush}" x:Name="PopupBorder" BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="Stretch" Height="Auto" BorderBrush="{StaticResource ComboBoxPopupBrush}" Background="{StaticResource WhiteBrush}">
                         <StackPanel Orientation="Vertical" Width="{TemplateBinding Width}" >
                            <Button x:Name="ControlCloseButton" IsTabStop="False" HorizontalAlignment="Right" Style="{StaticResource ComboBoxPopupCloseButtonStyle}" VerticalAlignment="Center" />
-                           <ScrollViewer x:Name="ScrollViewer"  MaxHeight="248" BorderThickness="0" Padding="1">
+                           <ScrollViewer x:Name="ScrollViewer"  MaxHeight="248" BorderThickness="0" Padding="1" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                               <StackPanel Orientation="Vertical" Width="{TemplateBinding Width}">
                                  <ListBox x:Name="ControlListBox"  SelectionMode="Multiple" ItemsSource="{TemplateBinding ItemsSource}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}" SelectedValuePath="{TemplateBinding SelectedValuePath}"/>
                               </StackPanel>

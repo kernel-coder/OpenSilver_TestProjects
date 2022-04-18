@@ -18,6 +18,12 @@ namespace ALY_Button_Style
         public TestView()
         {
             this.InitializeComponent();
+
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    comboMulti.Items.Add($"Item {i + 1}");
+
+            //}
         }
 
         private int ItemsToAdd = 1;
@@ -25,25 +31,29 @@ namespace ALY_Button_Style
         private int StepIndex = 0;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (StepIndex >= Steps.Length) return;
+            //ComboItemsTestDlg dlg = new ComboItemsTestDlg();
+            //dlg.IsModal = true;
+            //dlg.Show();
+            //return;
+            //if (StepIndex >= Steps.Length) return;
 
-            ItemsToAdd = Steps[StepIndex];
-            StepIndex++;
+            //ItemsToAdd = Steps[StepIndex];
+            //StepIndex++;
 
-            gridContent.Children.Clear();
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            ListBox lb = new ListBox(); 
-            for(int i = 1; i <= ItemsToAdd; i++)
-            {
-                lb.Items.Add("Item " +  i.ToString());
-            }
-            //gridContent.Children.Add(new ListTimePickerPopup());
-            var t1 = watch.Elapsed.TotalSeconds;
-            gridContent.Children.Add(lb);
-            var t2 = watch.Elapsed.TotalSeconds;
-            watch.Stop();
-            System.Diagnostics.Debug.WriteLine($"Measure {ItemsToAdd}: {t1}, {t2}");
+            //gridContent.Children.Clear();
+            //Stopwatch watch = new Stopwatch();
+            //watch.Start();
+            //ListBox lb = new ListBox(); 
+            //for(int i = 1; i <= ItemsToAdd; i++)
+            //{
+            //    lb.Items.Add("Item " +  i.ToString());
+            //}
+            ////gridContent.Children.Add(new ListTimePickerPopup());
+            //var t1 = watch.Elapsed.TotalSeconds;
+            //gridContent.Children.Add(lb);
+            //var t2 = watch.Elapsed.TotalSeconds;
+            //watch.Stop();
+            //System.Diagnostics.Debug.WriteLine($"Measure {ItemsToAdd}: {t1}, {t2}");
         }
     }
 }

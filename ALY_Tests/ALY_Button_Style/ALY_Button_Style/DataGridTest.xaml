@@ -250,7 +250,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Button Content="Load Data" HorizontalAlignment="Center" Click="Button_Click" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Content="Load Data" HorizontalAlignment="Center" Click="Button_Click" />
+
+                <!--<ComboBox x:Name="searchItemComboBox"
+                  TabIndex="1"
+                  Margin="8,0"
+                  VerticalAlignment="Center"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  IsTabStop="True"
+                  IsHitTestVisible="True">
+                    --><!--<ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>--><!--
+                </ComboBox>-->
+            </StackPanel>
         </Grid>
         
         <sdk:DataGrid Grid.Row="1" x:Name="gridTest"

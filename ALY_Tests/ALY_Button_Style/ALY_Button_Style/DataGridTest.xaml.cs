@@ -39,6 +39,13 @@ namespace ALY_Button_Style
         public DataGridTest()
         {
             this.InitializeComponent();
+
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    searchItemComboBox.Items.Add($"Item {i + 1}");
+            //}
+
+            //searchItemComboBox.SelectedIndex = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

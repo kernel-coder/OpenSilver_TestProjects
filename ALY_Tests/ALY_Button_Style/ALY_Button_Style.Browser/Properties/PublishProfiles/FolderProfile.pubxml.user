@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>E:\Alayacare\pub_test_aly_aot</_PublishTargetUrl>
-    <History>True|2022-04-12T07:22:05.1444763Z;True|2022-04-03T14:51:43.6956414+06:00;True|2022-04-02T13:08:51.6321579+06:00;True|2022-04-02T11:44:01.4148923+06:00;False|2022-04-02T11:06:17.7029409+06:00;False|2022-04-02T09:18:54.5457720+06:00;</History>
+    <_PublishTargetUrl>E:\Alayacare\pub_test_aly_rel-2</_PublishTargetUrl>
+    <History>True|2022-04-19T06:31:34.9216892Z;</History>
   </PropertyGroup>
 </Project>

@@ -8,7 +8,7 @@
     xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
     xmlns:VirtuosoCoreConverters="clr-namespace:Virtuoso.Core.Converters"
     xmlns:VirtuosoHomeControls="clr-namespace:Virtuoso.Home.V2.Controls"
-    xmlns:local="clr-namespace:ALY_Button_Style">
+    xmlns:local="clr-namespace:ALY_Button_Style" CustomLayout="True">
     <UserControl.Resources>
         <DataTemplate x:Name="PatientInfo">
             <StackPanel VerticalAlignment="Center">
@@ -251,7 +251,9 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Load Data" HorizontalAlignment="Center" Click="Button_Click" />
+                <TextBlock Text="Row Count" VerticalAlignment="Center"/>
+                <TextBox x:Name="tbCount" Text="200"  VerticalAlignment="Center" Margin="10, 0" MinWidth="120"/>
+                <Button Content="Load Data"  VerticalAlignment="Center" Click="Button_Click" />
 
                 <!--<ComboBox x:Name="searchItemComboBox"
                   TabIndex="1"
@@ -269,7 +271,7 @@
             </StackPanel>
         </Grid>
         
-        <sdk:DataGrid Grid.Row="1" x:Name="gridTest"
+        <sdk:DataGrid Grid.Row="1" x:Name="gridTest" CustomLayout="True"
                                       Style="{StaticResource CoreDataGridStyle}"
                                       Background="{StaticResource HighlightLightBrush}"
                                       HorizontalAlignment="Stretch"

@@ -14,21 +14,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0">
-            <Grid.Background>
+        <Border Grid.Row="0" Grid.Column="0">
+            <Border.Background>
                 <ImageBrush Stretch="None" ImageSource="/ALY_Button_Style;component/Assets/Images/back.jpg"/>
-            </Grid.Background>
-        </Grid>
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid.Background>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1">
+            <Border.Background>
                 <ImageBrush Stretch="Fill" ImageSource="/ALY_Button_Style;component/Assets/Images/back.jpg"/>
-            </Grid.Background>
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.Background>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="0">
+            <Border.Background>
                 <ImageBrush Stretch="Uniform" ImageSource="/ALY_Button_Style;component/Assets/Images/back.jpg"/>
-            </Grid.Background>
-        </Grid>
+            </Border.Background>
+        </Border>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.Background>
                 <ImageBrush Stretch="UniformToFill" ImageSource="/ALY_Button_Style;component/Assets/Images/back.jpg"/>

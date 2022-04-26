@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -39,19 +40,21 @@ namespace ALY_Button_Style
         public DataGridTest()
         {
             this.InitializeComponent();
-
-            //for (int i = 0; i < 30; i++)
-            //{
-            //    searchItemComboBox.Items.Add($"Item {i + 1}");
-            //}
-
-            //searchItemComboBox.SelectedIndex = 0;
+            gridTest.IsAutoHeightOnCustomLayout = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var list = new List<CaseLoadPM>();
-            for (int i = 0; i < 200; i++)
+            int count = 200;
+            try
+            {
+                count = Convert.ToInt32(tbCount.Text);
+            }
+            catch { }
+
+
+            for (int i = 0; i < count; i++)
             {
                 list.Add(new CaseLoadPM()
                 {
@@ -66,7 +69,12 @@ namespace ALY_Button_Style
                 });
             }
 
+            var watch = new Stopwatch();
+            watch.Start();            
             gridTest.ItemsSource = list;
+            Console.WriteLine($"Row count is {count}, time took: {watch.Elapsed.TotalSeconds}");
+            Debug.WriteLine($"Row count is {count}, time took: {watch.Elapsed.TotalSeconds}");
+            watch.Stop();
         }
     }
 }

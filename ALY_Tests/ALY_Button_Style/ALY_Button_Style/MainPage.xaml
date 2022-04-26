@@ -10,34 +10,33 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     xmlns:local="clr-namespace:ALY_Button_Style">
-    <UserControl.Resources>
-        <Storyboard x:Name="storyTest">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+    <Grid>
+        <Grid.Resources>
+            <Storyboard x:Name="storyTest">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
                                                        Storyboard.TargetName="UserListRoot">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Thickness>0</Thickness>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Thickness>0</Thickness>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames
                             Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)"
                             Storyboard.TargetName="UserListRoot">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <HorizontalAlignment>Stretch</HorizontalAlignment>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <HorizontalAlignment>Stretch</HorizontalAlignment>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
 
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MaxWidth)"
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MaxWidth)"
                                                        Storyboard.TargetName="UserListRoot">
-                <EasingDoubleKeyFrame x:Name="widthKeyFrame" KeyTime="00:00:00" Value="{Binding ActualWidth, ElementName=LayoutRoot}" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </UserControl.Resources>
-
-    <VirtuosoCoreControls:VirtuosoBusyIndicator x:Name="loginBusyIndicator" IsBusy="False">
+                    <EasingDoubleKeyFrame x:Name="widthKeyFrame" KeyTime="00:00:00" Value="{Binding ActualWidth, ElementName=LayoutRoot}" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
         <VisualStateManager.CustomVisualStateManager>
             <ei:ExtendedVisualStateManager />
         </VisualStateManager.CustomVisualStateManager>
@@ -86,7 +85,6 @@
                 <VirtuosoCoreControls:ChangeUserPopup/>
             </Grid>
             <Button HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click" Content="Start"/>
-            <Grid Background="Black" VerticalAlignment="Bottom" Height="50" MinWidth="20" Width="{Binding ActualWidth, ElementName=LayoutRoot}"/>
         </Grid>
-    </VirtuosoCoreControls:VirtuosoBusyIndicator>
+    </Grid>
 </UserControl>

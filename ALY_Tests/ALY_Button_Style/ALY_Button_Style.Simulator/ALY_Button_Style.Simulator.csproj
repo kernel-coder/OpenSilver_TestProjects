@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="OpenSilver.Simulator" Version="1.0.0-private-2022-04-19-044023-cb5907d6" />
+		<PackageReference Include="OpenSilver.Simulator" Version="1.0.0-private-2022-04-21-102927-d3a80acc" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
 

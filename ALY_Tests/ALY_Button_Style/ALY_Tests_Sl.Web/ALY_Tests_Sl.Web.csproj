@@ -20,8 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <SilverlightApplicationList>
-    </SilverlightApplicationList>
+    <SilverlightApplicationList>{35A42D0A-0798-4558-8718-DDC0AB5155BA}|..\ALY_Button_Style\ALY_Tests_Sl.csproj|ClientBin|True</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,7 +61,7 @@
   <ItemGroup>
     <Content Include="ALY_Tests_SlTestPage.aspx" />
     <Content Include="ALY_Tests_SlTestPage.html" />
-    <Content Include="ClientBin\ALY_Tests_Sl.xap" />
+    <Content Include="ClientBin\Debug\ALY_Tests_Sl.xap" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
   </ItemGroup>

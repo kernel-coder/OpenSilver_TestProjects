@@ -9,7 +9,7 @@
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
-    xmlns:local="clr-namespace:ALY_Button_Style">
+    xmlns:local="clr-namespace:ALY_Button_Style" >
     <Grid>
         <Grid.Resources>
             <Storyboard x:Name="storyTest">
@@ -77,7 +77,7 @@
             </ei:StoryboardCompletedTrigger>
 
         </i:Interaction.Triggers>
-        <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch">
+        <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" >
             <Grid x:Name="UserListRoot"
                   Margin="0,-650,0,0"
                   HorizontalAlignment="Right"

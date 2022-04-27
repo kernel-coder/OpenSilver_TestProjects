@@ -14,7 +14,6 @@
                     <ListBox x:Name="userListBox"
                              ScrollViewer.HorizontalScrollBarVisibility="Auto">
                         <ItemsControl.ItemsPanel>
-                            
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel>
                                 </toolkit:WrapPanel>

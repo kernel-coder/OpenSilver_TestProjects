@@ -18,6 +18,7 @@ namespace ALY_Button_Style
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

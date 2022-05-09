@@ -325,7 +325,48 @@
                 <sdk:DataGridTemplateColumn Header="Exclude" SortMemberPath="Exclude">
                     <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Exclude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Grid.Column="0"
+                            Height="18"
+                            Width="18"
+                            Margin="0,0,3,0"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" />
+                                <Button Grid.Column="0"
+                            Height="18"
+                            Width="18"
+                            Margin="0,0,3,0"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" />
+                                <Button Grid.Column="0"
+                            Height="18"
+                            Width="18"
+                            Margin="0,0,3,0"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" />
+                                <Button Grid.Column="0"
+                            Height="18"
+                            Width="18"
+                            Margin="0,0,3,0"
+                            Style="{StaticResource InfoButtonStyle}"
+                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" />
+                            </StackPanel>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
                 </sdk:DataGridTemplateColumn>

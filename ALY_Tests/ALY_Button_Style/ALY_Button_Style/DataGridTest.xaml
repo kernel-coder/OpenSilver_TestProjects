@@ -212,7 +212,7 @@
         <DataTemplate x:Name="PatientCaseLoad">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Grid.Column="0"
+                    <!--<Button Grid.Column="0"
                             Height="18"
                             Width="18"
                             Margin="0,0,3,0"
@@ -221,7 +221,7 @@
                             CommandParameter="{Binding}"
                             Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center" />-->
                     <HyperlinkButton Content="{Binding FullNameWithMRN}"
                                      Style="{StaticResource CoreHyperlinkButtonStyle}"
                                      Command="{Binding DataContext.PatientMaintCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
@@ -252,8 +252,9 @@
         <Grid Grid.Row="0">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock Text="Row Count" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbCount" Text="200"  VerticalAlignment="Center" Margin="10, 0" MinWidth="120"/>
-                <Button Content="Load Data"  VerticalAlignment="Center" Click="Button_Click" />
+                <TextBox x:Name="tbCount" Text="200" VerticalAlignment="Center" Margin="10, 0" MinWidth="120"/>
+                <Button Content="Write Data to iDB"  VerticalAlignment="Center" Click="Button_Click_WRITE" />
+                <Button Content="Load Data from iDB"  VerticalAlignment="Center" Click="Button_Click_READ" />
 
                 <!--<ComboBox x:Name="searchItemComboBox"
                   TabIndex="1"
@@ -322,13 +323,13 @@
                                                         Header="ServiceLine"
                                                         IsReadOnly="True"
                                                         Width="*" />
-                <sdk:DataGridTemplateColumn Header="Exclude" SortMemberPath="Exclude">
+                <!--<sdk:DataGridTemplateColumn Header="Exclude" SortMemberPath="Exclude">
                     <sdk:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding Exclude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </sdk:DataGridTemplateColumn.CellTemplate>
-                </sdk:DataGridTemplateColumn>
+                </sdk:DataGridTemplateColumn>-->
 
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>

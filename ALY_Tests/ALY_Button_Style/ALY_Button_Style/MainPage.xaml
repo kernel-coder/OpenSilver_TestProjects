@@ -82,7 +82,7 @@
                   Margin="0,-650,0,0"
                   HorizontalAlignment="Right"
                   MaxWidth="0">
-                <VirtuosoCoreControls:ChangeUserPopup/>
+                <VirtuosoCoreControls:ChangeUserPopup CustomLayout="True" IsAutoWidthOnCustomLayout="True"/>
             </Grid>
             <Button HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click" Content="Start"/>
         </Grid>

@@ -329,7 +329,7 @@ document.addEventListenerSafe = function (element, method, func) {
     }
 }
 
-document._attachEventListeners = function (element, handler, isFocusable) {
+document._attachEventListeners = function (element, handler) {
     const view = typeof element === 'string' ? document.getElementById(element) : element;
     if (!view || view._eventsStore) return;
 
@@ -341,7 +341,6 @@ document._attachEventListeners = function (element, handler, isFocusable) {
     }
 
     const store = view._eventsStore = {};
-    store.isFocusable = isFocusable;
 
     view.addEventListener('mousedown', store['mousedown'] = bubblingEventHandler);
     view.addEventListener('touchstart', store['touchstart'] = bubblingEventHandler, { passive: true });
@@ -352,13 +351,11 @@ document._attachEventListeners = function (element, handler, isFocusable) {
     view.addEventListener('wheel', store['wheel'] = bubblingEventHandler, { passive: true });
     view.addEventListener('mouseenter', store['mouseenter'] = handler);
     view.addEventListener('mouseleave', store['mouseleave'] = handler);
-    if (isFocusable) {
-        view.addEventListener('input', store['input'] = bubblingEventHandler);
-        view.addEventListener('keydown', store['keydown'] = bubblingEventHandler);
-        view.addEventListener('keyup', store['keyup'] = bubblingEventHandler);
-        view.addEventListener('focusin', store['focusin'] = bubblingEventHandler);
-        view.addEventListener('focusout', store['focusout'] = bubblingEventHandler);
-    }
+    view.addEventListener('input', store['input'] = bubblingEventHandler);
+    view.addEventListener('keydown', store['keydown'] = bubblingEventHandler);
+    view.addEventListener('keyup', store['keyup'] = bubblingEventHandler);
+    view.addEventListener('focusin', store['focusin'] = bubblingEventHandler);
+    view.addEventListener('focusout', store['focusout'] = bubblingEventHandler);
 }
 
 document._removeEventListeners = function (element) {
@@ -375,13 +372,11 @@ document._removeEventListeners = function (element) {
     view.removeEventListener('wheel', store['wheel']);
     view.removeEventListener('mouseenter', store['mouseenter']);
     view.removeEventListener('mouseleave', store['mouseleave']);
-    if (store.isFocusable) {
-        view.removeEventListener('input', store['input']);
-        view.removeEventListener('keydown', store['keydown']);
-        view.removeEventListener('keyup', store['keyup']);
-        view.removeEventListener('focusin', store['focusin']);
-        view.removeEventListener('focusout', store['focusout']);
-    }
+    view.removeEventListener('input', store['input']);
+    view.removeEventListener('keydown', store['keydown']);
+    view.removeEventListener('keyup', store['keyup']);
+    view.removeEventListener('focusin', store['focusin']);
+    view.removeEventListener('focusout', store['focusout']);
 
     delete view._eventsStore;
 }

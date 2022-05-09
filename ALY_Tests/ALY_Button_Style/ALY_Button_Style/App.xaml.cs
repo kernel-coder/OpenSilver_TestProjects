@@ -13,6 +13,7 @@ namespace ALY_Button_Style
         public App()
         {
 #if OPENSILVER
+            App.Current.Host.Settings.EnableProgressiveRendering = true;
             App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotLoaded = true;
             App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
 #endif
@@ -24,7 +25,7 @@ namespace ALY_Button_Style
 
 #if OPENSILVER
             UpdateResDic(App.Current.Resources);
-            var mainPage = new MainPage();
+            var mainPage = new DataGridTest();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;

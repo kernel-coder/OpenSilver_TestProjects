@@ -85,103 +85,46 @@
                                                               HorizontalAlignment="Center" />
                     </StackPanel>
                 </Grid>
-                <Grid Height="16"
-                      Width="16"
-                      VerticalAlignment="Center"
-                      Visibility="{Binding AssessmentColor, Converter={StaticResource VisibilityConverterNull}}">
-                    <Viewbox>
-                        <Path x:Name="Path_1"
-                              Width="10"
-                              Height="16"
-                              Stretch="Fill"
-                              StrokeLineJoin="Round"
-                              Stroke="#FF000000"
-                              Fill="{Binding AssessmentColor, Converter={StaticResource TherapyTaskFillColorConverter}}"
-                              Data="F1 M 0.5,20.3943L 0.5,0.500005L 12.9229,0.509557L 12.9229,4.67622L 5.08957,4.67622L 5.08957,7.84289L 11.3396,7.84289L 11.3396,11.8429L 5.00624,11.8429L 5.00624,20.4262L 0.5,20.3943 Z ">
-                            <ToolTipService.ToolTip>
-                                <TextBlock Text="Functional Assessment Visit Required"
-                                           TextWrapping="Wrap"
-                                           Visibility="{Binding AssessmentColor, Converter={StaticResource TherapyTaskMessageVisibilityConverter}}" />
-                            </ToolTipService.ToolTip>
-                        </Path>
-                    </Viewbox>
-                </Grid>
+                <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="Uniform" Width="20" Height="20"/>
                 <Button x:Name="TranslatorButton"
                         Width="21"
                         Height="21"
-                        Style="{StaticResource TranslatorIconStyle}"
+                        Style="{StaticResource InfoButtonStyle}"
                         HorizontalAlignment="Center"
                         Visibility="{Binding Translator, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"        
                         Command="{Binding DataContext.TranslatorCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                         CommandParameter="{Binding}">
-                    <ToolTipService.ToolTip>
-                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
-                            <ToolTip.Content>
-                                <TextBlock Text="Requires a translator" TextWrapping="Wrap" />
-                            </ToolTip.Content>
-                        </ToolTip>
-                    </ToolTipService.ToolTip>
                 </Button>
-                <Image Source="/ALY_Button_Style;component/Assets/images/i.png"
-                       Stretch="Fill"
-                       Height="20"
-                       Width="20"
-                       VerticalAlignment="Center"
-                       Visibility="{Binding AssessmentOverdue, Converter={StaticResource VisibilityConverter}}">
-                    <ToolTipService.ToolTip>
-                        <TextBlock Text="Functional Assessment Overdue" TextWrapping="Wrap" />
-                    </ToolTipService.ToolTip>
-                </Image>
+                <Image Source="/ALY_Button_Style;component/Assets/images/i.png" Stretch="Uniform" Width="20" Height="20"/>
                 <VirtuosoHomeControls:CacheIconControl Padding="2,0,2,0" />
                 <Grid Width="26" Visibility="{Binding CanAttemptTask, Converter={StaticResource VisibilityConverter}}">
                     <Button x:Name="AttemptButton"
                             Width="19"
                             Height="19"
-                            Style="{StaticResource AttemptButtonStyle}"
+                            Style="{StaticResource InfoButtonStyle}"
                             HorizontalAlignment="Center"
                             Command="{Binding DataContext.AttemptTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}">
-                        <ToolTipService.ToolTip>
-                            <ToolTip Template="{StaticResource CoreToolTipTemplate}">
-                                <ToolTip.Content>
-                                    <TextBlock Text="Mark as an Attempted Visit" TextWrapping="Wrap" />
-                                </ToolTip.Content>
-                            </ToolTip>
-                        </ToolTipService.ToolTip>
                     </Button>
                 </Grid>
                 <Grid Width="26">
                     <Button x:Name="DeleteButton"
                             Width="21"
                             Height="21"
-                            Style="{StaticResource DeleteButtonStyle}"
+                            Style="{StaticResource InfoButtonStyle}"
                             HorizontalAlignment="Center"
                             Command="{Binding DataContext.ParentVM.DeleteTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}">
-                        <ToolTipService.ToolTip>
-                            <ToolTip Template="{StaticResource CoreToolTipTemplate}">
-                                <ToolTip.Content>
-                                    <TextBlock Text="Delete Task" TextWrapping="Wrap" />
-                                </ToolTip.Content>
-                            </ToolTip>
-                        </ToolTipService.ToolTip>
                     </Button>
                 </Grid>
                 <Grid Width="26">
                     <Button x:Name="EditButton"
                             Width="21"
                             Height="21"
-                            Style="{StaticResource PencilIconStyle}"
+                            Style="{StaticResource InfoButtonStyle}"
                             HorizontalAlignment="Center"
                             Command="{Binding DataContext.ParentVM.EditTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}">
-                        <ToolTipService.ToolTip>
-                            <ToolTip Template="{StaticResource CoreToolTipTemplate}">
-                                <ToolTip.Content>
-                                    <TextBlock Text="Edit Task" TextWrapping="Wrap" />
-                                </ToolTip.Content>
-                            </ToolTip>
-                        </ToolTipService.ToolTip>
                     </Button>
                 </Grid>
                 <Grid Width="26"
@@ -189,18 +132,11 @@
                     <Button x:Name="DocumentationButton"
                             Width="21"
                             Height="21"
-                            Style="{StaticResource DocumentIconStyle}"
+                            Style="{StaticResource InfoButtonStyle}"
                             HorizontalAlignment="Center"
                             Command="{Binding DataContext.DocumentationCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}"
                             Visibility="{Binding PatientKey, Converter={StaticResource VisibilityConverterNull}}">
-                        <ToolTipService.ToolTip>
-                            <ToolTip Template="{StaticResource CoreToolTipTemplate}">
-                                <ToolTip.Content>
-                                    <TextBlock Text="View Documentation" TextWrapping="Wrap" />
-                                </ToolTip.Content>
-                            </ToolTip>
-                        </ToolTipService.ToolTip>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -210,9 +146,8 @@
             <Setter Property="Margin" Value="0,0,10,0" />
         </Style>
         <DataTemplate x:Name="PatientCaseLoad">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button Grid.Column="0"
+            <StackPanel Orientation="Horizontal">
+                <Button Grid.Column="0"
                             Height="18"
                             Width="18"
                             Margin="0,0,3,0"
@@ -222,13 +157,12 @@
                             Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center" />
-                    <HyperlinkButton Content="{Binding FullNameWithMRN}"
+                <HyperlinkButton Content="{Binding FullNameWithMRN}"
                                      Style="{StaticResource CoreHyperlinkButtonStyle}"
                                      Command="{Binding DataContext.PatientMaintCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                                      CommandParameter="{Binding}"
                                      HorizontalAlignment="Left"
                                      VerticalAlignment="Center" />
-                </StackPanel>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Name="AdmissionCaseLoad">
@@ -288,8 +222,7 @@
                                       RowStyle="{StaticResource PurpleGridRow}"
                                       CellStyle="{StaticResource TopCellStyle}">
             <sdk:DataGrid.Columns>
-                <sdk:DataGridTemplateColumn Header="Patient" MinWidth="100"
-                                                            Width="Auto"
+                <sdk:DataGridTemplateColumn Header="Patient" Width="100"
                                                             SortMemberPath="FullNameWithMRN"
                                                             CellTemplate="{StaticResource PatientCaseLoad}">
                 </sdk:DataGridTemplateColumn>
@@ -299,76 +232,31 @@
                                                         IsReadOnly="True" />-->
                 <sdk:DataGridTextColumn Binding="{Binding SOCDate, StringFormat='{}{0:MM/dd/yyyy}'}"
                                                         Header="SOC Date"
-                                                        Width="*"
+                                                        Width="130"
                                                         IsReadOnly="True" />
-                <sdk:DataGridTemplateColumn Header="Admission Status / Date"
-                                                            Width="*"
+                <sdk:DataGridTemplateColumn Header="Status/Date"
+                                                            Width="150"
                                                             SortMemberPath="AdmissionStatusAndDate"
                                                             CellTemplate="{StaticResource AdmissionCaseLoad}">
                 </sdk:DataGridTemplateColumn>
                 <sdk:DataGridTextColumn Binding="{Binding CareCoordinator}"
                                                         Header="CareCoordinator"
                                                         IsReadOnly="True"
-                                                        Width="*" />
+                                                        Width="130" />
                 <sdk:DataGridTextColumn Binding="{Binding LastVisitAndClinician}"
                                                         Header="Last Visit / Clinician"
                                                         IsReadOnly="True"
-                                                        Width="*" />
+                                                        Width="150" />
                 <sdk:DataGridTextColumn Binding="{Binding LastVisitDateForCurrentUser}"
                                                         Header="Last Visit (by you)" 
                                                         IsReadOnly="True"
-                                                        Width="*" />
+                                                        Width="150" />
                 <sdk:DataGridTextColumn Binding="{Binding ServiceLineName}"
                                                         Header="ServiceLine"
                                                         IsReadOnly="True"
-                                                        Width="*" />
-                <sdk:DataGridTemplateColumn Header="Exclude" SortMemberPath="Exclude">
-                    <sdk:DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Grid.Column="0"
-                            Height="18"
-                            Width="18"
-                            Margin="0,0,3,0"
-                            Style="{StaticResource InfoButtonStyle}"
-                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
-                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
-                                <Button Grid.Column="0"
-                            Height="18"
-                            Width="18"
-                            Margin="0,0,3,0"
-                            Style="{StaticResource InfoButtonStyle}"
-                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
-                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
-                                <Button Grid.Column="0"
-                            Height="18"
-                            Width="18"
-                            Margin="0,0,3,0"
-                            Style="{StaticResource InfoButtonStyle}"
-                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
-                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
-                                <Button Grid.Column="0"
-                            Height="18"
-                            Width="18"
-                            Margin="0,0,3,0"
-                            Style="{StaticResource InfoButtonStyle}"
-                            Command="{Binding DataContext.DashboardTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
-                            Visibility="{Binding DataContext.ShowPatientDashboardEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}, Converter={StaticResource VisibilityConverter}}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                                        Width="100" />
+                <sdk:DataGridTemplateColumn Header="Exclude" Width="250" SortMemberPath="Exclude"
+                                            CellTemplate="{StaticResource OptionsInfo}">
                 </sdk:DataGridTemplateColumn>
 
             </sdk:DataGrid.Columns>

@@ -1904,7 +1904,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" Stretch="Fill"  Width="16" Height="16"/>
+                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="Uniform" Width="20" Height="20"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2361,51 +2361,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-
-                    <Grid x:Name="LayoutRoot">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.5" />
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" To="#FF50004E"
-                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                                        Storyboard.TargetName="path" d:IsOptimized="True" />
-                                        <!--<ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" d:IsOptimized="True"/>-->
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Viewbox VerticalAlignment="Top"
-                                 d:LayoutOverrides="Width">
-                            <Canvas Height="100"
-                                    Width="100">
-                                <Path x:Name="path"
-                                      Stretch="Fill"
-                                      Fill="#6050004E"
-                                      Data="M 5,95 L 7,79 S6,77 37,70 L37,65 C9,27 91,27 63,65 L 63,70 S 94,77 93,79 L 95,95 L 5,95 Z "
-                                      Height="100"
-                                      UseLayoutRounding="False"
-                                      Width="100"
-                                      Stroke="Black"
-                                      StrokeThickness="2" />
-                                <Path x:Name="path2"
-                                      Stretch="None"
-                                      Fill="White"
-                                      Data="M 50,87 L 40,64 L 60,64 L 50,87 Z "
-                                      Height="100"
-                                      UseLayoutRounding="False"
-                                      Width="100"
-                                      Stroke="Black"
-                                      StrokeThickness="2" />
-                                <!--Fill="#FF50004E" Opacity=".3"-->
-                            </Canvas>
-
-                        </Viewbox>
-                    </Grid>
+                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="None" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2434,38 +2390,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid x:Name="LayoutRoot">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.5" />
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" To="#FF50004E"
-                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                                        Storyboard.TargetName="path" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Viewbox>
-                            <Canvas x:Name="TranslatorLayer" Height="93.047" Canvas.Left="2" Canvas.Top="4.953"
-                                    Width="95.568">
-                                <Path x:Name="path"
-                                      Data="M1.322,93.509L17.948,67.076C6.227,45.879 13.118,18.737 33.339,6.451 53.561,-5.835 79.456,1.388 91.177,22.584 102.898,43.78 96.007,70.923 75.785,83.209 60.86,92.277 42.177,90.941 28.564,79.833z"
-                                      Fill="#FF9F90B2" Height="94.71" Canvas.Left="-1.322" Stroke="#FF42729E"
-                                      StrokeThickness="0.96" StrokeMiterLimit="8" Canvas.Top="-0.462" Width="97.354" />
-                                <Canvas x:Name="TextBlock1" Height="50.422" Canvas.Left="33.185" Canvas.Top="19.667"
-                                        Width="40.078">
-                                    <Path
-                                        Data="M40.078,9.25L25.703,9.25 25.703,50.422 14.312,50.422 14.312,9.25 0,9.25 0,0 40.078,0 40.078,9.25"
-                                        Fill="White" Height="50.422" Canvas.Left="0" Canvas.Top="0" Width="40.078" />
-                                </Canvas>
-                            </Canvas>
-                        </Viewbox>
-                    </Grid>
+                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="None" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

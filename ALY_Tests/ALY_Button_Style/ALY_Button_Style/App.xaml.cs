@@ -24,7 +24,7 @@ namespace ALY_Button_Style
 
 #if OPENSILVER
             UpdateResDic(App.Current.Resources);
-            var mainPage = new DataGridTest();
+            var mainPage = new Virtuoso.Mammoth.Views.TaskDownloadPage();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;

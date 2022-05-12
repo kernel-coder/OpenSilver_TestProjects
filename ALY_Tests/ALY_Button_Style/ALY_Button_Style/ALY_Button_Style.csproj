@@ -59,6 +59,12 @@
 	<Page Include="Controls\OrderStatusMark.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="Controls\PatientSearch.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\TaskDownloadResults.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="DataGridTest.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
@@ -69,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\ChangeUserPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskDownloadPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestView.xaml">
@@ -90,6 +99,8 @@
     <Compile Include="Controls\EncounterStatusMark.xaml.cs" />
     <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />
     <Compile Include="Controls\OrderStatusMark.xaml.cs" />
+    <Compile Include="Controls\PatientSearch.xaml.cs" />
+    <Compile Include="Controls\TaskDownloadResults.xaml.cs" />
     <Compile Include="Controls\vAsyncComboBox.cs" />
     <Compile Include="Controls\vButton.cs" />
     <Compile Include="Controls\vDatePicker.cs" />
@@ -121,6 +132,7 @@
     <Compile Include="ImageBrushSample.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
+    <Compile Include="TaskDownloadPage.xaml.cs" />
     <Compile Include="TestView.xaml.cs" />
   </ItemGroup>
 

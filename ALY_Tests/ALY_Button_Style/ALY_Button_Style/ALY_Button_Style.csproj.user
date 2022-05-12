@@ -55,6 +55,12 @@
     <Page Update="Controls\OrderStatusMark.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\PatientSearch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\TaskDownloadResults.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="DataGridTest.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -62,6 +68,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Popups\ChangeUserPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TaskDownloadPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TestView.xaml">

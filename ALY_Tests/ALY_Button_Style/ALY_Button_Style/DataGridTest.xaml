@@ -122,7 +122,7 @@
                         </ToolTip>
                     </ToolTipService.ToolTip>
                 </Button>
-                <Image Source="/Virtuoso;component/Assets/images/AssessmentOverdue.png"
+                <Image Source="/ALY_Button_Style;component/Assets/images/i.png"
                        Stretch="Fill"
                        Height="20"
                        Width="20"

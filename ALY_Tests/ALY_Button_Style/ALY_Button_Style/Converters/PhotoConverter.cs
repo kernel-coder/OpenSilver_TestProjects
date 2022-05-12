@@ -18,7 +18,7 @@ namespace Virtuoso.Core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string uri_string = "/Virtuoso;component/Assets/Images/Crescendo_Icon-on-Side_White.png";
+            string uri_string = "/ALY_Button_Style;component/Assets/Images/Crescendo_Icon-on-Side_White.png";
             return null;
         }
 
@@ -47,12 +47,12 @@ namespace Virtuoso.Core.Converters
 
                 //if (parameter.Equals("User")) //only use the default image on the login page not in user maint
                 //{
-                //    return appFeatures.CreateBitmapSource("/Virtuoso;component/Assets/Images/icon.png");
+                //    return appFeatures.CreateBitmapSource("/ALY_Button_Style;component/Assets/Images/icon.png");
                 //}
 
                 //if (parameter.Equals("Print")) //The print library needs some kind of image so it doesn't hang.
                 //{
-                //    return appFeatures.CreateBitmapSource("/Virtuoso;component/Assets/Images/empty.png");
+                //    return appFeatures.CreateBitmapSource("/ALY_Button_Style;component/Assets/Images/empty.png");
                 //}
 
                 return null;
@@ -90,17 +90,17 @@ namespace Virtuoso.Core.Converters
             ////use the default image for a male when a photo hasn't been loaded for the patient
             //if (values[1].ToString().StartsWith("M"))
             //{
-            //    return appFeatures.CreateBitmapSource("/Virtuoso;component/Assets/Images/patient-male-generic.jpg");
+            //    return appFeatures.CreateBitmapSource("/ALY_Button_Style;component/Assets/Images/patient-male-generic.jpg");
             //}
 
             ////use the defualt image for a female when a photo hasn't been loaded for the patient
             //if (values[1].ToString().StartsWith("F"))
             //{
-            //    return appFeatures.CreateBitmapSource("/Virtuoso;component/Assets/Images/patient-female-generic.jpg");
+            //    return appFeatures.CreateBitmapSource("/ALY_Button_Style;component/Assets/Images/patient-female-generic.jpg");
             //}
             //else
             //{
-            //    return appFeatures.CreateBitmapSource("/Virtuoso;component/Assets/Images/icon.png");
+            //    return appFeatures.CreateBitmapSource("/ALY_Button_Style;component/Assets/Images/icon.png");
             //}
         }
 

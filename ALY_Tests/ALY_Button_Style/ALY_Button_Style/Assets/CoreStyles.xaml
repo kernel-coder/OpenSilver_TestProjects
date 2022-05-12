@@ -6843,7 +6843,7 @@
                      </VisualStateGroup>
                   </VisualStateManager.VisualStateGroups>
                   <Viewbox>
-                     <Image Source="/Virtuoso;component/Assets/images/HIPPSDecomposition.png"
+                     <Image Source="/ALY_Button_Style;component/Assets/images/HIPPSDecomposition.png"
                             Stretch="Fill"
                             x:Name="chevron_0" />
                   </Viewbox>

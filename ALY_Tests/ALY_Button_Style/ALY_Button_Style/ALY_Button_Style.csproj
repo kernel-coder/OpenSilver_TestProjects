@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-04-21-102927-d3a80acc" />
+    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-04-25-070707-30299c2b" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="Silverlight.Controls.ToolTips.OpenSilver" Version="1.0.0-private-2022-03-07-122116-31770396" />
@@ -122,6 +122,10 @@
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
     <Compile Include="TestView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\i.png" />
   </ItemGroup>
 
   <ItemGroup>

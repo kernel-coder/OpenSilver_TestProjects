@@ -29,7 +29,7 @@ namespace ALY_Button_Style
         private void Timer_Tick(object sender, EventArgs e)
         {
             _timer.Stop();
-            System.Diagnostics.Debug.WriteLine($"UserListRoot Max Width = {UserListRoot.MaxWidth}");
+            //System.Diagnostics.Debug.WriteLine($"UserListRoot Max Width = {UserListRoot.MaxWidth}");
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿<ContentPresenter x:Class="Virtuoso.Core.Assets.Icons.HisIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox>
+        <Path UseLayoutRounding="False"
+                          Stroke="Black"
+                          Stretch="Fill"
+                          StrokeLineJoin="Round"
+                          Fill="#FFFEDF00"
+                          Data="M 5,5 L 35,5 L 35,35 L 65,35 L 65,5 L 95,5 L 95,95 L 65,95 L 65,65 L 35,65 L 35,95 L 5,95 L 5,5 Z " />
+    </Viewbox>
+</ContentPresenter>

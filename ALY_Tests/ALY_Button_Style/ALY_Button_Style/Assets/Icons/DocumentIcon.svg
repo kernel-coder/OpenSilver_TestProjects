@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="documentIcon" width="100%" height="100%" viewBox="0 0 100 100">
+   <path d="M3.5,3.5 L93.5,3.5 L93.5,53.499996 L58.5,93.5 L3.5,93.5 L3.5,3.5 z" fill="none" stroke="White"
+      stroke-width="7" stroke-linejoin="Round" />
+   <path d="M3.5,43.500004 L38.5,3.5 L3.5,3.5 L3.5,43.500004 z" fill="none" stroke="White" stroke-width="7"
+      stroke-linejoin="Round" />
+   <path d="M3.5,3.5 L63.5,3.5" fill="none" stroke="White" stroke-width="7" stroke-linejoin="Round" />
+   <path d="M3.5,3.5 L63.5,3.5" fill="none" stroke="White" stroke-width="7" stroke-linejoin="Round" />
+   <path d="M3.5,3.5000005 L33.5,3.5000005" fill="none" stroke="White" stroke-width="7" stroke-linejoin="Round" />
+   <path d="M3.5,3.5 L33.5,3.5" fill="none" stroke="White" stroke-width="7" stroke-linejoin="Round" />
+</svg>

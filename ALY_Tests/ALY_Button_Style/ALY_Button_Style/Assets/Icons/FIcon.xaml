@@ -1,0 +1,16 @@
+﻿<ContentPresenter x:Class="Virtuoso.Core.Assets.Icons.FIcon"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  Name="this">
+
+    <Viewbox>
+        <Path x:Name="Path_1"
+              Width="10"
+              Height="16"
+              Data="F1 M 0.5,20.3943L 0.5,0.500005L 12.9229,0.509557L 12.9229,4.67622L 5.08957,4.67622L 5.08957,7.84289L 11.3396,7.84289L 11.3396,11.8429L 5.00624,11.8429L 5.00624,20.4262L 0.5,20.3943 Z "
+              Fill="{Binding ElementName=this, Path=Fill}"
+              Stretch="Fill"
+              Stroke="#FF000000"
+              StrokeLineJoin="Round"/>
+    </Viewbox>
+</ContentPresenter>

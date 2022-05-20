@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Virtuoso.Core.Assets.Icons.DocumentIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox>
+        <Canvas Width="100" Height="100">
+            <Path Canvas.Left="1.5"
+                  Canvas.Top="1.5"
+                  Width="97"
+                  Height="97"
+                  Data="M3.5,3.5 L93.5,3.5 L93.5,53.499996 L58.5,93.5 L3.5,93.5 L3.5,3.5 z"
+                  Stretch="Fill"
+                  Stroke="White"
+                  StrokeLineJoin="Round"
+                  StrokeThickness="7"
+                  UseLayoutRounding="False"/>
+
+            <Path Canvas.Left="56.5"
+                  Canvas.Top="51.5"
+                  Width="42"
+                  Height="47"
+                  Data="M3.5,43.500004 L38.5,3.5 L3.5,3.5 L3.5,43.500004 z"
+                  Stretch="Fill"
+                  Stroke="White"
+                  StrokeLineJoin="Round"
+                  StrokeThickness="7"
+                  UseLayoutRounding="False"/>
+
+            <Path Canvas.Left="16.5"
+                  Canvas.Top="16.5"
+                  Width="67"
+                  Height="7"
+                  Data="M3.5,3.5 L63.5,3.5"
+                  Stretch="Fill"
+                  Stroke="White"
+                  StrokeLineJoin="Round"
+                  StrokeThickness="7"
+                  UseLayoutRounding="False"/>
+
+            <Path Canvas.Left="16.5"
+                  Canvas.Top="36.5"
+                  Width="67"
+                  Height="7"
+                  Data="M3.5,3.5 L63.5,3.5"
+                  Stretch="Fill"
+                  Stroke="White"
+                  StrokeLineJoin="Round"
+                  StrokeThickness="7"
+                  UseLayoutRounding="False"/>
+
+            <Path Canvas.Left="16.5"
+                  Canvas.Top="56.5"
+                  Width="37"
+                  Height="7"
+                  Data="M3.5,3.5000005 L33.5,3.5000005"
+                  Stretch="Fill"
+                  Stroke="White"
+                  StrokeLineJoin="Round"
+                  StrokeThickness="7"
+                  UseLayoutRounding="False"/>
+
+            <Path Canvas.Left="16.5"
+                  Canvas.Top="76.5"
+                  Width="37"
+                  Height="7"
+                  Data="M3.5,3.5 L33.5,3.5"
+                  Stretch="Fill"
+                  Stroke="White"
+                  StrokeLineJoin="Round"
+                  StrokeThickness="7"
+                  UseLayoutRounding="False"/>
+        </Canvas>
+    </Viewbox>
+</UserControl>

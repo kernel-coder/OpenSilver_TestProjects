@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:icons="clr-namespace:Virtuoso.Core.Assets.Icons"
     mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
@@ -1078,99 +1079,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="MouseOverBorder" d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0" To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="PressedBorder" d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0" To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
-                                                                       Storyboard.TargetName="DisabledVisualElement">
-                                            <SplineDoubleKeyFrame KeyTime="0" Value="0.7" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="contentPresenter">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.3" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusInnerRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
-                                   IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
-                        <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Rectangle x:Name="FocusRectangle" Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}"
-                                   RadiusY="4" RadiusX="4" Margin="-1" Opacity="0" />
-                        <Rectangle x:Name="FocusInnerRectangle" StrokeThickness="{TemplateBinding BorderThickness}"
-                                   Stroke="{StaticResource TextBoxMouseOverBorderBrush}" RadiusX="3" RadiusY="3"
-                                   Opacity="0" />
+                    <Border>
                         <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
                             <Border x:Name="border" CornerRadius="2" BorderThickness="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <Viewbox>
-                                    <Canvas Width="121.333" Height="121.333">
-                                        <Rectangle Width="121.333" Height="121.333" Canvas.Left="0" Canvas.Top="0"
-                                                   Stretch="Fill" Fill="{StaticResource HighlightBrush}" />
-                                        <Path Width="55" Height="55" Canvas.Left="29.638" Canvas.Top="34.061"
-                                              Stretch="Fill" Fill="#FFFFFFFF"
-                                              Data="M 794.759,1112.58L 832.161,1075.18C 833.723,1073.62 836.111,1073.48 837.495,1074.86L 847.842,1085.21C 849.226,1086.59 849.081,1088.98 847.518,1090.54L 810.116,1127.94C 808.554,1129.5 806.166,1129.64 804.783,1128.26L 794.435,1117.91C 793.052,1116.53 793.197,1114.14 794.759,1112.58 Z M 807.243,1123.02L 842.596,1087.67C 843.227,1087.04 844.191,1086.98 844.749,1087.54L 844.749,1087.54C 845.308,1088.1 845.249,1089.06 844.618,1089.69L 809.266,1125.04C 808.635,1125.67 807.671,1125.73 807.113,1125.17L 807.113,1125.17C 806.554,1124.61 806.613,1123.65 807.243,1123.02 Z "
-                                              UseLayoutRounding="False" />
-                                        <Path Width="22" Height="22" Canvas.Left="74.126" Canvas.Top="22.575"
-                                              Stretch="Fill" Fill="#FFFFFFFF"
-                                              Data="M 839.386,1067.95L 843.509,1063.83C 845.071,1062.27 847.459,1062.12 848.842,1063.51L 859.19,1073.86C 860.574,1075.24 860.429,1077.63 858.866,1079.19L 854.743,1083.31C 853.181,1084.87 850.793,1085.02 849.41,1083.63L 839.062,1073.28C 837.679,1071.9 837.824,1069.51 839.386,1067.95 Z M 841.51,1068.12L 841.51,1068.12C 841.667,1067.97 841.908,1067.95 842.047,1068.09L 854.326,1080.37C 854.465,1080.51 854.45,1080.75 854.293,1080.91L 854.293,1080.91C 854.136,1081.07 853.895,1081.08 853.756,1080.94L 841.478,1068.66C 841.338,1068.52 841.353,1068.28 841.51,1068.12 Z M 840.561,1069.07L 840.561,1069.07C 840.719,1068.91 840.959,1068.9 841.098,1069.04L 853.377,1081.32C 853.516,1081.46 853.501,1081.7 853.344,1081.86L 853.344,1081.86C 853.187,1082.02 852.947,1082.03 852.807,1081.89L 840.529,1069.61C 840.39,1069.47 840.404,1069.23 840.561,1069.07 Z M 839.613,1070.02L 839.613,1070.02C 839.77,1069.86 840.01,1069.85 840.149,1069.99L 852.428,1082.27C 852.567,1082.41 852.553,1082.65 852.395,1082.81L 852.395,1082.81C 852.238,1082.96 851.998,1082.98 851.859,1082.84L 839.58,1070.56C 839.441,1070.42 839.455,1070.18 839.613,1070.02 Z "
-                                              UseLayoutRounding="False" />
-                                        <Path Width="18" Height="18" Canvas.Left="21.359" Canvas.Top="79.317"
-                                              Stretch="Fill" Fill="#FFFFFFFF"
-                                              Data="M 786.891,1120.44C 788.454,1118.88 790.748,1118.64 792.017,1119.91L 802.781,1130.68C 804.049,1131.95 803.811,1134.24 802.249,1135.81L 785.121,1137.53L 786.891,1120.44 Z M 788.086,1134.28L 798.951,1132.66C 799.401,1132.59 799.777,1132.89 799.79,1133.34L 799.79,1133.34C 799.803,1133.79 799.449,1134.2 798.998,1134.27L 788.134,1135.9C 787.684,1135.96 787.308,1135.66 787.295,1135.21L 787.295,1135.21C 787.281,1134.77 787.636,1134.35 788.086,1134.28 Z "
-                                              UseLayoutRounding="False" />
-                                    </Canvas>
-                                </Viewbox>
+                                <icons:PencilIcon />
                             </Border>
                         </ContentPresenter>
-                    </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1431,105 +1348,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="MouseOverBorder"
-                                                         d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0"
-                                                         To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border"
-                                                         d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="PressedBorder"
-                                                         d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0"
-                                                         To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border"
-                                                         d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
-                                                                       Storyboard.TargetName="DisabledVisualElement">
-                                            <SplineDoubleKeyFrame KeyTime="0"
-                                                                  Value="0.7" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="contentPresenter">
-                                            <EasingDoubleKeyFrame KeyTime="0"
-                                                                  Value="0.3" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0"
-                                                                  Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusInnerRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0"
-                                                                  Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement"
-                                   Fill="{StaticResource ControlsDisabledBrush}"
-                                   IsHitTestVisible="false"
-                                   Opacity="0"
-                                   RadiusY="3"
-                                   RadiusX="3" />
-                        <Border x:Name="MouseOverBorder"
-                                Background="{StaticResource GrayBrush8}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="3.5"
-                                Opacity="0" />
-                        <Border x:Name="PressedBorder"
-                                Background="{StaticResource GrayBrush5}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="3.5"
-                                Opacity="0" />
-                        <Rectangle x:Name="FocusRectangle"
-                                   Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}"
-                                   RadiusY="4"
-                                   RadiusX="4"
-                                   Margin="-1"
-                                   Opacity="0" />
-                        <Rectangle x:Name="FocusInnerRectangle"
-                                   StrokeThickness="{TemplateBinding BorderThickness}"
-                                   Stroke="{StaticResource TextBoxMouseOverBorderBrush}"
-                                   RadiusX="3"
-                                   RadiusY="3"
-                                   Opacity="0" />
+                    <Border>
                         <ContentPresenter x:Name="contentPresenter"
                                           Margin="1"
                                           d:LayoutOverrides="Width, Height">
@@ -1538,38 +1357,10 @@
                                     BorderThickness="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <Viewbox>
-                                    <Canvas Width="100"
-                                            Height="100">
-                                        <Path Stretch="Fill" StrokeThickness="7" StrokeLineJoin="Round" Stroke="White"
-                                              Data="M3.5,3.5 L93.5,3.5 L93.5,53.499996 L58.5,93.5 L3.5,93.5 L3.5,3.5 z"
-                                              Height="97" Canvas.Left="1.5" Canvas.Top="1.5" UseLayoutRounding="False"
-                                              Width="97" />
-
-                                        <Path Stretch="Fill" StrokeThickness="7" StrokeLineJoin="Round" Stroke="White"
-                                              Data="M3.5,43.500004 L38.5,3.5 L3.5,3.5 L3.5,43.500004 z" Height="47"
-                                              Canvas.Left="56.5" Canvas.Top="51.5" UseLayoutRounding="False" Width="42" />
-
-                                        <Path Stretch="Fill" StrokeThickness="7" StrokeLineJoin="Round" Stroke="White"
-                                              Data="M3.5,3.5 L63.5,3.5" Height="7" Canvas.Left="16.5" Canvas.Top="16.5"
-                                              UseLayoutRounding="False" Width="67" />
-
-                                        <Path Stretch="Fill" StrokeThickness="7" StrokeLineJoin="Round" Stroke="White"
-                                              Data="M3.5,3.5 L63.5,3.5" Height="7" Canvas.Left="16.5" Canvas.Top="36.5"
-                                              UseLayoutRounding="False" Width="67" />
-
-                                        <Path Stretch="Fill" StrokeThickness="7" StrokeLineJoin="Round" Stroke="White"
-                                              Data="M3.5,3.5000005 L33.5,3.5000005" Height="7" Canvas.Left="16.5"
-                                              Canvas.Top="56.5" UseLayoutRounding="False" Width="37" />
-
-                                        <Path Stretch="Fill" StrokeThickness="7" StrokeLineJoin="Round" Stroke="White"
-                                              Data="M3.5,3.5 L33.5,3.5" Height="7" Canvas.Left="16.5" Canvas.Top="76.5"
-                                              UseLayoutRounding="False" Width="37" />
-                                    </Canvas>
-                                </Viewbox>
+                                <icons:DocumentIcon />
                             </Border>
                         </ContentPresenter>
-                    </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1657,112 +1448,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="MouseOverBorder" d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0" To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="PressedBorder" d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0" To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
-                                                                       Storyboard.TargetName="DisabledVisualElement">
-                                            <SplineDoubleKeyFrame KeyTime="0" Value="0.7" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="contentPresenter">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.3" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusInnerRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
-                                   IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
-                        <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Rectangle x:Name="FocusRectangle" Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}"
-                                   RadiusY="4" RadiusX="4" Margin="-1" Opacity="0" />
-                        <Rectangle x:Name="FocusInnerRectangle" StrokeThickness="{TemplateBinding BorderThickness}"
-                                   Stroke="{StaticResource TextBoxMouseOverBorderBrush}" RadiusX="3" RadiusY="3"
-                                   Opacity="0" />
+                    <Border>
                         <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
                             <Border x:Name="border" CornerRadius="2" BorderThickness="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <Viewbox>
-                                    <Canvas Height="100" Width="100">
-                                        <Path x:Name="path"
-                                              Stretch="Fill"
-                                              Fill="#FFFEFEFE"
-                                              Data="M 43,5L 57,5L 95,95L 80,95L 70,80L 30,80L 20,95L 5,95L 43,5 Z "
-                                              Height="100"
-                                              UseLayoutRounding="False"
-                                              Width="100"
-                                              Stroke="Black"
-                                              StrokeThickness="2" />
-                                        <Path x:Name="path2"
-                                              Stretch="None"
-                                              Fill="{StaticResource HighlightBrush}"
-                                              Data="M 50,38 L 63,66 L 37,66 L 50,38 Z "
-                                              Height="100"
-                                              UseLayoutRounding="False"
-                                              Width="100"
-                                              Stroke="Black"
-                                              StrokeThickness="2" />
-                                    </Canvas>
-                                    <!--<Canvas Width="121.333" Height="121.333">
-                                        <Rectangle Width="121.333" Height="121.333" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Fill="{StaticResource HighlightBrush}"/>
-                                        <Path Width="43" Height="48" Canvas.Left="38.807" Canvas.Top="35.328" Stretch="Fill" StrokeThickness="16" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE" Data="F1 M 591.714,1068.64L 618.901,1100.67" UseLayoutRounding="False"/>
-                                        <Path Width="85" Height="85" Canvas.Left="17.729" Canvas.Top="17.338" Stretch="Fill" StrokeThickness="16" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE" Data="F1 M 639.793,1085.16C 639.793,1104.25 624.319,1119.73 605.229,1119.73C 586.141,1119.73 570.666,1104.25 570.666,1085.16C 570.666,1066.08 586.141,1050.6 605.229,1050.6C 624.319,1050.6 639.793,1066.08 639.793,1085.16 Z " UseLayoutRounding="False"/>
-                                        <Path Width="15" Height="14" Canvas.Left="41.611" Canvas.Top="29.405" Stretch="Fill" Fill="#FFFEFEFE" Data="F1 M 597.819,1063.55C 595.431,1060.05 598.301,1059.1 600.392,1058.95C 605.535,1058.58 586.611,1054.73 586.611,1054.73L 589.365,1068.51L 597.819,1063.55 Z " UseLayoutRounding="False"/>
-                                        <Path Width="13" Height="15" Canvas.Left="73.591" Canvas.Top="68.03" Stretch="Fill" Fill="#FFFEFEFE" Data="F1 M 625.195,1095.65C 628.116,1098.71 629.644,1096.1 630.223,1094.08C 631.647,1089.13 631.503,1108.44 631.503,1108.44L 618.591,1102.89L 625.195,1095.65 Z " UseLayoutRounding="False"/>
-                                        <Path Width="13" Height="15" Canvas.Left="33.48" Canvas.Top="35.824" Stretch="Fill" Fill="#FFFEFEFE" Data="F1 M 585.402,1073.52C 582.313,1070.63 580.935,1073.32 580.474,1075.36C 579.331,1080.39 578.377,1061.1 578.377,1061.1L 591.583,1065.91L 585.402,1073.52 Z " UseLayoutRounding="False"/>
-                                        <Path Width="15" Height="14" Canvas.Left="65.217" Canvas.Top="75.415" Stretch="Fill" Fill="#FFFEFEFE" Data="F1 M 613.328,1106.28C 615.956,1109.6 613.158,1110.75 611.082,1111.05C 605.977,1111.77 625.128,1114.3 625.128,1114.3L 621.413,1100.74L 613.328,1106.28 Z " UseLayoutRounding="False"/>
-                                    </Canvas>-->
-                                </Viewbox>
+                                <icons:AttemptIcon />
                             </Border>
                         </ContentPresenter>
-                    </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1780,112 +1474,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="MouseOverBorder" d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0" To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="PressedBorder" d:IsOptimized="True" />
-                                        <DoubleAnimation Duration="0" To="0.3"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="border" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
-                                                                       Storyboard.TargetName="DisabledVisualElement">
-                                            <SplineDoubleKeyFrame KeyTime="0" Value="0.7" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="contentPresenter">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.3" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                                       Storyboard.TargetName="FocusInnerRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
-                                   IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
-                        <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Rectangle x:Name="FocusRectangle" Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}"
-                                   RadiusY="4" RadiusX="4" Margin="-1" Opacity="0" />
-                        <Rectangle x:Name="FocusInnerRectangle" StrokeThickness="{TemplateBinding BorderThickness}"
-                                   Stroke="{StaticResource TextBoxMouseOverBorderBrush}" RadiusX="3" RadiusY="3"
-                                   Opacity="0" />
+                    <Border>
                         <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
                             <Border x:Name="border" CornerRadius="2" BorderThickness="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <Viewbox>
-                                    <Canvas Width="121.333" Height="121.333">
-                                        <Rectangle Width="121.333" Height="121.333" Canvas.Left="0" Canvas.Top="0"
-                                                   Stretch="Fill" Fill="{StaticResource HighlightBrush}" />
-                                        <Path Width="43" Height="48" Canvas.Left="38.807" Canvas.Top="35.328"
-                                              Stretch="Fill" StrokeThickness="16" StrokeStartLineCap="Round"
-                                              StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE"
-                                              Data="F1 M 591.714,1068.64L 618.901,1100.67" UseLayoutRounding="False" />
-                                        <Path Width="85" Height="85" Canvas.Left="17.729" Canvas.Top="17.338"
-                                              Stretch="Fill" StrokeThickness="16" StrokeStartLineCap="Round"
-                                              StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE"
-                                              Data="F1 M 639.793,1085.16C 639.793,1104.25 624.319,1119.73 605.229,1119.73C 586.141,1119.73 570.666,1104.25 570.666,1085.16C 570.666,1066.08 586.141,1050.6 605.229,1050.6C 624.319,1050.6 639.793,1066.08 639.793,1085.16 Z "
-                                              UseLayoutRounding="False" />
-                                        <Path Width="15" Height="14" Canvas.Left="41.611" Canvas.Top="29.405"
-                                              Stretch="Fill" Fill="#FFFEFEFE"
-                                              Data="F1 M 597.819,1063.55C 595.431,1060.05 598.301,1059.1 600.392,1058.95C 605.535,1058.58 586.611,1054.73 586.611,1054.73L 589.365,1068.51L 597.819,1063.55 Z "
-                                              UseLayoutRounding="False" />
-                                        <Path Width="13" Height="15" Canvas.Left="73.591" Canvas.Top="68.03"
-                                              Stretch="Fill" Fill="#FFFEFEFE"
-                                              Data="F1 M 625.195,1095.65C 628.116,1098.71 629.644,1096.1 630.223,1094.08C 631.647,1089.13 631.503,1108.44 631.503,1108.44L 618.591,1102.89L 625.195,1095.65 Z "
-                                              UseLayoutRounding="False" />
-                                        <Path Width="13" Height="15" Canvas.Left="33.48" Canvas.Top="35.824"
-                                              Stretch="Fill" Fill="#FFFEFEFE"
-                                              Data="F1 M 585.402,1073.52C 582.313,1070.63 580.935,1073.32 580.474,1075.36C 579.331,1080.39 578.377,1061.1 578.377,1061.1L 591.583,1065.91L 585.402,1073.52 Z "
-                                              UseLayoutRounding="False" />
-                                        <Path Width="15" Height="14" Canvas.Left="65.217" Canvas.Top="75.415"
-                                              Stretch="Fill" Fill="#FFFEFEFE"
-                                              Data="F1 M 613.328,1106.28C 615.956,1109.6 613.158,1110.75 611.082,1111.05C 605.977,1111.77 625.128,1114.3 625.128,1114.3L 621.413,1100.74L 613.328,1106.28 Z "
-                                              UseLayoutRounding="False" />
-                                    </Canvas>
-                                </Viewbox>
+                                <icons:DeleteIcon />
                             </Border>
                         </ContentPresenter>
-                    </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1904,7 +1501,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="Uniform" Width="20" Height="20"/>
+                    <Border>
+                        <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
+                            <Border x:Name="border" CornerRadius="2" BorderThickness="1"
+                                    BorderBrush="{StaticResource HighlightBrush}"
+                                    Background="{StaticResource HighlightBrush}">
+                                <icons:InfoIcon />
+                            </Border>
+                        </ContentPresenter>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2286,53 +1891,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid x:Name="LayoutRoot">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.5" />
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" To="#FF50004E"
-                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
-                                                        Storyboard.TargetName="path" d:IsOptimized="True" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Viewbox VerticalAlignment="Top"
-                                 d:LayoutOverrides="Width">
-                            <Canvas Height="100" Width="100">
-                                <Path x:Name="path"
-                                      Stretch="None"
-                                      Fill="#6050004E"
-                                      Data="M 26,6L74,6Q 91.5,8.5 94,26L94,50Q 91.5,66.5 74,70L62,70L34,98L34,70L26,70Q 8.5,66.5 6,50L6,26Q 8.5,8.5 26,6 Z"
-                                      Height="100"
-                                      UseLayoutRounding="False"
-                                      Width="100"
-                                      Stroke="Black"
-                                      StrokeThickness="2" />
-                                <Path Fill="White" Stroke="White" StrokeThickness="1">
-                                    <Path.Data>
-                                        <EllipseGeometry Center="50,35" RadiusX="6" RadiusY="6" />
-                                    </Path.Data>
-                                </Path>
-                                <Path Fill="White" Stroke="White" StrokeThickness="1">
-                                    <Path.Data>
-                                        <EllipseGeometry Center="29,35" RadiusX="6" RadiusY="6" />
-                                    </Path.Data>
-                                </Path>
-                                <Path Fill="White" Stroke="White" StrokeThickness="1">
-                                    <Path.Data>
-                                        <EllipseGeometry Center="71,35" RadiusX="6" RadiusY="6" />
-                                    </Path.Data>
-                                </Path>
-                            </Canvas>
-
-                        </Viewbox>
-                    </Grid>
+                    <icons:PatientMessageIcon />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2361,7 +1920,51 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="None" />
+
+                    <Grid x:Name="LayoutRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.5" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" To="#FF50004E"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="path" d:IsOptimized="True" />
+                                        <!--<ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path2" d:IsOptimized="True"/>-->
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Viewbox VerticalAlignment="Top"
+                                 d:LayoutOverrides="Width">
+                            <Canvas Height="100"
+                                    Width="100">
+                                <Path x:Name="path"
+                                      Stretch="Fill"
+                                      Fill="#6050004E"
+                                      Data="M 5,95 L 7,79 S6,77 37,70 L37,65 C9,27 91,27 63,65 L 63,70 S 94,77 93,79 L 95,95 L 5,95 Z "
+                                      Height="100"
+                                      UseLayoutRounding="False"
+                                      Width="100"
+                                      Stroke="Black"
+                                      StrokeThickness="2" />
+                                <Path x:Name="path2"
+                                      Stretch="None"
+                                      Fill="White"
+                                      Data="M 50,87 L 40,64 L 60,64 L 50,87 Z "
+                                      Height="100"
+                                      UseLayoutRounding="False"
+                                      Width="100"
+                                      Stroke="Black"
+                                      StrokeThickness="2" />
+                                <!--Fill="#FF50004E" Opacity=".3"-->
+                            </Canvas>
+
+                        </Viewbox>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2390,7 +1993,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Source="/ALY_Button_Style;component/Assets/images/i.png" VerticalAlignment="Center" Stretch="None" />
+                    <icons:TranslatorIcon />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -1,0 +1,54 @@
+﻿<Grid x:Class="Virtuoso.Core.Assets.Icons.PatientMessageIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="LayoutRoot">
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualStateGroup.Transitions>
+                <VisualTransition GeneratedDuration="0:0:0.5" />
+            </VisualStateGroup.Transitions>
+            <VisualState x:Name="Normal" />
+            <VisualState x:Name="MouseOver">
+                <Storyboard>
+                    <ColorAnimation Duration="0" To="#FF50004E"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="path" d:IsOptimized="True" />
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    <Viewbox VerticalAlignment="Top"
+                                 d:LayoutOverrides="Width">
+        <Canvas Height="100" Width="100">
+            <Path x:Name="path"
+                                      Stretch="None"
+                                      Fill="#6050004E"
+                                      Data="M 26,6L74,6Q 91.5,8.5 94,26L94,50Q 91.5,66.5 74,70L62,70L34,98L34,70L26,70Q 8.5,66.5 6,50L6,26Q 8.5,8.5 26,6 Z"
+                                      Height="100"
+                                      UseLayoutRounding="False"
+                                      Width="100"
+                                      Stroke="Black"
+                                      StrokeThickness="2" />
+            <Path Fill="White" Stroke="White" StrokeThickness="1">
+                <Path.Data>
+                    <EllipseGeometry Center="50,35" RadiusX="6" RadiusY="6" />
+                </Path.Data>
+            </Path>
+            <Path Fill="White" Stroke="White" StrokeThickness="1">
+                <Path.Data>
+                    <EllipseGeometry Center="29,35" RadiusX="6" RadiusY="6" />
+                </Path.Data>
+            </Path>
+            <Path Fill="White" Stroke="White" StrokeThickness="1">
+                <Path.Data>
+                    <EllipseGeometry Center="71,35" RadiusX="6" RadiusY="6" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+    </Viewbox>
+</Grid>

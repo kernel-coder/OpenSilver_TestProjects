@@ -70,6 +70,9 @@
             <VirtuosoCoreConverters:QuestionKeyFromLabelConverter x:Key="QuestionKeyFromLabelConverter" />
             <VirtuosoCoreConverters:QuestionTemplateFromKeyConverter x:Key="QuestionTemplateFromKeyConverter" />
             <VirtuosoCoreConverters:PatientInsuranceNameAndNumberFromKeyConverter x:Key="PatientInsuranceNameAndNumberFromKeyConverter" />-->
+            <VirtuosoCoreConverters:TherapyTaskFillColorConverter x:Key="TherapyTaskFillColorConverter" />
+            <VirtuosoCoreConverters:TherapyTaskMessageVisibilityConverter x:Key="TherapyTaskMessageVisibilityConverter" />
+            
             <VirtuosoCoreConverters:VisibilityConverter x:Key="VisibilityConverter" />
             <VirtuosoCoreConverters:VisibilityToNullableBooleanConverter x:Key="VisibilityToNullableBooleanConverter" />
             <VirtuosoCoreConverters:ShortDateTimeConverter x:Key="ShortDateTimeConverter" />

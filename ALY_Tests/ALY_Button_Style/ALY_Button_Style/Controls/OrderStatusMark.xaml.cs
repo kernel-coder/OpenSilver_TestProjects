@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
-
+using Virtuoso.Server.Data;
 
 namespace Virtuoso.Core.Controls
 {
@@ -33,17 +33,17 @@ namespace Virtuoso.Core.Controls
             {
                 orderStatus = 0;
             }
-            //me.completeCheckMark.Visibility = ((orderStatus == (int)OrderStatusType.Completed) || (orderStatus == (int)OrderStatusType.SigningPhysicianVerified)) ? Visibility.Visible : Visibility.Collapsed;
-            //me.signingPhysicianVerifiedCheckMark.Visibility = (orderStatus == (int)OrderStatusType.SigningPhysicianVerified) ? Visibility.Visible : Visibility.Collapsed;
-            //me.reviewOrder.Visibility = ((orderStatus == (int)OrderStatusType.OrderEntryReview)) ? Visibility.Visible : Visibility.Collapsed;
-            //me.voidOrder.Visibility = ((orderStatus == (int)OrderStatusType.Voided)) ? Visibility.Visible : Visibility.Collapsed;
+            me.completeCheckMark.Visibility = ((orderStatus == (int)OrderStatusType.Completed) || (orderStatus == (int)OrderStatusType.SigningPhysicianVerified)) ? Visibility.Visible : Visibility.Collapsed;
+            me.signingPhysicianVerifiedCheckMark.Visibility = (orderStatus == (int)OrderStatusType.SigningPhysicianVerified) ? Visibility.Visible : Visibility.Collapsed;
+            me.reviewOrder.Visibility = ((orderStatus == (int)OrderStatusType.OrderEntryReview)) ? Visibility.Visible : Visibility.Collapsed;
+            me.voidOrder.Visibility = ((orderStatus == (int)OrderStatusType.Voided)) ? Visibility.Visible : Visibility.Collapsed;
 
-            //me.toolTip.Text =
-            //    ((orderStatus == (int)OrderStatusType.InProcess) ? "Order in-process/unsigned" :
-            //    ((orderStatus == (int)OrderStatusType.OrderEntryReview) ? "Awaiting order entry review" :
-            //    ((orderStatus == (int)OrderStatusType.Completed) ? "Order completed, awaiting physician signature" :
-            //    ((orderStatus == (int)OrderStatusType.SigningPhysicianVerified) ? "Order completed, verified physician signature" :
-            //    ((orderStatus == (int)OrderStatusType.Voided) ? "Order voided" : "")))));
+            me.toolTip.Text =
+                ((orderStatus == (int)OrderStatusType.InProcess) ? "Order in-process/unsigned" :
+                ((orderStatus == (int)OrderStatusType.OrderEntryReview) ? "Awaiting order entry review" :
+                ((orderStatus == (int)OrderStatusType.Completed) ? "Order completed, awaiting physician signature" :
+                ((orderStatus == (int)OrderStatusType.SigningPhysicianVerified) ? "Order completed, verified physician signature" :
+                ((orderStatus == (int)OrderStatusType.Voided) ? "Order voided" : "")))));
         }
 
         #endregion

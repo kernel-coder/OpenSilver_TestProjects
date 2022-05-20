@@ -37,15 +37,6 @@
     <Page Update="ComboItemsTestDlg.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\CacheIconControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\CheckMark.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\CheckMarkCoderReview.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\CheckMarkError.xaml">
       <SubType>Designer</SubType>
     </Page>

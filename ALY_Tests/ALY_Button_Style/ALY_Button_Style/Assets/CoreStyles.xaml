@@ -4075,7 +4075,7 @@
          <Setter.Value>
             <ControlTemplate TargetType="ToolTip">
                <Border x:Name="Root" BorderThickness="{TemplateBinding BorderThickness}" Background="{StaticResource HighlightLightBrush}" Effect="{StaticResource DropShadowBrush}" Opacity="0">
-                  <VisualStateManager.VisualStateGroups>
+                  <!--<VisualStateManager.VisualStateGroups>
                      <VisualStateGroup x:Name="OpenStates">
                         <VisualStateGroup.Transitions>
                            <VisualTransition From="Open" GeneratedDuration="0:0:0.3" To="Closed"/>
@@ -4095,12 +4095,12 @@
                            </Storyboard>
                         </VisualState>
                      </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
+                  </VisualStateManager.VisualStateGroups>-->
                   <Border Padding="{TemplateBinding Padding}">
-                     <Border.Resources>
+                     <!--<Border.Resources>
                         <Storyboard x:Key="Visible State"/>
                         <Storyboard x:Key="Normal State"/>
-                     </Border.Resources>
+                     </Border.Resources>-->
                      <Border.Background>
                         <StaticResource ResourceKey="HighlightLightBrush"/>
                      </Border.Background>
@@ -9056,7 +9056,7 @@
    </ControlTemplate>
    <ControlTemplate x:Name="CoreToolTipTemplate" TargetType="ToolTip">
       <Border x:Name="Root" BorderThickness="{TemplateBinding BorderThickness}" Background="{StaticResource HighlightLightBrush}" Effect="{StaticResource DropShadowBrush}" Opacity="0">
-         <VisualStateManager.VisualStateGroups>
+         <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="OpenStates">
                <VisualStateGroup.Transitions>
                   <VisualTransition From="Open" GeneratedDuration="0:0:0.3" To="Closed"/>
@@ -9076,12 +9076,12 @@
                   </Storyboard>
                </VisualState>
             </VisualStateGroup>
-         </VisualStateManager.VisualStateGroups>
+         </VisualStateManager.VisualStateGroups>-->
          <Border Padding="{TemplateBinding Padding}">
-            <Border.Resources>
+            <!--<Border.Resources>
                <Storyboard x:Key="Visible State"/>
                <Storyboard x:Key="Normal State"/>
-            </Border.Resources>
+            </Border.Resources>-->
             <Border.Background>
                <StaticResource ResourceKey="HighlightLightBrush"/>
             </Border.Background>

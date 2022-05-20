@@ -41,15 +41,6 @@
 	<Page Include="ComboItemsTestDlg.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
-	<Page Include="Controls\CacheIconControl.xaml">
-	  <Generator>MSBuild:Compile</Generator>
-	</Page>
-	<Page Include="Controls\CheckMark.xaml">
-	  <Generator>MSBuild:Compile</Generator>
-	</Page>
-	<Page Include="Controls\CheckMarkCoderReview.xaml">
-	  <Generator>MSBuild:Compile</Generator>
-	</Page>
 	<Page Include="Controls\CheckMarkError.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
@@ -86,9 +77,9 @@
     <Compile Include="Behaviors\TextBoxFilters.cs" />
     <Compile Include="ComboItemsTestDlg.xaml.cs" />
     <Compile Include="Controls\autoCompleteCombo.cs" />
-    <Compile Include="Controls\CacheIconControl.xaml.cs" />
-    <Compile Include="Controls\CheckMark.xaml.cs" />
-    <Compile Include="Controls\CheckMarkCoderReview.xaml.cs" />
+    <Compile Include="Controls\CacheIconControl.cs" />
+    <Compile Include="Controls\CheckMark.cs" />
+    <Compile Include="Controls\CheckMarkCoderReview.cs" />
     <Compile Include="Controls\CheckMarkError.xaml.cs" />
     <Compile Include="Controls\EncounterStatusMark.xaml.cs" />
     <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />

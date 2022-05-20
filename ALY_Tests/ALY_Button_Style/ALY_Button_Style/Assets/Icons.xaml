@@ -1079,14 +1079,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border>
-                        <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
-                            <Border x:Name="border" CornerRadius="2" BorderThickness="1"
+                    <Border x:Name="border" CornerRadius="2" BorderThickness="1" Margin="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <icons:PencilIcon />
-                            </Border>
-                        </ContentPresenter>
+                        <icons:PencilIcon />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1348,18 +1344,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border>
-                        <ContentPresenter x:Name="contentPresenter"
-                                          Margin="1"
-                                          d:LayoutOverrides="Width, Height">
-                            <Border x:Name="border"
-                                    CornerRadius="2"
-                                    BorderThickness="1"
+                    <Border x:Name="border" CornerRadius="2" BorderThickness="1" Margin="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <icons:DocumentIcon />
-                            </Border>
-                        </ContentPresenter>
+                        <icons:DocumentIcon />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1448,14 +1436,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border>
-                        <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
-                            <Border x:Name="border" CornerRadius="2" BorderThickness="1"
+                    <Border x:Name="border" CornerRadius="2" BorderThickness="1"  Margin="1" 
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <icons:AttemptIcon />
-                            </Border>
-                        </ContentPresenter>
+                        <icons:AttemptIcon />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1474,14 +1458,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border>
-                        <ContentPresenter x:Name="contentPresenter" Margin="1" d:LayoutOverrides="Width, Height">
-                            <Border x:Name="border" CornerRadius="2" BorderThickness="1"
+                    <Border x:Name="border" CornerRadius="2" BorderThickness="1" Margin="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <icons:DeleteIcon />
-                            </Border>
-                        </ContentPresenter>
+                        <icons:DeleteIcon />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

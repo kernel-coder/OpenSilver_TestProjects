@@ -238,7 +238,7 @@
                 <TextBlock Text="Row Count" VerticalAlignment="Center"/>
                 <TextBox x:Name="tbCount" Text="200"  VerticalAlignment="Center" Margin="10, 0" MinWidth="120"/>
                 <Button Content="Load Data"  VerticalAlignment="Center" Click="Button_Click" />
-                <Button Content="Measure"  VerticalAlignment="Center" Click="Button_Click2" />
+                <Button Content="Measure"  VerticalAlignment="Center" Click="Button_Click2" Visibility="Collapsed"/>
                 <!--<ComboBox x:Name="searchItemComboBox"
                   TabIndex="1"
                   Margin="8,0"

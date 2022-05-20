@@ -102,14 +102,14 @@ namespace ALY_Button_Style
                 });;
             }
 
-            _t0 = OpenSilver.Profiler.StartMeasuringTime();
+            //_t0 = OpenSilver.Profiler.StartMeasuringTime();
             gridIncomplete.ItemsSource = list;
         }
 
         private long _t0;
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
+            //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
         }
     }
 }

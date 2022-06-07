@@ -189,7 +189,7 @@
                             <Border x:Name="border" CornerRadius="2" BorderThickness="1"
                                     BorderBrush="{StaticResource HighlightBrush}"
                                     Background="{StaticResource HighlightBrush}">
-                                <icons:CloseButtonStyle/>
+                          
                             </Border>
                         </ContentPresenter>
                     </Grid>

@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Virtuoso.Core.Assets.Icons.RefreshIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+        <Viewbox>
+                <Canvas Height="15" Width="15">
+                <Path x:Name="path2"
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Stretch="Fill"
+                        StrokeLineJoin="Round"
+                        Fill="#FFFFFFFF"
+                        Data="M 6.89392,22.8615L 0,10.9208L 4.35387,10.9208C 5.3424,4.73047 10.7064,0 17.1752,0C 24.3462,0 30.1595,5.81329 30.1595,12.9844C 30.1595,20.1555 24.3462,25.9688 17.1752,25.9688C 16.3945,25.9688 15.6299,25.8998 14.8871,25.7678L 17.6208,21.2225C 21.97,20.991 25.4252,17.3912 25.4252,12.9844C 25.4252,8.42804 21.7315,4.73438 17.1752,4.73438C 13.3314,4.73438 10.1015,7.3631 9.18535,10.9208L 13.7878,10.9208L 6.89392,22.8615 Z "
+                        UseLayoutRounding="True"
+                        Width="15"
+                        Height="15"
+                        Stroke="Black"
+                        StrokeThickness="1" />
+                </Canvas>
+        </Viewbox>
+</UserControl>

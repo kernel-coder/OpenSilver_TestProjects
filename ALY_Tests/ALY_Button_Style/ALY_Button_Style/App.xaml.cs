@@ -66,7 +66,7 @@ namespace ALY_Button_Style
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 #if !OPENSILVER
-            this.RootVisual = new MainPage();
+            this.RootVisual = new ToolkitChartSampleView();
 #endif
         }
 

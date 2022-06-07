@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   overflow="visible"
+   version="1.1"
+   id="svg171"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs175" />
+  <svg
+     width="121.333"
+     height="121.333"
+     version="1.1"
+     id="svg169">
+    <rect
+       x="0"
+       y="0"
+       width="121.333"
+       height="121.333"
+       fill="#50004E"
+       id="rect165" />
+    <path
+       d="M 706.298,1258.44L 723.292,1280.35L 755.615,1218.26"
+       fill-rule="nonzero"
+       fill="none"
+       stroke="#FEFEFE"
+       stroke-width="20.3333"
+       stroke-linejoin="Round"
+       stroke-linecap="Round"
+       id="path167" />
+  </svg>
+</svg>

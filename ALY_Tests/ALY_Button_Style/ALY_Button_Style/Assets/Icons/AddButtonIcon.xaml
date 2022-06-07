@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Virtuoso.Core.Assets.Icons.AddButtonIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox>
+        <Canvas Width="121.333" Height="121.333">
+            <Rectangle Width="121.333" Height="121.333" Canvas.Left="0" Canvas.Top="0"
+                        Stretch="Fill" Fill="#FF50004E" />
+            <Path Width="21" Height="88" Canvas.Left="50.167" Canvas.Top="16.667"
+                    Stretch="Fill" StrokeThickness="20.3333" StrokeStartLineCap="Round"
+                    StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE"
+                    Data="F1 M 316.501,1042.33L 316.333,1109.62" UseLayoutRounding="False" />
+            <Path Width="88" Height="21" Canvas.Left="16.667" Canvas.Top="50.167"
+                    Stretch="Fill" StrokeThickness="20.3333" StrokeStartLineCap="Round"
+                    StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE"
+                    Data="F1 M 350.063,1076.06L 282.77,1075.89" UseLayoutRounding="False" />
+        </Canvas>
+    </Viewbox>
+</UserControl>

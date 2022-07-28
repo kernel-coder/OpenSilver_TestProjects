@@ -7,7 +7,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
     xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors"
@@ -131,7 +130,7 @@
 
    <!--CommonValidationToolTipTemplate Style-->
    <ControlTemplate x:Key="CommonValidationToolTipTemplate" TargetType="ToolTip">
-      <Grid x:Name="Root" Margin="5,0" Opacity="0" RenderTransformOrigin="0,0">
+      <Grid x:Name="Root" Margin="5,0" Opacity="1" RenderTransformOrigin="0,0">
          <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="OpenStates">
                <VisualStateGroup.Transitions>
@@ -2794,7 +2793,6 @@
    </Style>
 
    <!--TextBlock Style-->
-   <!--TextBlock Style-->
    <Style x:Name="CoreTextBlockStyle" TargetType="TextBlock">
       <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
       <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
@@ -2806,6 +2804,19 @@
    <Style TargetType="TextBlock" BasedOn="{StaticResource CoreTextBlockStyle}" />
 
    <!--RichTextBox Style-->
+    <Style x:Name="FakeCoreRichTextBoxStyle" TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}"/>
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="MinHeight" Value="26"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
    <Style x:Name="CoreRichTextBoxStyle" TargetType="RichTextBox">
       <Setter Property="BorderThickness" Value="0" />
       <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
@@ -4075,7 +4086,7 @@
          <Setter.Value>
             <ControlTemplate TargetType="ToolTip">
                <Border x:Name="Root" BorderThickness="{TemplateBinding BorderThickness}" Background="{StaticResource HighlightLightBrush}" Effect="{StaticResource DropShadowBrush}" Opacity="0">
-                  <!--<VisualStateManager.VisualStateGroups>
+                  <VisualStateManager.VisualStateGroups>
                      <VisualStateGroup x:Name="OpenStates">
                         <VisualStateGroup.Transitions>
                            <VisualTransition From="Open" GeneratedDuration="0:0:0.3" To="Closed"/>
@@ -4095,12 +4106,12 @@
                            </Storyboard>
                         </VisualState>
                      </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>-->
+                  </VisualStateManager.VisualStateGroups>
                   <Border Padding="{TemplateBinding Padding}">
-                     <!--<Border.Resources>
+                     <Border.Resources>
                         <Storyboard x:Key="Visible State"/>
                         <Storyboard x:Key="Normal State"/>
-                     </Border.Resources>-->
+                     </Border.Resources>
                      <Border.Background>
                         <StaticResource ResourceKey="HighlightLightBrush"/>
                      </Border.Background>
@@ -9056,7 +9067,7 @@
    </ControlTemplate>
    <ControlTemplate x:Name="CoreToolTipTemplate" TargetType="ToolTip">
       <Border x:Name="Root" BorderThickness="{TemplateBinding BorderThickness}" Background="{StaticResource HighlightLightBrush}" Effect="{StaticResource DropShadowBrush}" Opacity="0">
-         <!--<VisualStateManager.VisualStateGroups>
+         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="OpenStates">
                <VisualStateGroup.Transitions>
                   <VisualTransition From="Open" GeneratedDuration="0:0:0.3" To="Closed"/>
@@ -9076,12 +9087,12 @@
                   </Storyboard>
                </VisualState>
             </VisualStateGroup>
-         </VisualStateManager.VisualStateGroups>-->
+         </VisualStateManager.VisualStateGroups>
          <Border Padding="{TemplateBinding Padding}">
-            <!--<Border.Resources>
+            <Border.Resources>
                <Storyboard x:Key="Visible State"/>
                <Storyboard x:Key="Normal State"/>
-            </Border.Resources>-->
+            </Border.Resources>
             <Border.Background>
                <StaticResource ResourceKey="HighlightLightBrush"/>
             </Border.Background>
@@ -9090,264 +9101,6 @@
       </Border>
    </ControlTemplate>
 
-   <Style x:Key="CoreTransitioningContentControlStyleRightToLeft" TargetType="layoutToolkit:TransitioningContentControl" >
-      <Setter Property="IsTabStop" Value="True"/>
-      <Setter Property="HorizontalContentAlignment" Value="Left"/>
-      <Setter Property="VerticalContentAlignment" Value="Top"/>
-      <Setter Property="Transition" Value="DefaultTransition"/>
-      <Setter Property="Template">
-         <Setter.Value>
-            <ControlTemplate TargetType="layoutToolkit:TransitioningContentControl">
-               <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2">
-                  <VisualStateManager.CustomVisualStateManager>
-                     <ei:ExtendedVisualStateManager/>
-                  </VisualStateManager.CustomVisualStateManager>
-                  <VisualStateManager.VisualStateGroups>
-                     <VisualStateGroup x:Name="PresentationStates">
-                        <VisualStateGroup.Transitions>
-                           <VisualTransition GeneratedDuration="0:0:0.8">
-                              <ei:ExtendedVisualStateManager.TransitionEffect>
-                                 <ee:SlideInTransitionEffect SlideDirection="RightToLeft" />
-                                 <!--<ee:FadeTransitionEffect  />-->
-                                 <!--<ee:RadialBlurTransitionEffect   />-->
-                                 <!--<ee:WipeTransitionEffect  />-->
-                              </ei:ExtendedVisualStateManager.TransitionEffect>
-                              <VisualTransition.GeneratedEasingFunction>
-                                 <CircleEase EasingMode="EaseInOut" />
-                              </VisualTransition.GeneratedEasingFunction>
-                              <Storyboard>
-                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"  Storyboard.TargetName="PreviousContentPresentationSite">
-                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
-                                       <DiscreteObjectKeyFrame.Value>
-                                          <Visibility>Collapsed</Visibility>
-                                       </DiscreteObjectKeyFrame.Value>
-                                    </DiscreteObjectKeyFrame>
-                                 </ObjectAnimationUsingKeyFrames>
-                              </Storyboard>
-                           </VisualTransition>
-                        </VisualStateGroup.Transitions>
-                        <VisualState x:Name="DefaultTransition">
-                           <Storyboard>
-                              <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                 <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                    <DiscreteObjectKeyFrame.Value>
-                                       <Visibility>Collapsed</Visibility>
-                                    </DiscreteObjectKeyFrame.Value>
-                                 </DiscreteObjectKeyFrame>
-                              </ObjectAnimationUsingKeyFrames>
-                           </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Normal">
-                           <Storyboard>
-                              <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                 <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                    <DiscreteObjectKeyFrame.Value>
-                                       <Visibility>Collapsed</Visibility>
-                                    </DiscreteObjectKeyFrame.Value>
-                                 </DiscreteObjectKeyFrame>
-                              </ObjectAnimationUsingKeyFrames>
-                           </Storyboard>
-                        </VisualState>
-                     </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <!--<VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="PresentationStates">
-                                    <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="0:0:0.8" ei:ExtendedVisualStateManager.UseFluidLayout="True">
-                                            <ei:ExtendedVisualStateManager.TransitionEffect>
-                                                <ee:WipeTransitionEffect FeatherAmount="5" />
-                                                <ee:FadeTransitionEffect />
-                                                <ee:SlideInTransitionEffect SlideDirection="RightToLeft"  />
-                                            </ei:ExtendedVisualStateManager.TransitionEffect>
-                                            <VisualTransition.GeneratedEasingFunction>
-                                                <CircleEase EasingMode="EaseInOut" />
-                                            </VisualTransition.GeneratedEasingFunction>
-                                        </VisualTransition>
-                                    </VisualStateGroup.Transitions>
-
-
-                                    <VisualState x:Name="DefaultTransition">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CurrentContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.600" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.600" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Normal">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                                <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <Visibility>Collapsed</Visibility>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="UpTransition">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CurrentContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="CurrentContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="30"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="-30"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="DownTransition">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CurrentContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="1"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="CurrentContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="-40"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                                <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="40"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>-->
-                  <Grid>
-                     <ContentPresenter x:Name="PreviousContentPresentationSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
-                        <ContentPresenter.RenderTransform>
-                           <TransformGroup >
-                              <ScaleTransform/>
-                              <SkewTransform/>
-                              <RotateTransform/>
-                              <TranslateTransform/>
-                           </TransformGroup>
-                        </ContentPresenter.RenderTransform>
-                     </ContentPresenter>
-                     <ContentPresenter x:Name="CurrentContentPresentationSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" RenderTransformOrigin="0,0">
-                        <ContentPresenter.Projection>
-                           <PlaneProjection CenterOfRotationY="0"/>
-                        </ContentPresenter.Projection>
-                        <ContentPresenter.RenderTransform>
-                           <TransformGroup>
-                              <ScaleTransform/>
-                              <SkewTransform/>
-                              <RotateTransform/>
-                              <TranslateTransform/>
-                           </TransformGroup>
-                        </ContentPresenter.RenderTransform>
-                     </ContentPresenter>
-                  </Grid>
-               </Border>
-            </ControlTemplate>
-         </Setter.Value>
-      </Setter>
-   </Style>
-   <Style x:Key="CoreTransitioningContentControlStyleLeftToRight" TargetType="layoutToolkit:TransitioningContentControl" >
-      <Setter Property="IsTabStop" Value="True"/>
-      <Setter Property="HorizontalContentAlignment" Value="Left"/>
-      <Setter Property="VerticalContentAlignment" Value="Top"/>
-      <Setter Property="Transition" Value="DefaultTransition"/>
-      <Setter Property="Template">
-         <Setter.Value>
-            <ControlTemplate TargetType="layoutToolkit:TransitioningContentControl">
-               <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2">
-                  <VisualStateManager.CustomVisualStateManager>
-                     <ei:ExtendedVisualStateManager/>
-                  </VisualStateManager.CustomVisualStateManager>
-                  <VisualStateManager.VisualStateGroups>
-                     <VisualStateGroup x:Name="PresentationStates">
-                        <VisualStateGroup.Transitions>
-                           <VisualTransition GeneratedDuration="0:0:0.8">
-                              <ei:ExtendedVisualStateManager.TransitionEffect>
-                                 <ee:SlideInTransitionEffect SlideDirection="LeftToRight"  />
-                              </ei:ExtendedVisualStateManager.TransitionEffect>
-                              <VisualTransition.GeneratedEasingFunction>
-                                 <CircleEase EasingMode="EaseInOut" />
-                              </VisualTransition.GeneratedEasingFunction>
-                              <Storyboard>
-                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"  Storyboard.TargetName="PreviousContentPresentationSite">
-                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
-                                       <DiscreteObjectKeyFrame.Value>
-                                          <Visibility>Collapsed</Visibility>
-                                       </DiscreteObjectKeyFrame.Value>
-                                    </DiscreteObjectKeyFrame>
-                                 </ObjectAnimationUsingKeyFrames>
-                              </Storyboard>
-                           </VisualTransition>
-                        </VisualStateGroup.Transitions>
-                        <VisualState x:Name="DefaultTransition">
-                           <Storyboard>
-                              <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                 <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                    <DiscreteObjectKeyFrame.Value>
-                                       <Visibility>Collapsed</Visibility>
-                                    </DiscreteObjectKeyFrame.Value>
-                                 </DiscreteObjectKeyFrame>
-                              </ObjectAnimationUsingKeyFrames>
-                           </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Normal">
-                           <Storyboard>
-                              <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
-                                 <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                    <DiscreteObjectKeyFrame.Value>
-                                       <Visibility>Collapsed</Visibility>
-                                    </DiscreteObjectKeyFrame.Value>
-                                 </DiscreteObjectKeyFrame>
-                              </ObjectAnimationUsingKeyFrames>
-                           </Storyboard>
-                        </VisualState>
-                     </VisualStateGroup>
-                  </VisualStateManager.VisualStateGroups>
-                  <Grid>
-                     <ContentPresenter x:Name="PreviousContentPresentationSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
-                        <ContentPresenter.RenderTransform>
-                           <TransformGroup >
-                              <ScaleTransform/>
-                              <SkewTransform/>
-                              <RotateTransform/>
-                              <TranslateTransform/>
-                           </TransformGroup>
-                        </ContentPresenter.RenderTransform>
-                     </ContentPresenter>
-                     <ContentPresenter x:Name="CurrentContentPresentationSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" RenderTransformOrigin="0,0">
-                        <ContentPresenter.Projection>
-                           <PlaneProjection CenterOfRotationY="0"/>
-                        </ContentPresenter.Projection>
-                        <ContentPresenter.RenderTransform>
-                           <TransformGroup>
-                              <ScaleTransform/>
-                              <SkewTransform/>
-                              <RotateTransform/>
-                              <TranslateTransform/>
-                           </TransformGroup>
-                        </ContentPresenter.RenderTransform>
-                     </ContentPresenter>
-                  </Grid>
-               </Border>
-            </ControlTemplate>
-         </Setter.Value>
-      </Setter>
-   </Style>
 
    <Style x:Name="CoreFrequencyTextBoxStyle" TargetType="TextBox">
       <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>

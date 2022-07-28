@@ -474,11 +474,12 @@
             <Button Content="Click" Click="Button_Click"/>
         </StackPanel>-->
         <Grid Grid.Row="0">
-            <Button Content="Load Next Round" HorizontalAlignment="Center" Click="Button_Click" />
+            <Button Content="Load Next Round" HorizontalAlignment="Center" Click="Button_Click2" />
             <!--<controls:MultiSelectCombo x:Name="comboMulti" HorizontalAlignment="Right" Width="120" ></controls:MultiSelectCombo>-->
         </Grid>
 
         <Grid x:Name="gridContent" Grid.Row="1">
+            <controls:vRichTextArea x:Name="rtb" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>

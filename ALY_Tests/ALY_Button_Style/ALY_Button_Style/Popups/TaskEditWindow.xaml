@@ -1,0 +1,16 @@
+﻿<ChildWindow  xmlns:controls="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+              x:Class="Virtuoso.Home.V2.Controls.TaskEditWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+              xmlns:Core="clr-namespace:Virtuoso.Core"
+              xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+              Style="{StaticResource ChildWindowNoAnimationStyle}"
+              Core:BindableDialogResult.DialogResult="{Binding DialogResult, Mode=TwoWay}"
+              Width="610"
+              Height="400"
+              Title="Task Details">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <VirtuosoCoreControls:TaskPopup />
+    </Grid>
+</ChildWindow>

@@ -1,0 +1,72 @@
+﻿<local:ValidationTestUCBase
+    x:Class="ALY_Button_Style.ValidationTestUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ALY_Button_Style"
+    xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <VirtuosoCoreControls:vLabel Grid.Row="0"
+                                                     Grid.Column="0"
+                                                     Entity="ValidationTestEntity"
+                                                     Property="FirstName" />
+            <TextBox MaxLength="40"
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 TabIndex="1"
+                                 IsTabStop="{Binding IsEdit}"
+                                 IsHitTestVisible="{Binding IsEdit}"
+                                 Text="{Binding SelectedItem.FirstName, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+            <VirtuosoCoreControls:vLabel Grid.Row="1"
+                                                     Grid.Column="0"
+                                                     Entity="ValidationTestEntity"
+                                                     Property="NotRequiredName" />
+            <TextBox MaxLength="40"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 TabIndex="1"
+                                 IsTabStop="{Binding IsEdit}"
+                                 IsHitTestVisible="{Binding IsEdit}"
+                                 Text="{Binding SelectedItem.NotRequiredName, Mode=TwoWay, NotifyOnValidationError=True}" />
+            
+            <VirtuosoCoreControls:vLabel Grid.Row="2"
+                                                     Grid.Column="0"
+                                                     Entity="ValidationTestEntity"
+                                                     Property="FriendlyName" />
+            <TextBox MaxLength="40"
+                                 Grid.Row="2"
+                                 Grid.Column="1"
+                                 TabIndex="1"
+                                 IsTabStop="{Binding IsEdit}"
+                                 IsHitTestVisible="{Binding IsEdit}"
+                                 Text="{Binding SelectedItem.FriendlyName, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+
+        </Grid>
+        <sdk:ValidationSummary Grid.Row="1" />
+
+        <VirtuosoCoreControls:OKCancelEditStackPanel EditWhat="ValidationTestEntity"
+                                                             Grid.Row="2"
+                                                             VerticalAlignment="Bottom"
+                                                             HorizontalAlignment="Right"
+                                                             Visibility="Visible" />
+    </Grid>
+</local:ValidationTestUCBase>

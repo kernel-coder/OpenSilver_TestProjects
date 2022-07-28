@@ -1,0 +1,17 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.Services.CustomWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                      xmlns:Core="clr-namespace:Virtuoso.Core;assembly=Virtuoso.Core"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      Core:BindableDialogResult.DialogResult="{Binding DialogResult, Mode=TwoWay}"
+                      Title="{Binding Caption, Mode=TwoWay}"
+                      Style="{StaticResource ChildWindowStyle}"
+                      VerticalAlignment="Center" 
+                      HorizontalAlignment="Center"                       
+                      Closing="ChildWindow_Closing" 
+                      Closed="ChildWindow_Closed">
+    <Grid Margin="2">
+        <ContentPresenter x:Name="mainContent" Content="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <Rectangle x:Name="overLay" Fill="White" Visibility="Collapsed"></Rectangle>
+    </Grid>
+</controls:ChildWindow>

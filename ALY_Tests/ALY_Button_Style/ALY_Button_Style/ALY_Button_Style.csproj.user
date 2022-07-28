@@ -14,6 +14,12 @@
     <Compile Update="TestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ValidationTestUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ValidationTestUC2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Assets\Brushes.xaml">
@@ -31,6 +37,9 @@
     <Page Update="Assets\SDKStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Assets\Styles.Theme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Assets\Styles.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -40,10 +49,22 @@
     <Page Update="Controls\CheckMarkError.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\EditTabItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\EncounterStatusMark.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\OKCancelEditStackPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\OrderStatusMark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\SignatureUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\vLabel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DataGridTest.xaml">
@@ -55,7 +76,28 @@
     <Page Update="Popups\ChangeUserPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Popups\TaskEditWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Popups\TaskPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TestView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ToolkitChartSampleView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ValidationTestPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ValidationTestUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ValidationTestUC2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PatientPhoneUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

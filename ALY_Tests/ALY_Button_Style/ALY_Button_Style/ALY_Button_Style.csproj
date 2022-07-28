@@ -9,9 +9,10 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-06-07-060322-3a56aff5" />
+    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-07-26-105431-59013138" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
+    <PackageReference Include="protobuf-net" Version="3.0.131" />
     <PackageReference Include="Silverlight.Controls.ToolTips.OpenSilver" Version="1.0.0-private-2022-03-07-122116-31770396" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
@@ -35,6 +36,9 @@
 	<Page Include="Assets\SDKStyles.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="Assets\Styles.Theme.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="Assets\Styles.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
@@ -44,10 +48,22 @@
 	<Page Include="Controls\CheckMarkError.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="Controls\EditTabItem.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="Controls\EncounterStatusMark.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="Controls\OKCancelEditStackPanel.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="Controls\OrderStatusMark.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\SignatureUserControl.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Controls\vLabel.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="DataGridTest.xaml">
@@ -62,7 +78,28 @@
     <Page Include="Popups\ChangeUserPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\TaskEditWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\TaskPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolkitChartSampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValidationTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValidationTestUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValidationTestUC2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientPhoneUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -75,19 +112,30 @@
     <Compile Include="Behaviors\ComboBoxExtensions.cs" />
     <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
     <Compile Include="Behaviors\TextBoxFilters.cs" />
+    <Compile Include="Behaviors\TransitionEffectBehavior.cs" />
     <Compile Include="ComboItemsTestDlg.xaml.cs" />
     <Compile Include="Controls\autoCompleteCombo.cs" />
+    <Compile Include="Controls\BindableDialogResult.cs" />
     <Compile Include="Controls\CacheIconControl.cs" />
     <Compile Include="Controls\CheckMark.cs" />
     <Compile Include="Controls\CheckMarkCoderReview.cs" />
     <Compile Include="Controls\CheckMarkError.xaml.cs" />
+    <Compile Include="Controls\codeLookup.cs" />
+    <Compile Include="Controls\codeLookupRadio.cs" />
+    <Compile Include="Controls\EditTabItem.xaml.cs" />
     <Compile Include="Controls\EncounterStatusMark.xaml.cs" />
     <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />
+    <Compile Include="Controls\OKCancelEditStackPanel.xaml.cs" />
     <Compile Include="Controls\OrderStatusMark.xaml.cs" />
+    <Compile Include="Controls\SignatureUserControl.xaml.cs" />
+    <Compile Include="Controls\UserControlBase.cs" />
+    <Compile Include="Controls\UserControlBaseEventArgs.cs" />
     <Compile Include="Controls\vAsyncComboBox.cs" />
     <Compile Include="Controls\vButton.cs" />
     <Compile Include="Controls\vDatePicker.cs" />
     <Compile Include="Controls\VirtuosoBusyIndicator.cs" />
+    <Compile Include="Controls\vLabel.xaml.cs" />
+    <Compile Include="Controls\vRichTextBox.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
     <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
     <Compile Include="Converters\ComboBoxItemConverters.cs" />
@@ -111,13 +159,37 @@
     <Compile Include="Converters\TextConverters.cs" />
     <Compile Include="Converters\VisibilityConverters.cs" />
     <Compile Include="DataGridTest.xaml.cs" />
+    <Compile Include="Data\PatientPhone.cs" />
+    <Compile Include="Data\ValidationTestEntity.cs" />
+    <Compile Include="Framework\EntityExtensions.cs" />
+    <Compile Include="Framework\SimpleServiceProvider.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="ImageBrushSample.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
+    <Compile Include="Popups\TaskEditWindow.xaml.cs" />
+    <Compile Include="Popups\TaskPopup.xaml.cs" />
+    <Compile Include="Shared\AsyncUtility.cs" />
+    <Compile Include="Shared\CodeLookup.cs" />
+    <Compile Include="Shared\CommandManager.cs" />
+    <Compile Include="Shared\DataTemplateHelper.cs" />
     <Compile Include="Shared\Encounter.shared.cs" />
+    <Compile Include="Shared\EnumerableExtensions.cs" />
+    <Compile Include="Shared\FocusHelper.cs" />
+    <Compile Include="Shared\NotifyPropertyChanged.cs" />
     <Compile Include="Shared\OrderEntry.shared.cs" />
+    <Compile Include="Shared\ValidationSummaryHelper.cs" />
+    <Compile Include="Shared\VirtuosoEntityBase.cs" />
+    <Compile Include="Shared\VirtuosoEntityProperties.cs" />
+    <Compile Include="Shared\VirtuosoObjectCleanupHelper.cs" />
+    <Compile Include="Shared\VisualTreeWalker.cs" />
     <Compile Include="TestView.xaml.cs" />
+    <Compile Include="ToolkitChartSampleView.xaml.cs" />
+    <Compile Include="ValidationTestPage.xaml.cs" />
+    <Compile Include="ValidationTestUC.xaml.cs" />
+    <Compile Include="ValidationTestUC2.xaml.cs" />
+    <Compile Include="Views\PatientPhoneUserControl.xaml.cs" />
+    <Compile Include="Views\PatientUserControls.cs" />
   </ItemGroup>
 
     <ItemGroup>

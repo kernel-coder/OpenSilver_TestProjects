@@ -12,7 +12,6 @@ namespace ALY_Button_Style.Browser.Pages
         protected override void BuildRenderTree(RenderTreeBuilder __builder)
         {
         }
-
         protected override void OnInitialized()
         {
             base.OnInitialized();

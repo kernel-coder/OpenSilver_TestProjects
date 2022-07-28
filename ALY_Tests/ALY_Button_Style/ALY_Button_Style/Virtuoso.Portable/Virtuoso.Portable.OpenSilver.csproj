@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AssemblyName>Virtuoso.Portable</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Common\VersionInfo.cs" Link="VersionInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="*.cs" />
+    <Compile Include="Database\*.cs" />
+    <Compile Include="Extensions\*.cs" />
+    <Compile Include="Model\*.cs" />
+    <Compile Include="Utility\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-07-21-090902-6ea6908f" />
+    <PackageReference Include="protobuf-net" Version="2.4.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Virtuoso.Client.Infrastructure\Virtuoso.Client.Infrastructure.OpenSilver.csproj" />
+  </ItemGroup>
+
+</Project>

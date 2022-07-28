@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -64,7 +65,8 @@ namespace ALY_Button_Style
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var list = new List<HomeScreenTaskPM>();
-            int count = 200;
+            int count = 2;
+
             try
             {
                 count = Convert.ToInt32(tbCount.Text);
@@ -110,6 +112,9 @@ namespace ALY_Button_Style
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
+
         }
+
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -10,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using Virtuoso.Home.V2.Controls;
 
 namespace ALY_Button_Style
 {
@@ -18,6 +20,8 @@ namespace ALY_Button_Style
         public TestView()
         {
             this.InitializeComponent();
+
+            rtb.ParagraphText = "A RichTextBox with <b>initial content</b> in it.";
 
             //for (int i = 0; i < 30; i++)
             //{
@@ -54,6 +58,43 @@ namespace ALY_Button_Style
             //var t2 = watch.Elapsed.TotalSeconds;
             //watch.Stop();
             //System.Diagnostics.Debug.WriteLine($"Measure {ItemsToAdd}: {t1}, {t2}");
+        }
+
+        private async void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
+            TaskEditWindow window = new TaskEditWindow();
+            window.Show();
+            return;
+            var http = new HttpClient();
+            var pdfResponse = await http.GetAsync("http://localhost:55593/test.pdf");
+            var buffer = await pdfResponse.Content.ReadAsByteArrayAsync();
+            DownloadFile(buffer, "testcsv.pdf", true, "application/pdf", true);
+        }
+
+        private static void DownloadFile(byte[] data, string filename, bool download = true, string fileType = null, bool openInATab = false)
+        {
+            const string JS_DownloadFile = @"
+                    document.FILE_Download = function(wasmArray) {
+                        const dataPtr = Blazor.platform.getArrayEntryPtr(wasmArray, 0, 4);
+                        const length = Blazor.platform.getArrayLength(wasmArray);
+                        let data = new Uint8Array(Module.HEAP8.buffer, dataPtr, length * 4);
+                        var blob;
+                        if ($2) blob = new Blob([data], { type: $2});
+                        else  blob = new Blob([data]);
+                        let fileURL = URL.createObjectURL(blob);
+                        if ($1) {
+                            const link = document.createElement('a');
+                            link.href = fileURL;
+                            link.setAttribute('download', $0);
+                            link.click();
+                            link.remove();
+                        }
+                        if ($3) window.open(fileURL);
+                        return 0;
+                    }";
+            OpenSilver.Interop.ExecuteJavaScript(JS_DownloadFile, filename, download, fileType, openInATab);
+            DotNetForHtml5.Core.INTERNAL_Simulator.JavaScriptExecutionHandler.InvokeUnmarshalled<byte[], object>("document.FILE_Download", data);
         }
     }
 }

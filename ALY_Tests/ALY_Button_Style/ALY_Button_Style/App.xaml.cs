@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Virtuoso.Core.Utility;
+using Virtuoso.Maintenance.Controls;
 
 namespace ALY_Button_Style
 {
@@ -13,8 +15,8 @@ namespace ALY_Button_Style
         public App()
         {
 #if OPENSILVER
-            App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotLoaded = true;
-            App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
+            //App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotLoaded = true;
+           // App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
 #endif
             this.InitializeComponent();
 
@@ -22,9 +24,10 @@ namespace ALY_Button_Style
             //File.ReadAllBytes("test.txt");
             //Directory.Delete("filename.txt");
 
+            VirtuosoEntityProperties.BuildEntityMetadata();
 #if OPENSILVER
             UpdateResDic(App.Current.Resources);
-            var mainPage = new DataGridTest();
+            var mainPage = new TestView(); //  new Virtuoso.Core.Controls.SignatureUserControl();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;
@@ -40,6 +43,7 @@ namespace ALY_Button_Style
                 dic.Remove("HomeDataGridMarging");
                 dic.Add("HomeDataGridMarging", new Thickness(0));
             }
+
 
             if (dic.ContainsKey("HomeDataGridColumnHeaderStyle"))
             {

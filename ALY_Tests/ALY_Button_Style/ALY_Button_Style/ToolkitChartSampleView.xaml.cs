@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -51,6 +52,29 @@ namespace ALY_Button_Style
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var series = chart.Series[0] as LineSeries;
+            var background = series.ReadLocalValue(Control.BackgroundProperty);
+
+        }
+    }
+
+    public class CClass : Control
+    {
+
+
+        public int MyProperty
+        {
+            get { return (int)GetValue(MyPropertyProperty); }
+            set { SetValue(MyPropertyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyPropertyProperty =
+            DependencyProperty.Register("MyProperty", typeof(int), typeof(CClass), new PropertyMetadata(0));
+
 
     }
 }

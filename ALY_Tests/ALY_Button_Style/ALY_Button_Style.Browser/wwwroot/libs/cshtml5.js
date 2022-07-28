@@ -92,6 +92,25 @@ document.getXamlRoot = function()
 	return xamlRoot;
 }
 
+document.clearXamlRoot = function () {
+    const children = document.getXamlRoot().children;
+
+    for (i = children.length - 1; i >= 0; i--) {
+        if (children[i].tagName !== "PARAM") {
+            children[i].remove();
+        }
+    }
+}
+
+document.getAppParams = function () {
+    return JSON.stringify(
+        Array.from(
+            document.getXamlRoot().getElementsByTagName("param"),
+            function (p) { return { Name: p.name, Value: p.value }; }
+        )
+    );
+}
+
 document.ResXFiles = {};
 
 document.modifiersPressed = 0;
@@ -547,10 +566,14 @@ document.measureTextBlock = function(uid, textWrapping, padding, width, maxWidth
         var runElement = element.firstElementChild;
         if (runElement != null) {
             var child = elToMeasure;
-            while (child.hasChildNodes()) {
-                child = child.firstChild;
+            if (child.hasChildNodes()) {
+                while (child.hasChildNodes()) {
+                    child = child.firstChild;
+                }
+                runElement.innerHTML = child.parentElement.innerHTML.length == 0 ? 'A' : child.parentElement.innerHTML;
+            } else {
+                runElement.innerHTML = 'A';
             }
-            runElement.innerHTML = child.parentElement.innerHTML.length == 0 ? 'A' : child.parentElement.innerHTML;
         }
 
         element.style.fontSize = computedStyle.fontSize;
@@ -1248,3 +1271,28 @@ var jsilConfig = {
       "index"
     ]
 };
+
+window.elementsFromPointOpensilver = function (x, y, element) {
+    const elements = [];
+    if (element == undefined || element == null) {
+        element = document.body;
+    } else if (typeof element === 'string') {
+        element = document.getElementById(element);
+    }
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_ELEMENT, null, false);
+    let currentNode = walker.currentNode;
+    while (currentNode) {
+        if (currentNode.className && currentNode.id && currentNode.getBoundingClientRect) {
+            const visualBound = currentNode.getBoundingClientRect();
+            if (PerformHitTest(x, y, visualBound)) {
+                elements.push(currentNode.id);
+            }
+        }
+        currentNode = walker.nextNode();
+    }
+    return JSON.stringify(elements);
+};
+
+function PerformHitTest(x, y, rect) {
+    return rect.x <= x && x <= rect.x + rect.width && rect.y <= y && y <= rect.y + rect.height;
+}

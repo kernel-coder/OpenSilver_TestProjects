@@ -30,6 +30,21 @@ namespace ALY_Button_Style
         {
             this.InitializeComponent();
             this.DataContext = this;
+            Loaded += TaskPopup_Loaded;
+        }
+
+        void TaskPopup_Loaded(object sender, RoutedEventArgs e)
+        {
+            //NOTE: setting Format in XAML was raising an error...setting in code-behind seems to work fine...
+
+            if (true)
+            {
+                TaskTimePicker2.Format = new CustomTimeFormat("HHmm");
+            }
+            else
+            {
+                TaskTimePicker2.Format = new ShortTimeFormat();
+            }
         }
     }
 }

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:ALY_Button_Style"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
 
@@ -39,14 +40,13 @@
                                                      Grid.Column="0"
                                                      Entity="ValidationTestEntity"
                                                      Property="NotRequiredName" />
-            <TextBox MaxLength="40"
-                                 Grid.Row="1"
-                                 Grid.Column="1"
-                                 TabIndex="1"
-                                 IsTabStop="{Binding IsEdit}"
-                                 IsHitTestVisible="{Binding IsEdit}"
-                                 Text="{Binding SelectedItem.NotRequiredName, Mode=TwoWay, NotifyOnValidationError=True}" />
-            
+            <toolkit:TimePicker Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Name="TaskTimePicker2"
+                                                    IsTabStop="{Binding IsEdit}"
+                                                    IsHitTestVisible="{Binding IsEdit}"
+                                                    Value="{Binding SelectedItem.TaskEndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnNotifyDataErrors=true, Converter={StaticResource DateTimeOffsetConverter}}" />
+
             <VirtuosoCoreControls:vLabel Grid.Row="2"
                                                      Grid.Column="0"
                                                      Entity="ValidationTestEntity"
@@ -58,6 +58,8 @@
                                  IsTabStop="{Binding IsEdit}"
                                  IsHitTestVisible="{Binding IsEdit}"
                                  Text="{Binding SelectedItem.FriendlyName, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+
 
 
         </Grid>

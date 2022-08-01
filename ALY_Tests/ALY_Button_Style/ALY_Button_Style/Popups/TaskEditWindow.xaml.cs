@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Virtuoso.Home.V2.ViewModel;
 
 namespace Virtuoso.Home.V2.Controls
 {
@@ -24,6 +25,7 @@ namespace Virtuoso.Home.V2.Controls
         {
             InitializeComponent();
 
+            DataContext = new TaskEditVM();
             TaskKey = _taskKey;
             PatientKey = _patientKey;
             AdmissionKey = _admissionKey;

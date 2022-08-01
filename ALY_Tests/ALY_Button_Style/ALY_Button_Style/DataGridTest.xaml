@@ -262,6 +262,7 @@
         </Grid>
 
         <sdk:DataGrid x:Name="gridIncomplete" Grid.Row="1" 
+                      RowHeight="40"
                                   Style="{StaticResource CoreDataGridStyle}"
                                   Background="{StaticResource HighlightLightBrush}"
                                   HorizontalAlignment="Stretch"

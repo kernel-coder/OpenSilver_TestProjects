@@ -42,6 +42,9 @@
 	<Page Include="Assets\Styles.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="ChildWindow1.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="ComboItemsTestDlg.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
@@ -113,6 +116,7 @@
     <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
     <Compile Include="Behaviors\TextBoxFilters.cs" />
     <Compile Include="Behaviors\TransitionEffectBehavior.cs" />
+    <Compile Include="ChildWindow1.xaml.cs" />
     <Compile Include="ComboItemsTestDlg.xaml.cs" />
     <Compile Include="Controls\autoCompleteCombo.cs" />
     <Compile Include="Controls\BindableDialogResult.cs" />
@@ -127,6 +131,7 @@
     <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />
     <Compile Include="Controls\OKCancelEditStackPanel.xaml.cs" />
     <Compile Include="Controls\OrderStatusMark.xaml.cs" />
+    <Compile Include="Controls\QuickGridEx.cs" />
     <Compile Include="Controls\SignatureUserControl.xaml.cs" />
     <Compile Include="Controls\UserControlBase.cs" />
     <Compile Include="Controls\UserControlBaseEventArgs.cs" />
@@ -188,6 +193,8 @@
     <Compile Include="ValidationTestPage.xaml.cs" />
     <Compile Include="ValidationTestUC.xaml.cs" />
     <Compile Include="ValidationTestUC2.xaml.cs" />
+    <Compile Include="ViewModels\GenericBase.cs" />
+    <Compile Include="ViewModels\TaskEditVM.cs" />
     <Compile Include="Views\PatientPhoneUserControl.xaml.cs" />
     <Compile Include="Views\PatientUserControls.cs" />
   </ItemGroup>

@@ -79,7 +79,31 @@ namespace Virtuoso.Server.Data
 		private string _friendlyName;
 
 
+
+		[System.ComponentModel.DataAnnotations.RequiredAttribute()]
+		public DateTime TaskEndDate
+		{
+			get
+			{
+				return this._taskEndDate;
+			}
+			set
+			{
+				if (this._taskEndDate != value)
+				{
+					//this.OnFriendlyNameChanging(value);
+					this.RaiseDataMemberChanging("TaskEndDate");
+					this.ValidateProperty("TaskEndDate", value);
+					this._taskEndDate = value;
+					this.RaiseDataMemberChanged("TaskEndDate");
+					//this.OnFriendlyNameChanged();
+				}
+			}
+		}
+		private DateTime _taskEndDate = DateTime.Now;
+
 		
+
 	}
 
 }

@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using Virtuoso.Core.Controls;
 using Virtuoso.Core.Utility;
 using Virtuoso.Server.Data;
+using Virtuoso.Core.Framework;
 
 namespace ALY_Button_Style
 {
@@ -24,11 +25,17 @@ namespace ALY_Button_Style
             OKVisible = true;
         }
     }
+
     public partial class ValidationTestUC : ValidationTestUCBase
 	{
         public ValidationTestUC()
         {
-            this.InitializeComponent();
+            try
+            {
+                this.InitializeComponent();
+            }
+            catch { }
+            SelectedItem.Validate();
             this.DataContext = this;
             Loaded += TaskPopup_Loaded;
         }

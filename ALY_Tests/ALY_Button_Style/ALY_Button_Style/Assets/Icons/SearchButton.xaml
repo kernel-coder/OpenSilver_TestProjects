@@ -1,0 +1,17 @@
+﻿<ContentPresenter
+    x:Class="Virtuoso.Core.Assets.Icons.SearchIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox>
+        <Canvas Width="121.333" Height="121.333">
+            <Rectangle Width="121.333" Height="121.333" Canvas.Left="0" Canvas.Top="0"
+                        Stretch="Fill" Fill="#FF50004E" />
+            <Path Width="81.5848" Height="83.579" Canvas.Left="19.8741"
+                    Canvas.Top="18.8772" Stretch="Fill" StrokeThickness="18.7668"
+                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                    StrokeLineJoin="Round" Stroke="#FFFEFEFE"
+                    Data="M 71.9671,28.2606C 83.0728,28.2606 92.0755,37.2633 92.0755,48.369C 92.0755,59.4745 83.0726,68.4774 71.9671,68.4774C 60.8616,68.4774 51.8587,59.4745 51.8587,48.369C 51.8587,37.2633 60.8615,28.2606 71.9671,28.2606 Z M 29.2574,93.0728L 53.8529,68.4774" />
+        </Canvas>
+    </Viewbox>
+</ContentPresenter>

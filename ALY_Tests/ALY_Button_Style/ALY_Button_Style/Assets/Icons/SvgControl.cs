@@ -1,8 +1,8 @@
 namespace Virtuoso.Core.Assets.Icons
 {
     using CSHTML5.Native.Html.Controls;
+    using System.Diagnostics;
     using System.IO;
-    using System.Reflection;
     using System.Windows;
 
     public class SvgControl : HtmlPresenter
@@ -22,11 +22,19 @@ namespace Virtuoso.Core.Assets.Icons
             {
                 if(e.NewValue is string source && !string.IsNullOrEmpty(source))
                 {
-                    using(var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(source))
+                    using(var stream = control.GetType().Assembly.GetManifestResourceStream(source))
                     {
-                        using(var reader = new StreamReader(stream))
+                        if(stream is null)
                         {
-                            control.Html = reader.ReadToEnd();
+                            Debug.WriteLine($"Icon {source} is not found");
+                            control.Html = "";
+                        }
+                        else
+                        {
+                            using(var reader = new StreamReader(stream))
+                            {
+                                control.Html = reader.ReadToEnd();
+                            }
                         }
                     }
                 }

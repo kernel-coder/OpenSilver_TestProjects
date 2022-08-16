@@ -1,10 +1,11 @@
 namespace Virtuoso.Core.Assets.Icons
 {
+    // TODO: Fix gradient in SVG
     public class SearchIcon : SvgControl
     {
         public SearchIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            Width = Height = 25;
             Source = @"Assets\Icons\SearchIcon.svg";
         }
     }

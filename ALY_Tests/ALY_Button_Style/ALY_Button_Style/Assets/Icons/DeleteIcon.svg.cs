@@ -1,6 +1,6 @@
 namespace Virtuoso.Core.Assets.Icons
 {
-    public class DeleteIcon : SvgControl
+    public class DeleteIcon : FillSvgControl
     {
         public DeleteIcon()
         {

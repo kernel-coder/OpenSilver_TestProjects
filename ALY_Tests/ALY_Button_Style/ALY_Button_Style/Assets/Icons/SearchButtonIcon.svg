@@ -1,54 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   overflow="visible"
-   version="1.1"
-   id="svg131"
-   sodipodi:docname="SearchIcon.svg"
-   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs135" />
-  <sodipodi:namedview
-     id="namedview133"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="4.3666667"
-     inkscape:cx="150"
-     inkscape:cy="75"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg131" />
-  <svg
-     width="121.333"
-     height="121.333"
-     version="1.1"
-     id="svg129">
-    <rect
-       x="0"
-       y="0"
-       width="121.333"
-       height="121.333"
-       fill="#50004E"
-       id="rect125" />
-    <path
-       d="M 71.9671,28.2606C 83.0728,28.2606 92.0755,37.2633 92.0755,48.369C 92.0755,59.4745 83.0726,68.4774 71.9671,68.4774C 60.8616,68.4774 51.8587,59.4745 51.8587,48.369C 51.8587,37.2633 60.8615,28.2606 71.9671,28.2606 Z M 29.2574,93.0728L 53.8529,68.4774"
-       fill="none"
-       stroke="#FEFEFE"
-       stroke-width="18.7668"
-       stroke-linejoin="Round"
-       stroke-linecap="Round"
-       id="path127" />
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="searchButtonIcon" viewBox="0 0 121.3 121.3">
+   <rect width="121.3" height="121.3" fill="#0d2c6e" />
+   <path
+      d="m71.967 28.261c11.106 0 20.108 9.0027 20.108 20.108 0 11.106-9.0029 20.108-20.108 20.108s-20.108-9.0029-20.108-20.108c0-11.106 9.0028-20.108 20.108-20.108zm-42.71 64.812 24.596-24.595"
+      fill="none" stroke="#FEFEFE" stroke-width="18.8" stroke-linejoin="Round" stroke-linecap="Round" />
 </svg>

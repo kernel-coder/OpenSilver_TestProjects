@@ -16,7 +16,8 @@ namespace ALY_Button_Style
         {
 #if OPENSILVER
             //App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotLoaded = true;
-           // App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
+            // App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
+            
 #endif
             this.InitializeComponent();
 

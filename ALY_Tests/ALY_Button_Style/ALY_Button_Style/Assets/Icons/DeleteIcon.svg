@@ -1,21 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="deleteIcon" width="100%" height="100%" viewBox="0 0 121.333 121.333">
-   <rect x="0" y="0" width="121.333" height="121.333" fill="#50004EFF" />
-   <path d="M 46.699 44.869 L 73.886 76.899" fill-rule="nonzero" fill="none" stroke="#FEFEFE" stroke-width="16"
-      stroke-miterlimit="2.75" stroke-linecap="Round" />
-   <path
-      d="M 94.778 61.389 C 94.778 80.479 79.304 95.959 60.214 95.959 C 41.126 95.959 25.651 80.479 25.651 61.389 C 25.651 42.309 41.126 26.829 60.214 26.829 C 79.304 26.829 94.778 42.309 94.778 61.389 Z"
-      fill-rule="nonzero" fill="none" stroke="#FEFEFE" stroke-width="16" stroke-miterlimit="2.75"
+<svg xmlns="http://www.w3.org/2000/svg" id="deleteIcon" viewBox="0 0 121.333 121.333">
+   <rect x="0" y="0" width="121.333" height="121.333" fill="#0d2c6e" id="fillElement" />
+   <path d="M 46.699 44.869 L 73.886 76.899" stroke="#FEFEFE" stroke-width="16" stroke-miterlimit="2.75"
       stroke-linecap="Round" />
    <path
+      d="M 94.778 61.389 C 94.778 80.479 79.304 95.959 60.214 95.959 C 41.126 95.959 25.651 80.479 25.651 61.389 C 25.651 42.309 41.126 26.829 60.214 26.829 C 79.304 26.829 94.778 42.309 94.778 61.389 Z"
+      fill="none" stroke="#FEFEFE" stroke-width="16" stroke-miterlimit="2.75" />
+   <path
       d="M 52.804 39.779 C 50.416 36.279 53.286 35.329 55.377 35.179 C 60.52 34.809 41.596 30.959 41.596 30.959 L 44.35 44.739 L 52.804 39.779 Z"
-      fill-rule="nonzero" fill="#FEFEFE" />
+      fill="#FEFEFE" />
    <path
       d="M 80.18 71.879 C 83.101 74.939 84.629 72.329 85.208 70.309 C 86.632 65.359 86.488 84.669 86.488 84.669 L 73.576 79.119 L 80.18 71.879 Z"
-      fill-rule="nonzero" fill="#FEFEFE" />
+      fill="#FEFEFE" />
    <path
       d="M 40.387 49.749 C 37.298 46.859 35.92 49.549 35.459 51.589 C 34.316 56.619 33.362 37.329 33.362 37.329 L 46.568 42.139 L 40.387 49.749 Z"
-      fill-rule="nonzero" fill="#FEFEFE" />
+      fill="#FEFEFE" />
    <path
       d="M 68.313 82.509 C 70.941 85.829 68.143 86.979 66.067 87.279 C 60.962 87.999 80.113 90.529 80.113 90.529 L 76.398 76.969 L 68.313 82.509 Z"
-      fill-rule="nonzero" fill="#FEFEFE" />
+      fill="#FEFEFE" />
 </svg>

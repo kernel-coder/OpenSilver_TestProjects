@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public AttemptIcon()
         {
-            MaxWidth = MaxHeight = 19;
+            Width = Height = 19;
             Source = @"Assets\Icons\AttemptIcon.svg";
         }
     }

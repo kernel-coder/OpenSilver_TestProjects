@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <NoXamlPreprocessor>True</NoXamlPreprocessor>
+    <OpenSilverType>4</OpenSilverType>
+	<PublishTrimmed>true</PublishTrimmed>
+	<!-- Uncomment to enable AOT compilation when publishing -->
+	<!--<RunAOTCompilation Condition="'$(IsSecondPass)'!='True'">true</RunAOTCompilation>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.*" PrivateAssets="all" />
+    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-08-09-063152-ed6ff717" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SilverlightApplication1\SilverlightApplication1.OSF.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+     <DisableImplicitNamespaceImports>True</DisableImplicitNamespaceImports>
+  </PropertyGroup>
+
+</Project>

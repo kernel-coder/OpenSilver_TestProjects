@@ -60,10 +60,16 @@ namespace ALY_Button_Style
         public DataGridTest()
         {
             this.InitializeComponent();
+
+            //gridIncomplete.RowsLoadingInProgressChanged += (isInProgress) =>
+            //{
+            //    busyIcon.Visibility = isInProgress ? Visibility.Visible : Visibility.Collapsed;
+            //};
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //App.Current.Host.Settings.DataGridProgressiveLoadingChunkSize = cbProgressive.IsChecked != null && cbProgressive.IsChecked.Value ? 1 : 0;
             var list = new List<HomeScreenTaskPM>();
             int count = 2;
 

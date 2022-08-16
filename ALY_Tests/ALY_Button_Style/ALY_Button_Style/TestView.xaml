@@ -474,12 +474,17 @@
             <Button Content="Click" Click="Button_Click"/>
         </StackPanel>-->
         <Grid Grid.Row="0">
-            <Button Content="Load Next Round" HorizontalAlignment="Center" Click="Button_Click2" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Dialog Sized" Click="Button_Click2" />
+                <Button Content="Dialog Auto" Click="Button_Click3" />
+                <Button Content="Dialog Help" Click="Button_Click4" />
+            </StackPanel>
+            
             <!--<controls:MultiSelectCombo x:Name="comboMulti" HorizontalAlignment="Right" Width="120" ></controls:MultiSelectCombo>-->
         </Grid>
 
         <Grid x:Name="gridContent" Grid.Row="1">
-            <controls:vRichTextArea x:Name="rtb" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <controls:vRichTextArea x:Name="rtb" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
 </UserControl>

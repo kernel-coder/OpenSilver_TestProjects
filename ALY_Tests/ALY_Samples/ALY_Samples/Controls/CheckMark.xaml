@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.CheckMark"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" Width="25" Height="25">
+
+    <Grid x:Name="LayoutRoot" Margin="0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment">
+        <Viewbox>
+            <Path Stretch="Fill"
+                  Data="F1 M 96.8514,0.718971L 99.3361,4.47479C 89.1828,12.5161 77.8985,24.895 65.4831,41.6116C 53.0676,58.3282 43.5854,73.9493 37.0364,88.475L 31.7681,92.2308C 27.4123,95.4249 24.4522,97.7923 22.8878,99.3331C 22.2744,96.9898 20.9247,93.1457 18.8388,87.8009L 16.8373,82.9376C 13.9999,75.9396 11.3581,70.7673 8.91183,67.4208C 6.46555,64.0742 3.72403,61.8553 0.687266,60.7638C 5.80989,54.6325 10.5031,51.5669 14.7668,51.5669C 18.4171,51.5669 22.4737,56.9438 26.9369,67.6976L 29.1454,73.1147C 37.1514,58.8939 47.4389,45.0705 60.0077,31.6442C 72.5765,18.218 84.8578,7.9096 96.8514,0.718971 Z "
+                  Height="46.644" UseLayoutRounding="False" Width="46.662" Stroke="Black">
+                <Path.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF076C2E" Offset="1" />
+                        <GradientStop Color="#FF36F310" />
+                    </LinearGradientBrush>
+                </Path.Fill>
+            </Path>
+        </Viewbox>
+
+    </Grid>
+</UserControl>

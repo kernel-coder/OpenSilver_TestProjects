@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net472</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="OpenSilver.Simulator" Version="1.1.0-preview-2022-07-17-074250-86f0dc60" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\OS_SelectionStartTest\OS_SelectionStartTest.csproj" />
+	</ItemGroup>
+
+</Project>

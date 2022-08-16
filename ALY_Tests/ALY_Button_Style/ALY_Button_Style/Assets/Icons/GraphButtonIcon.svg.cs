@@ -1,10 +1,10 @@
-﻿namespace Virtuoso.Core.Assets.Icons
+namespace Virtuoso.Core.Assets.Icons
 {
     public class GraphButtonIcon : SvgControl
     {
         public GraphButtonIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            MaxWidth = MaxHeight = 23;
             Source = @"Assets\Icons\GraphButtonIcon.svg";
         }
     }

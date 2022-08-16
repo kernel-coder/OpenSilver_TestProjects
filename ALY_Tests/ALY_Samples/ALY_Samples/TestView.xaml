@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="ALY_Button_Style.TestView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Virtuoso.Core.Controls"
+    xmlns:local="clr-namespace:ALY_Button_Style"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/ALY_Button_Style;component/Assets/Images/Background.jpg" Stretch="Fill" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <DatePicker/>
+            <TimeUpDown />
+            <TimePicker/>
+            <Button Content="Click Test" Click="Button_Click"/>
+        </StackPanel>-->
+        <!--<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox x:Name="sourceOneTime" MinWidth="120" Text="Test"/>
+            <TextBox  MinWidth="120" Text="{Binding Path=Text, ElementName=sourceOneTime, Mode=OneTime}"/>
+            <TextBox x:Name="sourceOneWay" MinWidth="120"/>
+            <TextBox  MinWidth="120" Text="{Binding Path=Text, ElementName=sourceOneWay, Mode=OneWay}"/>
+            <TextBox x:Name="sourceTwoWay" MinWidth="120"/>
+            <TextBox  MinWidth="120" Text="{Binding Path=Text, ElementName=sourceTwoWay, Mode=TwoWay}"/>
+            <Button Content="Click" Click="Button_Click"/>
+        </StackPanel>-->
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Dialog Sized" Click="Button_Click2" />
+                <Button Content="Dialog Auto" Click="Button_Click3" />
+                <Button Content="Dialog Help" Click="Button_Click4" />
+            </StackPanel>
+            
+            <!--<controls:MultiSelectCombo x:Name="comboMulti" HorizontalAlignment="Right" Width="120" ></controls:MultiSelectCombo>-->
+        </Grid>
+
+        <Grid x:Name="gridContent" Grid.Row="1">
+            <controls:vRichTextArea x:Name="rtb" VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</UserControl>

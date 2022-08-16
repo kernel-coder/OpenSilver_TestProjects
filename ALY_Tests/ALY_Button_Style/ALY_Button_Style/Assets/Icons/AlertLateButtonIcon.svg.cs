@@ -1,10 +1,10 @@
-﻿namespace Virtuoso.Core.Assets.Icons
+namespace Virtuoso.Core.Assets.Icons
 {
     public class AlertLateButtonIcon : SvgControl
     {
         public AlertLateButtonIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            Width = Height = 21;
             Source = @"Assets\Icons\AlertLateButtonIcon.svg";
         }
     }

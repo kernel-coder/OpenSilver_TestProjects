@@ -234,6 +234,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <CheckBox x:Name="cbProgressive" Content="Progressive"/>
                 <TextBlock Text="Row Count" VerticalAlignment="Center"/>
                 <TextBox x:Name="tbCount" Text="2"  VerticalAlignment="Center" Margin="10, 0" MinWidth="120"/>
                 <Button Content="Load Data"  VerticalAlignment="Center" Click="Button_Click">
@@ -244,7 +245,6 @@
                     </ToolTipService.ToolTip>
                 </Button>
                 <Button Content="Measure"  VerticalAlignment="Center" Click="Button_Click2" Visibility="Collapsed"/>
-                <VirtuosoCoreControls:vRichTextArea ParagraphText="Create N Rows"/>
                 <!--<ComboBox x:Name="searchItemComboBox"
                   TabIndex="1"
                   Margin="8,0"
@@ -275,9 +275,7 @@
                                   TabNavigation="Local"
                                   AutoGenerateColumns="False"
                                   BorderThickness="0"
-                                  Margin="{StaticResource HomeDataGridMarging}"
                                   ColumnHeaderStyle="{StaticResource HomeDataGridColumnHeaderStyle}"
-                                  RowStyle="{StaticResource PurpleGridRow}"
                                   CellStyle="{StaticResource TopCellStyle}" 
                                   ColumnWidth="SizeToCells">
             <sdk:DataGrid.Columns>
@@ -324,5 +322,7 @@
                 </sdk:DataGridTemplateColumn>
             </sdk:DataGrid.Columns>
         </sdk:DataGrid>
+
+        <icons:BusyIcon x:Name="busyIcon" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

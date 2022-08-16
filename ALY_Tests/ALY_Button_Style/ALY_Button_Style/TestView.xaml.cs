@@ -8,9 +8,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using Virtuoso.Core.Controls;
 using Virtuoso.Home.V2.Controls;
 
 namespace ALY_Button_Style
@@ -72,6 +74,24 @@ namespace ALY_Button_Style
             DownloadFile(buffer, "testcsv.pdf", true, "application/pdf", true);
         }
 
+        private async void Button_Click3(object sender, RoutedEventArgs e)
+        {
+            //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
+            ChildWindow2 window = new ChildWindow2();
+            window.Show();
+        }
+
+        private void Button_Click4(object sender, RoutedEventArgs e)
+        {
+            ShowHelpDialog(Virtuoso.Server.Data.PatientInfection.POAHelp, "Present on Admission (POA)");
+        }
+
+        private void ShowHelpDialog(Paragraph templateContent, string title)
+        {
+            var helpDialog = new HelpPopupDialog(templateContent, title);
+            helpDialog.Show();
+        }
+
         private static void DownloadFile(byte[] data, string filename, bool download = true, string fileType = null, bool openInATab = false)
         {
             const string JS_DownloadFile = @"
@@ -94,7 +114,7 @@ namespace ALY_Button_Style
                         return 0;
                     }";
             OpenSilver.Interop.ExecuteJavaScript(JS_DownloadFile, filename, download, fileType, openInATab);
-            DotNetForHtml5.Core.INTERNAL_Simulator.JavaScriptExecutionHandler.InvokeUnmarshalled<byte[], object>("document.FILE_Download", data);
+            //DotNetForHtml5.Core.INTERNAL_Simulator.JavaScriptExecutionHandler.InvokeUnmarshalled<byte[], object>("document.FILE_Download", data);
         }
     }
 }

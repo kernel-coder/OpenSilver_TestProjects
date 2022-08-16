@@ -1,0 +1,43 @@
+﻿<ContentPresenter x:Class="Virtuoso.Core.Assets.Icons.CacheUploadIcon"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox>
+        <Canvas Width="25"
+                Height="25"
+                Opacity="75">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <TransformCollection>
+                            <RotateTransform Angle="180" CenterX="12.5" CenterY="12.5"/>
+                        </TransformCollection>
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+
+            <Canvas Canvas.Left="0"
+                    Canvas.Top="0"
+                    Width="25"
+                    Height="25">
+                <Path Canvas.Left="0"
+                      Canvas.Top="5.72205e-006"
+                      Width="25"
+                      Height="25"
+                      Data="F1 M 4,5.72205e-006L 21,5.72205e-006C 23.2091,5.72205e-006 25,1.79087 25,4.00001L 25,21C 25,23.2091 23.2091,25 21,25L 4,25C 1.79086,25 0,23.2091 0,21L 0,4.00001C 0,1.79087 1.79086,5.72205e-006 4,5.72205e-006 Z "
+                      Fill="#FF206620"
+                      Stretch="Fill"/>
+                <Path Canvas.Left="4.29688"
+                      Canvas.Top="4.34359"
+                      Width="16.4063"
+                      Height="17.0941"
+                      Data="F1 M 12.5,21.4376L 4.29688,12.5748L 8.726,12.5748L 8.726,4.34359L 16.274,4.34359L 16.274,12.5748L 20.7031,12.5748L 12.5,21.4376 Z "
+                      Fill="#FFFFFFFF"
+                      Stretch="Fill"
+                      Stroke="#FFFFFFFF"
+                      StrokeLineJoin="Round"
+                      StrokeThickness="1"/>
+            </Canvas>
+        </Canvas>
+    </Viewbox>
+</ContentPresenter>

@@ -1,10 +1,10 @@
 namespace Virtuoso.Core.Assets.Icons
 {
-    public class AddButtonIcon : SvgControl
+    public class AddButtonIcon : FillSvgControl
     {
         public AddButtonIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            Width = Height = 21;
             Source = @"Assets\Icons\AddButtonIcon.svg";
         }
     }

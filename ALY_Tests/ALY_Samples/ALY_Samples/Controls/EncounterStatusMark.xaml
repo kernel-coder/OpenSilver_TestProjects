@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.EncounterStatusMark"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+             xmlns:icons="clr-namespace:Virtuoso.Core.Assets.Icons"
+             mc:Ignorable="d">
+
+    <!--<Grid x:Name="LayoutRoot" Margin="0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" Width="40" Height="30">-->
+    <Grid x:Name="LayoutRoot"
+          Margin="0"
+          VerticalAlignment="Top"
+          d:LayoutOverrides="HorizontalAlignment">
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center">
+            <VirtuosoCoreControls:CheckMark x:Name="completeCheckMark"
+                                            Width="16"
+                                            Height="16"
+                                            Visibility="Collapsed" />
+            <Border x:Name="reviewCoder"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <icons:CoderIcon />
+            </Border>
+            <Border x:Name="reviewOASIS"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <icons:OasisIcon />
+            </Border>
+            <Border x:Name="reviewHIS"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <icons:HisIcon />
+            </Border>
+            <Border x:Name="reviewPOCOrder"
+                  Visibility="Collapsed"
+                  Width="16"
+                  Height="16">
+                <icons:OasisIcon />
+            </Border>
+            <VirtuosoCoreControls:CheckMarkCoderReview x:Name="reviewCheckMark"
+                                                       Width="16"
+                                                       Height="16"
+                                                       Visibility="Collapsed" />
+        </StackPanel>
+        <ToolTipService.ToolTip>
+            <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                <ToolTip.Content>
+                    <TextBlock x:Name="toolTip"
+                               Text=""
+                               TextWrapping="Wrap" />
+                </ToolTip.Content>
+            </ToolTip>
+        </ToolTipService.ToolTip>
+    </Grid>
+</UserControl>

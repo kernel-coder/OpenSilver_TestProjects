@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <solution>
+    <add key="disableSourceControlIntegration" value="true" />
+  </solution>
+
+  <packageSources>
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+    <add key="myget.org" value="https://www.myget.org/F/opensilver/api/v3/index.json" />
+    <add key="myget-shahazan.org" value="https://www.myget.org/F/kcl-os/api/v3/index.json" />    
+    <add key="MyGet OS RC" value="https://www.myget.org/F/opensilver-private-rc/auth/cc66f1e0-82db-4fe5-8fe4-c04a271587b9/api/v3/index.json" /> 
+  </packageSources>
+  
+</configuration>

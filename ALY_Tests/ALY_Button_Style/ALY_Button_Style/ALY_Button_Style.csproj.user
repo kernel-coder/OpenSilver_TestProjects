@@ -5,6 +5,9 @@
     <Compile Update="ChildWindow1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ChildWindow2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ComboItemsTestDlg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
     <Page Update="Assets\Icons.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Assets\Icons\AddButtonIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Assets\SDKStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -47,6 +53,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ChildWindow1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChildWindow2.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ComboItemsTestDlg.xaml">
@@ -80,6 +89,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Popups\ChangeUserPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Popups\HelpPopupDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Popups\TaskEditWindow.xaml">

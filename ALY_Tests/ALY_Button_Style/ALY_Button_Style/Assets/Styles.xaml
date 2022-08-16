@@ -9,360 +9,1292 @@
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+	xmlns:behaviors="clr-namespace:Virtuoso.Core.Behaviors"
     mc:Ignorable="d">
-    
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Brushes.xaml" />
-        <ResourceDictionary Source="Fonts.xaml" />
-    </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="OuterPopupBorderStyle"
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Brushes.xaml" />
+		<ResourceDictionary Source="Fonts.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+
+	<!-- ******MAIN PAGE STYLES****** -->
+	<!-- **************************** -->
+	<!-- Primary Color Brushes -->
+	<SolidColorBrush x:Key="NavigationBackgroundColorBrush"
+                     Color="#FF484848" />
+	<SolidColorBrush x:Key="NavigationForegroundColorBrush"
+                     Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="HighLightColorBrush"
+                     Color="{StaticResource Primary-100}" />
+	<SolidColorBrush x:Key="HoverHyperlinkForegroundColorBrush"
+                     Color="#FFEBF7FF" />
+	<SolidColorBrush x:Key="HoverHyperLinkBackgroundColorBrush"
+                     Color="#FF747474" />
+	<SolidColorBrush x:Key="BodyTextColorBrush"
+                     Color="#FF313131" />
+	<SolidColorBrush x:Key="FrameBackgroundColor"
+                     Color="#FFF5F6FA" />
+
+	<LinearGradientBrush x:Key="FrameBackgroundGradient" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Offset="0" Color="{StaticResource Primary-100}"/>
+		<GradientStop Offset="1" Color="#FFF5F6FA" />
+	</LinearGradientBrush>
+
+	<!--<LinearGradientBrush x:Key="ShadowBrushNorthToSouth" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Offset="0"/>
+        <GradientStop Color="#1A000000" Offset="1"/>
+        <GradientStop Offset="0.752"/>
+    </LinearGradientBrush>-->
+
+
+	<!-- LayoutRoot Grid Style -->
+	<Style x:Key="LayoutRootGridStyle"
+           TargetType="Grid">
+	</Style>
+
+	<Style x:Key="CoreTransitioningContentControlStyleFade" TargetType="layoutToolkit:TransitioningContentControl" >
+		<Setter Property="IsTabStop" Value="True"/>
+		<Setter Property="HorizontalContentAlignment" Value="Left"/>
+		<Setter Property="VerticalContentAlignment" Value="Top"/>
+		<Setter Property="Transition" Value="DefaultTransition"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="layoutToolkit:TransitioningContentControl">
+					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2">
+						<VisualStateManager.CustomVisualStateManager>
+							<ei:ExtendedVisualStateManager/>
+						</VisualStateManager.CustomVisualStateManager>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="PresentationStates">
+								<VisualStateGroup.Transitions>
+									<VisualTransition GeneratedDuration="0:0:0.8">
+										<ei:ExtendedVisualStateManager.TransitionEffect>
+											<ee:FadeTransitionEffect   />
+										</ei:ExtendedVisualStateManager.TransitionEffect>
+										<VisualTransition.GeneratedEasingFunction>
+											<CircleEase EasingMode="EaseInOut" />
+										</VisualTransition.GeneratedEasingFunction>
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"  Storyboard.TargetName="PreviousContentPresentationSite">
+												<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Collapsed</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualTransition>
+								</VisualStateGroup.Transitions>
+								<VisualState x:Name="DefaultTransition">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Collapsed</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PreviousContentPresentationSite">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Collapsed</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<i:Interaction.Behaviors>
+							<behaviors:TransitionEffectBehavior/>
+						</i:Interaction.Behaviors>
+						<Grid>
+							<ContentPresenter x:Name="PreviousContentPresentationSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+								<ContentPresenter.RenderTransform>
+									<TransformGroup >
+										<ScaleTransform/>
+										<SkewTransform/>
+										<RotateTransform/>
+										<TranslateTransform/>
+									</TransformGroup>
+								</ContentPresenter.RenderTransform>
+							</ContentPresenter>
+							<ContentPresenter x:Name="CurrentContentPresentationSite" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" RenderTransformOrigin="0,0">
+								<ContentPresenter.Projection>
+									<PlaneProjection CenterOfRotationY="0"/>
+								</ContentPresenter.Projection>
+								<ContentPresenter.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform/>
+										<SkewTransform/>
+										<RotateTransform/>
+										<TranslateTransform/>
+									</TransformGroup>
+								</ContentPresenter.RenderTransform>
+							</ContentPresenter>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Content Frame Style -->
+	<Style x:Key="ContentFrameStyle"
+           TargetType="navigation:Frame">
+		<Setter Property="Background"
+                Value="Transparent" />
+		<Setter Property="BorderBrush"
+                Value="Transparent" />
+		<Setter Property="Margin"
+                Value="0,0,0,0" />
+		<Setter Property="Padding"
+                Value="0,0,0,0" />
+		<Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+	</Style>
+
+	<!-- ApplicationName Style -->
+	<Style x:Key="ApplicationNameStyle"
+           TargetType="TextBlock">
+		<Setter Property="Foreground"
+                Value="{StaticResource HeaderText}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource HeaderFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource ApplicationNameFontSize}" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+		<Setter Property="Margin"
+                Value="43,33,0,0" />
+		<Setter Property="VerticalAlignment"
+                Value="Center" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+	</Style>
+
+	<!-- Links Border Style -->
+	<Style x:Key="LinksBorderStyle"
            TargetType="Border">
-        <Setter Property="CornerRadius"
-                Value="3" />
-        <Setter Property="BorderThickness"
-                Value="1" />
-        <Setter Property="Padding"
+		<Setter Property="Height"
+                Value="82" />
+		<Setter Property="Margin"
+                Value="0,156,25,0" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+		<Setter Property="VerticalAlignment"
+                Value="Top" />
+		<Setter Property="BorderBrush"
+                Value="{StaticResource PrimaryLink}" />
+		<Setter Property="BorderThickness"
+                Value="30,0,0,0" />
+	</Style>
+
+	<!--Outer Popup Border Style-->
+	<Style x:Key="OuterPopupBorderStyle"
+           TargetType="Border">
+		<Setter Property="CornerRadius"
                 Value="5" />
-        <Setter Property="Background"
-                Value="{StaticResource BorderBrush1Gradient}" />
-        <Setter Property="BorderBrush" Value="#FF7875AA"/>
-    </Style>
-    
-    <Style x:Name="CoreTextBlockStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource HighlightBrush}"/>
-        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
-        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}"/>
-        <Setter Property="Margin" Value="4,4,4,2" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="TextOptions.TextHintingMode" Value="Animated"/>
-    </Style>
-    <Style TargetType="TextBlock" BasedOn="{StaticResource CoreTextBlockStyle}" />
+		<Setter Property="BorderThickness"
+                Value="1" />
+		<Setter Property="Padding"
+                Value="10" />
+		<Setter Property="Background"
+                Value="{StaticResource PrimaryPanel}" />
+		<Setter Property="BorderBrush" Value="{StaticResource GridBorder}"/>
+	</Style>
 
-    <Style x:Key="CoreButtonStyle"  TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource HighlightDarkColor}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorderBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
-        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
-        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}"/>
-        <Setter Property="TextOptions.TextHintingMode" Value="Animated"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Padding" Value="5,6"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverBorder" d:IsOptimized="True"/>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenterWrapperColor" Storyboard.TargetProperty="Color">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource HighlightDarkColor}"/>
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PressedBorder">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DisabledVisualElement">
-                                            <SplineDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusInnerRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3"/>
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}" IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3"/>
-                        <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0"/>
-                        <Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0"/>
-                        <Rectangle x:Name="FocusRectangle" Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}" RadiusY="4" RadiusX="4" Margin="-1" Opacity="0" />
-                        <Rectangle x:Name="FocusInnerRectangle" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{StaticResource TextBoxMouseOverBorderBrush}" RadiusX="3" RadiusY="3" Opacity="0" />
-                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <ContentControl.Foreground>
-                                <SolidColorBrush x:Name="ContentPresenterWrapperColor" Color="{StaticResource WhiteColor}" />
-                            </ContentControl.Foreground>
-                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" />
-                        </ContentControl>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style TargetType="Button" BasedOn="{StaticResource CoreButtonStyle}" />
-    
-    <Style x:Key="CoreOClockButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource HighlightDarkColor}" />
-        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorderBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource WhiteColor}" />
-        <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}" />
-        <Setter Property="FontSize" Value="{StaticResource ContentFontSize}" />
-        <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
-        <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Padding" Value="5,6" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" To="1"
-                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
-                                                         Storyboard.TargetName="MouseOverBorder" />
-                                        <ColorAnimationUsingKeyFrames
-                                            Storyboard.TargetName="ContentPresenterWrapperColor"
-                                            Storyboard.TargetProperty="Color">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                                                 Value="{StaticResource HighlightDarkColor}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+	<!--Inner Popup Border Style-->
+	<Style x:Key="InnerPopupBorderStyle"
+           TargetType="Border">
+		<Setter Property="CornerRadius"
+                Value="5" />
+		<Setter Property="Padding"
+                Value="10" />
+		<Setter Property="BorderThickness"
+                Value="1" />
+		<Setter Property="BorderBrush" Value="{StaticResource GridBorder}"/>
+		<Setter Property="Background"
+                Value="White" />
+	</Style>
+
+	<!--Popup Title Style-->
+	<Style x:Key="PopupTitleStyle"
+           TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment"
+                Value="Center" />
+		<Setter Property="Foreground"
+                Value="{StaticResource HeaderText}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource ContentFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource HeaderFontSize}" />
+	</Style>
+
+	<!-- Links StackPanel Style -->
+	<Style x:Key="LinksStackPanelStyle"
+           TargetType="StackPanel">
+		<Setter Property="VerticalAlignment"
+                Value="Top" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+		<Setter Property="Orientation"
+                Value="Horizontal" />
+		<Setter Property="Margin"
+                Value="65,0,0,0" />
+	</Style>
+
+	<!-- PageHyperlinkButton Style -->
+	<Style x:Key="PageHyperlinkButtonStyle"
+           TargetType="HyperlinkButton">
+		<Setter Property="TargetName"
+                Value="_new" />
+		<Setter Property="FontSize"
+                Value="{StaticResource HyperlinkFontSize}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource HeaderFontFamily}" />
+		<Setter Property="VerticalAlignment"
+                Value="Center" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+	</Style>
+
+	<!--Link Style-->
+	<Style x:Key="LinkStyle"
+           TargetType="HyperlinkButton">
+		<Setter Property="BorderThickness"
+                Value="1" />
+		<Setter Property="BorderBrush"
+                Value="{StaticResource NavigationBorderBrush}" />
+		<!--<Setter Property="Foreground" Value="{StaticResource NavigationForegroundBrush}"/>-->
+		<Setter Property="Foreground"
+                Value="{StaticResource BodyTextColorBrush}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource HeaderFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource ContentFontSize}" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+		<Setter Property="Cursor"
+                Value="Hand" />
+		<Setter Property="MinHeight"
+                Value="20" />
+		<Setter Property="MinWidth"
+                Value="40" />
+		<Setter Property="VerticalContentAlignment"
+                Value="Center" />
+		<Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+		<Setter Property="Padding"
+                Value="8,4,18,4" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="HyperlinkButton">
+					<Grid x:Name="ButtonGrid"
+                          Cursor="{TemplateBinding Cursor}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="InteractiveElementBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="InteractiveElementBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0.95" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="InteractiveBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="InteractiveElementBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="InteractiveElementBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0.8" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0.5" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="InteractiveBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="DisabledOverlay"
+                                                                       Storyboard.TargetProperty="Visibility">
+											<DiscreteObjectKeyFrame KeyTime="0">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<HorizontalAlignment>Center</HorizontalAlignment>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<VerticalAlignment>Center</VerticalAlignment>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="DisabledOverlay"
+                                                                       Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<HorizontalAlignment>Center</HorizontalAlignment>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="DisabledOverlay"
+                                                                       Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<VerticalAlignment>Center</VerticalAlignment>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="DisabledOverlay"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0.5" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="LinkStates">
+								<VisualState x:Name="ActiveLink">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="ContentBorder"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="InactiveLink" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="ContentBorder"
+                                MinWidth="{TemplateBinding MinWidth}"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                Opacity="0.4"
+                                Padding="0">
+							<ContentPresenter x:Name="ContentPresenter"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+						</Border>
+						<Border x:Name="InteractiveBorder"
+                                MinWidth="{TemplateBinding MinWidth}"
+                                MinHeight="{TemplateBinding MinHeight}"
+                                Background="{StaticResource HoverHyperlinkBackgroundBrush}"
+                                BorderThickness="1,1,1,1"
+                                Opacity="0"
+                                BorderBrush="{StaticResource HoverHyperlinkBackgroundBrush}"
+                                CornerRadius="0" />
+						<Border x:Name="InteractiveElementBorder"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Visibility="Collapsed">
+							<TextBlock x:Name="InteractiveElement"
+                                       Foreground="{StaticResource HoverHyperlinkForegroundBrush}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}"
+                                       Text="{TemplateBinding Content}" />
+						</Border>
+						<TextBlock x:Name="DisabledOverlay"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Margin="{TemplateBinding Padding}"
+                                   Text="{TemplateBinding Content}"
+                                   Foreground="{StaticResource ListBoxText}"
+                                   Visibility="Collapsed" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Divider Style -->
+	<Style x:Key="DividerStyle"
+           TargetType="Rectangle">
+		<Setter Property="Visibility"
+                Value="Collapsed" />
+	</Style>
+
+	<!-- ******CONTENT PAGE STYLES****** -->
+	<!-- ******************************* -->
+	<!-- Page Style -->
+	<Style x:Key="PageStyle"
+           TargetType="navigation:Page" />
+
+	<!-- Page ScrollViewer Style -->
+	<Style x:Key="PageScrollViewerStyle"
+           TargetType="ScrollViewer">
+		<Setter Property="BorderBrush"
+                Value="Transparent" />
+		<Setter Property="BorderThickness"
+                Value="0,1,0,1" />
+		<Setter Property="Margin"
+                Value="-58,-15,-58,-15" />
+		<Setter Property="Padding"
+                Value="58,0,58,0" />
+		<Setter Property="VerticalScrollBarVisibility"
+                Value="Auto" />
+		<Setter Property="HorizontalScrollBarVisibility"
+                Value="Auto" />
+	</Style>
+
+	<!-- Content Panel Style -->
+	<Style x:Key="ContentStackPanelStyle"
+           TargetType="StackPanel" />
+
+	<!-- Header Text Style -->
+	<Style x:Key="HeaderTextStyle"
+           TargetType="TextBlock">
+		<Setter Property="Foreground"
+                Value="{StaticResource PrimaryText}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource HeaderFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource HeaderFontSize}" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+		<Setter Property="TextWrapping"
+                Value="Wrap" />
+		<Setter Property="Margin"
+                Value="0,15,0,4" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+	</Style>
+
+	<!-- Content Text Style -->
+	<Style x:Key="ContentTextStyle"
+           TargetType="TextBlock">
+		<Setter Property="Foreground"
+                Value="{StaticResource BodyTextColorBrush}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource HeaderFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource ContentFontSize}" />
+		<Setter Property="TextWrapping"
+                Value="Wrap" />
+		<Setter Property="Margin"
+                Value="0,2,0,2" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+	</Style>
+
+	<!-- **********LOGIN STYLES********* -->
+	<!-- ******************************* -->
+	<!-- Login Container Style -->
+	<Style x:Key="LoginContainerStyle"
+           TargetType="Border">
+		<Setter Property="Background"
+                Value="Transparent" />
+		<Setter Property="Margin"
+                Value="0,0,390,0" />
+		<Setter Property="Height"
+                Value="45" />
+		<Setter Property="BorderThickness"
+                Value="0" />
+		<Setter Property="BorderBrush"
+                Value="#FFFFFFFF" />
+		<Setter Property="HorizontalAlignment"
+                Value="Right" />
+		<Setter Property="VerticalAlignment"
+                Value="Top" />
+	</Style>
+
+	<!-- Login Panel Style -->
+	<Style x:Key="LoginPanelStyle"
+           TargetType="StackPanel">
+		<Setter Property="Orientation"
+                Value="Horizontal" />
+		<Setter Property="HorizontalAlignment"
+                Value="Right" />
+		<Setter Property="RenderTransformOrigin"
+                Value="0.5,0.5" />
+	</Style>
+
+	<!-- Spacer Style -->
+	<Style x:Key="SpacerStyle"
+           TargetType="TextBlock">
+		<Setter Property="FontSize"
+                Value="11" />
+		<Setter Property="Foreground"
+                Value="#FFFFFFFF" />
+		<Setter Property="HorizontalAlignment"
+                Value="Right" />
+		<Setter Property="VerticalAlignment"
+                Value="Center" />
+		<Setter Property="Margin"
+                Value="6,2" />
+	</Style>
+
+	<!-- Welcome Text Style -->
+	<Style x:Key="WelcomeTextStyle"
+           TargetType="TextBlock">
+		<Setter Property="FontSize"
+                Value="12" />
+		<Setter Property="FontWeight"
+                Value="SemiBold" />
+		<Setter Property="FontFamily"
+                Value="Segoe UI" />
+		<Setter Property="Foreground"
+                Value="{StaticResource TextBrush}" />
+		<Setter Property="VerticalAlignment"
+                Value="Top" />
+		<Setter Property="Margin"
+                Value="0,2,0,0" />
+	</Style>
+
+	<!-- LoginRegister Link Style -->
+	<Style x:Key="LoginRegisterLinkStyle"
+           TargetType="Button">
+		<Setter Property="Background"
+                Value="Transparent" />
+		<Setter Property="Margin"
+                Value="0,0,30,2" />
+		<Setter Property="HorizontalContentAlignment"
+                Value="Right" />
+		<Setter Property="VerticalContentAlignment"
+                Value="Center" />
+		<Setter Property="FontSize"
+                Value="13" />
+		<Setter Property="FontFamily"
+                Value="Segoe UI " />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+		<Setter Property="Foreground"
+                Value="{StaticResource TextBrush}" />
+		<Setter Property="Cursor"
+                Value="Hand" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid Cursor="{TemplateBinding Cursor}"
+                          Background="{TemplateBinding Background}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+											<EasingDoubleKeyFrame KeyTime="00:00:00"
+                                                                  Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="Mouseover_Pressed"
+                                                                       Storyboard.TargetProperty="Visibility">
+											<DiscreteObjectKeyFrame KeyTime="0">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="DisabledOverlay"
+                                                                       Storyboard.TargetProperty="Visibility">
+											<DiscreteObjectKeyFrame KeyTime="0">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="DisabledOverlay"
+                                                                       Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<HorizontalAlignment>Center</HorizontalAlignment>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Collapsed</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="Focused">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="Mouseover_Pressed"
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Duration="00:00:00.0010000"
+                                                                       Storyboard.TargetName="contentPresenter"
+                                                                       Storyboard.TargetProperty="(UIElement.Visibility)">
+											<DiscreteObjectKeyFrame KeyTime="00:00:00">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Collapsed</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<ContentPresenter x:Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+						<TextBlock HorizontalAlignment="Stretch"
+                                   x:Name="Mouseover_Pressed"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Visibility="Collapsed"
+                                   Canvas.ZIndex="1"
+                                   Foreground="{StaticResource PrimaryText}"
+                                   Text="{TemplateBinding Content}" />
+						<TextBlock HorizontalAlignment="Stretch"
+                                   x:Name="DisabledOverlay"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Visibility="Collapsed"
+                                   Canvas.ZIndex="1"
+                                   Foreground="{StaticResource ListBoxText}"
+                                   Text="{TemplateBinding Content}" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- DataTemplate for Origins -->
+	<DataTemplate x:Key="OriginsDataTemplate">
+		<Grid Width="370"
+              Background="#AA000000">
+			<TextBlock Foreground="#22ffffff"
+                       Margin="4+0,2+0"
+                       FontSize="30"
+                       Text="{Binding Name}" />
+			<StackPanel HorizontalAlignment="Right"
+                        Margin="0, 0, 0, 0">
+				<TextBlock Text="count: "
+                           Foreground="White" />
+				<TextBlock HorizontalAlignment="Right"
+                           Foreground="White"
+                           Text="{Binding Count}"
+                           Padding="2" />
+			</StackPanel>
+		</Grid>
+	</DataTemplate>
+
+	<!-- Login PasswordBox Style -->
+	<Style x:Key="PasswordBoxStyle"
+           TargetType="PasswordBox">
+		<Setter Property="MaxLength"
+                Value="50" />
+	</Style>
+
+	<!-- Login Controls StackPanel Style -->
+	<Style x:Key="LoginControlsStackPanelStyle"
+           TargetType="StackPanel">
+		<Setter Property="Margin"
+                Value="0,0,0,8" />
+	</Style>
+
+	<!-- Login Control Style -->
+	<Style x:Key="LoginControlStyle"
+           TargetType="StackPanel">
+		<Setter Property="Orientation"
+                Value="Horizontal" />
+		<Setter Property="Margin"
+                Value="0,4,0,2" />
+		<Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+
+	</Style>
+
+	<!-- Login Text Style -->
+	<Style x:Key="LoginTextStyle"
+           TargetType="TextBlock">
+		<Setter Property="Width"
+                Value="60" />
+		<Setter Property="FontSize"
+                Value="12" />
+		<Setter Property="Margin"
+                Value="0,0,6,0" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+		<Setter Property="VerticalAlignment"
+                Value="Center" />
+		<Setter Property="TextAlignment"
+                Value="Right" />
+		<Setter Property="Foreground"
+                Value="{StaticResource PrimaryText}" />
+	</Style>
+
+	<!-- Login TextBox Style -->
+	<Style x:Key="LoginTextBoxStyle"
+           TargetType="TextBox">
+		<Setter Property="Width"
+                Value="200" />
+		<Setter Property="MaxLength"
+                Value="50" />
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+		<Setter Property="VerticalAlignment"
+                Value="Center" />
+		<Setter Property="Foreground"
+                Value="{StaticResource PrimaryText}" />
+	</Style>
+
+	<!-- Login PasswordBox Style -->
+	<Style x:Key="LoginPSBoxStyle"
+           TargetType="PasswordBox">
+		<Setter Property="Width"
+                Value="316" />
+	</Style>
+
+	<!-- Comment Style -->
+	<Style x:Key="CommentStyle"
+           TargetType="TextBlock">
+		<Setter Property="FontSize"
+                Value="9" />
+		<Setter Property="FontWeight"
+                Value="Bold" />
+		<Setter Property="Foreground"
+                Value="{StaticResource PrimaryText}" />
+		<Setter Property="Margin"
+                Value="3,0,0,0" />
+	</Style>
+
+	<!-- Register Login Link Panel Style -->
+	<Style x:Key="RegisterLoginLinkPanelStyle"
+           TargetType="StackPanel">
+		<Setter Property="HorizontalAlignment"
+                Value="Left" />
+		<Setter Property="VerticalAlignment"
+                Value="Bottom" />
+		<Setter Property="Margin"
+                Value="6,3,0,0" />
+	</Style>
+
+	<!-- Register Login Button Style -->
+	<Style x:Key="RegisterLoginButtonStyle"
+           TargetType="Button">
+		<Setter Property="Width"
+                Value="75" />
+		<Setter Property="Height"
+                Value="Auto" />
+		<Setter Property="Margin"
+                Value="10,0,0,1" />
+		<Setter Property="HorizontalAlignment"
+                Value="Right" />
+		<Setter Property="VerticalAlignment"
+                Value="Bottom" />
+		<Setter Property="Background"
+                Value="{StaticResource PrimaryBtn}" />
+		<Setter Property="BorderBrush"
+                Value="{StaticResource PrimaryBtn}" />
+		<Setter Property="Foreground"
+                Value="{StaticResource PrimaryText}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource ContentFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource ContentFontSize}" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+		<Setter Property="FontWeight"
+                Value="SemiBold" />
+		<Setter Property="Padding"
+                Value="5,6" />
+		<Setter Property="BorderThickness"
+                Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="MouseOverBorder">
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                                        Storyboard.TargetName="PressedBorder">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
                                                                        Storyboard.TargetName="DisabledVisualElement">
-                                            <SplineDoubleKeyFrame KeyTime="0" Value="0.5" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+											<SplineDoubleKeyFrame KeyTime="0"
+                                                                  Value="0.5" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                                        Storyboard.TargetName="contentPresenter">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.5" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0.5" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="Focused">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                                        Storyboard.TargetName="FocusRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
                                                                        Storyboard.TargetName="FocusInnerRectangle">
-                                            <EasingDoubleKeyFrame KeyTime="0" Value="1" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Unfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="Background"
+                                BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" RadiusX="8" RadiusY="8"
-                                   Fill="{StaticResource ControlsDisabledBrush}" IsHitTestVisible="false" Opacity="0" />
-                        <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
-                        <Rectangle x:Name="FocusRectangle" RadiusX="9" RadiusY="9"
-                                   Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}" Margin="-1" Opacity="0" />
-                        <Rectangle x:Name="FocusInnerRectangle" RadiusX="8" RadiusY="8"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="3" />
+						<Rectangle x:Name="DisabledVisualElement"
+                                   Fill="{StaticResource PrimaryBtnDisabled}"
+                                   IsHitTestVisible="false"
+                                   Opacity="0"
+                                   RadiusY="3"
+                                   RadiusX="3" />
+						<Border x:Name="MouseOverBorder"
+                                Background="{StaticResource PrimaryBtnHover}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3.5"
+                                Opacity="0" />
+						<Border x:Name="PressedBorder"
+                                Background="{StaticResource PrimaryBtnHover}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3.5"
+                                Opacity="0" />
+						<Rectangle x:Name="FocusRectangle"
+                                   Stroke="{StaticResource PrimaryBtn}"
+                                   RadiusY="4"
+                                   RadiusX="4"
+                                   Margin="-1"
+                                   Opacity="0" />
+						<Rectangle x:Name="FocusInnerRectangle"
                                    StrokeThickness="{TemplateBinding BorderThickness}"
-                                   Stroke="{StaticResource TextBoxMouseOverBorderBrush}" Opacity="0" />
-                        <ContentControl HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <ContentControl.Foreground>
-                                <SolidColorBrush x:Name="ContentPresenterWrapperColor"
-                                                 Color="{StaticResource WhiteColor}" />
-                            </ContentControl.Foreground>
-                            <ContentPresenter x:Name="contentPresenter"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" />
-                        </ContentControl>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                                   Stroke="{StaticResource PrimaryBtn}"
+                                   RadiusX="3"
+                                   RadiusY="3"
+                                   Opacity="0" />
+						<ContentPresenter x:Name="contentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
-    <Style x:Key="CoreBusyIndicatorStyleDefault" TargetType="toolkit:BusyIndicator">
-        <Setter Property="BusyContent" Value="Please wait..."/>
-        <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="OverlayStyle">
-            <Setter.Value>
-                <Style TargetType="Rectangle">
-                    <Setter Property="Fill" Value="White"/>
-                    <Setter Property="Opacity" Value="0"/>
-                </Style>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="toolkit:BusyIndicator">
-                    <Grid>
-                        <Grid.Resources>
-                            <Storyboard x:Name="BusyAnimation" RepeatBehavior="Forever">
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Note1" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                    <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.2000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.4000000" Value="0"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Note2" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                    <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.4000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.6000000" Value="0"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Note3" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                    <EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:00.9000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.6000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.8000000" Value="0"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Note4" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                    <EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.2000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:01.8000000" Value="1"/>
-                                    <EasingDoubleKeyFrame KeyTime="00:00:02" Value="0"/>
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </Grid.Resources>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="VisibilityStates">
-                                <VisualState x:Name="Hidden">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetName="busycontent" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Collapsed</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetName="overlay" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Collapsed</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Visible">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetName="busycontent" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Visible</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetName="overlay" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Visible</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="BusyStatusStates">
-                                <VisualState x:Name="Idle">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetName="content" Storyboard.TargetProperty="(Control.IsEnabled)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <System:Boolean>True</System:Boolean>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Busy">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetName="content" Storyboard.TargetProperty="(Control.IsEnabled)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <System:Boolean>False</System:Boolean>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <ContentControl x:Name="content" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                        <Rectangle x:Name="overlay" Style="{TemplateBinding OverlayStyle}"/>
-                        <ContentPresenter x:Name="busycontent">
-                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Loaded">
-                                        <ei:ControlStoryboardAction Storyboard="{StaticResource BusyAnimation}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <Border Background="#FF50004E" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Center">
-                                    <Border.BorderBrush>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFA3AEB9" Offset="0"/>
-                                            <GradientStop Color="#FF8399A9" Offset="0.375"/>
-                                            <GradientStop Color="#FF718597" Offset="0.375"/>
-                                            <GradientStop Color="#FF617584" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.BorderBrush>
-                                    <Border Margin="1" CornerRadius="1.5" Background="#BFFFFFFF">
-                                        <Grid MinWidth="150">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <ContentPresenter Margin="8" Content="{TemplateBinding BusyContent}" ContentTemplate="{TemplateBinding BusyContentTemplate}"/>
-                                            <Canvas Margin="3,0,3,3" Grid.Row="1" Height="50">
-                                                <Rectangle Fill="#FF50004E" StrokeThickness="0" Height="1" Width="133" Canvas.Left="5" Canvas.Top="6" d:IsLocked="True"/>
-                                                <Rectangle Fill="#FF50004E" StrokeThickness="0" Height="1" Width="133" Canvas.Left="5" Canvas.Top="15" d:IsLocked="True"/>
-                                                <Rectangle Fill="#FF50004E" StrokeThickness="0" Height="1" Width="133" Canvas.Left="5" Canvas.Top="24" d:IsLocked="True"/>
-                                                <Rectangle Fill="#FF50004E" StrokeThickness="0" Height="1" Width="133" Canvas.Left="5" Canvas.Top="33" d:IsLocked="True"/>
-                                                <Rectangle Fill="#FF50004E" StrokeThickness="0" Height="1" Width="133" Canvas.Left="5" Canvas.Top="42" d:IsLocked="True"/>
-                                                <Path x:Name="Note1" Fill="#FF50004E" Stretch="Fill" StrokeThickness="0" Height="34.5" Width="16.07" Opacity="0" UseLayoutRounding="False" Canvas.Left="12" Canvas.Top="12.5" Data="M36.257999,12 L36.25779,39 C36.25779,39 31.848457,36.082722 27.25761,36.5 C21.756657,37 22.757883,42 22.758125,42 C22.758139,42 23.757496,46.5 29.757694,46.5 C38.757992,46.5 38.757992,42 38.757996,42 C38.757996,42 38.757996,12 38.757996,12 z"/>
-                                                <Path x:Name="Note2" Fill="#FF50004E" Stretch="Fill" StrokeThickness="0" Height="34.5" Width="16.07" UseLayoutRounding="False" Canvas.Left="45.4" Canvas.Top="3.5" Data="M36.257999,12 L36.25779,39 C36.25779,39 31.848457,36.082722 27.25761,36.5 C21.756657,37 22.757883,42 22.758125,42 C22.758139,42 23.757496,46.5 29.757694,46.5 C38.757992,46.5 38.757992,42 38.757996,42 C38.757996,42 38.757996,12 38.757996,12 z" Opacity="0"/>
-                                                <Path x:Name="Note3" Fill="#FF50004E" Stretch="Fill" StrokeThickness="0" Height="34.5" Width="16.07" UseLayoutRounding="False" Canvas.Left="79.4" Canvas.Top="8.5" Data="M36.257999,12 L36.25779,39 C36.25779,39 31.848457,36.082722 27.25761,36.5 C21.756657,37 22.757883,42 22.758125,42 C22.758139,42 23.757496,46.5 29.757694,46.5 C38.757992,46.5 38.757992,42 38.757996,42 C38.757996,42 38.757996,12 38.757996,12 z" Opacity="0"/>
-                                                <Path x:Name="Note4" Fill="#FF50004E" Stretch="Fill" StrokeThickness="0" Height="34.5" Width="16.07" UseLayoutRounding="False" Canvas.Left="113.4" Canvas.Top="-0.5" Data="M36.257999,12 L36.25779,39 C36.25779,39 31.848457,36.082722 27.25761,36.5 C21.756657,37 22.757883,42 22.758125,42 C22.758139,42 23.757496,46.5 29.757694,46.5 C38.757992,46.5 38.757992,42 38.757996,42 C38.757996,42 38.757996,12 38.757996,12 z" Opacity="0"/>
-                                            </Canvas>
-                                        </Grid>
-                                    </Border>
-                                </Border>
-                            </Grid>
-                        </ContentPresenter>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+	<!-- Error Window Style -->
+	<Style x:Key="ErrorWindowStyle"
+           TargetType="controls:ChildWindow">
+		<Setter Property="IsTabStop"
+                Value="false" />
+		<Setter Property="TabNavigation"
+                Value="Cycle" />
+		<Setter Property="Foreground"
+                Value="{StaticResource PrimaryText}" />
+		<Setter Property="FontFamily"
+                Value="{StaticResource ContentFontFamily}" />
+		<Setter Property="FontSize"
+                Value="{StaticResource ContentFontSize}" />
+		<Setter Property="TextOptions.TextHintingMode"
+                Value="Animated" />
+		<Setter Property="HorizontalAlignment"
+                Value="Center" />
+		<Setter Property="VerticalAlignment"
+                Value="Center" />
+		<Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+		<Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
+		<Setter Property="BorderThickness"
+                Value="1" />
+		<Setter Value="{StaticResource ThumbBrush}"
+                Property="BorderBrush" />
+		<Setter Property="OverlayBrush"
+                Value="{StaticResource PageOverlayBrush}" />
+		<Setter Property="OverlayOpacity"
+                Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:ChildWindow">
+					<Grid x:Name="Root">
+						<Grid.Resources>
+							<Style x:Key="ButtonStyle" TargetType="Button">
+								<Setter Property="Background" Value="{StaticResource TransparentWhiteBrush}"/>
+								<Setter Property="Foreground" Value="{StaticResource BlackColorBrush}"/>
+								<Setter Property="Padding" Value="3"/>
+								<Setter Property="BorderThickness" Value="1"/>
+								<Setter Property="BorderBrush" Value="{StaticResource GrayBrush2}"/>
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate TargetType="Button">
+											<Grid>
+												<VisualStateManager.VisualStateGroups>
+													<VisualStateGroup x:Name="CommonStates">
+														<VisualState x:Name="Normal"/>
+														<VisualState x:Name="MouseOver">
+															<Storyboard>
+																<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MouseOverBorder" />
+																<DoubleAnimation Duration="0" To="0.3" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" />
+															</Storyboard>
+														</VisualState>
+														<VisualState x:Name="Pressed">
+															<Storyboard>
+																<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PressedBorder" />
+																<DoubleAnimation Duration="0" To="0.3" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" />
+															</Storyboard>
+														</VisualState>
+														<VisualState x:Name="Disabled">
+															<Storyboard>
+																<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DisabledVisualElement">
+																	<SplineDoubleKeyFrame KeyTime="0" Value="0.5"/>
+																</DoubleAnimationUsingKeyFrames>
+																<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+																	<EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+																</DoubleAnimationUsingKeyFrames>
+															</Storyboard>
+														</VisualState>
+													</VisualStateGroup>
+													<VisualStateGroup x:Name="FocusStates">
+														<VisualState x:Name="Focused">
+															<Storyboard>
+																<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusRectangle">
+																	<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+																</DoubleAnimationUsingKeyFrames>
+																<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusInnerRectangle">
+																	<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+																</DoubleAnimationUsingKeyFrames>
+
+															</Storyboard>
+														</VisualState>
+														<VisualState x:Name="Unfocused"/>
+													</VisualStateGroup>
+												</VisualStateManager.VisualStateGroups>
+												<Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3"/>
+												<Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}" IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3"/>
+												<Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0"/>
+												<Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0"/>
+												<Rectangle x:Name="FocusRectangle" Stroke="{StaticResource TextBoxMouseOverInnerBorderBrush}" RadiusY="4" RadiusX="4" Margin="-1" Opacity="0" />
+												<Rectangle x:Name="FocusInnerRectangle" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{StaticResource TextBoxMouseOverBorderBrush}" RadiusX="3" RadiusY="3" Opacity="0" />
+												<ContentPresenter x:Name="contentPresenter" Margin="1" >
+													<Border x:Name="border" CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource PrimaryBrand}" Background="{StaticResource PrimaryBrand}">
+														<Viewbox>
+															<Canvas Width="121.333" Height="121.333">
+																<Rectangle Width="121.333" Height="121.333" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Fill="{StaticResource PrimaryBrand}"/>
+																<Path Width="71" Height="80" Canvas.Left="25.167" Canvas.Top="20.667" Stretch="Fill" StrokeThickness="20.3333" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE" Data="F1 M 1116.97,1213.32L 1167.51,1272.86" UseLayoutRounding="False"/>
+																<Path Width="71" Height="80" Canvas.Left="25.167" Canvas.Top="20.667" Stretch="Fill" StrokeThickness="20.3333" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="2.75" Stroke="#FFFEFEFE" Data="F1 M 1167.51,1213.32L 1116.97,1272.86" UseLayoutRounding="False"/>
+															</Canvas>
+														</Viewbox>
+													</Border>
+												</ContentPresenter>
+											</Grid>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</Style>
+						</Grid.Resources>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="WindowStates">
+								<VisualState x:Name="Open">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetProperty="Opacity"
+                                                                       Storyboard.TargetName="Overlay">
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+											<EasingDoubleKeyFrame KeyTime="00:00:00.3"
+                                                                  Value="1">
+												<EasingDoubleKeyFrame.EasingFunction>
+													<PowerEase EasingMode="EaseInOut" />
+												</EasingDoubleKeyFrame.EasingFunction>
+											</EasingDoubleKeyFrame>
+											<EasingDoubleKeyFrame KeyTime="0:0:0.55"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetProperty="(RenderTransform).(Children)[0].ScaleX"
+                                                                       Storyboard.TargetName="ContentRoot">
+											<SplineDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.25"
+                                                                  Value="0" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.4"
+                                                                  Value="1" />
+											<SplineDoubleKeyFrame KeySpline="0,0,0.5,1"
+                                                                  KeyTime="00:00:00.45"
+                                                                  Value="1.05" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.55"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetProperty="(RenderTransform).(Children)[0].ScaleY"
+                                                                       Storyboard.TargetName="ContentRoot">
+											<SplineDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.25"
+                                                                  Value="0" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.4"
+                                                                  Value="1" />
+											<SplineDoubleKeyFrame KeySpline="0,0,0.5,1"
+                                                                  KeyTime="00:00:00.45"
+                                                                  Value="1.05" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.55"
+                                                                  Value="1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Closed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetProperty="Opacity"
+                                                                       Storyboard.TargetName="Overlay">
+											<EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+											<EasingDoubleKeyFrame KeyTime="00:00:00.3"
+                                                                  Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetProperty="(RenderTransform).(Children)[0].ScaleX"
+                                                                       Storyboard.TargetName="ContentRoot">
+											<SplineDoubleKeyFrame KeyTime="00:00:00.2"
+                                                                  Value="1" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.25"
+                                                                  Value="1.05" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.45"
+                                                                  Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames BeginTime="0"
+                                                                       Storyboard.TargetProperty="(RenderTransform).(Children)[0].ScaleY"
+                                                                       Storyboard.TargetName="ContentRoot">
+											<SplineDoubleKeyFrame KeyTime="00:00:00.2"
+                                                                  Value="1" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.25"
+                                                                  Value="1.05" />
+											<SplineDoubleKeyFrame KeyTime="00:00:00.45"
+                                                                  Value="0" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Grid x:Name="Overlay"
+                              Background="{TemplateBinding OverlayBrush}"
+                              HorizontalAlignment="Stretch"
+                              Margin="0"
+                              Opacity="{TemplateBinding OverlayOpacity}"
+                              VerticalAlignment="Top" />
+						<Grid x:Name="ContentRoot"
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                              Height="{TemplateBinding Height}"
+                              RenderTransformOrigin="0.5,0.5"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                              Width="{TemplateBinding Width}">
+							<Grid.RenderTransform>
+								<TransformGroup>
+									<ScaleTransform />
+									<SkewTransform />
+									<RotateTransform />
+									<TranslateTransform />
+								</TransformGroup>
+							</Grid.RenderTransform>
+							<Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{StaticResource WhiteColorBrush}"
+                                    Effect="{StaticResource DropShadowBrush}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+									<Border x:Name="Chrome"
+                                            BorderThickness="0,0,0,1"
+                                            Width="Auto"
+                                            Background="Transparent">
+										<Grid Height="Auto"
+                                              Width="Auto">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition />
+												<ColumnDefinition Width="30" />
+											</Grid.ColumnDefinitions>
+											<ContentControl Content="{TemplateBinding Title}"
+                                                            HorizontalAlignment="Stretch"
+                                                            IsTabStop="False"
+                                                            Margin="20,21,8,0"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18.667" />
+											<Button x:Name="CloseButton"
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Center"
+                                                    Height="25"
+                                                    IsTabStop="False"
+                                                    Style="{StaticResource ButtonStyle}"
+                                                    VerticalAlignment="Top"
+                                                    Width="25"
+                                                    Margin="0,5,0,0" />
+											<Rectangle Fill="{StaticResource BrandingBrush}"
+                                                       Height="6"
+                                                       Margin="20,15,0,0"
+                                                       VerticalAlignment="Top"
+                                                       Width="80"
+                                                       HorizontalAlignment="Left" />
+										</Grid>
+									</Border>
+									<Border Background="{TemplateBinding Background}"
+                                            Margin="7"
+                                            Grid.Row="1">
+										<ContentPresenter x:Name="ContentPresenter"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          Content="{TemplateBinding Content}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+									</Border>
+								</Grid>
+							</Border>
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="ContentControl">
+		<Setter Property="IsTabStop" Value="false" />
+	</Style>
 
 </ResourceDictionary>

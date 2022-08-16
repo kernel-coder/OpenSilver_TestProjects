@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9252B6EB-7C32-4449-9BD7-BAC63ABE1192}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ALY_Samples</RootNamespace>
+    <AssemblyName>ALY_Samples</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>ALY_Samples.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>ALY_Samples.App</SilverlightAppEntry>
+    <TestPageFileName>ALY_SamplesTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.SL5, Version=4.1.27.22814, Culture=neutral, PublicKeyToken=e7f91b7703710fe7, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Mvvm Light Toolkit\GalaSoft.MvvmLight.Extras.SL5.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.SL5, Version=4.1.27.22814, Culture=neutral, PublicKeyToken=c114982fcf1a3a2e, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Mvvm Light Toolkit\GalaSoft.MvvmLight.SL5.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="HavenBridge.Contracts">
+      <HintPath>..\Lib\HavenBridge\HavenBridge.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZLib.Silverlight">
+      <HintPath>..\Lib\ICSharpCode.SharpZLib.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Itenso.TimePeriod, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d7f23b760ed5c748, processorArchitecture=MSIL">
+      <HintPath>..\packages\TimePeriodLibrary.NET.2.0.0\lib\sl40\Silverlight.Release\Itenso.TimePeriod.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Blend 5\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Effects, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Blend 5\Microsoft.Expression.Effects.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common.Silverlight, Version=5.0.505.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Lib\EnterpriseLibrary\Microsoft.Practices.EnterpriseLibrary.Common.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Silverlight, Version=5.0.505.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Lib\EnterpriseLibrary\Microsoft.Practices.EnterpriseLibrary.Logging.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation.Silverlight, Version=5.0.505.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Lib\EnterpriseLibrary\Microsoft.Practices.EnterpriseLibrary.Validation.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EnterpriseLibrary\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Silverlight, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Lib\EnterpriseLibrary\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\sl4\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\sl4\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Silverlight, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\sl4\Microsoft.Threading.Tasks.Extensions.Silverlight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="OpenRiaServices.Data.DomainServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenRiaServices.ViewModel.4.6.0\lib\sl50\OpenRiaServices.Data.DomainServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenRiaServices.DomainServices.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenRiaServices.Client.Core.4.6.0\lib\sl5\OpenRiaServices.DomainServices.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenRiaServices.DomainServices.Client.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenRiaServices.Client.Core.4.6.0\lib\sl5\OpenRiaServices.DomainServices.Client.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\sl4\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Silverlight.Controls.ToolTips">
+      <HintPath>..\Lib\Silverlight.Controls.ToolTips.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Navigation.ContentLoaders.Utilities, Version=0.11.5.0, Culture=neutral, PublicKeyToken=e3906017fae28c53, processorArchitecture=MSIL">
+      <HintPath>..\Lib\SLaB\SLaB.Navigation.ContentLoaders.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Utilities, Version=0.11.5.0, Culture=neutral, PublicKeyToken=e3906017fae28c53, processorArchitecture=MSIL">
+      <HintPath>..\Lib\SLaB\SLaB.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="SLaB.Utilities.Xaml, Version=0.11.5.0, Culture=neutral, PublicKeyToken=e3906017fae28c53, processorArchitecture=MSIL">
+      <HintPath>..\Lib\SLaB\SLaB.Utilities.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition.Initialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ComponentModel.Composition.Initialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=1.5.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\sl5\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\sl5\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel.Web.Extensions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ServiceModel.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\sl5\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Blend 5\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Serialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="WriteableBitmapEx, Version=0.9.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WriteableBitmapEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\AddButtonIcon.xaml.cs">
+      <DependentUpon>AddButtonIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\AttemptIcon.xaml.cs">
+      <DependentUpon>AttemptIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\CacheDownloadIcon.xaml.cs">
+      <DependentUpon>CacheDownloadIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\CacheUploadIcon.xaml.cs">
+      <DependentUpon>CacheUploadIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\CancelIcon.xaml.cs">
+      <DependentUpon>CancelIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\CoderIcon.xaml.cs">
+      <DependentUpon>CoderIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\DeleteIcon.xaml.cs">
+      <DependentUpon>DeleteIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\DocumentIcon.xaml.cs">
+      <DependentUpon>DocumentIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\FIcon.xaml.cs">
+      <DependentUpon>FIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\HisIcon.xaml.cs">
+      <DependentUpon>HisIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\InfoIcon.xaml.cs">
+      <DependentUpon>InfoIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\OasisIcon.xaml.cs">
+      <DependentUpon>OasisIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\OkIcon.xaml.cs">
+      <DependentUpon>OkIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\PatientMessageIcon.xaml.cs">
+      <DependentUpon>PatientMessageIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\PencilIcon.xaml.cs">
+      <DependentUpon>PencilIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\PrintIcon.xaml.cs">
+      <DependentUpon>PrintIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Icons\TranslatorIcon.xaml.cs">
+      <DependentUpon>TranslatorIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviors\ComboBoxExtensions.cs" />
+    <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
+    <Compile Include="Behaviors\TextBoxFilters.cs" />
+    <Compile Include="Behaviors\TransitionEffectBehavior.cs" />
+    <Compile Include="ChildWindow1.xaml.cs">
+      <DependentUpon>ChildWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChildWindow2.xaml.cs">
+      <DependentUpon>ChildWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComboItemsTestDlg.xaml.cs">
+      <DependentUpon>ComboItemsTestDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\autoCompleteCombo.cs" />
+    <Compile Include="Controls\BindableDialogResult.cs" />
+    <Compile Include="Controls\CacheIconControl.xaml.cs">
+      <DependentUpon>CacheIconControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckMark.cs" />
+    <Compile Include="Controls\CheckMarkCoderReview.cs" />
+    <Compile Include="Controls\CheckMarkError.xaml.cs">
+      <DependentUpon>CheckMarkError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\codeLookup.cs" />
+    <Compile Include="Controls\codeLookupRadio.cs" />
+    <Compile Include="Controls\EditTabItem.xaml.cs">
+      <DependentUpon>EditTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EncounterStatusMark.xaml.cs">
+      <DependentUpon>EncounterStatusMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ICustomCtrlContentPresenter.cs" />
+    <Compile Include="Controls\OKCancelEditStackPanel.xaml.cs">
+      <DependentUpon>OKCancelEditStackPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderStatusMark.xaml.cs">
+      <DependentUpon>OrderStatusMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SignatureUserControl.xaml.cs">
+      <DependentUpon>SignatureUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControlBase.cs" />
+    <Compile Include="Controls\UserControlBaseEventArgs.cs" />
+    <Compile Include="Controls\vAsyncComboBox.cs" />
+    <Compile Include="Controls\vButton.cs" />
+    <Compile Include="Controls\vDatePicker.cs" />
+    <Compile Include="Controls\VirtuosoBusyIndicator.cs" />
+    <Compile Include="Controls\vLabel.xaml.cs">
+      <DependentUpon>vLabel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\vRichTextBox.cs" />
+    <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
+    <Compile Include="Converters\ComboBoxItemConverters.cs" />
+    <Compile Include="Converters\ContentFrameBrushConverter.cs" />
+    <Compile Include="Converters\DateTimeConverters.cs" />
+    <Compile Include="Converters\DebugDataBindingConverter.cs" />
+    <Compile Include="Converters\EmptyOrNullToDefaultConverter.cs" />
+    <Compile Include="Converters\FederalTaxIdConverters.cs" />
+    <Compile Include="Converters\FileUploadConverter.cs" />
+    <Compile Include="Converters\ImageToBytesConverter.cs" />
+    <Compile Include="Converters\LogLevelConverter.cs" />
+    <Compile Include="Converters\MedicationConverters.cs" />
+    <Compile Include="Converters\NullableValueConverter.cs" />
+    <Compile Include="Converters\NumberConverters.cs" />
+    <Compile Include="Converters\PhoneConverter.cs" />
+    <Compile Include="Converters\PhotoConverter.cs" />
+    <Compile Include="Converters\SequentialConverter.cs" />
+    <Compile Include="Converters\ServiceLineTypeCheckCheckedConverter.cs" />
+    <Compile Include="Converters\ServiceLineTypeRadioCheckedConverter.cs" />
+    <Compile Include="Converters\SSNConverter.cs" />
+    <Compile Include="Converters\TextConverters.cs" />
+    <Compile Include="Converters\VisibilityConverters.cs" />
+    <Compile Include="DataGridTest.xaml.cs">
+      <DependentUpon>DataGridTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PatientInfection.cs" />
+    <Compile Include="Data\PatientPhone.cs" />
+    <Compile Include="Data\ValidationTestEntity.cs" />
+    <Compile Include="Framework\EntityExtensions.cs" />
+    <Compile Include="Framework\SimpleServiceProvider.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="ImageBrushSample.xaml.cs">
+      <DependentUpon>ImageBrushSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ChangeUserPopup.xaml.cs">
+      <DependentUpon>ChangeUserPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\HelpPopupDialog.xaml.cs">
+      <DependentUpon>HelpPopupDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\TaskEditWindow.xaml.cs">
+      <DependentUpon>TaskEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\TaskPopup.xaml.cs">
+      <DependentUpon>TaskPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\AsyncUtility.cs" />
+    <Compile Include="Shared\CodeLookup.cs" />
+    <Compile Include="Shared\CommandManager.cs" />
+    <Compile Include="Shared\DataTemplateHelper.cs" />
+    <Compile Include="Shared\Encounter.shared.cs" />
+    <Compile Include="Shared\EnumerableExtensions.cs" />
+    <Compile Include="Shared\FocusHelper.cs" />
+    <Compile Include="Shared\NotifyPropertyChanged.cs" />
+    <Compile Include="Shared\OrderEntry.shared.cs" />
+    <Compile Include="Shared\ValidationSummaryHelper.cs" />
+    <Compile Include="Shared\VirtuosoEntityBase.cs" />
+    <Compile Include="Shared\VirtuosoEntityProperties.cs" />
+    <Compile Include="Shared\VirtuosoObjectCleanupHelper.cs" />
+    <Compile Include="Shared\VisualTreeWalker.cs" />
+    <Compile Include="TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolkitChartSampleView.xaml.cs">
+      <DependentUpon>ToolkitChartSampleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationTestPage.xaml.cs">
+      <DependentUpon>ValidationTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationTestUC.xaml.cs">
+      <DependentUpon>ValidationTestUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationTestUC2.xaml.cs">
+      <DependentUpon>ValidationTestUC2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\GenericBase.cs" />
+    <Compile Include="ViewModels\TaskEditVM.cs" />
+    <Compile Include="Views\PatientPhoneUserControl.xaml.cs">
+      <DependentUpon>PatientPhoneUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientUserControls.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Assets\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\CoreStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AddButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AddButtonRoundIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AdmissionIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AlertDueButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AlertLateButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AttachDocumentButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\AttemptIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\CacheDownloadIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\CacheUploadIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\CancelIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\CoderIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\DeleteIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\DocumentIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\DocumentIsAttachedButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\EditButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\EditedPencilIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\ErrorPencilIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\EscortIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\FIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\GraphButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\GuardIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\HisIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\InfoButtonRound.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\InfoIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\OasisIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\OkIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\PaperClipIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\PatientIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\PatientMessageIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\PencilIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\PrintIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\RefreshIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\SearchButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\SearchButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\SearchIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\TranslatorIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Icons\VideoButtonIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\SDKStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Styles.Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ChildWindow1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ChildWindow2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ComboItemsTestDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CacheIconControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CheckMarkError.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EditTabItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EncounterStatusMark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OKCancelEditStackPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OrderStatusMark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SignatureUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\vLabel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageBrushSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ChangeUserPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popups\HelpPopupDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popups\TaskEditWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popups\TaskPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToolkitChartSampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ValidationTestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ValidationTestUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ValidationTestUC2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PatientPhoneUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\AssessmentOverdue.png" />
+    <Resource Include="Assets\Images\back.jpg" />
+    <Resource Include="Assets\Images\Background.jpg" />
+    <Resource Include="Assets\Images\i.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\OpenRiaServices.Silverlight.CodeGen.4.6.0\build\OpenRiaServices.Silverlight.CodeGen.targets" Condition="Exists('..\packages\OpenRiaServices.Silverlight.CodeGen.4.6.0\build\OpenRiaServices.Silverlight.CodeGen.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OpenRiaServices.Silverlight.CodeGen.4.6.0\build\OpenRiaServices.Silverlight.CodeGen.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenRiaServices.Silverlight.CodeGen.4.6.0\build\OpenRiaServices.Silverlight.CodeGen.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+</Project>

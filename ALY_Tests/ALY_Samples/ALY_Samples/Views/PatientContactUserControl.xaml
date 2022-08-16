@@ -1,0 +1,141 @@
+﻿<viewbase:PatientContactUserControlBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                        xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+                                        xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                                        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                                        xmlns:viewbase="clr-namespace:Virtuoso.Maintenance.Controls;assembly=Virtuoso.Maintenance"
+                                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                                        x:Class="Virtuoso.Maintenance.Controls.PatientContactUserControl"
+                                        xmlns:clr="clr-namespace:System;assembly=mscorlib"
+                                        x:Name="pat_contact_ctrl"
+                                        mc:Ignorable="d"
+                                        d:DesignHeight="901"
+                                        d:DesignWidth="410">
+
+    <viewbase:PatientContactUserControlBase.Resources>
+        <DataTemplate x:Key="ContactDataTemplate">
+            <Grid Height="Auto"
+                  Width="{Binding ActualWidth, ElementName=ContactComboBox, Mode=OneWay, Converter={StaticResource AdjustWidth}, ConverterParameter=-80 }">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,0,20,0"
+                            MinWidth="180">
+                    <TextBlock Text="{Binding LastName, StringFormat='\{0\}\, '}" />
+                    <TextBlock Text="{Binding FirstName}" />
+                    <TextBlock
+                        Text="{Binding Relationship, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}, StringFormat=' - \{0\}'}" />
+                </StackPanel>
+                <TextBlock Grid.Column="1"
+                           Text="(Inactive)"
+                           Visibility="{Binding Inactive, Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="2"
+                           Text="{Binding EmergencyContactText}" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="3"
+                           Text="{Binding ContactCharacteristicsDescription}"
+                           TextWrapping="Wrap"
+                           Margin="20,0,0,0" />
+            </Grid>
+        </DataTemplate>
+    </viewbase:PatientContactUserControlBase.Resources>
+
+    <Border Background="{StaticResource ControlBackgroundBrush}"
+            BorderBrush="#FFB9B9B9"
+            BorderThickness="1"
+            CornerRadius="1"
+            Padding="5">
+
+        <Grid x:Name="LayoutRoot">
+            <Grid x:Name="ControlRoot"
+                  DataContext="{Binding ElementName=pat_contact_ctrl}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"
+                                   MinHeight="35" />
+                    <RowDefinition Height="*"
+                                   MinHeight="35" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"
+                                   MinHeight="35" />
+                </Grid.RowDefinitions>
+
+                <ComboBox x:Name="ContactComboBox"
+                          Grid.Row="0"
+                          Grid.Column="0"
+                          ItemTemplate="{StaticResource ContactDataTemplate}"
+                          ItemsSource="{Binding FilteredItemsSource}"
+                          HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
+                          SelectedItem="{Binding SelectedItem, Mode=TwoWay, ValidatesOnNotifyDataErrors=False}"
+                          Margin="0,0,0,4"
+                          Visibility="{Binding IsEdit, Converter={StaticResource OppositeVisibilityConverter}}" />
+
+                <HyperlinkButton Grid.Row="0"
+                                 Grid.Column="1"
+                                 Content="{Binding ToggleDisplayText}"
+                                 Margin="4,0"
+                                 Height="21"
+                                 VerticalAlignment="Top"
+                                 Visibility="{Binding IsEdit, Converter={StaticResource OppositeVisibilityConverter}}"
+                                 Command="{Binding ToggleDisplay}" />
+
+                <HyperlinkButton Grid.Row="0"
+                                 Grid.Column="2"
+                                 Style="{StaticResource AddHyperlinkButton}"
+                                 Content="New Contact"
+                                 x:Name="AddAddress"
+                                 Margin="4,0,0,0"
+                                 Height="21"
+                                 VerticalAlignment="Top"
+                                 Visibility="{Binding IsEdit, Converter={StaticResource RoleAccessPlusOppositeBoolVisibility}, ConverterParameter='PatientEdit', FallbackValue=Collapsed}"
+                                 Command="{Binding Add_Command}" />
+
+                <ScrollViewer x:Name="DetailAreaScrollViewer"
+                              Grid.Row="1"
+                              Grid.ColumnSpan="3"
+                              VerticalScrollBarVisibility="Auto"
+                              IsTabStop="{Binding IsEdit}"
+                              TabNavigation="Cycle">
+                    <i:Interaction.Behaviors>
+                        <VirtuosoCoreBehaviors:ScrollIntoViewBehavior />
+                    </i:Interaction.Behaviors>
+                    <ScrollViewer.Resources>
+                        <clr:String x:Key="PatientContactDetailContent">PatientContactDetail</clr:String>
+                    </ScrollViewer.Resources>
+
+                    <ContentControl Margin="0,0,0,0" HorizontalAlignment="Stretch"
+                                    Content="{Binding Source={StaticResource PatientContactDetailContent}, Converter={StaticResource DataTemplateConverter}}"
+                                    HorizontalContentAlignment="Stretch" />
+                </ScrollViewer>
+
+                <sdk:ValidationSummary Grid.Row="2"
+                                       Grid.ColumnSpan="3" />
+
+                <VirtuosoCoreControls:OKCancelEditStackPanel EditWhat="Contact"
+                                                             Grid.Row="3"
+                                                             Grid.ColumnSpan="3"
+                                                             VerticalAlignment="Bottom"
+                                                             HorizontalAlignment="Right"
+                                                             Visibility="{Binding FilteredCount, Converter={StaticResource RoleAccessPlusIntVisibility}, ConverterParameter='PatientEdit', FallbackValue=Collapsed}" />
+
+            </Grid>
+        </Grid>
+    </Border>
+</viewbase:PatientContactUserControlBase>

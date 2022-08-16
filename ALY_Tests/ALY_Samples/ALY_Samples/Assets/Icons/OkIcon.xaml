@@ -1,0 +1,27 @@
+﻿<ContentPresenter x:Class="Virtuoso.Core.Assets.Icons.OkIcon"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Viewbox>
+        <Canvas Width="121.333" Height="121.333">
+            <Rectangle Canvas.Left="0"
+                       Canvas.Top="0"
+                       Width="121.333"
+                       Height="121.333"
+                       Fill="{StaticResource HighlightBrush}"
+                       Stretch="Fill"/>
+            <Path Canvas.Left="25.667"
+                  Canvas.Top="19.667"
+                  Width="70"
+                  Height="82"
+                  Data="F1 M 706.298,1258.44L 723.292,1280.35L 755.615,1218.26"
+                  Stretch="Fill"
+                  Stroke="#FFFEFEFE"
+                  StrokeEndLineCap="Round"
+                  StrokeLineJoin="Round"
+                  StrokeStartLineCap="Round"
+                  StrokeThickness="20.3333"
+                  UseLayoutRounding="False"/>
+        </Canvas>
+    </Viewbox>
+</ContentPresenter>

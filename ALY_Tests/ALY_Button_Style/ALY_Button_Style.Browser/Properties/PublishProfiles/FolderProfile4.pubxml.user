@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Alayacare\dg_demos\rect_path</_PublishTargetUrl>
+    <History>True|2022-06-07T11:32:51.3832365Z;True|2022-06-07T17:29:30.7977189+06:00;True|2022-06-07T17:26:04.2187221+06:00;False|2022-06-07T17:24:07.6858095+06:00;</History>
+  </PropertyGroup>
+</Project>

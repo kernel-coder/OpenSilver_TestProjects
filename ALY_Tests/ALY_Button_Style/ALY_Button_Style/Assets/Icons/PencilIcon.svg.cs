@@ -1,6 +1,6 @@
 namespace Virtuoso.Core.Assets.Icons
 {
-    public class PencilIcon : SvgControl
+    public class PencilIcon : FillSvgControl
     {
         public PencilIcon()
         {

@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="ALY_Button_Style.ToolkitChartSampleView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Primitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
+    xmlns:local="clr-namespace:ALY_Button_Style"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+	<UserControl.Resources>
+        <local:SalesInfoCollection x:Key="SalesInfo" />
+    </UserControl.Resources>
+	<Grid x:Name="LayoutRoot" Background="White">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>-->
+        <toolkit:Chart x:Name="chart" Height="250" Width="650">
+			<toolkit:LineSeries IsSelectionEnabled="True"
+                                    Title="Sales Report"
+                                    ItemsSource="{StaticResource SalesInfo}"
+                                    IndependentValueBinding="{Binding SaleDate}"
+                                    DependentValueBinding="{Binding Sales}" />
+		</toolkit:Chart>
+
+        <Button Content="Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Button_Click"/>
+
+        <!--<toolkit:Chart Height="250" Grid.Column="1">
+            <toolkit:Chart.Series>
+                <toolkit:PieSeries IsSelectionEnabled="True"
+                    Title="Sales Report"
+                    ItemsSource="{StaticResource SalesInfo}"
+                    IndependentValueBinding="{Binding Path=SaleDate}"
+                    DependentValueBinding="{Binding Sales}" />
+            </toolkit:Chart.Series>
+        </toolkit:Chart>
+
+        <toolkit:Chart Height="250" Grid.Row="1" Grid.Column="1">
+            <toolkit:Chart.Series>
+                <toolkit:BarSeries IsSelectionEnabled="True"
+                    Title="Sales Report"
+                    ItemsSource="{StaticResource SalesInfo}"
+                    IndependentValueBinding="{Binding Path=SaleDate}"
+                    DependentValueBinding="{Binding Sales}" />
+            </toolkit:Chart.Series>
+        </toolkit:Chart>-->
+    </Grid>
+</UserControl>

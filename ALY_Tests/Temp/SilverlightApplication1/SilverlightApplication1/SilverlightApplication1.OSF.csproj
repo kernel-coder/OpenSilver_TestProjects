@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+	<DefineSilverlight>true</DefineSilverlight>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-08-09-063152-ed6ff717" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+	<Page Include="ChildWindow1.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="ChildWindow2.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolkitChartSampleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="App.xaml.cs" />
+    <Compile Include="ChildWindow1.xaml.cs" />
+    <Compile Include="ChildWindow2.xaml.cs" />
+    <Compile Include="MainPage.xaml.cs" />
+    <Compile Include="ToolkitChartSampleView.xaml.cs" />
+  </ItemGroup>
+  
+</Project>

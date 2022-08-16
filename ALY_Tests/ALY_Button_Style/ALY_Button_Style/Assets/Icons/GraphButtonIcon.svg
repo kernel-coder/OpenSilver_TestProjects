@@ -1,132 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   overflow="visible"
-   version="1.1"
-   id="svg54"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs58" />
-  <svg
-     width="100"
-     height="100"
-     version="1.1"
-     id="svg52">
-    <rect
-       x="0"
-       y="0"
-       width="101"
-       height="101"
-       rx="1"
-       ry="1"
-       fill="none"
-       stroke="#50004E"
-       stroke-miterlimit="2.75"
-       id="rect16" />
-    <rect
-       x="5"
-       y="5"
-       width="90"
-       height="90"
-       fill="#F9F7F7"
-       id="rect18" />
-    <path
-       d="M 15,5L 15,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path20" />
-    <path
-       d="M 95,15L 5.00001,15"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path22" />
-    <path
-       d="M 95,25L 5.00001,25"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path24" />
-    <path
-       d="M 95,35L 5.00001,35"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path26" />
-    <path
-       d="M 95,45L 5.00001,45"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path28" />
-    <path
-       d="M 95,55L 5.00001,55"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path30" />
-    <path
-       d="M 95,65L 5.00001,65"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path32" />
-    <path
-       d="M 95,75L 5.00001,75"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path34" />
-    <path
-       d="M 25,5L 25,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path36" />
-    <path
-       d="M 35,5L 35,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path38" />
-    <path
-       d="M 45,5L 45,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path40" />
-    <path
-       d="M 55,5L 55,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path42" />
-    <path
-       d="M 65,5L 65,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path44" />
-    <path
-       d="M 75,5L 75,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path46" />
-    <path
-       d="M 85,5L 85,95"
-       fill="none"
-       stroke="#807777"
-       stroke-miterlimit="2.75"
-       id="path48" />
-    <path
-       d="M8.2619429,92.074974 L25,51.75 L35,65 L45,35 L65,55 L92.5,7.625"
-       fill="none"
-       stroke="#000000"
-       stroke-width="5"
-       stroke-linejoin="Bevel"
-       stroke-linecap="Round"
-       id="path50" />
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="graphButtonIcon" viewBox="0 0 100 100">
+   <rect width="101" height="101" rx="1" ry="1" fill="none" stroke="#50004E" stroke-miterlimit="2.75" />
+   <rect x="5" y="5" width="90" height="90" fill="#F9F7F7" />
+   <path d="M 15,5L 15,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,15L 5.00001,15" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,25L 5.00001,25" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,35L 5.00001,35" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,45L 5.00001,45" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,55L 5.00001,55" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,65L 5.00001,65" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 95,75L 5.00001,75" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 25,5L 25,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 35,5L 35,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 45,5L 45,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 55,5L 55,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 65,5L 65,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 75,5L 75,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M 85,5L 85,95" fill="none" stroke="#807777" stroke-miterlimit="2.75" />
+   <path d="M8.2619429,92.074974 L25,51.75 L35,65 L45,35 L65,55 L92.5,7.625" fill="none" stroke="#000000"
+      stroke-width="5" stroke-linejoin="Bevel" stroke-linecap="Round" />
 </svg>

@@ -1,0 +1,1612 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenRiaServices.DomainServices.Client.Web</name>
+    </assembly>
+    <members>
+        <member name="T:OpenRiaServices.DomainServices.Client.MessageUtility">
+            <summary>
+            Utility class containing utility methods to read and/or modify messages.
+            It is mainly used to insert(read) query options to(from) the URL or message body of the outgoing(incoming) messages.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.MessageUtility.IsHttpPOSTMethod(System.ServiceModel.Channels.MessageProperties)">
+            <summary>
+            Checks if the HTTP method used is POST.
+            </summary>
+            <param name="properties">Properties for which the HTTP method is to be checked.</param>
+            <returns><c>true</c> if the <paramref name="properties"/> specifies HTTP POST method.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.MessageUtility.MakeHttpPOSTMethod(System.ServiceModel.Channels.MessageProperties)">
+            <summary>
+            Changes a HTTP GET into a POST.
+            </summary>
+            <param name="properties">Properties for which the HTTP method is to be changed.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.MessageUtility.AddMessageQueryOptions(System.ServiceModel.Channels.Message@,System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Creates a new message with the QueryOptions and original message body embedded in it.
+            </summary>
+            <param name="message">The original message.</param>
+            <param name="queryOptions">The query options to embed in the new message.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.MessageUtility.AddQueryToUrl(System.ServiceModel.Channels.Message@,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Adds the query parameters to the URL of the message.
+            </summary>
+            <param name="request">The original message.</param>
+            <param name="queryOptions">The query parameters to be added to the message URL.</param>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.MessageUtility.QueryOptionsBodyWriter">
+            <summary>
+            BodyWriter that writes a message with query options in the message body.
+            </summary>
+            <remarks>Reading and writing messages are expensive. Without a wrapping message or body
+            writer of some kind, we would require reading the original message, and rewriting both the
+            options and original message. With a wrapping body writer, we can reduce the write original
+            message/read original message/write altered message, to just one write.</remarks>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.MessageUtility.QueryOptionsBodyWriter.OnWriteBodyContents(System.Xml.XmlDictionaryWriter)">
+            <summary>
+            Writes the message with the query options first and the original message last. This is
+            done inline.
+            </summary>
+            <param name="writer">The writer used to write out the message body.</param>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.DomainServiceFault">
+            <summary>
+            Message type used to communicate exception results between server and client.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainServiceFault.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainServiceFault.ErrorCode">
+            <summary>
+            Gets or sets the custom code for the error.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainServiceFault.ErrorMessage">
+            <summary>
+            Gets or sets the message giving details on the error.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainServiceFault.IsDomainException">
+            <summary>
+            Gets or sets a value indicating whether the fault indicates that the error information 
+            should be reconstructed on the client as a <see cref="T:OpenRiaServices.DomainServices.Client.DomainException"/> type.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainServiceFault.StackTrace">
+            <summary>
+            Gets or sets the stack trace for the error.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainServiceFault.OperationErrors">
+            <summary>
+            Gets or sets the validation errors that occurred during this request.
+            </summary>
+            <remarks>This is only used when a request invokes a single method, such as an invoke operation.</remarks>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainServiceFault.GetValidationErrors">
+            <summary>
+            Get the validation errors 
+            </summary>
+            <returns>
+            Collection of validation errors as <see cref="T:System.Collections.IEnumerable"/>.
+            </returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Resource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.DomainClient_UnableToDetermineHostUri">
+            <summary>
+              Looks up a localized string similar to The current application or application host is null and the host URI cannot be determined..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.DomainContext_InvalidServiceUri">
+            <summary>
+              Looks up a localized string similar to The specified service URI is not correctly formatted..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.DomainContext_LoadOperationFailed">
+            <summary>
+              Looks up a localized string similar to Load operation failed for query &apos;{0}&apos;. {1}.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.DomainContext_SubmitOperationFailed">
+            <summary>
+              Looks up a localized string similar to Submit operation failed. {0}.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.PoxBinaryMessageEncoder_InvalidContentType">
+            <summary>
+              Looks up a localized string similar to The PoxBinaryMessageEncoder only supports content type {0}..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.PoxBinaryMessageEncoder_InvalidMessageVersion">
+            <summary>
+              Looks up a localized string similar to The message has MessageVersion {0} but the encoder is configured for MessageVersion {1}..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.PoxBinaryMessageEncoder_MessageVersionNotSupported">
+            <summary>
+              Looks up a localized string similar to The PoxBinaryMessageEncoder only supports MessageVersion.None..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.WebDomainClient_MaximumUriLengthExceeded">
+            <summary>
+              Looks up a localized string similar to The maximum URI length of {0} was exceeded..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resource.WebDomainClient_OperationDoesNotExist">
+            <summary>
+              Looks up a localized string similar to Operation &apos;{0}&apos; does not exist..
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.ServiceQueryPart">
+            <summary>
+            Represents a single query operator to be applied to a query
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.ServiceQueryPart.#ctor">
+            <summary>
+            Public constructor
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.ServiceQueryPart.QueryOperator">
+            <summary>
+            Gets or sets the query operator. Must be one of the supported operators : "where", "orderby", "skip", or "take".
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.ServiceQueryPart.Expression">
+            <summary>
+            Gets or sets the query expression.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.ServiceQueryPart.ToString">
+            <summary>
+            Returns a string representation of this <see cref="T:OpenRiaServices.DomainServices.Client.ServiceQueryPart"/>
+            </summary>
+            <returns>The string representation of this <see cref="T:OpenRiaServices.DomainServices.Client.ServiceQueryPart"/></returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1">
+            <summary>
+            Default <see cref="T:OpenRiaServices.DomainServices.Client.DomainClient"/> implementation using WCF
+            </summary>
+            <typeparam name="TContract">The contract type.</typeparam>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> class.
+            </summary>
+            <param name="serviceUri">The domain service Uri</param>
+            <exception cref="T:System.ArgumentNullException"> is thrown if <paramref name="serviceUri"/>
+            is null.
+            </exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.#ctor(System.Uri,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> class.
+            </summary>
+            <param name="serviceUri">The domain service Uri</param>
+            <param name="usesHttps">A value indicating whether the client should contact
+            the service using an HTTP or HTTPS scheme.
+            </param>
+            <exception cref="T:System.ArgumentNullException"> is thrown if <paramref name="serviceUri"/>
+            is null.
+            </exception>
+            <exception cref="T:System.ArgumentException"> is thrown if <paramref name="serviceUri"/>
+            is absolute and <paramref name="usesHttps"/> is true.
+            </exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.#ctor(System.Uri,System.Boolean,System.ServiceModel.ChannelFactory{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> class.
+            </summary>
+            <param name="serviceUri">The domain service Uri</param>
+            <param name="usesHttps">A value indicating whether the client should contact
+            the service using an HTTP or HTTPS scheme.
+            </param>
+            <param name="channelFactory">The channel factory that creates channels to communicate with the server.</param>
+            <exception cref="T:System.ArgumentNullException"> is thrown if <paramref name="serviceUri"/>
+            is null.
+            </exception>
+            <exception cref="T:System.ArgumentException"> is thrown if <paramref name="serviceUri"/>
+            is absolute and <paramref name="usesHttps"/> is true.
+            </exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.#ctor(System.Uri,System.Boolean,OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> class.
+            </summary>
+            <param name="serviceUri">The domain service Uri</param>
+            <param name="usesHttps">A value indicating whether the client should contact
+            the service using an HTTP or HTTPS scheme.
+            </param>
+            <param name="domainClientFactory">The domain client factory that creates channels to communicate with the server.</param>
+            <exception cref="T:System.ArgumentNullException"> is thrown if <paramref name="serviceUri"/>
+            is null.
+            </exception>
+            <exception cref="T:System.ArgumentException"> is thrown if <paramref name="serviceUri"/>
+            is absolute and <paramref name="usesHttps"/> is true.
+            </exception>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.ServiceUri">
+            <summary>
+            Gets the absolute path to the domain service.
+            </summary>
+            <remarks>
+            The value returned is either the absolute Uri passed into the constructor, or
+            an absolute Uri constructed from the relative Uri passed into the constructor.
+            Relative Uris will be made absolute using the Application Host source.
+            </remarks>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.SupportsCancellation">
+            <summary>
+            Gets a value that indicates whether the <see cref="T:OpenRiaServices.DomainServices.Client.DomainClient"/> supports cancellation.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.UsesHttps">
+            <summary>
+            Gets whether a secure connection should be used.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.WebDomainClientFactory">
+            <summary>
+            Gets the <see cref="T:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory"/> used to create this instance, with fallback to
+            a new <see cref="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.WebDomainClientFactory"/> in case it was created manually without using a DomainClientFactory.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.KnownTypes">
+            <summary>
+            Gets the list of known types.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClient`1.ChannelFactory">
+            <summary>
+            Gets the channel factory that is used to create channels for communication 
+            with the server.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.Initialize">
+            <summary>
+            Initializes this domain client
+            </summary>
+            <exception cref="T:System.InvalidOperationException"> is thrown if the current application
+            or its host are <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.BeginQueryCore(OpenRiaServices.DomainServices.Client.EntityQuery,System.AsyncCallback,System.Object)">
+            <summary>
+            Method called by the framework to begin an asynchronous query operation
+            </summary>
+            <param name="query">The query to invoke.</param>
+            <param name="callback">The callback to invoke when the query has been executed.</param>
+            <param name="userState">Optional state associated with this operation.</param>
+            <returns>An asynchronous result that identifies this query.</returns>
+            <exception cref="T:System.InvalidOperationException">The specified query does not exist.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.CancelQueryCore(System.IAsyncResult)">
+            <summary>
+            Attempts to cancel the query request specified by the <paramref name="asyncResult"/>.
+            </summary>
+            <param name="asyncResult">An <see cref="T:System.IAsyncResult"/> specifying what query operation to cancel.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.EndQueryCore(System.IAsyncResult)">
+            <summary>
+            Gets the results of a query.
+            </summary>
+            <param name="asyncResult">An asynchronous result that identifies a query.</param>
+            <returns>The results returned by the query.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.BeginSubmitCore(OpenRiaServices.DomainServices.Client.EntityChangeSet,System.AsyncCallback,System.Object)">
+            <summary>
+            Submit the specified <see cref="T:OpenRiaServices.DomainServices.Client.EntityChangeSet"/> to the DomainService, with the results of the operation
+            being returned on the SubmitCompleted event args.
+            </summary>
+            <param name="changeSet">The changeset to submit. If the changeset is empty, an <see cref="T:System.InvalidOperationException"/> will
+            be thrown.</param>
+            <param name="callback">The callback to invoke when the submit has been executed.</param>
+            <param name="userState">Optional state that will flow through to the SubmitCompleted event</param>
+            <returns>An asynchronous result that identifies this submit.</returns>
+            <exception cref="T:System.InvalidOperationException">The changeset is empty.</exception>
+            <exception cref="T:System.InvalidOperationException">The specified query does not exist.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.CancelSubmitCore(System.IAsyncResult)">
+            <summary>
+            Attempts to cancel the submit request specified by the <paramref name="asyncResult"/>.
+            </summary>
+            <param name="asyncResult">An <see cref="T:System.IAsyncResult"/> specifying what submit operation to cancel.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.EndSubmitCore(System.IAsyncResult)">
+            <summary>
+            Gets the results of a submit.
+            </summary>
+            <param name="asyncResult">An asynchronous result that identifies a submit.</param>
+            <returns>The results returned by the submit.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.BeginInvokeCore(OpenRiaServices.DomainServices.Client.InvokeArgs,System.AsyncCallback,System.Object)">
+            <summary>
+            Invokes an operation asynchronously.
+            </summary>
+            <param name="invokeArgs">The arguments to the Invoke operation.</param>
+            <param name="callback">The callback to invoke when the invocation has been completed.</param>
+            <param name="userState">Optional user state that will be passed through on the <see cref="T:OpenRiaServices.DomainServices.Client.InvokeCompletedResult"/>.</param>
+            <returns>An asynchronous result that identifies this invocation.</returns>
+            <exception cref="T:System.InvalidOperationException">The specified query does not exist.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.CancelInvokeCore(System.IAsyncResult)">
+            <summary>
+            Attempts to cancel the invocation request specified by the <paramref name="asyncResult"/>.
+            </summary>
+            <param name="asyncResult">An <see cref="T:System.IAsyncResult"/> specifying what invocation operation to cancel.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.EndInvokeCore(System.IAsyncResult)">
+            <summary>
+            Gets the results of an invocation.
+            </summary>
+            <param name="asyncResult">An asynchronous result that identifies an invocation.</param>
+            <returns>The results returned by the invocation.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.EndAsyncResult(System.IAsyncResult,OpenRiaServices.DomainServices.Client.AsyncOperationType,System.Boolean)">
+            <summary>
+            Transitions an <see cref="T:System.IAsyncResult"/> instance to a completed state.
+            </summary>
+            <param name="asyncResult">An asynchronous result that identifies an invocation.</param>
+            <param name="operationType">The expected operation type.</param>
+            <param name="cancel">Boolean indicating whether or not the operation has been canceled.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> reference.</returns>
+            <exception cref="T:System.ArgumentNullException"> if <paramref name="asyncResult"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"> if <paramref name="asyncResult"/> is not of type <cref name="TAsyncResult"/>.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/> has been canceled.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/>'s End* method has already been invoked.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/> has not completed.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.GetExceptionFromServiceFault(OpenRiaServices.DomainServices.Client.DomainServiceFault)">
+            <summary>
+            Constructs an exception based on a service fault.
+            </summary>
+            <param name="serviceFault">The fault received from a service.</param>
+            <returns>The constructed exception.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClient`1.ComposeAbsoluteServiceUri">
+            <summary>
+            If the service Uri is relative, this method uses the application
+            source to create an absolute Uri.
+            </summary>
+            <remarks>
+            If usesHttps in the constructor was true, the Uri will be created using
+            a https scheme instead.
+            </remarks>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1">
+            <summary>
+            Internal <see cref="T:System.IAsyncResult"/> used during <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> operations.
+            </summary>
+            <typeparam name="TContract">The contract type.</typeparam>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.#ctor(OpenRiaServices.DomainServices.Client.WebDomainClient{`0},`0,System.Reflection.MethodInfo,System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> instance used for Query operations.
+            </summary>
+            <param name="domainClient">The <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> associated with this result.</param>
+            <param name="channel">The channel used to communicate with the server.</param>
+            <param name="endOperationMethod">The method that completes an asynchronous operation.</param>
+            <param name="callback">Optional <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="domainClient"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="endOperationMethod"/> is null.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.#ctor(OpenRiaServices.DomainServices.Client.WebDomainClient{`0},`0,System.Reflection.MethodInfo,OpenRiaServices.DomainServices.Client.EntityChangeSet,System.Collections.Generic.IEnumerable{OpenRiaServices.DomainServices.Client.ChangeSetEntry},System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> instance used for Submit operations.
+            </summary>
+            <param name="domainClient">The <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> associated with this result.</param>
+            <param name="channel">The channel used to communicate with the server.</param>
+            <param name="endOperationMethod">The method that completes an asynchronous operation.</param>
+            <param name="entityChangeSet">The Submit operation <see cref="T:OpenRiaServices.DomainServices.Client.EntityChangeSet"/>.</param>
+            <param name="changeSetEntries">The collection of <see cref="T:OpenRiaServices.DomainServices.Client.ChangeSetEntry"/>s to submit.</param>
+            <param name="callback">Optional <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="domainClient"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="endOperationMethod"/> is null.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.#ctor(OpenRiaServices.DomainServices.Client.WebDomainClient{`0},`0,System.Reflection.MethodInfo,OpenRiaServices.DomainServices.Client.InvokeArgs,System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> instance used for Invoke operations.
+            </summary>
+            <param name="domainClient">The <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> associated with this result.</param>
+            <param name="channel">The channel used to communicate with the server.</param>
+            <param name="endOperationMethod">The method that completes an asynchronous operation.</param>
+            <param name="invokeArgs">The arguments to the Invoke operation.</param>
+            <param name="callback">Optional <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="domainClient"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="endOperationMethod"/> is null.</exception>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.ChangeSetEntries">
+            <summary>
+            Gets a collection of <see cref="T:OpenRiaServices.DomainServices.Client.ChangeSetEntry"/>s used with Submit operations.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.Channel">
+            <summary>
+            Gets the channel used to communicate with the server.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.EndOperationMethod">
+            <summary>
+            Gets the method that completes an asynchronous operation.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.CreateQueryResult(OpenRiaServices.DomainServices.Client.WebDomainClient{`0},`0,System.Reflection.MethodInfo,System.AsyncCallback,System.Object)">
+            <summary>
+            Creates a new <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> used for Query operations.
+            </summary>
+            <param name="domainClient">The <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> associated with this result.</param>
+            <param name="channel">The channel used to communicate with the server.</param>
+            <param name="endOperationMethod">The method that completes an asynchronous operation.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> used for Query operations</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.CreateSubmitResult(OpenRiaServices.DomainServices.Client.WebDomainClient{`0},`0,System.Reflection.MethodInfo,OpenRiaServices.DomainServices.Client.EntityChangeSet,System.Collections.Generic.IEnumerable{OpenRiaServices.DomainServices.Client.ChangeSetEntry},System.AsyncCallback,System.Object)">
+            <summary>
+            Creates a new <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> used for Submit operations.
+            </summary>
+            <param name="domainClient">The <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> associated with this result.</param>
+            <param name="channel">The channel used to communicate with the server.</param>
+            <param name="endOperationMethod">The method that completes an asynchronous operation.</param>
+            <param name="entityChangeSet">The Submit operation <see cref="T:OpenRiaServices.DomainServices.Client.EntityChangeSet"/>.</param>
+            <param name="changeSetEntries">The collection of <see cref="T:OpenRiaServices.DomainServices.Client.ChangeSetEntry"/>s to submit.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> used for Submit operations</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.CreateInvokeResult(OpenRiaServices.DomainServices.Client.WebDomainClient{`0},`0,System.Reflection.MethodInfo,OpenRiaServices.DomainServices.Client.InvokeArgs,System.AsyncCallback,System.Object)">
+            <summary>
+            Creates a new <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> used for Invoke operations.
+            </summary>
+            <param name="domainClient">The <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> associated with this result.</param>
+            <param name="channel">The channel used to communicate with the server.</param>
+            <param name="endOperationMethod">The method that completes an asynchronous operation.</param>
+            <param name="invokeArgs">The arguments to the Invoke operation.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1"/> used for Invoke operations</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.WebDomainClientAsyncResult`1.Cancel">
+            <summary>
+            Attempts to cancel this operation and aborts the underlying request if cancellation was successfully requested.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Evaluator.PartialEval(System.Linq.Expressions.Expression,System.Func{System.Linq.Expressions.Expression,System.Boolean})">
+            <summary>
+            Performs evaluation and replacement of independent sub-trees
+            </summary>
+            <param name="expression">The root of the expression tree.</param>
+            <param name="funcCanBeEvaluated">A function that decides whether a given expression 
+            node can be part of the local function.</param>
+            <returns>A new tree with sub-trees evaluated and replaced.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Evaluator.PartialEval(System.Linq.Expressions.Expression)">
+            <summary>
+            Performs evaluation and replacement of independent sub-trees
+            </summary>
+            <param name="expression">The root of the expression tree.</param>
+            <returns>A new tree with sub-trees evaluated and replaced.</returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Evaluator.SubtreeEvaluator">
+            <summary>
+            Evaluates and replaces sub-trees when first candidate is reached (top-down)
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Evaluator.Nominator">
+            <summary>
+            Performs bottom-up analysis to determine which nodes can possibly
+            be part of an evaluated sub-tree.
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.QuerySerializer">
+            <summary>
+            This serializer supports Where, OrderBy, Skip and Take.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.QuerySerializer.Visitor.GetQueryRoot(System.Linq.Expressions.Expression)">
+            <summary>
+            Drill through MethodCallExpression chain searching for the root of
+            the query.
+            </summary>
+            <param name="expr">The <see cref="T:System.Linq.Expressions.Expression"/> to search.</param>
+            <returns>root of the query</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.QuerySerializer.Visitor.VerifyMethodAccessibility(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Verify that the declaring type of the method is one of the supported types.
+            Note that this list of types corresponds to the list of accessible types
+            defined by the server query parser.
+            </summary>
+            <param name="mce">The method call expression.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.QuerySerializer.Visitor.ValidateConstant(System.Object)">
+            <summary>
+            Ensure that the specified constant value is of a Type
+            supported by the server query serializer - we don't want
+            to serialize a value that the server can't handle.
+            </summary>
+            <param name="value">The constant value</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.QuerySerializer.Visitor.FlattenOrderExpressions">
+            <summary>
+            Unify all ordering expressions into a single order expression
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.QuerySerializer.MethodCallConverter">
+            <summary>
+            This visitor is used to make any required method call translations.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.QuerySerializer.MethodCallConverter.MakeVBCompare(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Boolean)">
+            <summary>
+            For the specified arguments and case sensitivity, return a expression
+            representing an equivalent call to string.Compare.
+            </summary>
+            <param name="left">The expression on the left-hand side.</param>
+            <param name="right">The expression on the right-hand side.</param>
+            <param name="caseSensitive">Indicates whether to do a case-sensitive comparison.</param>
+            <returns>Returns the expression.</returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_CannotInitializeDomainContext">
+            <summary>
+              Looks up a localized string similar to The DomainContextType is null or invalid and there are no contexts generated from AuthenticationBase&lt;T&gt;..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_CannotInitializeUser">
+            <summary>
+              Looks up a localized string similar to The User type must extend UserBase and provide a default constructor..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_CannotSaveAnonymous">
+            <summary>
+              Looks up a localized string similar to The current user is anonymous. Data may only be saved for authenticated users..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_LoadNoUser">
+            <summary>
+              Looks up a localized string similar to GetUser should have returned a single user..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_LogoutNoUser">
+            <summary>
+              Looks up a localized string similar to Logout should have returned a single, anonymous user..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_NoLoadUserMethod">
+            <summary>
+              Looks up a localized string similar to Derived service does not contain a LoadUser method..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_SaveErrors">
+            <summary>
+              Looks up a localized string similar to Errors occurred while submitting the user changes..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_ServiceMustNotBeActive">
+            <summary>
+              Looks up a localized string similar to The service must be inactive to update state..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_WANoLogin">
+            <summary>
+              Looks up a localized string similar to Windows authentication does not support logging in..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.ApplicationServices_WANoLogout">
+            <summary>
+              Looks up a localized string similar to Windows authentication does not support logging out..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.MethodCanOnlyBeInvokedOnce">
+            <summary>
+              Looks up a localized string similar to Method can only be invoked once..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.OperationCancelled">
+            <summary>
+              Looks up a localized string similar to The operation was canceled..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.OperationNotComplete">
+            <summary>
+              Looks up a localized string similar to The operation has not completed..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_BitwiseOperatorsNotSupported">
+            <summary>
+              Looks up a localized string similar to Bitwise operators are not supported in queries..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_MethodNotAccessible">
+            <summary>
+              Looks up a localized string similar to Method &apos;{0}&apos; on type &apos;{1}&apos; is not accessible. Only methods on primitive types, System.Math and System.Convert are supported in queries..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_NestedQueriesNotSupported">
+            <summary>
+              Looks up a localized string similar to Nested query expressions are not supported..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_NewExpressionsNotSupported">
+            <summary>
+              Looks up a localized string similar to &apos;New&apos; Expressions are not supported in queries..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_ProjectionsNotSupported">
+            <summary>
+              Looks up a localized string similar to Select projections are not supported..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_UnsupportedBinaryOp">
+            <summary>
+              Looks up a localized string similar to Binary operation &apos;{0}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_UnsupportedQueryOperator">
+            <summary>
+              Looks up a localized string similar to Query operator &apos;{0}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_UnsupportedType">
+            <summary>
+              Looks up a localized string similar to Value of type &apos;{0}&apos; cannot be serialized as part of the query. &apos;{0}&apos; is not a supported type..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.QuerySerialization_UnsupportedUnaryOp">
+            <summary>
+              Looks up a localized string similar to Unary operation &apos;{0}&apos; is not supported..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.WebContext_AuthenticationNotSet">
+            <summary>
+              Looks up a localized string similar to WebContextBase.Authentication has not been initialized. This member is only supported in valid implementations..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.WebContext_CannotModifyAuthentication">
+            <summary>
+              Looks up a localized string similar to Authentication cannot be set after the Application.Startup event has occurred..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.WebContext_NoContexts">
+            <summary>
+              Looks up a localized string similar to The current instance of WebContext is not available.  You must instantiate a WebContext and add it to Application.ApplicationLifetimeObjects within the default App constructor..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.WebContext_OnlyOne">
+            <summary>
+              Looks up a localized string similar to Only one WebContextBase can be created per application..
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Resources.WrongAsyncResult">
+            <summary>
+              Looks up a localized string similar to IAsyncResult object did not come from the corresponding async method on this Type..
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior">
+            <summary>
+            A SOAP endpoint behavior which injects a message inspector that adds query headers.
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior._cookieInspector">
+            <summary>
+            Message insepctor to use if it is set to a non-<c>null</c> value.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior.System#ServiceModel#Description#IEndpointBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Implement to pass data at runtime to bindings to support custom behavior.
+            </summary>
+            <param name="endpoint">The endpoint to modify.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior.System#ServiceModel#Description#IEndpointBehavior#ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            Implements a modification or extension of the client across an endpoint.
+            </summary>
+            <param name="endpoint">The endpoint that is to be customized.</param>
+            <param name="clientRuntime">The client runtime to be customized.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior.System#ServiceModel#Description#IEndpointBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            Implements a modification or extension of the service across an endpoint.
+            </summary>
+            <param name="endpoint">The endpoint that exposes the contract.</param>
+            <param name="endpointDispatcher">The endpoint dispatcher to be modified or extended.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior.System#ServiceModel#Description#IEndpointBehavior#Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Implement to confirm that the endpoint meets some intended criteria.
+            </summary>
+            <param name="endpoint">The endpoint to validate.</param>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.Behaviors.SoapEndpointBehavior.QueryInspector.QueryOptionsHeader">
+            <summary>
+            Class represponsible for serialization of query options as a SOAP header
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Web.Behaviors.WebDomainClientWebHttpBehavior.MessageInspector">
+            <summary>
+            Message insepctor to use if it is set to a non-<c>null</c> value.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.WebDomainClientWebHttpBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Apply contract behaviour such as [WebGet] and [FaultDescription] and then perform validation.
+            
+            Confirms that the endpoint meets the requirements for the Web programming model.
+            </summary>
+            <param name="endpoint">The service endpoint.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.WebDomainClientWebHttpBehavior.EnsureBehavior``1(System.ServiceModel.Description.OperationDescription)">
+            <summary>
+            Get the behaviour of type T applied to the <see cref="T:System.ServiceModel.Description.OperationDescription"/>, adding it if it
+            is not already present.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="operationDesc">The operation desc.</param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.Behaviors.WebHttpQueryClientMessageFormatter">
+            <summary>
+            A formatter for serializing query requests which requires query parameters present in the
+            To uri or message body.
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.Client.Web.Behaviors.WebHttpQueryClientMessageFormatter.MaximumUriLength">
+            <summary>
+            For cross-browser compatibility support, the maximum supported URI length is 2083 characters.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.Behaviors.WebHttpQueryClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])">
+            <summary>
+            Converts the specified <paramref name="parameters"/> into an outbound
+            <see cref="T:System.ServiceModel.Channels.Message"/>. For query requests with query properties, stores the query
+            parameters either in the To/Via or the message body.
+            </summary>
+            <param name="messageVersion">The version of the message to use.</param>
+            <param name="parameters">The parameters passed to the client operation.</param>
+            <returns>The message to send.</returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory">
+            <summary>
+            For connecting to services using the /soap endpoint based on <see cref="T:System.ServiceModel.BasicHttpBinding"/>.
+            <para>Set <see cref="P:OpenRiaServices.DomainServices.Client.DomainContext.DomainClientFactory"/> to an instance of this class
+            in order for newly created <see cref="T:OpenRiaServices.DomainServices.Client.DomainContext"/> implementations to use the soap endpoint.
+            </para>
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory" /> class.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory.CreateChannelFactory``1(System.Uri,System.Boolean)">
+            <summary>
+            Creates a channel factory for use by a DomainClient to communicate with the server using SOAP endpoint.
+            </summary>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns>The channel used to communicate with the server.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory.CreateEndpointAddress(System.Uri,System.Boolean)">
+            <summary>
+            Appends "/soap" to the endpoint in order to connect to the soap endpoint
+            </summary>
+            <param name="endpoint">base endpoint (service uri)</param>
+            <param name="requiresSecureEndpoint">not used</param>
+            <returns>endpoint usefull to connect to soap endpoint of the service</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory.CreateBinding(System.Uri,System.Boolean)">
+            <summary>
+            Generates a <see cref="T:System.ServiceModel.BasicHttpBinding"/> which is configured to speak to the
+            "soap" endpoint
+            </summary>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/soap" or "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns>A <see cref="T:System.ServiceModel.Channels.Binding"/> which is compatible with soap endpoint</returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory">
+            <summary>
+            Base class DomainClientFactories targeting WCF and creating <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> instances.
+            For most uses you should use a concerete implementation such as 
+            <see cref="T:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory"/> or <see cref="T:OpenRiaServices.DomainServices.Client.Web.SoapDomainClientFactory"/>
+            instead.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory" /> class.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CreateDomainClientCore(System.Type,System.Uri,System.Boolean)">
+            <summary>
+            Creates an <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> instance.
+            </summary>
+            <param name="serviceContract">The service contract (not null).</param>
+            <param name="serviceUri">The service URI.</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if DomainService has the RequiresSecureEndpoint attribute and encryption should be enabled.</param>
+            <returns>
+            A <see cref="T:OpenRiaServices.DomainServices.Client.DomainClient" /> to use when communicating with the service
+            </returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CreateInstance``1(System.Uri,System.Boolean)">
+            <summary>
+            Creates actual WebDomainClient instance.
+            </summary>
+            <typeparam name="TContract">The type of the contract.</typeparam>
+            <param name="serviceUri">The service URI.</param>
+            <param name="requiresSecureEndpoint">if set to <c>true</c> [requires secure endpoint].</param>
+            <returns></returns>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CookieContainer">
+            <summary>
+            Cookie container to be shared by all created <see cref="T:OpenRiaServices.DomainServices.Client.DomainClient"/>s.
+            If value is <c>null</c> then cookies will not be managed.
+            This is required when using cookie based Authentication (except for Silverlight) and is 
+            therefore enabled by default.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CreateChannelFactory``1(System.Uri,System.Boolean)">
+            <summary>
+            Creates a channel factory for use by a DomainClient to communicate with the server.
+            </summary>
+            <remarks>
+             This is not used if a ChannelFactory was passed to the ctor of the <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/>
+            </remarks>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns>The channel used to communicate with the server.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CreateEndpointAddress(System.Uri,System.Boolean)">
+            <summary>
+            Get an <see cref="T:System.ServiceModel.EndpointAddress" /> that identifies the server endpoint
+            </summary>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns><see cref="T:System.ServiceModel.EndpointAddress"/> where target uri has the protocol suffix ("/binary") set </returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CreateBinding(System.Uri,System.Boolean)">
+            <summary>
+            Setup the default WCF <see cref="T:System.ServiceModel.Channels.Binding" /> for the server communication.
+            Using "REST" w/ binary encoding
+            </summary>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns>A <see cref="T:System.ServiceModel.Channels.CustomBinding"/> using REST and binary encoding</returns>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.SharedCookieMessageInspector">
+            <summary>
+            When <see cref="P:OpenRiaServices.DomainServices.Client.Web.WcfDomainClientFactory.CookieContainer"/> is set to a non-<c>null</c> value then
+            this inspector is used by wcf based transports to setup cookie suport
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.SharedCookieMessageInspector">
+            <summary>
+            Helper class which ensures that we use the CookieContainer for each request
+            based upon Kyle McClellan's blog post
+            https://blogs.msdn.microsoft.com/kylemc/2010/05/14/ria-services-authentication-out-of-browser/
+            
+            </summary>
+            <remarks>
+            We should try to make this a one time initialization instead
+            using 
+             either a IChannelInitializer (not available in Silverlight)
+            or 
+             by initializing the ChannelFactory by "opening" it so we can use 
+             channelFactory.GetProperty{IHttpCookieContainerManager}().CookieContainer = ..
+             in CreateChannelFactory function. (which requires some refactoring if we
+             are still to allow customization of the ChannelFactory).
+            </remarks>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory">
+            <summary>
+            Creates <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/> instances
+            For connecting to services using the default REST with binary encoding protocol.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory" /> class.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory.CreateChannelFactory``1(System.Uri,System.Boolean)">
+            <summary>
+            Creates a channel factory for use by a DomainClient to communicate with the server.
+            </summary>
+            <remarks>
+             This is not used if a ChannelFactory was passed to the ctor of the <see cref="T:OpenRiaServices.DomainServices.Client.WebDomainClient`1"/>
+            </remarks>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns>The channel used to communicate with the server.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory.CreateEndpointAddress(System.Uri,System.Boolean)">
+            <summary>
+            Get an <see cref="T:System.ServiceModel.EndpointAddress" /> that identifies the server endpoint
+            </summary>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns><see cref="T:System.ServiceModel.EndpointAddress"/> where target uri has the protocol suffix ("/binary") set </returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.Web.WebDomainClientFactory.CreateBinding(System.Uri,System.Boolean)">
+            <summary>
+            Setup the default WCF <see cref="T:System.ServiceModel.Channels.Binding" /> for the server communication.
+            Using "REST" w/ binary encoding
+            </summary>
+            <param name="endpoint">Absolute service URI without protocol suffix such as "/binary"</param>
+            <param name="requiresSecureEndpoint"><c>true</c> if communication must be secured, otherwise <c>false</c></param>
+            <returns>A <see cref="T:System.ServiceModel.Channels.CustomBinding"/> using REST and binary encoding</returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.AsyncResultBase">
+            <summary>
+            Internal type used as a common <see cref="T:System.IAsyncResult"/> base for all cancellable asynchronous operations.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.AsyncResultBase.#ctor(System.AsyncCallback,System.Object)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="callback">Optional callback to invoke upon completion.</param>
+            <param name="asyncState">Optional user state to pass to <paramref name="callback"/>.</param>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.AsyncResultBase.AsyncState">
+            <summary>
+            Gets the optional user state.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.AsyncResultBase.AsyncWaitHandle">
+            <summary>
+            Gets the assoicated <see cref="T:System.Threading.WaitHandle"/>.  Not supported.
+            </summary>
+            <exception cref="T:System.NotSupportedException"> is always thrown.</exception>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.AsyncResultBase.CompletedSynchronously">
+            <summary>
+            Gets a value indicating whether the asynchronous operation completed synchronously.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.AsyncResultBase.IsCompleted">
+            <summary>
+            Gets a value indicating whether the asynchronous operation is complete.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.AsyncResultBase.CancellationRequested">
+            <summary>
+            Gets a value indicating whether cancellation was requested.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.AsyncResultBase.InnerAsyncResult">
+            <summary>
+            Gets the inner <see cref="T:System.IAsyncResult"/>.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.AsyncResultBase.EndAsyncOperation``1(System.IAsyncResult)">
+            <summary>
+            Transitions an <see cref="T:System.IAsyncResult"/> instance to mark the operation as ended.
+            </summary>
+            <typeparam name="TAsyncResult">The <see cref="T:OpenRiaServices.DomainServices.Client.AsyncResultBase"/> type expected.</typeparam>
+            <param name="asyncResult">The <see cref="T:System.IAsyncResult"/> to examine.</param>
+            <returns>The <paramref name="asyncResult"/> cast as the <typeparamref name="TAsyncResult"/> type expected.</returns>
+            <exception cref="T:System.ArgumentNullException"> if <paramref name="asyncResult"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"> if <paramref name="asyncResult"/> is not of type <typeparamref name="TAsyncResult"/>.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/> has been canceled.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/>'s End* method has already been invoked.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.AsyncResultBase.EndAsyncOperation``1(System.IAsyncResult,System.Boolean)">
+            <summary>
+            Transitions an <see cref="T:System.IAsyncResult"/> instance to mark the operation as ended (and optionally canceled).
+            </summary>
+            <typeparam name="TAsyncResult">The <see cref="T:OpenRiaServices.DomainServices.Client.AsyncResultBase"/> type expected.</typeparam>
+            <param name="asyncResult">The <see cref="T:System.IAsyncResult"/> to examine.</param>
+            <param name="cancel">Indicates whether the operation should be canceled.</param>
+            <returns>The <paramref name="asyncResult"/> cast as the <typeparamref name="TAsyncResult"/> type expected.</returns>
+            <exception cref="T:System.ArgumentNullException"> if <paramref name="asyncResult"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"> if <paramref name="asyncResult"/> is not of type <typeparamref name="TAsyncResult"/>.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/> has been canceled.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/>'s End* method has already been invoked.</exception>
+            <exception cref="T:System.InvalidOperationException"> if <paramref name="asyncResult"/> has not completed.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.AsyncResultBase.Complete">
+            <summary>
+            Signals that the asynchronous operation has completed and invokes the callback.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"> if Complete has already been called.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.AsyncResultBase.Cancel">
+            <summary>
+            Signals a cancellation request for this operation.
+            </summary>
+            <remarks>
+            If this operation is completing or has already completed, this method returns without modifying any state.
+            Cancellation is not guaranteed.
+            </remarks>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.AsyncResultBase.SetEndMethodInvokedFlag">
+            <summary>
+            Signals that the asynchronous EndXxx method has been invoked.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"> if SetEndMethodInvokedFlag has already been called.</exception>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.AsyncOperationType">
+            <summary>
+            Internal enumeration used to qualify operation results.
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.Client.AsyncOperationType.None">
+            <summary>
+            No operation.
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.Client.AsyncOperationType.Invoke">
+            <summary>
+            An invoke operation.
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.Client.AsyncOperationType.Query">
+            <summary>
+            A query operation.
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.Client.AsyncOperationType.Submit">
+            <summary>
+            A submit operation.
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult">
+            <summary>
+            Internal <see cref="T:System.IAsyncResult"/> used during <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/> operations.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.#ctor(OpenRiaServices.DomainServices.Client.DomainClient,System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> instance used for Query operations.
+            </summary>
+            <param name="domainClient">The associated <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/>.</param>
+            <param name="callback">Optional <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="domainClient"/> is null.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.#ctor(OpenRiaServices.DomainServices.Client.DomainClient,OpenRiaServices.DomainServices.Client.EntityChangeSet,System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> instance used for Submit operations.
+            </summary>
+            <param name="domainClient">The associated <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/>.</param>
+            <param name="entityChangeSet">The Submit operation <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.EntityChangeSet"/>.</param>
+            <param name="callback">Optional <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="domainClient"/> is null.</exception>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.#ctor(OpenRiaServices.DomainServices.Client.DomainClient,OpenRiaServices.DomainServices.Client.InvokeArgs,System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> instance used for Invoke operations.
+            </summary>
+            <param name="domainClient">The associated <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/>.</param>
+            <param name="invokeArgs">The arguments to the Invoke operation.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="domainClient"/> is null.</exception>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient">
+            <summary>
+            Gets the <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/> associated with this result.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.EntityChangeSet">
+            <summary>
+            Gets the <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.EntityChangeSet"/> used with Submit operations.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.InvokeArgs">
+            <summary>
+            Gets the arguments for Invoke operations.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.AsyncOperationType">
+            <summary>
+            Gets the <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.AsyncOperationType"/> describing this operation.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.CreateQueryResult(OpenRiaServices.DomainServices.Client.DomainClient,System.AsyncCallback,System.Object)">
+            <summary>
+            Creates a new <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> used for Query operations.
+            </summary>
+            <param name="domainClient">The <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/> associated with this result.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> used for Query operations</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.CreateSubmitResult(OpenRiaServices.DomainServices.Client.DomainClient,OpenRiaServices.DomainServices.Client.EntityChangeSet,System.AsyncCallback,System.Object)">
+            <summary>
+            Creates a new <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> used for Submit operations.
+            </summary>
+            <param name="domainClient">The associated <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/>.</param>
+            <param name="entityChangeSet">The Submit operation <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.EntityChangeSet"/>.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> used for Submit operations</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.CreateInvokeResult(OpenRiaServices.DomainServices.Client.DomainClient,OpenRiaServices.DomainServices.Client.InvokeArgs,System.AsyncCallback,System.Object)">
+            <summary>
+            Creates a new <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> used for Invoke operations.
+            </summary>
+            <param name="domainClient">The associated <see cref="P:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult.DomainClient"/>.</param>
+            <param name="invokeArgs">The arguments to the Invoke operation.</param>
+            <param name="callback">The <see cref="T:System.AsyncCallback"/> to invoke upon completion.</param>
+            <param name="asyncState">Optional user state information that will be passed to the <paramref name="callback"/>.</param>
+            <returns>A <see cref="T:OpenRiaServices.DomainServices.Client.DomainClientAsyncResult"/> used for Invoke operations</returns>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement">
+            <summary>
+            The binding element that specifies the .NET Binary Format for XML used to encode messages.
+            </summary>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage">
+            <summary>
+            A buffered message created by a <see cref="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder"/>.
+            </summary>
+            <remarks>The Message.CreateMessage overloads do not provide a non-streamed message
+            that is comparable to the messages produced by the WCF framework. This disparity
+            leads to both functional and performance pitfalls. This class is an approximation
+            of a buffered message used by WCF, specifically engineered for PoxBinary (i.e.
+            MessageVersion.None only).</remarks>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.#ctor(OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData)">
+            <summary>
+            Constructs a <see cref="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage"/>.
+            </summary>
+            <param name="data">The message data containing the message contents.</param>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.Headers">
+            <summary>
+            The <see cref="T:System.ServiceModel.Channels.MessageHeaders"/> object that represents the headers of this message.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException" />
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.IsFault">
+            <summary>
+            Returns <c>true</c> if this message contains a fault.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.Properties">
+            <summary>
+            The <see cref="T:System.ServiceModel.Channels.MessageProperties"/> instance that represents the properties of
+            this message.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException" />
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.Version">
+            <summary>
+            The version of this message.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.OnBodyToString(System.Xml.XmlDictionaryWriter)">
+            <summary>
+            Converts the message body to a string.
+            </summary>
+            <param name="writer">The writer to which the message is written.</param>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.OnClose">
+            <summary>
+            Disposes all message resources.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.OnCreateBufferedCopy(System.Int32)">
+            <summary>
+            Creates a buffer to store this message.
+            </summary>
+            <param name="maxBufferSize">The maximum size of the buffer to be created.</param>
+            <returns>A buffer containing the message.</returns>
+            <remarks>The <paramref name="maxBufferSize"/> is ignored. Since the message
+            contents are shared, no additional buffers are created.</remarks>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.OnGetReaderAtBodyContents">
+            <summary>
+            Returns an <see cref="T:System.Xml.XmlDictionaryReader"/> positioned at the message contents.
+            </summary>
+            <returns>An <see cref="T:System.Xml.XmlDictionaryReader"/>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.OnWriteBodyContents(System.Xml.XmlDictionaryWriter)">
+            <summary>
+            Writes the message body contents to the specified writer.
+            </summary>
+            <param name="writer">The <see cref="T:System.Xml.XmlDictionaryWriter"/> that is used to
+            write the message body contents.</param>
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer">
+            <summary>
+            Represents a buffer that stores the data required to create a
+            <see cref="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage"/> or its contents for future consumption.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer.#ctor(OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData,System.ServiceModel.Channels.MessageHeaders,System.ServiceModel.Channels.MessageProperties)">
+            <summary>
+            Constructs a <see cref="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer"/>
+            </summary>
+            <param name="data">The message data.</param>
+            <param name="headers">The message headers.</param>
+            <param name="properties">The message properties.</param>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer.BufferSize">
+            <summary>
+            Gets the number of bytes consumed by this buffer.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException" />
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer.MessageContentType">
+            <summary>
+            Gets the type of content stored in this buffer.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException" />
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer.Close">
+            <summary>
+            Closes the buffer.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer.CreateMessage">
+            <summary>
+            Returns an identical copy of the original message from which this buffer was
+            created.
+            </summary>
+            <returns>A copy of the original message.</returns>
+            <exception cref="T:System.ObjectDisposedException" />
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessage.PoxBinaryBufferedMessageBuffer.WriteMessage(System.IO.Stream)">
+            <summary>
+            Writes the entire contents of this buffer into the specified stream.
+            </summary>
+            <param name="stream">The stream that the buffer contents will be written to.</param>
+            <exception cref="T:System.ArgumentNullException" /> 
+            <exception cref="T:System.ObjectDisposedException" />
+        </member>
+        <member name="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData">
+            <summary>
+            The message data class that holds shared state between messages, buffers, and
+            messages created from a buffer.
+            </summary>
+            <remarks>The desktop framework allows callers to keep track of reader lifetimes.
+            With this ability, the state can be ref counted across all users, and the buffer
+            can be returned to its manager when all users release their references.
+            The Silverlight framework does not allow callers to keep track of reader lifetimes.
+            Given this, the buffer is not returned to its manager, but is cleaned up by the GC.
+            Note, without a custom message, we would use messages returned from
+            Message.CreateMessage. These messages cannot reuse buffers.</remarks>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData.#ctor(System.ArraySegment{System.Byte},OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder)">
+            <summary>
+            Constructs a <see cref="T:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData"/>.
+            </summary>
+            <param name="buffer">The message contents.</param>
+            <param name="encoder">The encoder producing the message contents.</param>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData.Buffer">
+            <summary>
+            The message contents.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData.Encoder">
+            <summary>
+            The encoder producing the message contents.
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.Client.PoxBinaryMessageEncodingBindingElement.PoxBinaryMessageEncoder.PoxBinaryBufferedMessageData.TakeReader">
+            <summary>
+            Returns an <see cref="T:System.Xml.XmlDictionaryReader"/> containing the message contents.
+            </summary>
+            <returns>An <see cref="T:System.Xml.XmlDictionaryReader"/> containing the message
+            contents.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.BinaryTypeUtility.IsTypeBinary(System.Type)">
+            <summary>
+            Returns whether the <paramref name="type"/> <c>is System.Data.Linq.Binary</c>.
+            </summary>
+            <remarks>
+            We test Binary by Type Name so our client framework assembly can avoid taking an
+            assembly reference to <c>System.Data.Linq</c>. If a type is determined to be
+            binary, that type will be used to check reference equality for all subsequent
+            invocations.
+            </remarks>
+            <param name="type">The type to check</param>
+            <returns>Whether the <paramref name="type"/> is binary</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.BinaryTypeUtility.GetByteArrayFromBinary(System.Object)">
+            <summary>
+            Returns the <paramref name="binary"/> converted to a <c>byte[]</c>.
+            </summary>
+            <param name="binary">The binary to convert</param>
+            <returns>The byte[] form of the binary</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.BinaryTypeUtility.GetBinaryFromByteArray(System.Byte[])">
+            <summary>
+            Returns the <paramref name="bytes"/> converted to a <c>System.Data.Linq.Binary</c>.
+            </summary>
+            <param name="bytes">The bytes to convert</param>
+            <returns>The binary form of the bytes</returns>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.TypeUtility.systemAssemblyPublicKeyTokens">
+            <summary>
+            List of public key tokens used for System assemblies
+            </summary>
+        </member>
+        <member name="F:OpenRiaServices.DomainServices.TypeUtility.OpenRiaServicesAssemblyNames">
+            <summary>
+            The list of assemblies that form OpenRiaServices. If OpenRiaServices is extended with
+            additional assemblies, or if assemblies are removed, this array must be updated accordingly.
+            </summary>
+        </member>
+        <member name="P:OpenRiaServices.DomainServices.TypeUtility.EmptyTypes">
+            <summary>
+            Represents an empty array of type <see href="System.Type" />
+            </summary>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsAttributeDefined(System.Reflection.PropertyInfo,System.Type,System.Boolean)">
+            <summary>
+            Determines if a specific attribute is defined on a property.
+            </summary>
+            <param name="property"></param>
+            <param name="attributeType">the type of attribute to look for</param>
+            <param name="inherit"></param>
+            <returns><c>true</c> if the attribute is defined, otherwise <c>false</c></returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsAttributeDefined(System.Type,System.Type,System.Boolean)">
+            <summary>
+            Determines if a specific attribute is defined for a type.
+            </summary>
+            <param name="type"></param>
+            <param name="attributeType">the type of attribute to look for</param>
+            <param name="inherit"></param>
+            <returns><c>true</c> if the attribute is defined, otherwise <c>false</c></returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsNullableType(System.Type)">
+            <summary>
+            Returns <c>true</c> if the given type is a <see cref="T:System.Nullable"/>
+            </summary>
+            <param name="type">The type to test</param>
+            <returns><c>true</c> if the given type is a nullable type</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsTaskType(System.Type)">
+            <summary>
+            Returns <c>true</c> if the given type is a <see cref="T:System.Threading.Tasks.Task"/>
+            </summary>
+            <param name="type">The type to test</param>
+            <returns><c>true</c> if the given type is a Task or Task{T}</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.GetNonNullableType(System.Type)">
+            <summary>
+            If the given type is <see cref="T:System.Nullable"/>, returns the element type,
+            otherwise simply returns the input type
+            </summary>
+            <param name="type">The type to test that may or may not be Nullable</param>
+            <returns>Either the input type or, if it was Nullable, its element type</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsPredefinedType(System.Type)">
+            <summary>
+            Returns <c>true</c> if the given type is a primitive type or one
+            of our standard acceptable simple types, such as <see cref="T:System.String"/>,
+            <see cref="T:System.Guid"/>, or one of our standard generic types whose generic
+            argument is primitive or simple (e.g. Nullable, IEnumerable, IDictionary&lt;TKey,TValue&gt;).
+            </summary>
+            <param name="type">The type to test</param>
+            <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsPredefinedListType(System.Type)">
+            <summary>
+            Returns <c>true</c> if the given type is <see cref="T:System.Collections.Generic.IEnumerable`1"/> or an <see cref="T:System.Collections.IList"/> type, 
+            and is either an interface, an array, or has a default constructor.
+            </summary>
+            <param name="type">The type to test</param>
+            <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsSupportedCollectionType(System.Type)">
+            <summary>
+            Returns <c>true</c> if specified type is a supported collection Type. This method only checks the collection
+            Type itself, not whether the element Type is supported.
+            </summary>
+            <param name="type">The type to test</param>
+            <returns><c>true</c> if the type is a supported collection Type.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsPredefinedDictionaryType(System.Type)">
+            <summary>
+            Returns <c>true</c> if <paramref name="type"/> implements <see cref="T:System.Collections.Generic.IDictionary`2"/> and
+            its generic type arguments are acceptable predefined simple types.
+            </summary>
+            <param name="type">The type to test.</param>
+            <returns><c>true</c> if the type is a <see cref="T:System.Collections.Generic.IDictionary`2"/> with supported generic type arguments.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsPredefinedSimpleType(System.Type)">
+            <summary>
+            Returns <c>true</c> if the given type is either primitive or one of our
+            standard acceptable simple types, such as <see cref="T:System.String"/>,
+            <see cref="T:System.Guid"/>, etc
+            </summary>
+            <param name="type">The type to test</param>
+            <returns><c>true</c> if the type is a primitive or standard acceptable types</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsComplexType(System.Type)">
+            <summary>
+            This method determines if the specified Type should be treated as a
+            complex type by the framework.
+            </summary>
+            <param name="type">The type to check.</param>
+            <returns>True if the type is a complex type, false otherwise.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsComplexTypeCollection(System.Type)">
+            <summary>
+            Determines whether the specified type is one of the supported collection types
+            with a complex element type.
+            </summary>
+            <param name="type">The type to check.</param>
+            <returns>True if the type is a supported complex collection type, false otherwise.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsSupportedComplexType(System.Type)">
+            <summary>
+            Determines whether the specified type is a complex type or a collection of
+            complex types.
+            </summary>
+            <param name="type">The type to check.</param>
+            <returns>True if the specified type is a complex type or a collection of
+            complex types, false otherwise.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.GetElementType(System.Type)">
+            <summary>
+            Returns the underlying element type starting from a given type.
+            </summary>
+            <remarks>
+            Simple types simply return the input type.
+            If the given type is an array, this method returns the array's
+            element type.
+            If the type is a generic type of <see cref="T:System.Collections.IEnumerable"/>, 
+            or <see cref="T:System.Nullable"/>, this method returns the element
+            type of the generic parameter
+            </remarks>
+            <param name="type"><see cref="T:System.Type"/> to examine.</param>
+            <returns>The underlying element type starting from the given type</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.DefinitionIsAssignableFrom(System.Type,System.Type)">
+            <summary>
+            Determines whether the generic type definition is assignable from the derived type.
+            </summary>
+            <remarks>
+            This behaves just like <see cref="M:System.Type.IsAssignableFrom(System.Type)"/> except that it determines
+            whether any generic type that can be made from the <paramref name="genericTypeDefinition"/>
+            is assignable from <paramref name="derivedType"/>.
+            </remarks>
+            <param name="genericTypeDefinition">The generic type definition</param>
+            <param name="derivedType">The type to determine assignability from</param>
+            <returns>Whether the type definition is assignable from the derived type</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.DefinitionIsAssignableFrom(System.Type,System.Type,System.Type@)">
+            <summary>
+            Determines whether the generic type definition is assignable from the derived type.
+            </summary>
+            <remarks>
+            This behaves just like <see cref="M:System.Type.IsAssignableFrom(System.Type)"/> except that it determines
+            whether any generic type that can be made from the <paramref name="genericTypeDefinition"/>
+            is assignable from <paramref name="derivedType"/>.
+            </remarks>
+            <param name="genericTypeDefinition">The generic type definition</param>
+            <param name="derivedType">The type to determine assignability from</param>
+            <param name="genericType">The generic base class or interface implemented by the derived
+            type that can be made from the <paramref name="genericTypeDefinition"/>. This value is
+            null when the method return false.
+            </param>
+            <returns>Whether the type definition is assignable from the derived type</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsSystemAssembly(System.Reflection.Assembly)">
+            <summary>
+            Performs a check against an assembly to determine if it's a known
+            System assembly.
+            </summary>
+            <param name="assembly">The assembly to check.</param>
+            <returns><c>true</c> if the assembly is known to be a system assembly, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsSystemAssembly(System.Reflection.AssemblyName)">
+            <summary>
+            Performs a check against an <see cref="T:System.Reflection.AssemblyName"/> to determine if it's a known
+            System assembly.
+            </summary>
+            <param name="assemblyName">The assembly name to check.</param>
+            <returns><c>true</c> if the assembly is known to be a system assembly, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsOpenRiaAssembly(System.Reflection.AssemblyName)">
+            <summary>
+            Performs a check against an <see cref="T:System.Reflection.AssemblyName"/> to determine if it's a known
+            Open Ria assembly.
+            </summary>
+            <param name="assemblyName">The assembly name to check.</param>
+            <returns><c>true</c> if the assembly is known to be a Open Ria assembly, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsSigned(System.Reflection.AssemblyName)">
+            <summary>
+            Check against an <see cref="T:System.Reflection.AssemblyName"/> to determine if signed to create a strong name
+            (it has public key token != null)
+            </summary>
+            <remarks>
+             This should not be confuse with assemblies signed with a certificate (authenticode signed).
+            </remarks>
+            <param name="assemblyName">The assembly name to check.</param>
+            <returns><c>true</c> if the assembly is strongly named (signed), otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.TypeUtility.IsSystemAssembly(System.String)">
+            <summary>
+            Performs a check against an assembly's full name to determine if it's a known
+            System assembly.
+            </summary>
+            <remarks>
+            We can't use Assembly.GetName().GetPublicKeyToken() since that requires FileIOPermissions.
+            </remarks>
+            <param name="assemblyFullName">The <see cref="P:System.Reflection.AssemblyName.FullName"/> to check.</param>
+            <returns><c>true</c> if the assembly is known to be a system assembly, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.ExceptionHandlingUtility.IsFatal(System.Exception)">
+            <summary>
+            Determines if an <see cref="T:System.Exception"/> is fatal and therefore should not be handled.
+            </summary>
+            <example>
+            try
+            {
+                // Code that may throw
+            }
+            catch (Exception ex)
+            {
+                if (ex.IsFatal())
+                {
+                    throw;
+                }
+                
+                // Handle exception
+            }
+            </example>
+            <param name="exception">The exception to check</param>
+            <returns><c>true</c> if the exception is fatal, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:OpenRiaServices.DomainServices.ExceptionHandlingUtility.GetUnwrappedException(System.Exception)">
+            <summary>
+            Helper method to unwrap a TargetInvocationException and AggregateException.
+            </summary>
+            <param name="e">The exception to unwrap.</param>
+            <returns>the first inner exception which is neither a TargetInvocationException nor a AggregateException</returns>
+        </member>
+    </members>
+</doc>

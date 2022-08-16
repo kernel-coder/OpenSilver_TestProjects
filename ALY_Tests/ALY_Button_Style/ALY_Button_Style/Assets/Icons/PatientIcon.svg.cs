@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public PatientIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            Width = Height = 21;
             Source = @"Assets\Icons\PatientIcon.svg";
         }
     }

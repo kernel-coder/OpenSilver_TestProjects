@@ -3,7 +3,7 @@
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
            Title="ChildWindow2"
            xmlns:local="clr-namespace:ALY_Button_Style"
-           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" Style="{StaticResource ChildWindowStyle}">
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" Style="{StaticResource ChildWindowStyle}" >
     <Grid x:Name="LayoutRoot" Margin="2">
         <Grid.RowDefinitions>
             <RowDefinition />

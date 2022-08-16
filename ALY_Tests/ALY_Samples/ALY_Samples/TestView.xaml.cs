@@ -64,8 +64,15 @@ namespace ALY_Button_Style
         private async void Button_Click2(object sender, RoutedEventArgs e)
         {
             //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
-            ChildWindow1 window = new ChildWindow1();
-            window.Show();          
+            try
+            {
+                ChildWindow1 window = new ChildWindow1();
+                window.Show();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         private async void Button_Click3(object sender, RoutedEventArgs e)

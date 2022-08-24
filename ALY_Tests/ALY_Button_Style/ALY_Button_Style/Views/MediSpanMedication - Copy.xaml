@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.MediSpanMedication"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" Width="25" Height="25">
+
+    <Canvas Width="25" Height="25" Background="Transparent">
+        <Path x:Name="BtnPestle2" Stretch="Uniform" Height="10" Width="17" Canvas.Left="8" Canvas.Top="3"
+              Data="F1 M297,100 L314,100 L289,160 L249,160 L297,100 z" UseLayoutRounding="False">
+            <Path.Fill>
+                <SolidColorBrush x:Name="BtnPestle2Color" Color="#6050004E" />
+            </Path.Fill>
+        </Path>
+
+        <Path x:Name="BtnMortar1" Stretch="Fill" Width="17" Height="2.15" Canvas.Left="2" Canvas.Top="13"
+              Data="F1 M279,0 L311,0 L311,4 L279,4 z" UseLayoutRounding="False">
+            <Path.Fill>
+                <SolidColorBrush x:Name="BtnMortar1Color" Opacity="80" Color="#FFFC7C34" />
+            </Path.Fill>
+        </Path>
+
+        <Path x:Name="BtnMortar2" Stretch="UniformToFill" StrokeThickness="0" Width="17" Height="8" Canvas.Left="2" Canvas.Top="15"
+              Data="F1 M279,0 L311,0 S295,33 279,0 z" UseLayoutRounding="False">
+            <Path.Fill>
+                <SolidColorBrush x:Name="BtnMortar2Color" Color="#6050004E" />
+            </Path.Fill>
+        </Path>
+    </Canvas>
+</UserControl>

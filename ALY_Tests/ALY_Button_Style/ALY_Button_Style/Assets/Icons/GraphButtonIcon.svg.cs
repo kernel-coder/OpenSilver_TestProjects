@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public GraphButtonIcon()
         {
-            MaxWidth = MaxHeight = 23;
+            SetSize(23);
             Source = @"Assets\Icons\GraphButtonIcon.svg";
         }
     }

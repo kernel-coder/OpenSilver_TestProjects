@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public HisIcon()
         {
-            Width = Height = 16;
+            SetSize(16);
             Source = @"Assets\Icons\HisIcon.svg";
         }
     }

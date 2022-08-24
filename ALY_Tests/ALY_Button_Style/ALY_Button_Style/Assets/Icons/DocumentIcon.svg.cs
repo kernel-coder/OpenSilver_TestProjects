@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public DocumentIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            SetSize(21);
             Source = @"Assets\Icons\DocumentIcon.svg";
         }
     }

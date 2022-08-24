@@ -5,7 +5,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public SearchIcon()
         {
-            Width = Height = 25;
+            SetSize(25);
             Source = @"Assets\Icons\SearchIcon.svg";
         }
     }

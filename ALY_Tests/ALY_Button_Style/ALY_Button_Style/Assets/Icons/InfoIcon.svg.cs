@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public InfoIcon()
         {
-            MaxWidth = MaxHeight = 21;
+            SetSize(16);
             Source = @"Assets\Icons\InfoIcon.svg";
         }
     }

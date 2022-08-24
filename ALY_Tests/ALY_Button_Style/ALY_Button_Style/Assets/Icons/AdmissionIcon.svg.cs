@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public AdmissionIcon()
         {
-            Width = Height = 21;
+            SetSize(21);
             Source = @"Assets\Icons\AdmissionIcon.svg";
         }
     }

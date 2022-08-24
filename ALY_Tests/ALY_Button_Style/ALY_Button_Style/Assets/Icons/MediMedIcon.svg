@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   overflow="visible"
+   version="1.1"
+   id="svg17"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs21" />
+  <svg
+     fill="none"
+     version="1.1"
+     id="svg15">
+    <path
+       d="M297,100 L314,100 L289,160 L249,160 L297,100 z"
+       fill-rule="nonzero"
+       fill="#50004E"
+       fill-opacity="0.38"
+       id="path9" />
+    <path
+       d="M279,0 L311,0 L311,4 L279,4 z"
+       fill-rule="nonzero"
+       fill="#FC7C34"
+       fill-opacity="80"
+       id="path11" />
+    <path
+       d="M279,0 L311,0 S295,33 279,0 z"
+       fill-rule="nonzero"
+       fill="#50004E"
+       fill-opacity="0.38"
+       id="path13" />
+  </svg>
+</svg>

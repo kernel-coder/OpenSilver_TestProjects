@@ -7,6 +7,17 @@ namespace Virtuoso.Core.Assets.Icons
 
     public class SvgControl : HtmlPresenter
     {
+        public void SetSize(double wh)
+        {
+            SetSize(wh, wh);
+        }
+
+        public void SetSize(double w, double h)
+        {
+            MaxWidth = Width = w;
+            MaxHeight = Height = h;
+        }
+
         public string Source
         {
             get { return (string)GetValue(SourceProperty); }
@@ -44,5 +55,7 @@ namespace Virtuoso.Core.Assets.Icons
                 }
             }
         }
+
+
     }
 }

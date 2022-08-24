@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public AlertLateButtonIcon()
         {
-            Width = Height = 21;
+            SetSize(21);
             Source = @"Assets\Icons\AlertLateButtonIcon.svg";
         }
     }

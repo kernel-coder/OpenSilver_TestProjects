@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public OasisIcon()
         {
-            Width = Height = 16;
+            SetSize(16);
             Source = @"Assets\Icons\OasisIcon.svg";
         }
     }

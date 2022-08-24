@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public PencilIcon()
         {
-            Width = Height = 17;
+            SetSize(17);
             Source = @"Assets\Icons\PencilIcon.svg";
         }
     }

@@ -5,6 +5,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public CheckMarkIcon()
         {
+            SetSize(20);
             Source = @"Assets\Icons\CheckMarkIcon.svg";
         }
     }

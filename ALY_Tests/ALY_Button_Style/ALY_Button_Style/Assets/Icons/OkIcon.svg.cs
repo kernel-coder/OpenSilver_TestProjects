@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public OkIcon()
         {
-            Width = Height = 20;
+            SetSize(20);
             Source = @"Assets\Icons\OkIcon.svg";
         }
     }

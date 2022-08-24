@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public RefreshIcon()
         {
-            MaxWidth = MaxHeight = 28;
+            SetSize(28);
             Source = @"Assets\Icons\RefreshIcon.svg";
         }
     }

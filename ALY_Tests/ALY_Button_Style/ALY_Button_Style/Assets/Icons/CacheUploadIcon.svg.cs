@@ -4,7 +4,7 @@ namespace Virtuoso.Core.Assets.Icons
     {
         public CacheUploadIcon()
         {
-            Width = Height = 19;
+            SetSize(19);
             Source = @"Assets\Icons\CacheUploadIcon.svg";
         }
     }

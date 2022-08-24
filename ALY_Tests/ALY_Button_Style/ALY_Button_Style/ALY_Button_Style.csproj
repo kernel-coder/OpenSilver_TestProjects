@@ -111,6 +111,9 @@
     <Page Include="ValidationTestUC2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MediSpanMedication.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PatientPhoneUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +211,7 @@
     <Compile Include="ValidationTestUC2.xaml.cs" />
     <Compile Include="ViewModels\GenericBase.cs" />
     <Compile Include="ViewModels\TaskEditVM.cs" />
+    <Compile Include="Views\MediSpanMedication.xaml.cs" />
     <Compile Include="Views\PatientPhoneUserControl.xaml.cs" />
     <Compile Include="Views\PatientUserControls.cs" />
   </ItemGroup>

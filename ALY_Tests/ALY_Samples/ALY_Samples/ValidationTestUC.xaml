@@ -34,13 +34,14 @@
                                  TabIndex="1"
                                  IsTabStop="{Binding IsEdit}"
                                  IsHitTestVisible="{Binding IsEdit}"
+                     IsEnabled="False"
                                  Text="{Binding SelectedItem.FirstName, Mode=TwoWay, NotifyOnValidationError=True}" />
 
             <VirtuosoCoreControls:vLabel Grid.Row="1"
                                                      Grid.Column="0"
                                                      Entity="ValidationTestEntity"
                                                      Property="NotRequiredName" />
-            <toolkit:TimePicker Grid.Row="1" HorizontalAlignment="Right"
+            <toolkit:TimePicker Grid.Row="1" HorizontalAlignment="Stretch"
                                                     Grid.Column="1"
                                                     Name="TaskTimePicker2"
                                                     IsTabStop="{Binding IsEdit}"

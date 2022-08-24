@@ -307,6 +307,9 @@
     <Compile Include="ChildWindow2.xaml.cs">
       <DependentUpon>ChildWindow2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindow3.xaml.cs">
+      <DependentUpon>ChildWindow3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ComboItemsTestDlg.xaml.cs">
       <DependentUpon>ComboItemsTestDlg.xaml</DependentUpon>
     </Compile>
@@ -429,6 +432,9 @@
     </Compile>
     <Compile Include="ViewModels\GenericBase.cs" />
     <Compile Include="ViewModels\TaskEditVM.cs" />
+    <Compile Include="Views\MediSpanMedication.xaml.cs">
+      <DependentUpon>MediSpanMedication.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PatientPhoneUserControl.xaml.cs">
       <DependentUpon>PatientPhoneUserControl.xaml</DependentUpon>
     </Compile>
@@ -623,6 +629,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ChildWindow3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ComboItemsTestDlg.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -704,6 +714,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ValidationTestUC2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MediSpanMedication.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

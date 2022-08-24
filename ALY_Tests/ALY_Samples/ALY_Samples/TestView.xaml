@@ -38,8 +38,19 @@
             <!--<controls:MultiSelectCombo x:Name="comboMulti" HorizontalAlignment="Right" Width="120" ></controls:MultiSelectCombo>-->
         </Grid>
 
-        <Grid x:Name="gridContent" Grid.Row="1">
-            <controls:vRichTextArea x:Name="rtb" VerticalAlignment="Top"/>
+        <Grid x:Name="gridContent" Grid.Row="1" Background="Black">
+            <controls:MediSpanMedication HorizontalAlignment="Center" VerticalAlignment="Center">
+                <controls:MediSpanMedication HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <controls:MediSpanMedication.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="5" ScaleY="5"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </controls:MediSpanMedication.RenderTransform>
+                </controls:MediSpanMedication>
+            </controls:MediSpanMedication>
         </Grid>
     </Grid>
 </UserControl>

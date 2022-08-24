@@ -22,7 +22,7 @@ namespace ALY_Button_Style
         {
             this.InitializeComponent();
 
-            rtb.ParagraphText = "A RichTextBox with <b>initial content</b> in it.";
+            //rtb.ParagraphText = "A RichTextBox with <b>initial content</b> in it.";
 
             //for (int i = 0; i < 30; i++)
             //{

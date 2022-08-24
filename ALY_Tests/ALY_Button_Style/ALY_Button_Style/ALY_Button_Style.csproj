@@ -111,6 +111,9 @@
     <Page Include="ValidationTestUC2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DynamicFormGraph.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MediSpanMedication.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +167,7 @@
     <Compile Include="Converters\EmptyOrNullToDefaultConverter.cs" />
     <Compile Include="Converters\FederalTaxIdConverters.cs" />
     <Compile Include="Converters\FileUploadConverter.cs" />
+    <Compile Include="Converters\GraphRelatedConverters.cs" />
     <Compile Include="Converters\ImageToBytesConverter.cs" />
     <Compile Include="Converters\LogLevelConverter.cs" />
     <Compile Include="Converters\MedicationConverters.cs" />
@@ -178,6 +182,8 @@
     <Compile Include="Converters\TextConverters.cs" />
     <Compile Include="Converters\VisibilityConverters.cs" />
     <Compile Include="DataGridTest.xaml.cs" />
+    <Compile Include="Data\Admission.cs" />
+    <Compile Include="Data\Encounter.cs" />
     <Compile Include="Data\PatientInfection.cs" />
     <Compile Include="Data\PatientPhone.cs" />
     <Compile Include="Data\ValidationTestEntity.cs" />
@@ -211,6 +217,7 @@
     <Compile Include="ValidationTestUC2.xaml.cs" />
     <Compile Include="ViewModels\GenericBase.cs" />
     <Compile Include="ViewModels\TaskEditVM.cs" />
+    <Compile Include="Views\DynamicFormGraph.xaml.cs" />
     <Compile Include="Views\MediSpanMedication.xaml.cs" />
     <Compile Include="Views\PatientPhoneUserControl.xaml.cs" />
     <Compile Include="Views\PatientUserControls.cs" />
@@ -245,6 +252,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Virtuoso.Server.Data\Validations\" />
     <Folder Include="Virtuoso.Server.Data_Partials\" />
   </ItemGroup>
   

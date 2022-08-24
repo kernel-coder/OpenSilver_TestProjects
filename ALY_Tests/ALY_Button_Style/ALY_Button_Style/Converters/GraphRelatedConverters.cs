@@ -1,4 +1,4 @@
-﻿#region Usings
+#region Usings
 
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using Virtuoso.Core.Cache;
 using Virtuoso.Server.Data;
 
 #endregion
@@ -60,14 +59,8 @@ namespace Virtuoso.Core.Converters
             {
                 _readingDateTime = readingDateTime.Value;
             }
-            else
-            {
-                _readingDateTime = ((encounter == null) || (encounter.EncounterOrTaskStartDateAndTime == null))
-                    ? DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified)
-                    : encounter.EncounterOrTaskStartDateAndTime.GetValueOrDefault().DateTime;
-            }
 
-            IsTeleMonitor = encounter?.EncounterIsVisitTeleMonitoring ?? false;
+            IsTeleMonitor =  true;
         }
 
         public GraphItem(bool useMilitaryTime, Encounter encounter, DateTime? readingDateTime, string thumbNail,
@@ -104,7 +97,7 @@ namespace Virtuoso.Core.Converters
             }
         }
 
-        public static bool UsesMilitaryTime => TenantSettingsCache.Current.TenantSetting.UseMilitaryTime;
+        public static bool UsesMilitaryTime => false;
     }
 
     public class GraphItemSourceMinimumDate : IValueConverter
@@ -223,10 +216,7 @@ namespace Virtuoso.Core.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             List<GraphItem> list = value as List<GraphItem>;
-            bool telemonitorItems =
-                Boolean.Parse(parameter.ToString()); //You must specify true or false for ConverterParameter
-            var ret = list.Where(g => g.IsTeleMonitor == telemonitorItems).ToList();
-            return ret;
+            return list;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -243,16 +233,6 @@ namespace Virtuoso.Core.Converters
 
             int x = 1;
 
-            if ((list != null) && (list.Count > 1))
-            {
-                var fd = list.Min(o => o.ReadingDateTime);
-                var ld = list.Max(o => o.ReadingDateTime);
-                TimeSpan ts = ld.Subtract(fd);
-                if (ts.Days > 1)
-                {
-                    x = (ts.Days - 1) / 10 + 1;
-                }
-            }
 
             return x;
         }

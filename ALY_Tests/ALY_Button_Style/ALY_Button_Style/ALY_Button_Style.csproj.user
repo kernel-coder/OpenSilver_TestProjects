@@ -115,6 +115,9 @@
     <Page Update="ValidationTestUC2.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\DynamicFormGraph.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MediSpanMedication.xaml">
       <SubType>Designer</SubType>
     </Page>

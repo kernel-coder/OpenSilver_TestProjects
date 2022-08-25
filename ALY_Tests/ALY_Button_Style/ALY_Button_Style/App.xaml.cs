@@ -28,7 +28,7 @@ namespace ALY_Button_Style
             VirtuosoEntityProperties.BuildEntityMetadata();
 #if OPENSILVER
             UpdateResDic(App.Current.Resources);
-            var mainPage = new TestView(); //  new Virtuoso.Core.Controls.SignatureUserControl();
+            var mainPage = new FocusTestPage(); //  new Virtuoso.Core.Controls.SignatureUserControl();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;

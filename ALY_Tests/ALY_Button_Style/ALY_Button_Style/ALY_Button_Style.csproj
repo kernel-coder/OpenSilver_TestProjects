@@ -75,7 +75,13 @@
 	<Page Include="Controls\vLabel.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="CWFocusTest.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="DataGridTest.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="FocusTestPage.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="ImageBrushSample.xaml">
@@ -181,12 +187,14 @@
     <Compile Include="Converters\SSNConverter.cs" />
     <Compile Include="Converters\TextConverters.cs" />
     <Compile Include="Converters\VisibilityConverters.cs" />
+    <Compile Include="CWFocusTest.xaml.cs" />
     <Compile Include="DataGridTest.xaml.cs" />
     <Compile Include="Data\Admission.cs" />
     <Compile Include="Data\Encounter.cs" />
     <Compile Include="Data\PatientInfection.cs" />
     <Compile Include="Data\PatientPhone.cs" />
     <Compile Include="Data\ValidationTestEntity.cs" />
+    <Compile Include="FocusTestPage.xaml.cs" />
     <Compile Include="Framework\EntityExtensions.cs" />
     <Compile Include="Framework\SimpleServiceProvider.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />

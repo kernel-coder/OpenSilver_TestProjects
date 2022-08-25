@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Virtuoso.Core.View.AuthInstanceSupplyOrEquipView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             TabNavigation="Cycle">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <clr:String x:Key="AUTHTYPES">AUTHTYPES</clr:String>
+            <clr:String x:Key="METHODTYPES">METHODTYPES</clr:String>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--<TextBox Grid.Row="0" Text="SupplyOrEquip" />-->
+
+        <!-- Labels -->
+
+        <VirtuosoCoreControls:vLabel
+            Grid.Row="2"
+            Grid.Column="0"
+            Entity="AdmissionAuthorizationDetail"
+            Property="AuthorizationAmount" />
+        <VirtuosoCoreControls:vLabel
+            Grid.Row="6"
+            Grid.Column="0"
+            Entity="AdmissionAuthorizationDetail"
+            Property="DateIssued" />
+        <VirtuosoCoreControls:vLabel
+            Grid.Row="7"
+            Grid.Column="0"
+            Entity="AdmissionAuthorizationDetail"
+            Property="AuthorizedBy" />
+        <VirtuosoCoreControls:vLabel
+            Grid.Row="8"
+            Grid.Column="0"
+            Entity="AdmissionAuthorizationDetail"
+            Property="MethodReceivedType" />
+        <VirtuosoCoreControls:vLabel
+            Grid.Row="9"
+            Grid.Column="0"
+            Entity="AdmissionAuthorizationDetail"
+            Property="ReceivedBy" />
+        <VirtuosoCoreControls:vLabel
+            Grid.Row="10"
+            Grid.Column="0"
+            Entity="AdmissionAuthorizationDetail"
+            Property="Comments"
+            VerticalAlignment="Top" />
+
+        <!-- Controls -->
+
+        <TextBox Grid.Row="0"
+                 Grid.Column="0"
+                 Visibility="Collapsed"
+                 Text="{Binding AuthInstanceSelectedItem, Mode=TwoWay, ValidatesOnExceptions=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True}" />
+
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Text="{Binding AuthInstanceSelectedItem.AuthorizationAmount,  Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, StringFormat='{}{0:0.00}', FallbackValue='0.00', TargetNullValue='0.00', Converter={StaticResource DecimalNullableValueConverter}}"
+            VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="9999999.99" />
+
+        <VirtuosoCoreControls:vDatePicker
+            Grid.Row="6"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            x:Name="dpIssued"
+            DateObject="{Binding AuthInstanceSelectedItem.DateIssued,  Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource DateTimeMinValueToNullConverter}}" />
+
+        <TextBox
+            Grid.Row="7"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            x:Name="tbAuthBy"
+            TextWrapping="Wrap"
+            AcceptsReturn="True"
+            Text="{Binding AuthInstanceSelectedItem.AuthorizedBy,  Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnNotifyDataErrors=True}">
+        </TextBox>
+
+        <VirtuosoCoreControls:codeLookup
+            Grid.Row="8"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            x:Name="cbMethodReceived"
+            Margin="0,0,0,4"
+            VerticalAlignment="Center"
+            CodeType="{Binding Source={StaticResource METHODTYPES}}"
+            IncludeNullItem="False"
+            FormatOfDropDown="Description"
+            FormatOfSelection="Description"
+            SelectedKey="{Binding AuthInstanceSelectedItem.MethodReceivedType, Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnNotifyDataErrors=True}">
+        </VirtuosoCoreControls:codeLookup>
+
+        <VirtuosoCoreControls:SmartCombo x:Name="receivedBySmartCombo"
+                                         Grid.Row="9"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="2"
+                                         MinWidth="400"
+                                         Width="Auto"
+                                         Height="Auto"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Stretch"
+                                         SelectedValuePath="UserId"
+                                         ValueMemberPath="FullName"
+                                         FilterPath="FullName"
+                                         SearchType="UserProfile"
+                                         SelectedValue="{Binding AuthInstanceSelectedItem.ReceivedBy, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True, Converter={StaticResource GuidValueConverter}}">
+            <VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FullName}" />
+                </DataTemplate>
+            </VirtuosoCoreControls:SmartCombo.ItemTemplate>
+        </VirtuosoCoreControls:SmartCombo>
+
+        <!--
+            Bind details to screen for validation summary
+        -->
+        <ListBox Grid.Row="10"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Visibility="Collapsed"
+                 ItemsSource="{Binding AuthInstanceSelectedItem.AdmissionAuthorizationDetail}">
+        </ListBox>
+
+        <TextBox
+            Grid.Row="10"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            x:Name="tbComments"
+            TextWrapping="Wrap"
+            AcceptsReturn="True"
+            MaxHeight="100"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            Text="{Binding AuthInstanceSelectedItem.Comments,  Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}">
+        </TextBox>
+
+        <sdk:ValidationSummary x:Name="valSum"
+                               Grid.Row="12"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3" />
+    </Grid>
+
+</UserControl>

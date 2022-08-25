@@ -1,0 +1,55 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.Controls.InsuranceVerificationStatusHistoryPopup"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Title="Item Status History"
+                      Width="650">
+
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <sdk:DataGrid
+            Grid.Row="0"
+            Grid.Column="0"
+            ItemsSource="{Binding WorklistHistory}"
+            AutoGenerateColumns="False"
+            HorizontalScrollBarVisibility="Visible"
+            VerticalScrollBarVisibility="Visible">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Header="Status"
+                                        Binding="{Binding Status, Converter={StaticResource InsCoorWorklistStatusKeyToTextConverter}}"
+                                        IsReadOnly="True"
+                                        Width="Auto" />
+
+                <sdk:DataGridTextColumn Header="Who"
+                                        Binding="{Binding UpdatedBy, Converter={StaticResource UserCacheGetFullNameFromUserIdConverter}}"
+                                        IsReadOnly="True"
+                                        Width="*" />
+
+                <sdk:DataGridTextColumn Header="Date"
+                                        Binding="{Binding UpdatedDate, Converter={StaticResource ShortDateTimeConverter}}"
+                                        IsReadOnly="True"
+                                        Width="*" />
+
+                <sdk:DataGridTextColumn Header="Time"
+                                        Binding="{Binding UpdatedDate, Converter={StaticResource TimeConverter}}"
+                                        IsReadOnly="True"
+                                        Width="*" />
+
+                <sdk:DataGridTemplateColumn Header="Comment" Width="200">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Comment}" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+    </Grid>
+</controls:ChildWindow>

@@ -1,0 +1,226 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.MedicationMARStandardPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="medItemListDataTemplate">
+            <CheckBox Content="{Binding AdministrationMedPatientMedication.MedicationDescription}"
+                      IsChecked="{Binding AdministrationMedIsChecked, Mode=TwoWay}">
+            </CheckBox>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
+    <Grid x:Name="medicationMARGrid" Margin="2,4,2,4" BindingValidationError="medicationMARGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="MAR Medication Administration Detail"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding MARCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Row="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White"
+                                  IsHitTestVisible="{Binding MAREditProtected, Converter={StaticResource OppositeBoolConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="16" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
+                                                             Entity="AdmissionMedicationMAR"
+                                                             Property="MedicationDescription" />
+
+                                <TextBox Grid.Column="2"
+                                         Grid.Row="1"
+                                         IsReadOnly="True"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Center"
+                                         Text="{Binding MARSelectedAdmissionMedicationMAR.MedicationDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"
+                                                             Entity="AdmissionMedicationMAR"
+                                                             Property="ScheduledAdministrationDateTime" />
+
+                                <TextBox Grid.Column="2"
+                                         Grid.Row="2"
+                                         IsReadOnly="True"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Center"
+                                         Text="{Binding MARSelectedAdmissionMedicationMAR.ScheduledAdministrationDateTimeFormatted, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"
+                                                             Entity="AdmissionMedicationMAR"
+                                                             Property="AdministrationDateTime" />
+
+                                <StackPanel x:Name="administrationDateTime"
+                                            Grid.Column="2"
+                                            Grid.Row="3"
+                                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vDatePicker Width="130" IsHitTestVisible="True"
+                                                                      VerticalAlignment="Center"
+                                                                      DateObject="{Binding MARSelectedAdmissionMedicationMAR.AdministrationDatePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                    <toolkit:TimePicker Margin="8,0,0,0" IsHitTestVisible="True"
+                                                        VerticalAlignment="Center"
+                                                        Value="{Binding MARSelectedAdmissionMedicationMAR.AdministrationTimePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                                        Format="{Binding Converter={StaticResource FormatTimeConverter}}" />
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="0"
+                                           Grid.Row="4"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="40,0,0,0"
+                                           Text="OR"
+                                           Style="{StaticResource CoreTextBlockStyle}" />
+
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"
+                                                             Entity="AdmissionMedicationMAR" Property="NotAdministered" />
+
+                                <Grid Grid.Column="2"
+                                      Grid.Row="5"
+                                      HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <CheckBox x:Name="checkBoxNotAdministered"
+                                              Grid.Column="0"
+                                              HorizontalAlignment="Left" VerticalAlignment="Center"
+                                              IsChecked="{Binding MARSelectedAdmissionMedicationMAR.NotAdministered, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                    <VirtuosoCoreControls:vLabel Grid.Column="1"
+                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                 ForceRequired="Yes"
+                                                                 Entity="AdmissionMedicationMAR"
+                                                                 Property="NotAdministeredReason"
+                                                                 Visibility="{Binding IsChecked, ElementName=checkBoxNotAdministered, Converter={StaticResource VisibilityConverter}}" />
+
+                                    <VirtuosoCoreControls:codeLookupMulti Grid.Column="2"
+                                                                          Margin="12,0,0,0"
+                                                                          HorizontalAlignment="Stretch"
+                                                                          VerticalAlignment="Center"
+                                                                          TextDelimiter=", "
+                                                                          CodeType="MARNAR"
+                                                                          SkipNullItem="True"
+                                                                          SingleSelect="True"
+                                                                          IncludeOther="True"
+                                                                          SelectedValues="{Binding MARSelectedAdmissionMedicationMAR.NotAdministeredReason, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                          Visibility="{Binding IsChecked, ElementName=checkBoxNotAdministered, Converter={StaticResource VisibilityConverter}}" />
+                                </Grid>
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"
+                                                             Entity="AdmissionMedicationMAR" Property="Comment" />
+
+                                <TextBox Grid.Column="2"
+                                         Grid.Row="6"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Center"
+                                         Text="{Binding MARSelectedAdmissionMedicationMAR.Comment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0" Grid.Row="7" VerticalAlignment="Center"
+                                                             Entity="AdmissionMedicationMAR" Property="DocumentedBy" />
+
+                                <TextBox Grid.Column="2"
+                                         Grid.Row="7"
+                                         IsReadOnly="True"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Left"
+                                         Text="{Binding MARSelectedAdmissionMedicationMAR.DocumentedBy, Converter={StaticResource UserCacheGetFormalNameFromUserIdConverter}}" />
+
+                                <TextBlock Grid.Column="2"
+                                           Grid.Row="8"
+                                           FontStyle="Italic"
+                                           FontSize="11"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Text="* Administered By is assumed to be the same as Documented By unless otherwise specified in the comments" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding MAROK_Command}"
+                                                 Visibility="{Binding MAREditProtected, Converter={StaticResource OppositeVisibilityConverter}}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding MARCancel_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

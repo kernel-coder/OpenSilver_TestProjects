@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.MedicationReconcileListPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d">
+
+    <Grid x:Name="medicationReconcileListGrid" Margin="2,4,2,4"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Medication Reconciliations"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding ReconcileListCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+
+                    <Grid x:Name="reconcileListGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"
+                                           MinHeight="35" />
+                            <RowDefinition Height="*"
+                                           MinHeight="35" />
+                        </Grid.RowDefinitions>
+
+
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <VirtuosoCoreControls:vAsyncComboBox Height="25" Margin="8,0"
+                                                                 DisplayMemberPath="ItemName"
+                                                                 ItemsSource="{Binding ReconcileViewItemSource, Mode=TwoWay}"
+                                                                 SelectedValue="{Binding ReconcileView, Mode=TwoWay}"
+                                                                 SelectedValuePath="ItemName" />
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <StackPanel Orientation="Horizontal"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource AddHyperlinkButton}" Margin="20,0"
+                                                 Content="New Reconciliation"
+                                                 Height="21"
+                                                 Visibility="{Binding CanReconcileAdd, Converter={StaticResource RoleAccessPlusBoolVisibility}, ConverterParameter='PatientEdit', FallbackValue=Collapsed, Mode=OneWay}"
+                                                 Command="{Binding ReconcileAdd_Command}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <ScrollViewer x:Name="DetailAreaScrollViewer" Grid.Row="1"
+                                      Grid.ColumnSpan="2"
+                                      Margin="8,0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      Background="{StaticResource HighlightLightBrush}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch">
+                            <sdk:DataGrid x:Name="reconcileListDataGrid"
+                                          ItemsSource="{Binding ReconcileFilteredItemsSource}"
+                                          SelectedItem="{Binding ReconcileSelectedItem, Mode=TwoWay}"
+                                          AutoGenerateColumns="False"
+                                          HorizontalAlignment="Stretch"
+                                          HorizontalContentAlignment="Stretch"
+                                          VerticalScrollBarVisibility="Auto"
+                                          HeadersVisibility="All">
+                                <i:Interaction.Behaviors>
+                                    <VirtuosoCoreBehaviors:DataGridDoubleClickBehavior
+                                        DoubleClickCommand="{Binding ReconcileEditItem_Command}"
+                                        CommandParameter="{Binding SelectedItem, ElementName=reconcileListDataGrid}" />
+                                </i:Interaction.Behaviors>
+                                <sdk:DataGrid.Columns>
+                                    <sdk:DataGridTemplateColumn Header="When" SortMemberPath="ReconcileDateTimeSort">
+                                        <sdk:DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ReconcileDateTimeFormatted}" />
+                                            </DataTemplate>
+                                        </sdk:DataGridTemplateColumn.CellTemplate>
+                                    </sdk:DataGridTemplateColumn>
+                                    <sdk:DataGridTemplateColumn Header="By" SortMemberPath="FommattedReconcileBy">
+                                        <sdk:DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding FommattedReconcileBy}" />
+                                            </DataTemplate>
+                                        </sdk:DataGridTemplateColumn.CellTemplate>
+                                    </sdk:DataGridTemplateColumn>
+                                    <sdk:DataGridTemplateColumn Header="Reconciled Medications" Width="*"
+                                                                SortMemberPath="ReconcileMedications">
+                                        <sdk:DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ReconcileMedications}" />
+                                            </DataTemplate>
+                                        </sdk:DataGridTemplateColumn.CellTemplate>
+                                    </sdk:DataGridTemplateColumn>
+                                    <sdk:DataGridTemplateColumn Header="" Width="60">
+                                        <sdk:DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <HyperlinkButton
+                                                    Content="{Binding ReconcileEditOrView}"
+                                                    Height="21"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Center"
+                                                    Foreground="White"
+                                                    Visibility="{Binding Converter={StaticResource RoleAccessVisibility}, ConverterParameter='PatientEdit', FallbackValue=Collapsed}"
+                                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}, Path=ReconcileEditItem_Command}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}, Path=ReconcileSelectedItem}" />
+                                            </DataTemplate>
+                                        </sdk:DataGridTemplateColumn.CellTemplate>
+                                    </sdk:DataGridTemplateColumn>
+                                </sdk:DataGrid.Columns>
+
+                            </sdk:DataGrid>
+
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>

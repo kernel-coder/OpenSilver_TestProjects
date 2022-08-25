@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientAllergyPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:coreview="clr-namespace:Virtuoso.Core.View;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <coreview:DataContextProxy x:Key="DataContextProxy" />
+    </UserControl.Resources>
+
+    <Grid x:Name="patientAllergyGrid" Margin="2,4,2,4"
+          BindingValidationError="patientAllergyGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Allergy Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Row="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <!-- Blank -->
+                                    <RowDefinition Height="0" />
+                                    <!-- Allergen -->
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <!-- Allergy Start Date-->
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <!-- Allergy End Date -->
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <!-- Allergy Last Reaction Date -->
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <!-- Allergy Reaction -->
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Allergen -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="1" Grid.Column="0" Entity="PatientAllergy"
+                                                             Property="Description" />
+                                <TextBox Grid.Row="1" Grid.Column="2"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Center"
+                                         IsReadOnly="True"
+                                         Text="{Binding SelectedItem.Description}"
+                                         FontStyle="{Binding SelectedItem.AllergyStatus, Converter={StaticResource MedicationFontStyleConverter}}"
+                                         FontWeight="{Binding SelectedItem.AllergyStatus, Converter={StaticResource MedicationFontWeightConverter}}"
+                                         Opacity="{Binding SelectedItem.AllergyStatus, Converter={StaticResource MedicationOpacityConverter}}" />
+
+                                <!-- Allergy Start Date -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="2" Grid.Column="0" Entity="PatientAllergy"
+                                                             Property="AllergyStartDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="2" Grid.Column="2"
+                                                                  HorizontalAlignment="Left"
+                                                                  VerticalAlignment="Center"
+                                                                  IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                  IsEnabled="{Binding DataContext.Protected, ElementName=ControlRoot, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  DateObject="{Binding SelectedItem.AllergyStartDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <!-- Allergy End Date -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="3" Grid.Column="0" Entity="PatientAllergy"
+                                                             Property="AllergyEndDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="3" Grid.Column="2"
+                                                                  HorizontalAlignment="Left"
+                                                                  VerticalAlignment="Center"
+                                                                  IsEnabled="{Binding DataContext.Protected, ElementName=ControlRoot, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  DateObject="{Binding SelectedItem.AllergyEndDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <!-- Allergy Last Reaction Date -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="4" Grid.Column="0" Entity="PatientAllergy"
+                                                             Property="LastReactionDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="4" Grid.Column="2"
+                                                                  HorizontalAlignment="Left"
+                                                                  VerticalAlignment="Center"
+                                                                  IsEnabled="{Binding DataContext.Protected, ElementName=ControlRoot, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  DateObject="{Binding SelectedItem.LastReactionDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <!-- Allergy Reaction -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="5" Grid.Column="0" Entity="PatientAllergy"
+                                                             Property="Reaction" ForceRequired="Yes" />
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="5" Grid.Column="2"
+                                                                      HorizontalAlignment="Stretch"
+                                                                      VerticalAlignment="Center"
+                                                                      CodeType="AllergenReactions"
+                                                                      IsEnabled="{Binding DataContext.Protected, ElementName=ControlRoot, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IncludeOther="True"
+                                                                      SelectedValues="{Binding SelectedItem.Reaction, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                      SelectedCodesAndOther="{Binding SelectedItem.ReactionCodes, Mode=TwoWay, NotifyOnValidationError=True}" />
+                            </Grid>
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="1">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                                <StackPanel
+                                    Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                    <HyperlinkButton Style="{StaticResource DeleteHyperlinkButton}"
+                                                     Margin="20,0,0,0"
+                                                     Visibility="{Binding SelectedItem.CanDelete, Converter={StaticResource VisibilityConverter}}"
+                                                     Command="{Binding DeletePatientAllergy_Command}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.ParentGroupPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="parentGroupGrid" Margin="2,4,2,4" BindingValidationError="parentGroupGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Parent Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding ParentGroupCancel_Command}"
+                            CommandParameter="{Binding SelectedServiceLineGroupingParent}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer" Grid.Row="0" Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="0" Grid.Column="0"
+                                                             Entity="ServiceLineGroupingParent"
+                                                             Property="ParentServiceLineGroupingKey" />
+
+                                <!--SelectedItem="{Binding SelectedCensusTract, Mode=TwoWay}"-->
+                                <VirtuosoCoreControls:vAsyncComboBox Grid.Row="0" Grid.Column="1" Margin="0,4"
+                                                                     IsTabStop="{Binding SelectedServiceLineGroupingParent.CanEditParentServiceLineGroupingKey}"
+                                                                     IsHitTestVisible="{Binding SelectedServiceLineGroupingParent.CanEditParentServiceLineGroupingKey}"
+                                                                     IsEnabled="{Binding SelectedServiceLineGroupingParent.CanEditParentServiceLineGroupingKey, FallbackValue=True}"
+                                                                     ItemsSource="{Binding SelectedGrouping.ProspectiveParents}"
+                                                                     DisplayMemberPath="FullNameOrName"
+                                                                     SelectedValue="{Binding SelectedServiceLineGroupingParent.ParentServiceLineGroupingKey, Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnExceptions=True}"
+                                                                     SelectedValuePath="ServiceLineGroupingKey" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="1" Grid.Column="0"
+                                                             Entity="ServiceLineGroupingParent"
+                                                             Property="EffectiveFromDate" />
+
+                                <VirtuosoCoreControls:vDatePicker x:Name="dp_FromDate" Grid.Row="1" Grid.Column="1"
+                                                                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                  Width="130"
+                                                                  IsHitTestVisible="{Binding SelectedServiceLineGroupingParent.CanEditEffectiveFromDate}"
+                                                                  IsTabStop="{Binding SelectedServiceLineGroupingParent.CanEditEffectiveFromDate}"
+                                                                  IsReadOnly="{Binding SelectedServiceLineGroupingParent.CanEditEffectiveFromDate, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  DateObject="{Binding SelectedServiceLineGroupingParent.EffectiveFromDate, Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnExceptions=True, Converter={StaticResource DateTimeMinValueToNullConverter}}" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="2" Grid.Column="0"
+                                                             Entity="ServiceLineGroupingParent"
+                                                             Property="EffectiveThruDate" />
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="2" Grid.Column="1"
+                                                                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                  Width="130"
+                                                                  IsHitTestVisible="{Binding SelectedServiceLineGroupingParent.CanEditEffectiveThruDate}"
+                                                                  IsTabStop="{Binding SelectedServiceLineGroupingParent.CanEditEffectiveThruDate}"
+                                                                  IsReadOnly="{Binding SelectedServiceLineGroupingParent.CanEditEffectiveThruDate, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  DateObject="{Binding SelectedServiceLineGroupingParent.EffectiveThruDate, Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnExceptions=True, Converter={StaticResource DateTimeMinValueToNullConverter}}" />
+                                <!--KSM Placeholder-->
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding ParentGroupOK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding ParentGroupCancel_Command}"
+                                                 CommandParameter="{Binding SelectedServiceLineGroupingParent}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

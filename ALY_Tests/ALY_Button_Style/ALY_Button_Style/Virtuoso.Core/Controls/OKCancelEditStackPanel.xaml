@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.OKCancelEditStackPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="60"
+             d:DesignWidth="400">
+
+    <StackPanel HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+        <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                         Margin="0,0,20,0"
+                         Visibility="{Binding OKVisible, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                         Command="{Binding OK_Command}" />
+        <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                         Visibility="{Binding IsEdit, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                         Command="{Binding Cancel_Command}" />
+        <HyperlinkButton x:Name="editHyperlinkButton"
+                         Style="{StaticResource EditHyperlinkButton}"
+                         Visibility="{Binding IsEdit, Converter={StaticResource OppositeVisibilityConverter}, FallbackValue=Collapsed}"
+                         Command="{Binding Edit_Command}" />
+
+    </StackPanel>
+</UserControl>

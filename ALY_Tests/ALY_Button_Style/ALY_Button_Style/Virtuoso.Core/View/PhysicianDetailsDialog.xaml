@@ -1,0 +1,378 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.PhysicianDetailsDialog"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="730"
+                      Height="480"
+                      Foreground="{StaticResource HighlightBrush}"
+                      Title="Patient Contact Details">
+
+    <controls:ChildWindow.Resources>
+        <DataTemplate x:Key="ActivePhonesTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{Binding TypeDescription, StringFormat='\{0\}  '}" />
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding Number, Converter={StaticResource PhoneConverter}, StringFormat='\{0\}  '}" />
+                <TextBlock Grid.Column="2"
+                           Grid.Row="0"
+                           Text="{Binding Extension, StringFormat=' x \{0\} '}"
+                           Visibility="{Binding Extension, Converter={StaticResource VisibilityConverterNull}}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ActiveLicensesTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{Binding StateCodeCode }"
+                           Visibility="{Binding StateCodeCode, Converter={StaticResource VisibilityConverterNull}}" />
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding Number}" />
+                <TextBlock Grid.Column="2"
+                           Grid.Row="0"
+                           Text="{Binding ExpiresWithPrefix}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ActiveEmailsTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{Binding EmailAddress, Converter={StaticResource PhoneConverter}, StringFormat='\{0\}   '}" />
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding Recipient, StringFormat='To \{0\}   '}"
+                           Visibility="{Binding Recipient, Converter={StaticResource VisibilityConverterNull}}" />
+            </Grid>
+        </DataTemplate>
+    </controls:ChildWindow.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  Margin="10,0,10,10"
+                  Height="400">
+        <i:Interaction.Behaviors>
+            <VirtuosoCoreBehaviors:ScrollIntoViewBehavior />
+        </i:Interaction.Behaviors>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Facility"
+                       MinHeight="25"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.FacilityKey, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       MinHeight="25"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding Physician.FacilityKey, Mode=OneWay, Converter={StaticResource FacilityNameFromKeyConverter}}"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding Physician.FacilityKey, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Branch"
+                       MinHeight="25"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding AdmissionPhysician.PhysicianAddressProxy.FacilityBranchKey, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       MinHeight="25"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding AdmissionPhysician.PhysicianAddressProxy.FacilityBranchKey, Mode=OneWay, Converter={StaticResource FacilityBranchNameFromKeyConverter}}"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding AdmissionPhysician.PhysicianAddressProxy.FacilityBranchKey, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="{Binding DisplayAddressLabel}"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding DisplayAddress, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="2"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding DisplayAddress.Address1, Mode=OneWay}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding DisplayAddress.Address1, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="3"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding DisplayAddress.Address2, Mode=OneWay}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding DisplayAddress.Address2, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="4"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding DisplayAddress.CityStateZip, Mode=OneWay}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding DisplayAddress.CityStateZip, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="5"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="Phone Number"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding DisplayAddress.PhoneNumber, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <Grid Grid.Row="5"
+                  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Style="{StaticResource PrintTextBlock}"
+                           VerticalAlignment="Center"
+                           MinHeight="25"
+                           Visibility="{Binding DisplayAddress.PhoneNumber, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                           Text="{Binding DisplayAddress.PhoneNumber, Converter={StaticResource PhoneConverter}, StringFormat='\{0\}  '}" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="2"
+                           Style="{StaticResource PrintTextBlock}"
+                           MinHeight="25"
+                           Text="{Binding DisplayAddress.PhoneExtension, StringFormat=' x \{0\} '}"
+                           Visibility="{Binding PhoneExtension, Converter={StaticResource VisibilityConverterNull}}" />
+            </Grid>
+
+            <TextBlock Grid.Row="6"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="Fax Number"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding DisplayAddress.Fax, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="6"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding DisplayAddress.Fax, Converter={StaticResource PhoneConverter}, StringFormat='\{0\}  ', Mode=OneWay}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding DisplayAddress.Fax, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="7"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="  "
+                       VerticalAlignment="Top"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.ActivePhones, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="8"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="Other Phone Numbers"
+                       VerticalAlignment="Top"
+                       Margin="0,0,6,0"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.ActivePhones, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <ListBox Grid.Row="8"
+                     Grid.Column="1"
+                     VerticalAlignment="Top"
+                     Margin="0,0,0,0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     Visibility="{Binding Physician.ActivePhones, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                     ItemsSource="{Binding Physician.ActivePhones, Mode=TwoWay}"
+                     IsTabStop="False"
+                     TabNavigation="Local"
+                     ItemContainerStyle="{StaticResource NoSelectListBoxItemStyle}"
+                     ItemTemplate="{StaticResource ActivePhonesTemplate}" />
+
+            <TextBlock Grid.Row="9"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="  "
+                       VerticalAlignment="Top"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.ActivePhones, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="10"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="Email Addresses"
+                       VerticalAlignment="Top"
+                       Margin="0,0,6,0"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.ActiveEmails, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <ListBox Grid.Row="10"
+                     Grid.Column="1"
+                     VerticalAlignment="Top"
+                     Margin="0,0,0,0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     Visibility="{Binding Physician.ActiveEmails, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                     ItemsSource="{Binding Physician.ActiveEmails, Mode=TwoWay}"
+                     IsTabStop="False"
+                     TabNavigation="Local"
+                     ItemContainerStyle="{StaticResource NoSelectListBoxItemStyle}"
+                     ItemTemplate="{StaticResource ActiveEmailsTemplate}" />
+
+            <TextBlock Grid.Row="11"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="Delivery Method"
+                       VerticalAlignment="Top"
+                       Margin="0,0,6,0"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding AdmissionPhysician.PhysicianAddressProxy.OrderDeliveryMethod, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="11"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding AdmissionPhysician.PhysicianAddressProxy.OrderDeliveryMethod, Mode=OneWay, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding AdmissionPhysician.PhysicianAddressProxy.OrderDeliveryMethod, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="12"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="Tracking Group"
+                       VerticalAlignment="Center"
+                       Margin="0,0,6,0"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding AdmissionPhysician.PhysicianAddressProxy.TrackingGroup, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="12"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding AdmissionPhysician.PhysicianAddressProxy.TrackingGroup, Mode=OneWay, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding AdmissionPhysician.PhysicianAddressProxy.TrackingGroup, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="13"
+                       Grid.Column="0"
+                       Text="Speciality"
+                       MinHeight="25"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.Speciality, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="13"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding Physician.SpecialityDescription, Mode=OneWay}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding Physician.Speciality, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="14"
+                       Grid.Column="0"
+                       Text="NPI"
+                       MinHeight="25"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.NPI, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <TextBlock Grid.Row="14"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding Physician.NPI, Mode=OneWay}"
+                       VerticalAlignment="Center"
+                       MinHeight="25"
+                       Visibility="{Binding Physician.NPI, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="15"
+                       Grid.Column="0"
+                       MinHeight="25"
+                       Text="License Number(s)"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Visibility="{Binding Physician.ActiveLicenses, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}" />
+            <ListBox Grid.Row="15"
+                     Grid.Column="1"
+                     VerticalAlignment="Top"
+                     Margin="0,0,0,0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     Visibility="{Binding Physician.ActiveLicenses, Mode=OneWay, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                     ItemsSource="{Binding Physician.ActiveLicenses, Mode=OneWay}"
+                     IsTabStop="False"
+                     TabNavigation="Local"
+                     ItemContainerStyle="{StaticResource NoSelectListBoxItemStyle}"
+                     ItemTemplate="{StaticResource ActiveLicensesTemplate}" />
+        </Grid>
+    </ScrollViewer>
+</controls:ChildWindow>

@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="Virtuoso.Controls.SearchPanelUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"
+                           MinHeight="28" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="searchItemComboBox"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  TabIndex="1"
+                  ItemsSource="{Binding SearchItems, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedSearch, Mode=TwoWay}"
+                  DisplayMemberPath="Label"
+                  SelectedValuePath="URI"
+                  Margin="8,0"
+                  MaxDropDownHeight="400"
+                  IsTabStop="{Binding CurrentSearchOverride, Mode=TwoWay, Converter={StaticResource OppositeValueToBoolConverter}}"
+                  IsHitTestVisible="{Binding CurrentSearchOverride, Mode=TwoWay, Converter={StaticResource OppositeValueToBoolConverter}}">
+        </ComboBox>
+
+        <ListBox Grid.Row="1"
+                 Grid.Column="0"
+                 Height="Auto"
+                 MinHeight="100"
+                 Margin="8,0"
+                 Background="{x:Null}"
+                 ItemsSource="{Binding SelectedSearch.SearchFields}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 IsTabStop="False" TabNavigation="Local"
+                 ItemContainerStyle="{StaticResource NoSelectListBoxItemStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl
+                        Content="{Binding Type, Mode=OneTime, Converter={StaticResource DataTemplateConverter}}"
+                        HorizontalContentAlignment="Stretch">
+                        <!--<ContentControl.DataContext>
+                            <Binding Converter="{StaticResource SearchFieldTypeConverter}" />
+                        </ContentControl.DataContext>-->
+                    </ContentControl>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <HyperlinkButton Grid.Row="0"
+                         Grid.Column="1"
+                         Style="{StaticResource AddHyperlinkButtonLarge}"
+                         Content="{Binding SelectedSearch.Label, StringFormat='New {0}'}"
+                         Visibility="{Binding SelectedSearch.AllowAddNew, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}"
+                         Command="{Binding AddCommand}" />
+
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              DataContext="{Binding SelectedItem.SearchResultsViewModel, ElementName=searchItemComboBox}">
+            <Border BorderThickness="5"
+                    CornerRadius="3"
+                    BorderBrush="{StaticResource HighlightLightBrush}">
+                <ContentControl
+                    Content="{Binding SelectedItem.SearchResultsView, ElementName=searchItemComboBox, Converter={StaticResource DataTemplateConverter}}"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch">
+                </ContentControl>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="8"
+                    VerticalAlignment="Center">
+            <Button Content="Search"
+                    Height="30"
+                    Width="75"
+                    Margin="10,0"
+                    Command="{Binding SearchCommand}" />
+            <Button Content="New Search"
+                    Height="30"
+                    Width="100"
+                    Command="{Binding ClearCommand}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding SelectedItem.SearchResultsViewModel.TotalRecords, Mode=TwoWay, ElementName=searchItemComboBox, Converter={StaticResource CountVisibilityConverter}, ConverterParameter=0}">
+            <Button Content="Select"
+                    Height="30"
+                    Width="75"
+                    Margin="10,0"
+                    Command="{Binding SelectCommand}" />
+            <!--<Button Content="New Search"
+                    Height="30"
+                    Width="75"
+                    Command="{Binding ClearResultsCommand}" />-->
+        </StackPanel>
+    </Grid>
+</UserControl>

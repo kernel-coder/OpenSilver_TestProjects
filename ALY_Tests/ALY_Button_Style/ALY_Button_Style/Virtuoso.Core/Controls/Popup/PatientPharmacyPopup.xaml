@@ -1,0 +1,187 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientPharmacyPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d">
+
+    <Grid x:Name="PatientPharmacyGrid" Margin="2,4,2,4" BindingValidationError="PatientPharmacy_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Pharmacy Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid BindingValidationError="PatientPharmacy_BindingValidationError"
+                          IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="0" MinHeight="35" Entity="PatientPharmacy"
+                                                             Property="VendorKey" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="1" MinHeight="35" Entity="Vendor"
+                                                             Property="ContactFirstName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="2" MinHeight="35" Entity="Vendor"
+                                                             Property="ContactLastName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="3" MinHeight="35" Entity="Vendor"
+                                                             Property="Number" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="4" MinHeight="35" Entity="Vendor" Property="Fax" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="5" MinHeight="35" Entity="PatientPharmacy"
+                                                             Property="Preferred" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="6" MinHeight="35" Entity="PatientPharmacy"
+                                                             Property="PharmacyStartDate" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="7" MinHeight="35" Entity="PatientPharmacy"
+                                                             Property="PharmacyEndDate" />
+
+                                <VirtuosoCoreControls:autoCompleteCombo x:Name="ac_Vendor" Grid.Row="0" Grid.Column="1"
+                                                                        IsContainsSearch="True"
+                                                                        ItemsSource="{Binding VendorList}"
+                                                                        SelectedItem="{Binding SelectedVendor, Mode=TwoWay}"
+                                                                        SelectedValue="{Binding SelectedItem.VendorKey, Mode=TwoWay, 
+                                                                                             NotifyOnValidationError=True,
+                                                                                             ValidatesOnDataErrors=True,
+                                                                                             ValidatesOnExceptions=True}">
+                                    <VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding VendorName}" />
+                                                <TextBlock Text="{Binding Number}"
+                                                           VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="phone"
+                                                           Visibility="{Binding Number,  Converter={StaticResource VisibilityConverterNull}}" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Address1}"
+                                                               Visibility="{Binding Address1,  Converter={StaticResource VisibilityConverterNull}}" />
+                                                    <TextBlock Text="{Binding City}" Margin="10,0,0,0"
+                                                               Visibility="{Binding City,  Converter={StaticResource VisibilityConverterNull}}" />
+                                                    <TextBlock Text="{Binding StateCodeCode}" Margin="10,0,0,0"
+                                                               Visibility="{Binding StateCodeCode,  Converter={StaticResource VisibilityConverterNull}}" />
+                                                    <TextBlock Text="{Binding ZipCode}" Margin="10,0,0,0"
+                                                               Visibility="{Binding ZipCode,  Converter={StaticResource VisibilityConverterNull}}" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="DropDownClosed">
+                                            <i:InvokeCommandAction Command="{Binding ac_VendorClosed}"
+                                                                   CommandParameter="{Binding Path=SelectedItem, ElementName=ac_Vendor}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </VirtuosoCoreControls:autoCompleteCombo>
+
+                                <TextBox x:Name="tbName" MinWidth="350" Grid.Row="1" Grid.Column="1"
+                                         IsTabStop="False"
+                                         IsHitTestVisible="False"
+                                         Text="{Binding SelectedItem.PatientPharmacyVendor.ContactFirstName, Mode=TwoWay, NotifyOnValidationError=True}">
+                                </TextBox>
+                                <TextBox MinWidth="350" Grid.Row="2" Grid.Column="1"
+                                         IsTabStop="False"
+                                         IsHitTestVisible="False"
+                                         Text="{Binding SelectedItem.PatientPharmacyVendor.ContactLastName, Mode=TwoWay, NotifyOnValidationError=True}">
+                                </TextBox>
+                                <TextBox Grid.Row="3" Grid.Column="1"
+                                         IsTabStop="False"
+                                         IsHitTestVisible="False"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="phone"
+                                         Text="{Binding SelectedItem.PatientPharmacyVendor.Number, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource PhoneConverter}}">
+                                </TextBox>
+                                <TextBox x:Name="tbFax" Grid.Row="4" Grid.Column="1"
+                                         IsTabStop="False"
+                                         IsHitTestVisible="False"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="phone"
+                                         Text="{Binding SelectedItem.PatientPharmacyVendor.Fax, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource PhoneConverter}}">
+                                </TextBox>
+
+                                <CheckBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" x:Name="cbPreferred"
+                                          IsChecked="{Binding SelectedItem.Preferred, Mode=TwoWay}">
+                                </CheckBox>
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="6" x:Name="dpStart"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  IsHitTestVisible="{Binding CanFullEdit}"
+                                                                  DateObject="{Binding SelectedItem.PharmacyStartDate, Mode=TwoWay, 
+                                                                   NotifyOnValidationError=True,
+                                                                   ValidatesOnDataErrors=True,
+                                                                   ValidatesOnExceptions=True}" />
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="7" x:Name="dpEnd"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  IsHitTestVisible="{Binding CanFullEdit}"
+                                                                  DateObject="{Binding SelectedItem.PharmacyEndDate, 
+                                                                               Mode=TwoWay, 
+                                                                               NotifyOnValidationError=True,
+                                                                               ValidatesOnDataErrors=True,
+                                                                               ValidatesOnExceptions=True}" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0" x:Name="hyOK"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

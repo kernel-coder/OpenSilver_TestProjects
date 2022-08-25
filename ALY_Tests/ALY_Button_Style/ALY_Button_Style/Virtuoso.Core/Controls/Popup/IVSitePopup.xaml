@@ -1,0 +1,327 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.IVSitePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="ivGrid" Margin="2,4,2,4" BindingValidationError="ivGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="IV Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Row="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vLabel Entity="AdmissionIVSite" Property="Number" />
+                                    <TextBlock Text="{Binding SelectedItem.Number, StringFormat='  \{0\}'}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                </StackPanel>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="2" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVTypeDescription" />
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="2" Grid.Column="1"
+                                                                      CodeType="IVType"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="True"
+                                                                      IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IncludeOther="True"
+                                                                      SelectedValues="{Binding SelectedItem.IVTypeDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectedCodes="{Binding SelectedItem.IVTypeCode, Mode=TwoWay}"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Stretch" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="3" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVLumensDescription" />
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="3" Grid.Column="1"
+                                                                      CodeType="IVLumens"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="False"
+                                                                      IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IncludeOther="True"
+                                                                      SelectedValues="{Binding SelectedItem.IVLumensDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectedCodes="{Binding SelectedItem.IVLumensCode, Mode=TwoWay}"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Stretch" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="4" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVValveDescription" />
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="4" Grid.Column="1"
+                                                                      CodeType="IVValve"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="False"
+                                                                      IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IncludeOther="True"
+                                                                      SelectedValues="{Binding SelectedItem.IVValveDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectedCodes="{Binding SelectedItem.IVValveCode, Mode=TwoWay}"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Stretch" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="5" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVLocationDescription" />
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="5" Grid.Column="1"
+                                                                      CodeType="IVLocation"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="True"
+                                                                      IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IncludeOther="True"
+                                                                      SelectedValues="{Binding SelectedItem.IVLocationDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectedCodes="{Binding SelectedItem.IVLocationCode, Mode=TwoWay}"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Stretch" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="6" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVInsertionChangeDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="6" Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding SelectedItem.IVInsertionChangeDate, Mode=TwoWay, NotifyOnValidationError=True }"
+                                                                  SelectedDateFormat="Short"
+                                                                  IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  Width="130" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="7" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVDiscontinueDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="7" Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding SelectedItem.IVDiscontinueDate, Mode=TwoWay, NotifyOnValidationError=True }"
+                                                                  SelectedDateFormat="Short"
+                                                                  IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                  Width="130" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="8" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVArmCircumference" />
+                                <TextBox Grid.Row="8" Grid.Column="1"
+                                         HorizontalAlignment="Left"
+                                         Text="{Binding SelectedItem.IVArmCircumference, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999.99"
+                                         TextAlignment="Right"
+                                         IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                         Width="60" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="9" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVExternalCatheterMeasure" />
+                                <TextBox Grid.Row="9" Grid.Column="1"
+                                         HorizontalAlignment="Left"
+                                         Text="{Binding SelectedItem.IVExternalCatheterMeasure, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999.99"
+                                         TextAlignment="Right"
+                                         IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                         Width="60" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="10" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVDescription" />
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="10" Grid.Column="1"
+                                                                      CodeType="IVDescriptionComment"
+                                                                      SkipNullItem="False"
+                                                                      IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                      IncludeOther="False"
+                                                                      SelectedValues="{Binding SelectedItem.IVDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectedCodes="{Binding SelectedItem.IVDescriptionCodes, Mode=TwoWay}"
+                                                                      VerticalAlignment="Center" />
+
+                                <Grid Grid.Row="11" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <VirtuosoCoreControls:vLabel Grid.Column="0" Entity="AdmissionIVSite"
+                                                                 Property="IVDescriptionComment" MinHeight="35" />
+                                    <TextBox Grid.Column="1" Margin="8,0,0,0"
+                                             AcceptsReturn="True"
+                                             Text="{Binding SelectedItem.IVDescriptionComment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                             IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             TextWrapping="Wrap" />
+                                </Grid>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="12" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="AdmissionKey" Visibility="Collapsed" />
+                                <HyperlinkButton Grid.Row="12" Grid.Column="1" Visibility="Collapsed"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                 TargetName="_blank"
+                                                 Style="{StaticResource ExternalLinkStyle}"
+                                                 Content="{Binding SelectedItem.InfiltrationPhlebitisScaleURL}"
+                                                 IsEnabled="{Binding IsOnline, Mode=TwoWay}"
+                                                 NavigateUri="{Binding SelectedItem.InfiltrationPhlebitisScaleURL}" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="13" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVInfiltrationScale" />
+                                <VirtuosoCoreControls:codeLookup Grid.Row="13" Grid.Column="1"
+                                                                 CodeType="InfiltrationScale"
+                                                                 IncludeNullItem="True"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                 IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                 SelectedKey="{Binding SelectedItem.IVInfiltrationScale, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                 VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Stretch" />
+
+                                <Grid Grid.Row="14" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <VirtuosoCoreControls:vLabel Grid.Column="0" Entity="AdmissionIVSite"
+                                                                 Property="IVInfiltrationScaleComment" MinHeight="35" />
+                                    <TextBox Grid.Column="1" Margin="8,0,0,0"
+                                             AcceptsReturn="True"
+                                             Text="{Binding SelectedItem.IVInfiltrationScaleComment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                             IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             TextWrapping="Wrap" />
+                                </Grid>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="15" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVPhlebitisScale" />
+                                <VirtuosoCoreControls:codeLookup Grid.Row="15" Grid.Column="1"
+                                                                 CodeType="PhlebitisScale"
+                                                                 IncludeNullItem="True"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                 IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                                 SelectedKey="{Binding SelectedItem.IVPhlebitisScale, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                 VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Stretch" />
+
+                                <Grid Grid.Row="16" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <VirtuosoCoreControls:vLabel Grid.Column="0" Entity="AdmissionIVSite"
+                                                                 Property="IVPhlebitisScaleComment" MinHeight="35" />
+                                    <TextBox Grid.Column="1" Margin="8,0,0,0"
+                                             AcceptsReturn="True"
+                                             Text="{Binding SelectedItem.IVPhlebitisScaleComment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                             IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                             TextWrapping="Wrap" />
+                                </Grid>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="17" Grid.Column="0" Entity="AdmissionIVSite"
+                                                             Property="IVPumpEquipment" />
+                                <TextBox Grid.Row="17" Grid.Column="1"
+                                         Text="{Binding SelectedItem.IVPumpEquipment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                         IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                         IsTabStop="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                         IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                         TextWrapping="Wrap" />
+                            </Grid>
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="1">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                                <StackPanel
+                                    Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                    <HyperlinkButton Style="{StaticResource DeleteHyperlinkButton}"
+                                                     Margin="20,0,0,0"
+                                                     Visibility="{Binding SelectedItem.CanDelete, Converter={StaticResource VisibilityConverter}}"
+                                                     Command="{Binding Delete_Command}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

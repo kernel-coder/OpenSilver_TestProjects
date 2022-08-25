@@ -1,0 +1,41 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.Controls.WebBrowserWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      Width="800"
+                      Height="600"
+                      Style="{StaticResource ChildWindowStyle}">
+
+    <VirtuosoCoreControls:VirtuosoBusyIndicator x:Name="busyIndicator"
+                                                BusyContent="Please wait..."
+                                                DisplayAfter="0:0:0">
+        <Grid x:Name="LayoutRoot"
+              Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <WebBrowser x:Name="webBrowser"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch" />
+
+            <Rectangle HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       Visibility="Collapsed"
+                       x:Name="webBrowserBrushContainer"
+                       Fill="Black"
+                       Opacity=".5">
+            </Rectangle>
+
+        </Grid>
+    </VirtuosoCoreControls:VirtuosoBusyIndicator>
+</controls:ChildWindow>

@@ -1,0 +1,153 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.AddressDetailsDialog"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="730" Height="480" Foreground="{StaticResource HighlightBrush}"
+                      Title="Address Details">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,0,10,10" Height="400">
+        <i:Interaction.Behaviors>
+            <VirtuosoCoreBehaviors:ScrollIntoViewBehavior />
+        </i:Interaction.Behaviors>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Address Type"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,6"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+
+            <TextBlock Text="Address"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,6"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left" />
+
+            <TextBlock Text="Directions"
+                       Grid.Column="0"
+                       Grid.Row="2"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,6"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+
+            <TextBlock Text="Comments"
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,6"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+
+            <TextBlock Text="Census Tract"
+                       Grid.Column="0"
+                       Grid.Row="4"
+                       Style="{StaticResource PrintTextBlockLabel}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+
+            <TextBlock
+                Text="{Binding Type, Mode=OneWay, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Grid.Row="0"
+                Margin="0,0,6,6"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left" />
+
+            <Grid Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="0,0,6,6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{Binding Address1, Mode=OneWay}"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           Style="{StaticResource PrintTextBlock}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Text="{Binding Address2, Mode=OneWay}"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           Style="{StaticResource PrintTextBlock}"
+                           VerticalAlignment="Center"
+                           Visibility="{Binding Address2, Converter={StaticResource VisibilityConverterNull}}"
+                           HorizontalAlignment="Left"
+                           TextWrapping="Wrap" />
+
+                <StackPanel Grid.Column="0"
+                            Grid.Row="2"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{Binding City, Mode=OneWay}"
+                               Style="{StaticResource PrintTextBlock}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="0,0,6,0" />
+                    <TextBlock
+                        Text="{Binding StateCode, Mode=OneWay, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}"
+                        Style="{StaticResource PrintTextBlock}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,6,0" />
+                    <TextBlock Text="{Binding ZipCode, Mode=OneWay}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource PrintTextBlock}"
+                               HorizontalAlignment="Left"
+                               Margin="0,0,6,0" />
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="{Binding Directions, Mode=OneWay}"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Style="{StaticResource PrintTextBlock}"
+                       Margin="0,0,6,6"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       TextWrapping="Wrap" />
+
+            <TextBlock Text="{Binding Comments, Mode=OneWay}"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       Style="{StaticResource PrintTextBlock}"
+                       Margin="0,0,6,6"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       TextWrapping="Wrap" />
+
+            <TextBlock Text="{Binding CensusTract, Mode=OneWay}"
+                       Grid.Column="1"
+                       Grid.Row="4"
+                       Style="{StaticResource PrintTextBlock}"
+                       Margin="0,0,6,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+
+        </Grid>
+    </ScrollViewer>
+</controls:ChildWindow>

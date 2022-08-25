@@ -1,0 +1,361 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.MedicationManagementPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="medItemListDataTemplate">
+            <CheckBox Content="{Binding ManagementMedPatientMedication.MedicationDescription}"
+                      IsChecked="{Binding ManagementMedIsChecked, Mode=TwoWay}">
+            </CheckBox>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
+    <Grid x:Name="medicationManagementGrid" Margin="2,4,2,4"
+          BindingValidationError="medicationManagementGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Medication Management Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding ManagementCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Row="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White"
+                                  IsHitTestVisible="{Binding ManagementProtected, Converter={StaticResource OppositeBoolConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                </Grid.RowDefinitions>
+
+                                <Grid x:Name="medListHeader"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="3"
+                                      Grid.Row="1"
+                                      Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" MinHeight="35" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock x:Name="medListHeaderLabel"
+                                               Margin="28,0,0,0"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                               Text="Managed Medications"
+                                               FontWeight="Bold"
+                                               Style="{StaticResource CoreTextBlockStyle}" />
+
+                                    <StackPanel Orientation="Horizontal"
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                Visibility="{Binding ManagementProtected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                        <Button x:Name="btnSelectAll"
+                                                VerticalAlignment="Center"
+                                                Content="Select All"
+                                                Height="30"
+                                                Width="100"
+                                                Command="{Binding ManagementSelectAll_Command}" />
+                                        <Button x:Name="btnDeselectAll"
+                                                Margin="8,0,8,0"
+                                                VerticalAlignment="Center"
+                                                Content="Deselect All"
+                                                Height="30"
+                                                Width="100"
+                                                Command="{Binding ManagementDeselectAll_Command}" />
+                                    </StackPanel>
+                                </Grid>
+                                <ScrollViewer x:Name="medItemList"
+                                              Margin="20,0,0,4"
+                                              Grid.Column="0"
+                                              Grid.ColumnSpan="3"
+                                              Grid.Row="2">
+                                    <ItemsControl IsHitTestVisible="True"
+                                                  ItemsSource="{Binding ManagementMedList}"
+                                                  ItemTemplate="{StaticResource medItemListDataTemplate}"
+                                                  HorizontalAlignment="Stretch" />
+                                </ScrollViewer>
+
+                                <TextBlock x:Name="managementMedicationRequired"
+                                           Margin="20,2,0,2"
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="3"
+                                           Grid.Row="3"
+                                           Height="35"
+                                           Foreground="{StaticResource ValidationSummaryBrush1}"
+                                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="At least one medication must be checked for management"
+                                           Style="{StaticResource CoreTextBlockStyle}"
+                                           Visibility="{Binding ManagementMedicationRequired, Converter={StaticResource VisibilityConverter}}" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="4"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="ManagementDateTime" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="5"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="ManagementBy" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="6"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="PharmacyDelivers" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="7"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="LockableContainer" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="8"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="ScheduleInstructed" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="9"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="ScheduleInstructedTo" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="10"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="Assessed" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="11"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="AssessedComment" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="12"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="ContinueMedManagement" />
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="13"
+                                                             Entity="PatientMedicationManagement"
+                                                             Property="ContinueMedManagementComment" />
+
+
+                                <StackPanel x:Name="managementDateTime"
+                                            Grid.Column="2"
+                                            Grid.Row="4"
+                                            HorizontalAlignment="Left"
+                                            Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vDatePicker Width="130" IsHitTestVisible="True"
+                                                                      DateObject="{Binding ManagementSelectedItem.ManagementDatePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                    <toolkit:TimePicker Margin="8,0,0,0" IsHitTestVisible="True"
+                                                        Value="{Binding ManagementSelectedItem.ManagementTimePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                                        Format="{Binding Converter={StaticResource FormatTimeConverter}}" />
+                                </StackPanel>
+
+                                <TextBlock x:Name="managementBy"
+                                           Grid.Column="2"
+                                           Grid.Row="5"
+                                           IsHitTestVisible="True"
+                                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding ManagementSelectedItem.ManagementBy, Converter={StaticResource UserCacheGetFormalNameFromUserIdConverter}}"
+                                           Style="{StaticResource CoreTextBlockStyle}" />
+
+                                <StackPanel Grid.Row="6"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <RadioButton x:Name="deliversRadioYes"
+                                                 Content="Yes"
+                                                 GroupName="pharmacyDeliversRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.PharmacyDelivers, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                    <RadioButton Content="No"
+                                                 GroupName="pharmacyDeliversRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.PharmacyDelivers, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource NullableBoolConverter}, ConverterParameter=opposite}"
+                                                 Margin="5,0,0,0" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="7"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <RadioButton x:Name="lockableRadioYes"
+                                                 Content="Yes"
+                                                 GroupName="lockableRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.LockableContainer, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                    <RadioButton Content="No"
+                                                 GroupName="lockableRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.LockableContainer, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource NullableBoolConverter}, ConverterParameter=opposite}"
+                                                 Margin="5,0,0,0" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="8"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <RadioButton x:Name="schedInstRadioYes"
+                                                 Content="Yes"
+                                                 GroupName="schedInstRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.ScheduleInstructed, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                    <RadioButton Content="No"
+                                                 GroupName="schedInstRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.ScheduleInstructed, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource NullableBoolConverter}, ConverterParameter=opposite}"
+                                                 Margin="5,0,0,0" />
+                                </StackPanel>
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="instructWho"
+                                                                      Grid.Row="9"
+                                                                      Grid.Column="2"
+                                                                      CodeType="---patientcaregiversclinician"
+                                                                      SingleSelect="False"
+                                                                      IncludeOther="False"
+                                                                      SkipNullItem="True"
+                                                                      IsTabStop="True"
+                                                                      IsHitTestVisible="True"
+                                                                      Patient="{Binding CurrentPatient, Mode=TwoWay}"
+                                                                      SelectedValues="{Binding ManagementSelectedItem.ScheduleInstructedTo, Mode=TwoWay, 
+                                                                            Converter={StaticResource ComboBoxItemNullConverter}, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Stretch" />
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="assessed"
+                                                                      Grid.Row="10"
+                                                                      Grid.Column="2"
+                                                                      CodeType="AreaAssessed"
+                                                                      SingleSelect="False"
+                                                                      IncludeOther="True"
+                                                                      SkipNullItem="True"
+                                                                      IsTabStop="True"
+                                                                      IsHitTestVisible="True"
+                                                                      SelectedValues="{Binding ManagementSelectedItem.Assessed, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                      DisplayMemberPath="CodeDescription"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Stretch" />
+
+                                <TextBox x:Name="assessedComment"
+                                         Grid.Column="2"
+                                         Grid.Row="11"
+                                         AcceptsReturn="True"
+                                         IsHitTestVisible="True"
+                                         Text="{Binding ManagementSelectedItem.AssessedComment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                <StackPanel Grid.Row="12"
+                                            Grid.Column="2"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+                                    <RadioButton x:Name="contMedRadioYes"
+                                                 Content="Yes"
+                                                 GroupName="contMedRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.ContinueMedManagement, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                    <RadioButton Content="No"
+                                                 GroupName="contMedRadioGroup"
+                                                 IsChecked="{Binding ManagementSelectedItem.ContinueMedManagement, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource NullableBoolConverter}, ConverterParameter=opposite}"
+                                                 Margin="5,0,0,0" />
+                                </StackPanel>
+
+                                <TextBox x:Name="managementComment"
+                                         Grid.Column="2"
+                                         Grid.Row="13"
+                                         AcceptsReturn="True"
+                                         IsHitTestVisible="True"
+                                         Text="{Binding ManagementSelectedItem.ContinueMedManagementComment, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding ManagementProtected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding ManagementOK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding ManagementCancel_Command}" />
+                                <StackPanel
+                                    Visibility="{Binding ManagementProtected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                    <HyperlinkButton Style="{StaticResource DeleteHyperlinkButton}"
+                                                     Margin="20,0,0,0"
+                                                     Visibility="{Binding ManagementSelectedItemCanDelete, Converter={StaticResource VisibilityConverter}}"
+                                                     Command="{Binding ManagementDelete_Command}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

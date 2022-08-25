@@ -1,0 +1,122 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.PatientDNRDialog"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="780" Height="500" Foreground="{StaticResource HighlightBrush}"
+                      Title="Patient DNR Orders">
+    <ScrollViewer x:Name="DetailAreaScrollViewer" VerticalScrollBarVisibility="Auto" Margin="10,0,10,10" Height="420">
+        <i:Interaction.Behaviors>
+            <VirtuosoCoreBehaviors:ScrollIntoViewBehavior />
+        </i:Interaction.Behaviors>
+        <ListBox x:Name="dnrListBox"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 IsTabStop="False" TabNavigation="Local"
+                 ItemContainerStyle="{StaticResource NoSelectListBoxItemStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource PrintTextBlockLabel}"
+                            Visibility="{Binding AdvancedDirectiveType, Converter={StaticResource VisibilityConverterNull}}"
+                            Text="{Binding AdvancedDirectiveTypeCodeDescription}" />
+
+                        <TextBlock Margin="8,6,0,0"
+                                   Height="35"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   Visibility="{Binding SigningPhysicianKey, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                   Text="Signing Physician " />
+
+                        <TextBlock Margin="0,6,0,0"
+                                   Height="35"
+                                   Visibility="{Binding SigningPhysicianKey, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   Text="{Binding SigningPhysicianKey, Converter={StaticResource PhysicianNameFromKeyConverter}}" />
+
+                        <TextBlock Margin="8,0,0,0"
+                                   Visibility="{Binding NoteText, Converter={StaticResource VisibilityConverterNull}}"
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding NoteText}" />
+
+                        <TextBlock Margin="8,6,0,0"
+                                   Height="35"
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   Visibility="{Binding RecordedStateCode, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                   Text="Recorded State " />
+
+                        <TextBlock Margin="0,6,0,0"
+                                   Visibility="{Binding RecordedStateCode, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                   Grid.Row="3"
+                                   Grid.Column="1"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   Text="{Binding RecordedStateCodeDescription}" />
+
+                        <TextBlock Margin="8,0,0,0"
+                                   Height="35"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   Visibility="{Binding EffectiveThruExpirationDateFormatted, Converter={StaticResource VisibilityConverterNull}}"
+                                   Text="Effective " />
+
+                        <TextBlock
+                            Visibility="{Binding EffectiveThruExpirationDateFormatted, Converter={StaticResource VisibilityConverterNull}}"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Style="{StaticResource PrintTextBlock}"
+                            TextWrapping="Wrap"
+                            Text="{Binding EffectiveThruExpirationDateFormatted}" />
+
+                        <TextBlock Margin="8,0,0,0"
+                                   Visibility="{Binding LastReviewedText, Converter={StaticResource VisibilityConverterNull}}"
+                                   Grid.Row="5"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding LastReviewedText}" />
+
+                        <TextBlock Margin="8,0,0,0"
+                                   Visibility="{Binding OnFile, Converter={StaticResource VisibilityConverter}}"
+                                   Grid.Row="6"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Style="{StaticResource PrintTextBlock}"
+                                   TextWrapping="Wrap"
+                                   Text="Documentation On File" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </ScrollViewer>
+</controls:ChildWindow>

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Virtuoso.Core.Controls;
+using Virtuoso.Core.View;
 using Virtuoso.Home.V2.Controls;
 
 namespace ALY_Button_Style
@@ -78,7 +79,7 @@ namespace ALY_Button_Style
         private async void Button_Click3(object sender, RoutedEventArgs e)
         {
             //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
-            ChildWindow2 window = new ChildWindow2();
+            var window = new DynamicFormGraph(null, null, "Temperature");
             window.Show();
         }
 

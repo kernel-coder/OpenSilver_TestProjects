@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.LevelOfCarePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+    <ContentControl
+        IsEnabled="{Binding IsEdit, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}, Mode=TwoWay}">
+        <Grid x:Name="LevelOfCareGrid"
+              Margin="2,4,2,4"
+              BindingValidationError="LevelOfCareGrid_BindingValidationError"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource OuterPopupBorderStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0"
+                          Margin="0"
+                          VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Pain Locations"
+                                   Style="{StaticResource PopupTitleStyle}" />
+                        <Button Content="X"
+                                Command="{Binding Cancel2_Command}"
+                                Style="{StaticResource PopupCloseButtonStyle}" />
+                    </Grid>
+
+                    <Border Margin="0,2,0,2"
+                            Grid.Row="1"
+                            VerticalAlignment="Top"
+                            Style="{StaticResource InnerPopupBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer Grid.Row="0"
+                                          VerticalScrollBarVisibility="Auto"
+                                          Height="Auto">
+                                <ItemsControl
+                                    IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                                    <Grid Background="White"
+                                          IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"
+                                                           MaxHeight="1" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Text=""
+                                                   Width="6000" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="1"
+                                                                     Entity="AdmissionLevelOfCare"
+                                                                     Property="LevelOfCare" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="2"
+                                                                     Entity="AdmissionLevelOfCare"
+                                                                     Property="LevelOfCareLocation" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="3"
+                                                                     Entity="AdmissionLevelOfCare"
+                                                                     Property="LevelOfCareFromDate" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="4"
+                                                                     Entity="AdmissionLevelOfCare"
+                                                                     Property="LevelOfCareChargeThruDate" />
+
+                                        <VirtuosoCoreControls:codeLookup x:Name="levelOfCare"
+                                                                         Grid.Column="2"
+                                                                         Grid.Row="1"
+                                                                         CodeType="LevelOfCare"
+                                                                         FormatOfDropDown="Description"
+                                                                         FormatOfSelection="Description"
+                                                                         IncludeNullItem="False"
+                                                                         SelectedKey="{Binding SelectedItem.LevelOfCare, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                         IsTabStop="{Binding SelectedItem.CanFullEdit}"
+                                                                         IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                         VerticalAlignment="Center" />
+
+                                        <VirtuosoCoreControls:codeLookup x:Name="levelOfCareLocation"
+                                                                         Grid.Column="2"
+                                                                         Grid.Row="2"
+                                                                         CodeType="LevelOfCareLocation"
+                                                                         FormatOfDropDown="Description"
+                                                                         FormatOfSelection="Description"
+                                                                         IncludeNullItem="False"
+                                                                         SelectedKey="{Binding SelectedItem.LevelOfCareLocation, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                         IsTabStop="{Binding SelectedItem.CanFullEdit}"
+                                                                         IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                         VerticalAlignment="Center" />
+
+                                        <StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal">
+                                            <VirtuosoCoreControls:vDatePicker x:Name="levelOfCareFromDate"
+                                                                              Width="130"
+                                                                              HorizontalAlignment="Left"
+                                                                              IsTabStop="{Binding SelectedItem.CanFullEdit}"
+                                                                              IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                              DateObject="{Binding SelectedItem.LevelOfCareFromDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                            <VirtuosoCoreControls:vLabel Margin="11,0,0,0"
+                                                                         Entity="AdmissionLevelOfCare"
+                                                                         Property="LevelOfCareThruDate"
+                                                                         HorizontalAlignment="Right" />
+
+                                            <VirtuosoCoreControls:vDatePicker x:Name="levelOfCareThruDate"
+                                                                              Margin="4,0,0,0"
+                                                                              Width="130"
+                                                                              HorizontalAlignment="Left"
+                                                                              IsHitTestVisible="True"
+                                                                              DateObject="{Binding SelectedItem.LevelOfCareThruDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+                                        </StackPanel>
+
+                                        <VirtuosoCoreControls:vDatePicker x:Name="levelOfCareChargeThruDate"
+                                                                          Grid.Column="2" Grid.Row="4"
+                                                                          Width="130"
+                                                                          HorizontalAlignment="Left"
+                                                                          IsHitTestVisible="True"
+                                                                          DateObject="{Binding SelectedItem.LevelOfCareChargeThruDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+                                    </Grid>
+                                </ItemsControl>
+                            </ScrollViewer>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <sdk:ValidationSummary x:Name="valSum"
+                                                       MaxHeight="150" />
+                            </Grid>
+
+                            <Grid Grid.Row="2"
+                                  Margin="0,4,0,2"
+                                  Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                     Margin="0,0,20,0"
+                                                     Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}"
+                                                     Command="{Binding OK_Command}" />
+                                    <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                     Command="{Binding Cancel2_Command}" />
+                                    <StackPanel
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                        <HyperlinkButton Style="{StaticResource DeleteHyperlinkButton}"
+                                                         Margin="20,0,0,0"
+                                                         Visibility="{Binding SelectedItem.CanDelete, Converter={StaticResource VisibilityConverter}}"
+                                                         Command="{Binding Delete_Command}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </Border>
+        </Grid>
+    </ContentControl>
+</UserControl>

@@ -1,0 +1,196 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.PatientContactDetailsDialog"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="730" Height="480" Foreground="{StaticResource HighlightBrush}"
+                      Title="Patient Contact Details">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,0,10,10" Height="400">
+
+        <i:Interaction.Behaviors>
+            <VirtuosoCoreBehaviors:ScrollIntoViewBehavior />
+        </i:Interaction.Behaviors>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <VirtuosoCoreControls:vLabel Grid.Row="0" Grid.Column="0" Entity="PatientContact" Property="Address1"
+                                         Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="3" Grid.Column="0" Entity="PatientContact"
+                                         Property="HomePhoneNumber" Height="35"
+                                         Visibility="{Binding HomePhoneNumber, Converter={StaticResource VisibilityConverterNull}}" />
+            <VirtuosoCoreControls:vLabel Grid.Row="4" Grid.Column="0" Entity="PatientContact"
+                                         Property="CellPhoneNumber" Height="35"
+                                         Visibility="{Binding CellPhoneNumber, Converter={StaticResource VisibilityConverterNull}}" />
+            <VirtuosoCoreControls:vLabel Grid.Row="5" Grid.Column="0" Entity="PatientContact"
+                                         Property="WorkPhoneNumber" Height="35"
+                                         Visibility="{Binding WorkPhoneNumber, Converter={StaticResource VisibilityConverterNull}}" />
+            <VirtuosoCoreControls:vLabel Grid.Row="6" Grid.Column="0" Entity="PatientContact" Property="EmailAddress"
+                                         Height="35"
+                                         Visibility="{Binding EmailAddress, Converter={StaticResource VisibilityConverterNull}}" />
+            <VirtuosoCoreControls:vLabel Grid.Row="7" Grid.Column="0" Entity="PatientContact" Property="Relationship"
+                                         Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="8" Grid.Column="0" Entity="PatientContact"
+                                         Property="ContactCharacteristicsDescription" Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="9" Grid.Column="0" Entity="PatientContact" Property="Language"
+                                         Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="10" Grid.Column="0" Entity="PatientContact" Property="Religion"
+                                         Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="11" Grid.Column="0" Entity="PatientContact"
+                                         Property="LivesWithPatient" Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="12" Grid.Column="0" Entity="PatientContact" Property="Caregiver"
+                                         Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="13" Grid.Column="0" Entity="PatientContact"
+                                         Property="SharePatientInformation" Height="35" />
+            <VirtuosoCoreControls:vLabel Grid.Row="14" Grid.Column="0" Entity="PatientContact" Property="Role"
+                                         Height="35"
+                                         Visibility="{Binding Role, Converter={StaticResource VisibilityConverterNull}}" />
+
+            <TextBlock
+                Visibility="{Binding Address1, Converter={StaticResource VisibilityConverterNull}}"
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Text="{Binding Address1}" />
+            <TextBlock Height="35"
+                       Visibility="{Binding Address2, Converter={StaticResource VisibilityConverterNull}}"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Text="{Binding Address2}" />
+            <TextBlock Height="35"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       Style="{StaticResource PrintTextBlock}"
+                       Visibility="{Binding City, Converter={StaticResource VisibilityConverterNull}}"
+                       Text="{Binding CityStateZip}" />
+
+            <StackPanel
+                Grid.Row="3"
+                Grid.Column="1"
+                Orientation="Horizontal"
+                Visibility="{Binding HomePhoneNumber, Converter={StaticResource VisibilityConverterNull}}">
+                <TextBlock
+                    Style="{StaticResource PrintTextBlock}"
+                    Visibility="{Binding HomePhoneNumber, Converter={StaticResource VisibilityConverterNull}}"
+                    Text="{Binding HomePhoneNumber, Converter={StaticResource PhoneConverter}}" />
+                <TextBlock Margin="8,0,0,0"
+                           Style="{StaticResource PrintTextBlock}"
+                           Visibility="{Binding PreferredPhoneKey, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=PATPREFERREDPHONE|Home}"
+                           Text="*Preferred" />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Row="4"
+                Grid.Column="1"
+                Orientation="Horizontal"
+                Visibility="{Binding CellPhoneNumber, Converter={StaticResource VisibilityConverterNull}}">
+                <TextBlock
+                    Style="{StaticResource PrintTextBlock}"
+                    Visibility="{Binding CellPhoneNumber, Converter={StaticResource VisibilityConverterNull}}"
+                    Text="{Binding CellPhoneNumber, Converter={StaticResource PhoneConverter}}" />
+                <TextBlock Margin="8,0,0,0"
+                           Style="{StaticResource PrintTextBlock}"
+                           Visibility="{Binding PreferredPhoneKey, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=PATPREFERREDPHONE|Cell}"
+                           Text="*Preferred" />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Row="5"
+                Grid.Column="1"
+                Orientation="Horizontal"
+                Visibility="{Binding WorkPhoneNumber, Converter={StaticResource VisibilityConverterNull}}">
+                <TextBlock
+                    Style="{StaticResource PrintTextBlock}"
+                    Visibility="{Binding WorkPhoneNumber, Converter={StaticResource VisibilityConverterNull}}"
+                    Text="{Binding WorkPhoneNumber, Converter={StaticResource PhoneConverter}}" />
+                <TextBlock Margin="4,0,0,0"
+                           Style="{StaticResource PrintTextBlock}"
+                           Visibility="{Binding WorkPhoneExtension, Converter={StaticResource VisibilityConverterNull}}"
+                           Text="{Binding WorkPhoneExtension}" />
+                <TextBlock Margin="8,0,0,0"
+                           Style="{StaticResource PrintTextBlock}"
+                           Visibility="{Binding PreferredPhoneKey, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=PATPREFERREDPHONE|Work}"
+                           Text="*Preferred" />
+            </StackPanel>
+
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Visibility="{Binding EmailAddress, Converter={StaticResource VisibilityConverterNull}}"
+                Text="{Binding EmailAddress}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Visibility="{Binding Relationship, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                Text="{Binding RelationshipDescription}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Visibility="{Binding Relationship, Converter={StaticResource VisibilityConverterNull}}"
+                Text="{Binding ContactCharacteristicsDescription}" />
+
+            <TextBlock
+                Grid.Row="9"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Visibility="{Binding Language, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                Text="{Binding LanguageDescription}" />
+
+            <TextBlock
+                Grid.Row="10"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Visibility="{Binding Religion, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                Text="{Binding ReligionDescription}" />
+            <TextBlock
+                Grid.Row="11"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Text="{Binding LivesWithPatient, Converter={StaticResource BoolToYesNoLiteralConverter}}" />
+            <TextBlock
+                Grid.Row="12"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Text="{Binding Caregiver, Converter={StaticResource BoolToYesNoLiteralConverter}}" />
+            <TextBlock
+                Grid.Row="13"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Text="{Binding SharePatientInformation, Converter={StaticResource BoolToYesNoLiteralConverter}}" />
+            <TextBlock
+                Grid.Row="14"
+                Grid.Column="1"
+                Style="{StaticResource PrintTextBlock}"
+                Visibility="{Binding Role, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                Text="{Binding RoleDescription}" />
+
+        </Grid>
+    </ScrollViewer>
+</controls:ChildWindow>

@@ -1,0 +1,45 @@
+﻿<StackPanel x:Class="Virtuoso.Core.Controls.EncounterStatusMark"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:icons="clr-namespace:Virtuoso.Core.Assets.Icons"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            mc:Ignorable="d">
+
+    <VirtuosoCoreControls:CheckMark x:Name="completeCheckMark"
+                                    Width="16"
+                                    Height="16"
+                                    Visibility="Collapsed"/>
+    <icons:CoderIcon x:Name="reviewCoder"
+                     Width="16"
+                     Height="16"
+                     Visibility="Collapsed"/>
+    <icons:OasisIcon x:Name="reviewOASIS"
+                     Width="16"
+                     Height="16"
+                     Visibility="Collapsed"/>
+    <icons:HisIcon x:Name="reviewHIS"
+                   Width="16"
+                   Height="16"
+                   Visibility="Collapsed"/>
+    <icons:OasisIcon x:Name="reviewPOCOrder"
+                     Width="16"
+                     Height="16"
+                     Visibility="Collapsed"/>
+    <VirtuosoCoreControls:CheckMarkCoderReview x:Name="reviewCheckMark"
+                                               Width="16"
+                                               Height="16"
+                                               Visibility="Collapsed"/>
+    <ToolTipService.ToolTip>
+        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+            <ToolTip.Content>
+                <TextBlock x:Name="toolTip"
+                           Text=""
+                           TextWrapping="Wrap"/>
+            </ToolTip.Content>
+        </ToolTip>
+    </ToolTipService.ToolTip>
+</StackPanel>

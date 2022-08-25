@@ -1,0 +1,55 @@
+﻿<controls:ChildWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      x:Class="Virtuoso.Core.Controls.NavigateCloseDialog"
+                      Title="Close form and lose any unsaved changes?"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="470"
+                      Height="200">
+
+    <Grid x:Name="LayoutRoot"
+          Margin="50,5,50,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   x:Name="ErrorMessageTextBox"
+                   HorizontalAlignment="Center"
+                   Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Path=ErrorMessage}"
+                   TextWrapping="Wrap"
+                   MaxHeight="120"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   x:Name="ErrorQuestionTextBox"
+                   Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Path=ErrorQuestion}"
+                   TextWrapping="Wrap"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        <Button Grid.Row="2"
+                Grid.Column="0"
+                Width="80"
+                Click="YesButton_Click"
+                Content="Yes"
+                x:Name="YesButton"
+                HorizontalAlignment="Right"
+                Margin="0,6,2,0" />
+        <Button Grid.Row="2"
+                Grid.Column="1"
+                Width="80"
+                Click="CancelButton_Click"
+                Content="No"
+                x:Name="NoButton"
+                HorizontalAlignment="Left"
+                Margin="2,6,0,0" />
+    </Grid>
+</controls:ChildWindow>

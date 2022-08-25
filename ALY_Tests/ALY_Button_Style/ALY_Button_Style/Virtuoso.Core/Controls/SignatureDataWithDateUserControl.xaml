@@ -1,0 +1,95 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Virtuoso.Core.Controls.SignatureDataWithDateUserControl"
+             x:Name="signatureDataWithDate_ctrl"
+             d:DesignWidth="642"
+             d:DesignHeight="176"
+             BindingValidationError="signatureDataWithDateUserControl_ctrl_BindingValidationError">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid x:Name="ControlRoot"
+              DataContext="{Binding ElementName=signatureDataWithDate_ctrl}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="textBlockErrorText" Margin="0,4,0,4"
+                       Visibility="Collapsed"
+                       Text=""
+                       Foreground="{StaticResource ValidationSummaryBrush1}"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top" />
+            <Border x:Name="borderImage" Grid.Column="0" Grid.Row="1" Margin="8,0,0,0"
+                    BorderThickness="5"
+                    Width="275"
+                    Height="88"
+                    HorizontalAlignment="Left"
+                    BorderBrush="{StaticResource GridBorder}"
+                    Visibility="{Binding ShowInkPresenter, Mode=TwoWay, Converter={StaticResource OppositeVisibilityConverter}}">
+                <Image x:Name="inkimage"
+                       Source="{Binding Signature, Mode=TwoWay, Converter={StaticResource PhotoConverter}, ConverterParameter=Print}" />
+            </Border>
+            <Border x:Name="borderInkPresenter" Grid.Column="0" Grid.Row="1"
+                    BorderThickness="5"
+                    Width="550"
+                    Height="175"
+                    HorizontalAlignment="Left"
+                    BorderBrush="{StaticResource GridBorder}"
+                    Visibility="{Binding ShowInkPresenter, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}">
+                <InkPresenter x:Name="inkPad"
+                              Background="Transparent"
+                              MouseLeftButtonDown="InkPresenter_MouseLeftButtonDown"
+                              LostMouseCapture="InkPresenter_LostMouseCapture"
+                              MouseMove="InkPresenter_MouseMove">
+                    <InkPresenter.Clip>
+                        <RectangleGeometry Rect="0,0,540,165" />
+                    </InkPresenter.Clip>
+                </InkPresenter>
+            </Border>
+
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Margin="8,0,0,8"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource CoreTextBlockStyle}"
+                           Text="Signature Date" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Margin="8,0,0,8"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource CoreTextBlockStyle}"
+                           Text="{Binding EncounterData.DateTimeData, StringFormat=d}" />
+                <StackPanel x:Name="stackPanelSignature" Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
+                            Visibility="{Binding IsReadOnly, Converter={StaticResource OppositeVisibilityConverter}}">
+                    <Button Content="Clear"
+                            Visibility="{Binding ElementName=signatureDataWithDate_ctrl, Path=IsEnabled, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Height="30"
+                            Width="75"
+                            Click="Button_Click"
+                            Margin="8,0,0,8" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>

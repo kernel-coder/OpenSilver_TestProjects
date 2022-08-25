@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientFacilityStayPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <clr:String x:Key="FacilityStayType">FacilityStayType</clr:String>
+    </UserControl.Resources>
+
+    <Grid x:Name="PatientFacilityStayGrid"
+          Margin="2,4,2,4"
+          BindingValidationError="PatientFacilityStayGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Facility Stay Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                </Grid.RowDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                                             Grid.Row="1"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="FacilityKey" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="2"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="PatientFacilityStayKey" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="3"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="FacilityBranchKey" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="4"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="FacilityStayType" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="5"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="FacilityStayReason" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="6"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="StartDate" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="7"
+                                                             Entity="PatientFacilityStay"
+                                                             Property="EndDate" />
+
+                                <VirtuosoCoreControls:SmartCombo Grid.Row="1"
+                                                                 Grid.Column="1"
+                                                                 MinWidth="350"
+                                                                 Width="Auto"
+                                                                 Height="Auto"
+                                                                 HorizontalAlignment="Left"
+                                                                 SelectedValuePath="FacilityKey"
+                                                                 EmptySelectionValue="0"
+                                                                 IncludeEmpty="False"
+                                                                 ValueMemberPath="Name"
+                                                                 IncludeSystemSearch="True"
+                                                                 IncludeMRU="False"
+                                                                 FilterPath="Name"
+                                                                 SearchType="Facility"
+                                                                 SelectedValue="{Binding SelectedItem.FacilityKey, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}">
+                                    <VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Name, Converter={StaticResource NullToAllConverter}}" />
+                                        </DataTemplate>
+                                    </VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                </VirtuosoCoreControls:SmartCombo>
+
+                                <TextBox Grid.Column="1"
+                                         Grid.Row="2"
+                                         HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Center"
+                                         TextWrapping="Wrap"
+                                         IsHitTestVisible="False"
+                                         IsReadOnly="True"
+                                         Text="{Binding SelectedItem.FacilityTypeDescription, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                <VirtuosoCoreControls:vAsyncComboBoxV2 Grid.Row="3"
+                                                                       Grid.Column="1"
+                                                                       Margin="0,5,0,5"
+                                                                       IsEnabled="{Binding IsEdit, FallbackValue=True}"
+                                                                       MinWidth="350"
+                                                                       HorizontalAlignment="Stretch"
+                                                                       VerticalAlignment="Center"
+                                                                       ItemsSource="{Binding SelectedItem.FacilityBranchList, Mode=TwoWay}"
+                                                                       DisplayMemberPath="BranchName"
+                                                                       SelectedValuePath="FacilityBranchKey"
+                                                                       SelectedValue="{Binding SelectedItem.FacilityBranchKey, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                       Visibility="{Binding SelectedItem.ContactTypeKey, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=PATCONTACTADDRESS|facility}">
+                                </VirtuosoCoreControls:vAsyncComboBoxV2>
+
+                                <VirtuosoCoreControls:vAsyncComboBoxV2 Grid.Column="1"
+                                                                       Grid.Row="4"
+                                                                       HorizontalAlignment="Stretch"
+                                                                       VerticalAlignment="Center"
+                                                                       ItemsSource="{Binding Source={StaticResource FacilityStayType}, Converter={StaticResource CodeLookupItemSourceConverter}}"
+                                                                       DisplayMemberPath="CodeDescription"
+                                                                       SelectedValuePath="CodeLookupKey"
+                                                                       SelectedValue="{Binding SelectedItem.FacilityStayType, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}">
+                                </VirtuosoCoreControls:vAsyncComboBoxV2>
+
+                                <VirtuosoCoreControls:vAsyncComboBoxV2 Grid.Column="1"
+                                                                       Grid.Row="5"
+                                                                       HorizontalAlignment="Stretch"
+                                                                       VerticalAlignment="Center"
+                                                                       ItemsSource="{Binding SelectedItem.FacilityStayReasonCodeLookup, Mode=TwoWay, Converter={StaticResource CodeLookupItemSourceConverter}}"
+                                                                       DisplayMemberPath="CodeDescription"
+                                                                       SelectedValuePath="CodeLookupKey"
+                                                                       SelectedValue="{Binding SelectedItem.FacilityStayReason, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}">
+                                </VirtuosoCoreControls:vAsyncComboBoxV2>
+
+                                <StackPanel Grid.Column="1"
+                                            Grid.Row="6"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                      DisplayDateStart="{Binding SelectedItem.DisplayDateStart, Mode=TwoWay}"
+                                                                      DateObject="{Binding SelectedItem.StartDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1"
+                                            Grid.Row="7"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                      DisplayDateStart="{Binding SelectedItem.StartDate, Mode=TwoWay}"
+                                                                      DateObject="{Binding SelectedItem.EndDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                </StackPanel>
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1"
+                              Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum"
+                                                   MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

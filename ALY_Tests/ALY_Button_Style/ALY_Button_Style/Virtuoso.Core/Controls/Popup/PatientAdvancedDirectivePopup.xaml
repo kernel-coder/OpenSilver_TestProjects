@@ -1,0 +1,362 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientAdvancedDirectivePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <clr:String x:Key="AdvancedDirectives">AdvancedDirectives</clr:String>
+        <clr:String x:Key="StateCode">STATE</clr:String>
+    </UserControl.Resources>
+
+    <Grid x:Name="PatientAdvancedDirectiveGrid" Margin="2,4,2,4"
+          BindingValidationError="PatientAdvancedDirectiveGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Advance Directive Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer" Grid.Row="0" Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                </Grid.RowDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Margin="0,3,0,0" MinHeight="35" Grid.Column="0"
+                                                             Grid.Row="1" Entity="PatientAdvancedDirective"
+                                                             Property="AdvancedDirectiveType" />
+                                <TextBlock Margin="19,3,0,0" MinHeight="35" Grid.Column="0" Grid.Row="2" Text="Patient"
+                                           VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="3"
+                                                             Entity="PatientAdvancedDirective"
+                                                             Property="SigningPhysicianKey"
+                                                             Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives||dnr|communitydnr}" />
+                                <Grid MinHeight="35" Grid.Column="0" Grid.Row="4"
+                                      Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|healthcareproxy|healthcarepoa}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="*"
+                                               Style="{StaticResource CoreTextBlockStyle}" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1"
+                                               Text="{Binding SelectedItem.PatientContact1KeyLabel}"
+                                               Style="{StaticResource CoreTextBlockStyle}" />
+                                </Grid>
+                                <Grid Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"
+                                      Visibility="{Binding SelectedItem.PatientContact1Key, Mode=TwoWay, Converter={StaticResource VisibilityConverterNullOrZero}}">
+                                    <TextBlock MinHeight="35" Margin="19,3,0,0"
+                                               Text="{Binding SelectedItem.PatientContact2KeyLabel}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                               Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|healthcareproxy|healthcarepoa}" />
+                                </Grid>
+                                <Grid Grid.Column="0" Grid.Row="6"
+                                      Visibility="{Binding SelectedItem.PatientContact2Key, Mode=TwoWay, Converter={StaticResource VisibilityConverterNullOrZero}}">
+                                    <TextBlock MinHeight="35" Margin="19,3,0,0"
+                                               Text="{Binding SelectedItem.PatientContact3KeyLabel}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                               Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|healthcareproxy|healthcarepoa}" />
+                                </Grid>
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="7"
+                                                             Entity="PatientAdvancedDirective" Property="NoteText" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="8"
+                                                             Entity="PatientAdvancedDirective"
+                                                             Property="RecordedStateCode" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="9"
+                                                             Entity="PatientAdvancedDirective" Property="EffectiveDate" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="10"
+                                                             Entity="PatientAdvancedDirective"
+                                                             Property="ExpirationDate" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="11"
+                                                             Entity="PatientAdvancedDirective" Property="OnFile" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="12"
+                                                             Entity="PatientAdvancedDirective"
+                                                             Property="NewReviewedDatePart" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="14"
+                                                             Entity="PatientAdvancedDirective"
+                                                             Property="Inactive" />
+
+                                <VirtuosoCoreControls:codeLookup x:Name="advancedDirectiveType" Width="240"
+                                                                 Grid.Column="1" Grid.Row="1"
+                                                                 HorizontalAlignment="Left"
+                                                                 CodeType="{Binding Source={StaticResource AdvancedDirectives}}"
+                                                                 IncludeNullItem="False"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 SelectedKey="{Binding SelectedItem.AdvancedDirectiveType, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                 VerticalAlignment="Center">
+                                </VirtuosoCoreControls:codeLookup>
+
+                                <TextBlock Grid.Column="1" Grid.Row="2" MinWidth="350" HorizontalAlignment="Left"
+                                           Text="{Binding CurrentPatient.FullName, Mode=TwoWay}" />
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3"
+                                            HorizontalAlignment="Left"
+                                            Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|dnr|communitydnr}">
+
+                                    <VirtuosoCoreControls:SmartCombo Grid.Row="0"
+                                                                     Grid.Column="1"
+                                                                     Width="Auto"
+                                                                     Height="Auto"
+                                                                     VerticalAlignment="Center"
+                                                                     HorizontalAlignment="Left"
+                                                                     SelectedValuePath="PhysicianKey"
+                                                                     IncludeEmpty="False"
+                                                                     ValueMemberPath="FullName"
+                                                                     IncludeSystemSearch="True"
+                                                                     IncludeMRU="False"
+                                                                     FilterPath="FullName"
+                                                                     SearchType="Physician"
+                                                                     Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|dnr|communitydnr}"
+                                                                     SelectedValue="{Binding SelectedItem.SigningPhysicianKey, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True}"
+                                                                     Margin="0,4,0,4">
+                                        <VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    Text="{Binding FullName, Converter={StaticResource NullToAllConverter}}" />
+                                            </DataTemplate>
+                                        </VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                    </VirtuosoCoreControls:SmartCombo>
+
+                                    <Button Margin="16,0,2,0"
+                                            Height="20"
+                                            Tag="{Binding SelectedItem.SigningPhysicianKey}"
+                                            Style="{StaticResource InfoButtonRoundStyle}" HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Visibility="{Binding SelectedItem.SigningPhysicianKey, Mode=TwoWay, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                            Click="buttonPhysicianDetails_Click">
+                                        <ToolTipService.ToolTip>
+                                            <VirtuosoCoreControls:vRichTextArea ParagraphText="Physician details"
+                                                TextWrapping="Wrap" />
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4"
+                                            HorizontalAlignment="Left"
+                                            Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|healthcareproxy|healthcarepoa}">
+                                    <VirtuosoCoreControls:vAsyncComboBox MinWidth="350" HorizontalAlignment="Left"
+                                                                         ItemsSource="{Binding SelectedItem.PatientContact1PickList}"
+                                                                         DisplayMemberPath="FullNameInformalWithRelationShip"
+                                                                         SelectedValuePath="PatientContactKey"
+                                                                         SelectedValue="{Binding SelectedItem.PatientContact1Key, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                         VerticalAlignment="Center">
+                                    </VirtuosoCoreControls:vAsyncComboBox>
+                                    <Button Margin="16,0,2,0" Height="20"
+                                            Style="{StaticResource InfoButtonRoundStyle}" HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding PatientContact1Details_Command}">
+                                        <ToolTipService.ToolTip>
+                                            <VirtuosoCoreControls:vRichTextArea ParagraphText="Contact details"
+                                                TextWrapping="Wrap" />
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5"
+                                            HorizontalAlignment="Left"
+                                            Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|healthcareproxy|healthcarepoa}">
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="{Binding SelectedItem.PatientContact1Key, Mode=TwoWay, Converter={StaticResource VisibilityConverterNullOrZero}}">
+                                        <VirtuosoCoreControls:vAsyncComboBox MinWidth="350" HorizontalAlignment="Left"
+                                                                             ItemsSource="{Binding SelectedItem.PatientContact2PickList}"
+                                                                             DisplayMemberPath="FullNameInformalWithRelationShip"
+                                                                             SelectedValuePath="PatientContactKey"
+                                                                             SelectedValue="{Binding SelectedItem.PatientContact2Key, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                             VerticalAlignment="Center">
+                                        </VirtuosoCoreControls:vAsyncComboBox>
+                                        <Button Margin="16,0,2,0" Height="20"
+                                                Style="{StaticResource InfoButtonRoundStyle}"
+                                                HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                Command="{Binding PatientContact2Details_Command}">
+                                            <ToolTipService.ToolTip>
+                                                <VirtuosoCoreControls:vRichTextArea ParagraphText="Contact details"
+                                                    TextWrapping="Wrap" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6"
+                                            HorizontalAlignment="Left"
+                                            Visibility="{Binding SelectedKey, ElementName=advancedDirectiveType, Mode=TwoWay, Converter={StaticResource CodeLookupConditionalVisibilityOnCode}, ConverterParameter=AdvancedDirectives|healthcareproxy|healthcarepoa}">
+                                    <StackPanel Orientation="Horizontal"
+                                                Visibility="{Binding SelectedItem.PatientContact2Key, Mode=TwoWay, Converter={StaticResource VisibilityConverterNullOrZero}}">
+                                        <VirtuosoCoreControls:vAsyncComboBox MinWidth="350" HorizontalAlignment="Left"
+                                                                             ItemsSource="{Binding SelectedItem.PatientContact3PickList}"
+                                                                             DisplayMemberPath="FullNameInformalWithRelationShip"
+                                                                             SelectedValuePath="PatientContactKey"
+                                                                             SelectedValue="{Binding SelectedItem.PatientContact3Key, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                             VerticalAlignment="Center">
+                                        </VirtuosoCoreControls:vAsyncComboBox>
+                                        <Button Margin="16,0,2,0" Height="20"
+                                                Style="{StaticResource InfoButtonRoundStyle}"
+                                                HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                Command="{Binding PatientContact3Details_Command}">
+                                            <ToolTipService.ToolTip>
+                                                <VirtuosoCoreControls:vRichTextArea ParagraphText="Contact details"
+                                                    TextWrapping="Wrap" />
+                                            </ToolTipService.ToolTip>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                                <TextBox Grid.Column="1" Grid.Row="7" Margin="0,0,10,0"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding SelectedItem.NoteText, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                <VirtuosoCoreControls:autoCompleteCombo Grid.Column="1" Grid.Row="8"
+                                                                        VerticalAlignment="Center"
+                                                                        HorizontalAlignment="Left" MinWidth="220"
+                                                                        ItemsSource="{Binding Source={StaticResource StateCode}, Converter={StaticResource CodeLookupItemSourceConverter}}"
+                                                                        SelectedValue="{Binding SelectedItem.RecordedStateCode, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                        SelectedValuePath="CodeLookupKey"
+                                                                        ValueMemberPath="CodeDescription">
+                                    <VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding CodeDescription}" />
+                                        </DataTemplate>
+                                    </VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                </VirtuosoCoreControls:autoCompleteCombo>
+
+                                <StackPanel Grid.Column="1" Grid.Row="9" HorizontalAlignment="Left"
+                                            Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                      DateObject="{Binding SelectedItem.EffectiveDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Grid.Row="10" HorizontalAlignment="Left"
+                                            Orientation="Horizontal">
+                                    <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                      DateObject="{Binding SelectedItem.ExpirationDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                </StackPanel>
+
+                                <CheckBox Grid.Column="1" Grid.Row="11" HorizontalAlignment="Left"
+                                          Content=""
+                                          IsChecked="{Binding SelectedItem.OnFile, Mode=TwoWay, NotifyOnValidationError=True}"
+                                          IsThreeState="False" />
+
+                                <StackPanel Grid.Column="1" Grid.Row="12" HorizontalAlignment="Left"
+                                            Orientation="Horizontal">
+                                    <CheckBox x:Name="newReviewed" HorizontalAlignment="Left"
+                                              Content=""
+                                              IsChecked="{Binding SelectedItem.NewReviewed, Mode=TwoWay, NotifyOnValidationError=True}"
+                                              IsThreeState="False" />
+                                    <StackPanel Margin="-8,0,0,0" Orientation="Horizontal"
+                                                Visibility="{Binding IsChecked, ElementName=newReviewed, Converter={StaticResource VisibilityConverter}}">
+                                        <TextBlock Margin="0,0,0,0" Text="On " />
+                                        <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                          DateObject="{Binding SelectedItem.NewReviewedDatePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                        <toolkit:TimePicker Margin="8,0,0,0"
+                                                            Value="{Binding SelectedItem.NewReviewedTimePart, Mode=TwoWay}"
+                                                            Format="{Binding Converter={StaticResource FormatTimeConverter}}" />
+                                        <TextBlock Margin="16,0,0,0" Text="By " />
+                                        <TextBlock Margin="0,0,0,0"
+                                                   Text="{Binding SelectedItem.NewReviewedBy, Converter={StaticResource UserCacheGetFormalNameFromUserIdConverter}}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <TextBlock MinHeight="35"
+                                           Grid.Column="1"
+                                           Grid.Row="13"
+                                           Text="{Binding SelectedItem.LastReviewedText}"
+                                           Visibility="{Binding SelectedItem.LastReviewedText, Mode=TwoWay, Converter={StaticResource VisibilityConverterNull}}" />
+
+                                <CheckBox Grid.Column="1"
+                                          Grid.Row="14"
+                                          IsChecked="{Binding SelectedItem.Inactive, Mode=TwoWay}" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

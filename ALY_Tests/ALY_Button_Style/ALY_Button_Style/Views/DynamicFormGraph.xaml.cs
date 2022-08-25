@@ -82,6 +82,9 @@ namespace Virtuoso.Core.View
 
                 noReading.Visibility =
                     Visibility.Collapsed; // Have items to graph in chartBP or chartNumeric - hide No Reading
+#if OPENSILVER
+                Height = 320;
+#endif
             }
             else
             {

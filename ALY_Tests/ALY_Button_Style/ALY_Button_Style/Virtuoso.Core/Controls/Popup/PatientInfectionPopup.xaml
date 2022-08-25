@@ -1,0 +1,259 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientInfectionPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             xmlns:coreview="clr-namespace:Virtuoso.Core.View;assembly=Virtuoso.Core"
+             mc:Ignorable="d"
+             xmlns:tooltip="clr-namespace:Silverlight.Controls.ToolTips;assembly=Silverlight.Controls.ToolTips"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <clr:String x:Key="InfectionSite">InfectionSite</clr:String>
+        <clr:String x:Key="InfectionPathogen">InfectionPathogen</clr:String>
+        <clr:String x:Key="InfectionConfirmation">InfectionConfirmation</clr:String>
+        <coreview:DataContextProxy x:Key="DataContextProxy" />
+    </UserControl.Resources>
+
+    <Grid x:Name="PatientInfectionGrid" Margin="2,4,2,4"
+          BindingValidationError="PatientInfection_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Infections"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 0 Infection Site -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 1 Infection Site Other -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 2 POA -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 3 Confimation of Infection -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 4 Confirmation of Infection Other -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 5 Confirmation Date -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 6 Pathogen -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 7 Pathogen Other -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 8 Transmission Precautions Multi-Select -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 9 Date Resolved -->
+                                    <RowDefinition Height="Auto"/>
+                                    <!-- 10 Unused -->
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- 0 Infection Site -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="0"
+                                                             Grid.Column="0"
+                                                             MinHeight="35" Entity="PatientInfection"
+                                                             Property="InfectionSiteKey" />
+                                <VirtuosoCoreControls:codeLookup Grid.Row="0"
+                                                                 Grid.Column="1"
+                                                                 CodeType="{Binding Source={StaticResource InfectionSite}}"
+                                                                 IncludeNullItem="False"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 IsTabStop="{Binding CanFullEdit}"
+                                                                 IsHitTestVisible="{Binding CanFullEdit}"
+                                                                 SelectedKey="{Binding SelectedItem.InfectionSiteKey, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                 VerticalAlignment="Center">
+                                </VirtuosoCoreControls:codeLookup>
+
+                                <!-- 1 Infection Site Other -->
+                                <TextBox Grid.Row="1"
+                                         Grid.Column="1"
+                                         MaxLength="120"
+                                         Visibility="{Binding SelectedItem.ShowInfectionSiteOther, Converter={StaticResource VisibilityConverter}}"
+                                         Text="{Binding SelectedItem.InfectionSiteOther, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                                <!-- 2 POA -->
+                                <StackPanel Grid.Row="2"
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            MinHeight="35">
+                                    <VirtuosoCoreControls:vLabel MinHeight="35" Entity="PatientInfection"
+                                                                 Property="PresentAtSOCROC" />
+                                    <Button Height="20" Margin="8,0,8,0" Style="{StaticResource InfoButtonRoundStyle}">
+                                        <tooltip:ToolTipService.ToolTip>
+                                            <tooltip:ToolTip InitialDelay="0" DisplayTime="Forever">
+                                                <VirtuosoCoreControls:vRichTextArea
+                                                    ParagraphText="Present on Admission (POA) is defined as 'Present at SOC/ROC or within 48 Hrs. of SOC/ROC'." />
+                                            </tooltip:ToolTip>
+                                        </tooltip:ToolTipService.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Row="2"
+                                            Grid.Column="1">
+                                    <RadioButton Content="Yes"
+                                                 IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                 IsChecked="{Binding SelectedItem.PresentAtSOCROC, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                    <RadioButton Content="No"
+                                                 Margin="8,0"
+                                                 Tag="{Binding SelectedItem.PresentAtSOCROC, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                 IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                 IsChecked="{Binding SelectedItem.NotPresentAtSOCROC, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                </StackPanel>
+
+                                <!-- 3 Confimation of Infection -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="3" Grid.Column="0" MinHeight="35"
+                                                             Entity="PatientInfection"
+                                                             Property="InfectionConfirmationKey" />
+                                <VirtuosoCoreControls:codeLookup Grid.Row="3"
+                                                                 Grid.Column="1"
+                                                                 CodeType="{Binding Source={StaticResource InfectionConfirmation}}"
+                                                                 IncludeNullItem="True"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 IsTabStop="{Binding CanFullEdit}"
+                                                                 IsHitTestVisible="{Binding CanFullEdit}"
+                                                                 SelectedKey="{Binding SelectedItem.InfectionConfirmationKey, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                 VerticalAlignment="Center">
+                                </VirtuosoCoreControls:codeLookup>
+
+                                <!-- 4 Confirmation of Infection Other -->
+                                <TextBox Grid.Row="4"
+                                         Grid.Column="1"
+                                         MaxLength="120"
+                                         Visibility="{Binding SelectedItem.ShowInfectionConfirmationOther, Converter={StaticResource VisibilityConverter}}"
+                                         Text="{Binding SelectedItem.InfectionConfirmationOther, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                                <!-- 5 Confirmation Date -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="5"
+                                                             Grid.Column="0"
+                                                             MinHeight="35" Entity="PatientInfection"
+                                                             Property="ConfirmationDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="5"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  IsHitTestVisible="{Binding CanFullEdit}"
+                                                                  DateObject="{Binding SelectedItem.ConfirmationDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                <!-- 6 Pathogen -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="6" Grid.Column="0" MinHeight="35"
+                                                             Entity="PatientInfection" Property="InfectionPathogenKey" />
+                                <VirtuosoCoreControls:codeLookup Grid.Row="6"
+                                                                 Grid.Column="1"
+                                                                 CodeType="{Binding Source={StaticResource InfectionPathogen}}"
+                                                                 IncludeNullItem="True"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 IsTabStop="{Binding CanFullEdit}"
+                                                                 IsHitTestVisible="{Binding CanFullEdit}"
+                                                                 SelectedKey="{Binding SelectedItem.InfectionPathogenKey, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                 VerticalAlignment="Center">
+                                </VirtuosoCoreControls:codeLookup>
+
+                                <!-- 7 Pathogen Other -->
+                                <TextBox Grid.Row="7"
+                                         Grid.Column="1"
+                                         MaxLength="120"
+                                         Visibility="{Binding SelectedItem.ShowInfectionPathogenOther, Converter={StaticResource VisibilityConverter}}"
+                                         Text="{Binding SelectedItem.InfectionPathogenOther, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" />
+
+                                <!-- 8 Transmission Precautions Multi-Select -->
+                                <StackPanel Grid.Row="8"
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            MinHeight="35">
+                                    <VirtuosoCoreControls:vLabel Entity="PatientInfection"
+                                                                 Property="TransmissionPrecautions" />
+                                    <Button Height="20" Margin="8,0,8,0"
+                                            Tag="{Binding SelectedItem}"
+                                            Style="{StaticResource InfoButtonRoundStyle}" HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Click="TransmissionPrecautionsHelpButton_Click">
+                                        <ToolTipService.ToolTip>
+                                            <VirtuosoCoreControls:vRichTextArea
+                                                ParagraphText="Link to Transmission Precautions Help"
+                                                TextWrapping="Wrap" />
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="8"
+                                                                      Grid.Column="1"
+                                                                      CodeType="InfectionPrecautions"
+                                                                      IncludeOther="False"
+                                                                      SkipNullItem="True"
+                                                                      IsTabStop="{Binding CanFullEdit}"
+                                                                      IsHitTestVisible="{Binding CanFullEdit}"
+                                                                      SelectedValues="{Binding SelectedItem.TransmissionPrecautions, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                      VerticalAlignment="Center" />
+
+
+                                <!-- 9 Date Resolved -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="9"
+                                                             Grid.Column="0"
+                                                             MinHeight="35" Entity="PatientInfection"
+                                                             Property="ResolvedDate" />
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="9"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  IsHitTestVisible="{Binding CanFullEdit}"
+                                                                  DateObject="{Binding SelectedItem.ResolvedDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

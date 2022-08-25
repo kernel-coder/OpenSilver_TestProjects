@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.OasisQuestion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             x:Name="oasisQuestion_ctrl"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid x:Name="ControlRoot" DataContext="{Binding ElementName=oasisQuestion_ctrl}" Margin="0,2,0,0"
+              Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="17" />
+                <ColumnDefinition Width="23" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="OasisFinancialIndicator" Grid.Row="0" Grid.Column="0" Margin="0,-3"
+                       Text="$" Foreground="{StaticResource OasisMoneyColorBrush}" FontSize="20" FontWeight="Bold"
+                       Visibility="Collapsed"
+                       HorizontalAlignment="Left" VerticalAlignment="Top">
+                <ToolTipService.ToolTip>
+                    <VirtuosoCoreControls:vRichTextArea ParagraphText="Question used in HIPPS_CODE calculation"
+                                                        Foreground="{StaticResource OasisMoneyColorBrush}"
+                                                        TextWrapping="Wrap" />
+                </ToolTipService.ToolTip>
+            </TextBlock>
+            <Button x:Name="OasisHelpButton" Grid.Row="0" Grid.Column="1" Margin="0,2" Height="20"
+                    Style="{StaticResource InfoButtonRoundStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Click="OasisHelpButton_Click">
+                <ToolTipService.ToolTip>
+                    <VirtuosoCoreControls:vRichTextArea ParagraphText="Link to OASIS Guidance Manual (Chapter 3)"
+                                                        TextWrapping="Wrap" />
+                </ToolTipService.ToolTip>
+            </Button>
+            <StackPanel x:Name="questionStackPanelHyperlinkButton" Orientation="Vertical" Grid.Row="0" Grid.Column="2"
+                        Margin="0,3" Visibility="Collapsed">
+                <HyperlinkButton x:Name="questionHyperlinkButton"
+                                 Visibility="{Binding OasisManagerQuestion.ErrorText, Converter={StaticResource VisibilityConverterNull}, ConverterParameter=opposite, FallbackValue=Visible}"
+                                 Content="(Mnnnn)"
+                                 Click="OasisHelpButton_Click"
+                                 FontWeight="Bold"
+                                 VerticalAlignment="Top">
+                    <ToolTipService.ToolTip>
+                        <VirtuosoCoreControls:vRichTextArea ParagraphText="Link to OASIS Guidance Manual (Chapter 3)"
+                                                            TextWrapping="Wrap" />
+                    </ToolTipService.ToolTip>
+                </HyperlinkButton>
+                <HyperlinkButton x:Name="questionHyperlinkButtonRed"
+                                 Visibility="{Binding OasisManagerQuestion.ErrorText, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                                 Content="(Mnnnn)"
+                                 Click="OasisHelpButton_Click"
+                                 FontWeight="Bold"
+                                 Style="{StaticResource ErrorHyperlinkButton}"
+                                 VerticalAlignment="Top">
+                    <ToolTipService.ToolTip>
+                        <VirtuosoCoreControls:vRichTextArea ParagraphText="Link to OASIS Guidance Manual (Chapter 3)"
+                                                            TextWrapping="Wrap" />
+                    </ToolTipService.ToolTip>
+                </HyperlinkButton>
+            </StackPanel>
+            <StackPanel x:Name="questionStackPanelTextBlock" Orientation="Vertical" Grid.Row="0" Grid.Column="2"
+                        Margin="0,-2" Visibility="Collapsed">
+                <TextBlock x:Name="questionTextBlock"
+                           Visibility="{Binding OasisManagerQuestion.ErrorText, Converter={StaticResource VisibilityConverterNull}, ConverterParameter=opposite, FallbackValue=Visible}"
+                           Text="(Mnnnn)"
+                           FontWeight="Bold"
+                           VerticalAlignment="Top" />
+                <TextBlock x:Name="questionTextBlockRed"
+                           Visibility="{Binding OasisManagerQuestion.ErrorText, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                           Text="(Mnnnn)"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource ValidationSummaryBrush1}"
+                           VerticalAlignment="Top" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="3" Margin="0,0,4,2">
+                <VirtuosoCoreControls:vRichTextArea x:Name="ErrorText" Margin="0,0,0,4" Background="Transparent"
+                                                    Visibility="{Binding OasisManagerQuestion.ErrorText, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                                                    ParagraphText="{Binding OasisManagerQuestion.ErrorText}"
+                                                    Foreground="{StaticResource ValidationSummaryBrush1}"
+                                                    TextWrapping="Wrap"
+                                                    VerticalAlignment="Top" />
+                <VirtuosoCoreControls:vRichTextArea x:Name="QuestionText" Background="Transparent"
+                                                    ParagraphText="Mxxxx question text"
+                                                    TextWrapping="Wrap"
+                                                    VerticalAlignment="Top" />
+            </StackPanel>
+            <Button x:Name="OasisLookbackButton" Grid.Row="0" Grid.Column="4" Margin="2,-8,4,0"
+                    Style="{StaticResource LookbackButtonStyle}"
+                    Click="OasisLookbackButton_Click">
+                <ToolTipService.ToolTip>
+                    <VirtuosoCoreControls:vRichTextArea ParagraphText="Review supporting documentation" />
+                </ToolTipService.ToolTip>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

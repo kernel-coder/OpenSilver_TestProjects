@@ -1,0 +1,29 @@
+﻿<sdk:TabItem x:Class="Virtuoso.Core.Controls.EditTabItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:icons="clr-namespace:Virtuoso.Core.Assets.Icons"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400"
+             x:Name="me" Style="{StaticResource CoreTabItemStyle}">
+
+    <sdk:TabItem.HeaderTemplate>
+        <DataTemplate>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Border Margin="0,5,2,0" Height="15" Width="15"
+                            Visibility="{Binding IsEditButton, ElementName=me, Converter={StaticResource VisibilityConverter}}"
+                            CornerRadius="2" BorderThickness="1"
+                            BorderBrush="{Binding IsErrors, ElementName=me, Converter={StaticResource InErrorColorConverter}}"
+                            Background="{Binding IsErrors, ElementName=me, Converter={StaticResource InErrorColorConverter}}">
+                        <icons:PencilIcon Width="13" Height="13"/>
+                    </Border>
+                    <TextBlock Margin="0,3,0,0" Text="{Binding}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </sdk:TabItem.HeaderTemplate>
+</sdk:TabItem>

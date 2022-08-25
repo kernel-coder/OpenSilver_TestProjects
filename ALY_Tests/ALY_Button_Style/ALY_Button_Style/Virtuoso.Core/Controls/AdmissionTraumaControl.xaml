@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.AdmissionTraumaControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid>
+        <Grid.Resources>
+            <clr:String x:Key="TraumaStateCode">STATE</clr:String>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="35" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <VirtuosoCoreControls:vLabel Grid.Column="0"
+                                     Entity="Admission"
+                                     Property="TraumaType" />
+
+        <VirtuosoCoreControls:codeLookup Grid.Column="1"
+                                         Width="250"
+                                         CodeType="TRMA"
+                                         IncludeNullItem="False"
+                                         FormatOfDropDown="Description"
+                                         FormatOfSelection="Description"
+                                         IsHitTestVisible="{Binding Protected, Mode=TwoWay, Converter={StaticResource OppositeBoolConverter}}"
+                                         IsEnabled="{Binding Protected, Mode=TwoWay, Converter={StaticResource OppositeBoolConverter}}"
+                                         SelectedKey="{Binding TraumaType, Mode=TwoWay, NotifyOnValidationError=True}">
+        </VirtuosoCoreControls:codeLookup>
+
+        <VirtuosoCoreControls:vLabel Grid.Column="2"
+                                     Entity="Admission"
+                                     Property="TraumaDate" />
+
+        <VirtuosoCoreControls:vDatePicker Grid.Column="3"
+                                          Margin="4,0"
+                                          Width="130"
+                                          HorizontalAlignment="Left"
+                                          IsEnabled="{Binding Protected, Mode=TwoWay, Converter={StaticResource OppositeBoolConverter}}"
+                                          DateObject="{Binding TraumaDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+        <VirtuosoCoreControls:vLabel Grid.Column="4"
+                                     Entity="Admission"
+                                     Property="TraumaStateCode" />
+
+
+        <VirtuosoCoreControls:autoCompleteCombo Grid.Column="5"
+                                                Width="170"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                ItemsSource="{Binding Source={StaticResource TraumaStateCode}, Converter={StaticResource CodeLookupItemSourceConverter}}"
+                                                SelectedValue="{Binding TraumaStateCode, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                IsEnabled="{Binding Protected, Mode=TwoWay, Converter={StaticResource OppositeBoolConverter}}"
+                                                SelectedValuePath="CodeLookupKey"
+                                                ValueMemberPath="CodeDescription">
+            <VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding CodeDescription}" />
+                </DataTemplate>
+            </VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+        </VirtuosoCoreControls:autoCompleteCombo>
+
+    </Grid>
+
+</UserControl>

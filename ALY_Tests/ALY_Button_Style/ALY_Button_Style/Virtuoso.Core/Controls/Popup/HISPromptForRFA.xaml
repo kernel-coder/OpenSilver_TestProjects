@@ -1,0 +1,47 @@
+﻿<controls:ChildWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      x:Class="Virtuoso.Core.Controls.HISPromptForRFA"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      Title="Enter Reason For Record"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="700"
+                      Height="260">
+
+    <Grid x:Name="LayoutRoot" Margin="50,5,50,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <VirtuosoCoreControls:vRichTextArea x:Name="versionBlirb" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                            Margin="0,0,0,8"
+                                            ParagraphText="" TextWrapping="Wrap" HorizontalAlignment="Center" />
+
+        <VirtuosoCoreControls:vRichTextArea x:Name="admitStatusBlirb" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                            Margin="0,0,0,8"
+                                            ParagraphText="" TextWrapping="Wrap" HorizontalAlignment="Left" />
+
+        <VirtuosoCoreControls:vRichTextArea Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,8"
+                                            ParagraphText="&lt;Bold&gt;A0250 - Reason for Record:&lt;/Bold&gt;"
+                                            TextWrapping="Wrap" />
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                    Margin="0,0,0,12"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+            <RadioButton x:Name="rfa01" GroupName="rfa" Tag="01" Checked="rfa_Checked" Content="01 - Admission" />
+            <RadioButton x:Name="rfa09" GroupName="rfa" Tag="09" Checked="rfa_Checked" Content="09 - Discharge" />
+        </StackPanel>
+        <Button Grid.Row="4" Grid.Column="0" Width="60" Click="OKButton_Click" Content="OK" />
+        <Button Grid.Row="4" Grid.Column="1" Width="60" Click="CancelButton_Click" Content="Cancel" />
+    </Grid>
+</controls:ChildWindow>

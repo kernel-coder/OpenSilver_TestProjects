@@ -1,0 +1,55 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.Controls.InsuranceVerificationStatusPopup"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      Width="Auto"
+                      Height="Auto"
+                      Style="{StaticResource ChildWindowStyle}">
+
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="Item status is being changed. Do you wish to add a comment?" />
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0">
+            <TextBlock Height="Auto"
+                       Width="Auto"
+                       Text="Comment: " />
+
+            <TextBox Text="{Binding Comment, Mode=TwoWay, NotifyOnValidationError=True}"
+                     MaxLength="120"
+                     Width="380"
+                     TextWrapping="Wrap" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0"
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right">
+
+            <Button Content="OK"
+                    Click="OKButton_Click"
+                    Width="75"
+                    Height="35"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,8,8"
+                    Grid.Row="1" />
+
+            <Button Content="Cancel"
+                    Click="CancelButton_Click"
+                    Width="75"
+                    Height="35"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,8,8"
+                    Grid.Row="1" />
+        </StackPanel>
+    </Grid>
+</controls:ChildWindow>

@@ -360,6 +360,7 @@
     <Compile Include="Converters\EmptyOrNullToDefaultConverter.cs" />
     <Compile Include="Converters\FederalTaxIdConverters.cs" />
     <Compile Include="Converters\FileUploadConverter.cs" />
+    <Compile Include="Converters\GraphRelatedConverters.cs" />
     <Compile Include="Converters\ImageToBytesConverter.cs" />
     <Compile Include="Converters\LogLevelConverter.cs" />
     <Compile Include="Converters\MedicationConverters.cs" />
@@ -376,6 +377,8 @@
     <Compile Include="DataGridTest.xaml.cs">
       <DependentUpon>DataGridTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Admission.cs" />
+    <Compile Include="Data\Encounter.cs" />
     <Compile Include="Data\PatientInfection.cs" />
     <Compile Include="Data\PatientPhone.cs" />
     <Compile Include="Data\ValidationTestEntity.cs" />
@@ -432,6 +435,9 @@
     </Compile>
     <Compile Include="ViewModels\GenericBase.cs" />
     <Compile Include="ViewModels\TaskEditVM.cs" />
+    <Compile Include="Views\DynamicFormGraph.xaml.cs">
+      <DependentUpon>DynamicFormGraph.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MediSpanMedication.xaml.cs">
       <DependentUpon>MediSpanMedication.xaml</DependentUpon>
     </Compile>
@@ -714,6 +720,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ValidationTestUC2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DynamicFormGraph.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

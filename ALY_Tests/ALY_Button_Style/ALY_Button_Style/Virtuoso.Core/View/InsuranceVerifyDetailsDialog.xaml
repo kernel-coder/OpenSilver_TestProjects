@@ -1,0 +1,199 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.InsuranceVerifyDetailsDialog"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                      Title="Insurance Verification History Details"
+                      Margin="130"
+                      Background="White"
+                      xmlns:tooltip="clr-namespace:Silverlight.Controls.ToolTips;assembly=Silverlight.Controls.ToolTips"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+    <Grid Margin="3,3,3,3"
+          BindingValidationError="Grid_BindingValidationError">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <sdk:DataGrid Grid.Row="0"
+                      Grid.Column="0"
+                      ItemsSource="{Binding VerificationDetails.View}"
+                      AutoGenerateColumns="False"
+                      VerticalAlignment="Stretch">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTemplateColumn Header="Carrier Code"
+                                            Width="Auto"
+                                            SortMemberPath="CarrierCode">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox
+                                Text="{Binding CarrierCode, NotifyOnValidationError=True, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                                Margin="0,3,3,0" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+
+                <sdk:DataGridTemplateColumn Header="Carrier Name"
+                                            Width="*"
+                                            SortMemberPath="CarrierName">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CarrierName, Mode=TwoWay}"
+                                       Margin="0,3,3,0" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+
+                <sdk:DataGridTemplateColumn Header="Coverage Code"
+                                            Width="Auto"
+                                            SortMemberPath="CoverageCode">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox
+                                Text="{Binding CoverageCode, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                Margin="0,3,3,0" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+
+                <sdk:DataGridTemplateColumn Header="Policy Number"
+                                            Width="Auto"
+                                            SortMemberPath="PolicyNumber">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox
+                                Text="{Binding PolicyNumber, NotifyOnValidationError=True, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                                Margin="0,3,3,0" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+
+
+                <sdk:DataGridTemplateColumn Header=""
+                                            Width="80">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Height="20"
+                                        Width="20"
+                                        Command="{Binding DataContext.MoveDownCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}"
+                                        CommandParameter="{Binding}"
+                                        IsEnabled="{Binding CanMoveDown}">
+                                    <tooltip:ToolTipService.ToolTip>
+                                        <tooltip:ToolTip InitialDelay="0"
+                                                         DisplayTime="Forever">
+                                            <VirtuosoCoreControls:vRichTextArea ParagraphText="Move Down"
+                                                TextWrapping="Wrap"
+                                                Width="100" />
+                                        </tooltip:ToolTip>
+                                    </tooltip:ToolTipService.ToolTip>
+                                    <Path
+                                        Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z "
+                                        HorizontalAlignment="Center"
+                                        Height="6"
+                                        Stretch="Uniform"
+                                        Width="12">
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="White" />
+                                        </Path.Fill>
+                                    </Path>
+                                </Button>
+                                <Button Height="20"
+                                        Width="20"
+                                        Command="{Binding DataContext.MoveUpCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}"
+                                        CommandParameter="{Binding}"
+                                        IsEnabled="{Binding CanMoveUp}">
+                                    <tooltip:ToolTipService.ToolTip>
+                                        <tooltip:ToolTip InitialDelay="0"
+                                                         DisplayTime="Forever">
+                                            <VirtuosoCoreControls:vRichTextArea ParagraphText="Move Up"
+                                                TextWrapping="Wrap"
+                                                Width="100" />
+                                        </tooltip:ToolTip>
+                                    </tooltip:ToolTipService.ToolTip>
+                                    <Path
+                                        Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z "
+                                        HorizontalAlignment="Center"
+                                        Height="6"
+                                        Stretch="Uniform"
+                                        Width="12">
+                                        <Path.RenderTransform>
+                                            <RotateTransform CenterX="6"
+                                                             CenterY="3"
+                                                             Angle="180" />
+                                        </Path.RenderTransform>
+                                        <Path.Fill>
+                                            <SolidColorBrush Color="White" />
+                                        </Path.Fill>
+                                    </Path>
+                                </Button>
+                                <HyperlinkButton Style="{StaticResource RemoveHyperlinkButtonSmall}"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 Margin="0,9,0,0"
+                                                 IsTabStop="False"
+                                                 Width="20"
+                                                 Command="{Binding DataContext.DeleteDetailCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}"
+                                                 CommandParameter="{Binding}">
+                                    <ToolTipService.ToolTip>
+                                        <VirtuosoCoreControls:vRichTextArea ParagraphText="Delete"
+                                                                            TextWrapping="Wrap"
+                                                                            Width="100" />
+                                    </ToolTipService.ToolTip>
+
+                                </HyperlinkButton>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+
+            </sdk:DataGrid.Columns>
+
+        </sdk:DataGrid>
+
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <sdk:ValidationSummary x:Name="valSum"
+                                   MaxHeight="150" />
+        </Grid>
+
+        <Button Grid.Row="2"
+                Grid.Column="0"
+                Command="{Binding AddInsVerifyHistoryDetailCommand}"
+                Height="35"
+                Content="Add"
+                Width="80"
+                HorizontalAlignment="Left"
+                Margin="0,0,3,0"
+                VerticalAlignment="Bottom" />
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right">
+
+            <Button x:Name="OKButton"
+                    Content="OK"
+                    Command="{Binding OKHistoryDetails}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}"
+                    Width="80"
+                    Height="35"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,3,0" />
+
+            <Button x:Name="CancelButton"
+                    Content="Cancel"
+                    Command="{Binding CancelHistoryDetails}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}"
+                    Width="80"
+                    Height="35"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,3,0" />
+        </StackPanel>
+    </Grid>
+</controls:ChildWindow>

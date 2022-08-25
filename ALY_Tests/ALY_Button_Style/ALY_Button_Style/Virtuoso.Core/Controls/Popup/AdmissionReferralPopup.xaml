@@ -1,0 +1,466 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.AdmissionReferralPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <clr:String x:Key="AddressType">PHYADDRESS</clr:String>
+    </UserControl.Resources>
+
+    <Grid x:Name="AdmissionReferralGrid"
+          Margin="2,4,2,4"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          BindingValidationError="AdmissionReferralGrid_BindingValidationError">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" VerticalAlignment="Top">
+                    <TextBlock Style="{StaticResource PopupTitleStyle}" Text="Admission Referral Details" />
+                    <Button Command="{Binding AdmissionReferralCancel_Command}"
+                            Content="X"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Grid.Row="1"
+                        Margin="0,2,0,2"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      Height="Auto"
+                                      VerticalScrollBarVisibility="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" MinHeight="35" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="1"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Property="ReferralSourceCategoryType" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="2"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategorySELF,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="PatientName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="3"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryFAM,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="PatientContactName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="4"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryEMP,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="UserName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="5"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryDOC,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="PhysicianName" />
+                                <!--  KSM10292014  -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="6"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="{Binding AdmissionReferralSelectedItem.PhysicianAddressValidationRequired,
+                                                                                     Converter={StaticResource BoolToYesNoConverter}}"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryDOC,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="PhysicianAddressKey" />
+                                <!--  KSM  -->
+                                <VirtuosoCoreControls:vLabel Grid.Row="7"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryFAC,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="FacilityName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="8"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.FacilityBranchVisible,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="FacilityBranchKey" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="9"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryFAC,
+                                                                                  Converter={StaticResource VisibilityConverter},
+                                                                                  FallbackValue=Collapsed}"
+                                                             Property="ReferralSourceContactName" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="10"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Center"
+                                                             Entity="AdmissionReferral"
+                                                             ForceRequired="Yes"
+                                                             Property="ReferralDate" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="11"
+                                                             Grid.Column="0"
+                                                             MinHeight="35"
+                                                             HorizontalAlignment="Left"
+                                                             VerticalAlignment="Top"
+                                                             Entity="AdmissionReferral"
+                                                             Property="ReferralNotes" />
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="referralSourceCategoryType"
+                                                                      Grid.Row="1"
+                                                                      Grid.Column="1"
+                                                                      HorizontalAlignment="Stretch"
+                                                                      VerticalAlignment="Center"
+                                                                      CodeType="---ReferralSourceCategoryType"
+                                                                      IncludeOther="False"
+                                                                      IsHitTestVisible="True"
+                                                                      IsTabStop="True"
+                                                                      Patient="{Binding Patient,
+                                                                                        Mode=TwoWay}"
+                                                                      SelectedKeys="{Binding AdmissionReferralSelectedItem.ReferralSourceCategory,
+                                                                                             Mode=TwoWay}"
+                                                                      SelectedValues="{Binding AdmissionReferralSelectedItem.ReferralSourceCategoryType,
+                                                                                               Mode=TwoWay,
+                                                                                               NotifyOnValidationError=True,
+                                                                                               ValidatesOnNotifyDataErrors=True}"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="True" />
+
+                                <TextBox x:Name="patientName"
+                                         Grid.Row="2"
+                                         Grid.Column="1"
+                                         HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Center"
+                                         IsHitTestVisible="False"
+                                         IsReadOnly="True"
+                                         Text="{Binding AdmissionReferralSelectedItem.PatientName,
+                                                        Mode=TwoWay}"
+                                         TextWrapping="Wrap"
+                                         Visibility="{Binding AdmissionReferralSelectedItem.IsCategorySELF,
+                                                              Converter={StaticResource VisibilityConverter}}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="patientContactName"
+                                                                      Grid.Row="3"
+                                                                      Grid.Column="1"
+                                                                      HorizontalAlignment="Stretch"
+                                                                      VerticalAlignment="Center"
+                                                                      CodeType="---PatientContacts"
+                                                                      IncludeOther="True"
+                                                                      IsHitTestVisible="True"
+                                                                      IsTabStop="True"
+                                                                      Patient="{Binding Patient,
+                                                                                        Mode=TwoWay}"
+                                                                      SelectedKeys="{Binding AdmissionReferralSelectedItem.PatientContactKey,
+                                                                                             Mode=TwoWay,
+                                                                                             Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                      SelectedValues="{Binding AdmissionReferralSelectedItem.PatientContactName,
+                                                                                               Mode=TwoWay,
+                                                                                               NotifyOnValidationError=True,
+                                                                                               ValidatesOnNotifyDataErrors=True}"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="True"
+                                                                      Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryFAM,
+                                                                                           Converter={StaticResource VisibilityConverter},
+                                                                                           FallbackValue=Collapsed}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="userName"
+                                                                      Grid.Row="4"
+                                                                      Grid.Column="1"
+                                                                      HorizontalAlignment="Stretch"
+                                                                      VerticalAlignment="Center"
+                                                                      CodeType="---Employees"
+                                                                      IncludeOther="False"
+                                                                      IsHitTestVisible="True"
+                                                                      IsTabStop="True"
+                                                                      Patient="{Binding Patient,
+                                                                                        Mode=TwoWay}"
+                                                                      SelectedKeys="{Binding AdmissionReferralSelectedItem.UserID,
+                                                                                             Mode=TwoWay}"
+                                                                      SelectedValues="{Binding AdmissionReferralSelectedItem.UserName,
+                                                                                               Mode=TwoWay,
+                                                                                               NotifyOnValidationError=True,
+                                                                                               ValidatesOnNotifyDataErrors=True}"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="True"
+                                                                      Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryEMP,
+                                                                                           Converter={StaticResource VisibilityConverter},
+                                                                                           FallbackValue=Collapsed}" />
+
+                                <VirtuosoCoreControls:SmartCombo x:Name="physicianName"
+                                                                 Grid.Row="5"
+                                                                 Grid.Column="1"
+                                                                 Width="Auto"
+                                                                 Height="Auto"
+                                                                 MinWidth="350"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 VerticalAlignment="Center"
+                                                                 FilterPath="FullName"
+                                                                 IsHitTestVisible="True"
+                                                                 IsTabStop="True"
+                                                                 SearchType="Physician"
+                                                                 SelectedValue="{Binding AdmissionReferralSelectedItem.PhysicianKey,
+                                                                                         Mode=TwoWay,
+                                                                                         NotifyOnValidationError=True,
+                                                                                         ValidatesOnNotifyDataErrors=True,
+                                                                                         Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                 SelectedValuePath="PhysicianKey"
+                                                                 ValueMemberPath="FullName"
+                                                                 Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryDOC,
+                                                                                      Converter={StaticResource VisibilityConverter},
+                                                                                      FallbackValue=Collapsed}">
+                                    <VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding FullName, Converter={StaticResource NullToAllConverter}}" />
+                                        </DataTemplate>
+                                    </VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                </VirtuosoCoreControls:SmartCombo>
+                                <!--  KSM10292014  -->
+                                <VirtuosoCoreControls:vAsyncComboBoxV2 Grid.Row="6"
+                                                                       Grid.Column="1"
+                                                                       ItemTemplate="{StaticResource PhysicianAddressDataTemplate}"
+                                                                       ItemsSource="{Binding PhysicianAddressList}"
+                                                                       SelectedItem="{Binding SelectedPhysicianAddress,
+                                                                                              Mode=TwoWay}"
+                                                                       SelectedValue="{Binding AdmissionReferralSelectedItem.PhysicianAddressKey,
+                                                                                               Mode=TwoWay,
+                                                                                               NotifyOnValidationError=true,
+                                                                                               ValidatesOnNotifyDataErrors=true}"
+                                                                       SelectedValuePath="PhysicianAddressKey"
+                                                                       Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryDOC,
+                                                                                            Converter={StaticResource VisibilityConverter},
+                                                                                            FallbackValue=Collapsed}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Loaded">
+                                            <i:InvokeCommandAction Command="{Binding PhysicianAddressComboLoaded}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </VirtuosoCoreControls:vAsyncComboBoxV2>
+                                <!--  KSM  -->
+
+                                <VirtuosoCoreControls:SmartCombo x:Name="facilityName"
+                                                                 Grid.Row="7"
+                                                                 Grid.Column="1"
+                                                                 Width="Auto"
+                                                                 Height="Auto"
+                                                                 MinWidth="350"
+                                                                 HorizontalAlignment="Stretch"
+                                                                 VerticalAlignment="Center"
+                                                                 FilterPath="Name"
+                                                                 IncludeEmpty="False"
+                                                                 IncludeMRU="False"
+                                                                 IncludeSystemSearch="True"
+                                                                 IsHitTestVisible="True"
+                                                                 IsTabStop="True"
+                                                                 SearchType="Facility"
+                                                                 SelectedValue="{Binding AdmissionReferralSelectedItem.FacilityKey,
+                                                                                         Mode=TwoWay,
+                                                                                         NotifyOnValidationError=True,
+                                                                                         ValidatesOnNotifyDataErrors=True,
+                                                                                         Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                 SelectedValuePath="FacilityKey"
+                                                                 ValueMemberPath="Name"
+                                                                 Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryFAC,
+                                                                                      Converter={StaticResource VisibilityConverter},
+                                                                                      FallbackValue=Collapsed}">
+                                    <VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Name, Converter={StaticResource NullToAllConverter}}" />
+                                        </DataTemplate>
+                                    </VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                </VirtuosoCoreControls:SmartCombo>
+
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="facilityBranch"
+                                                                      Grid.Row="8"
+                                                                      Grid.Column="1"
+                                                                      HorizontalAlignment="Stretch"
+                                                                      VerticalAlignment="Center"
+                                                                      CodeType="---FacilityBranch"
+                                                                      IncludeOther="False"
+                                                                      IsHitTestVisible="True"
+                                                                      IsTabStop="True"
+                                                                      Patient="{Binding Patient,
+                                                                                        Mode=TwoWay}"
+                                                                      SelectedKeys="{Binding AdmissionReferralSelectedItem.FacilityBranchKey,
+                                                                                             Mode=TwoWay,
+                                                                                             Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                      SelectedValues="{Binding AdmissionReferralSelectedItem.FacilityBranchName,
+                                                                                               Mode=TwoWay,
+                                                                                               Converter={StaticResource ComboBoxItemNullConverter},
+                                                                                               NotifyOnValidationError=True,
+                                                                                               ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectionParameter="{Binding AdmissionReferralSelectedItem.FacilityKey,
+                                                                                                   Mode=TwoWay}"
+                                                                      SingleSelect="True"
+                                                                      SkipNullItem="True"
+                                                                      Visibility="{Binding AdmissionReferralSelectedItem.FacilityBranchVisible,
+                                                                                           Converter={StaticResource VisibilityConverter},
+                                                                                           FallbackValue=Collapsed}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti x:Name="referralSourceContactName"
+                                                                      Grid.Row="9"
+                                                                      Grid.Column="1"
+                                                                      HorizontalAlignment="Stretch"
+                                                                      VerticalAlignment="Center"
+                                                                      CodeType="---FacilityReferralSources"
+                                                                      IncludeOther="True"
+                                                                      IsHitTestVisible="True"
+                                                                      IsTabStop="True"
+                                                                      Patient="{Binding Patient,
+                                                                                        Mode=TwoWay}"
+                                                                      SelectedKeys="{Binding AdmissionReferralSelectedItem.ReferralSourceKey,
+                                                                                             Mode=TwoWay,
+                                                                                             Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                      SelectedValues="{Binding AdmissionReferralSelectedItem.ReferralSourceContactName,
+                                                                                               Mode=TwoWay,
+                                                                                               NotifyOnValidationError=True,
+                                                                                               ValidatesOnNotifyDataErrors=True}"
+                                                                      SelectionParameter="{Binding AdmissionReferralSelectedItem.FacilityKey,
+                                                                                                   Mode=OneWay}"
+                                                                      SelectionParameter2="{Binding AdmissionReferralSelectedItem.FacilityBranchKey,
+                                                                                                    Mode=OneWay,
+                                                                                                    NotifyOnValidationError=False,
+                                                                                                    ValidatesOnNotifyDataErrors=False}"
+                                                                      SingleSelect="True"
+                                                                      Visibility="{Binding AdmissionReferralSelectedItem.IsCategoryFAC,
+                                                                                           Converter={StaticResource VisibilityConverter},
+                                                                                           FallbackValue=Collapsed}" />
+
+                                <VirtuosoCoreControls:vDatePicker x:Name="referralDate"
+                                                                  Grid.Row="10"
+                                                                  Grid.Column="1"
+                                                                  Width="130"
+                                                                  HorizontalAlignment="Left"
+                                                                  VerticalAlignment="Center"
+                                                                  DateObject="{Binding AdmissionReferralSelectedItem.ReferralDate,
+                                                                                       Mode=TwoWay,
+                                                                                       NotifyOnValidationError=True,
+                                                                                       ValidatesOnDataErrors=True}" />
+
+                                <TextBox Grid.Row="11"
+                                         Grid.Column="1"
+                                         HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Center"
+                                         IsHitTestVisible="True"
+                                         IsTabStop="True"
+                                         Text="{Binding AdmissionReferralSelectedItem.ReferralNotes, Mode=TwoWay}"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap" />
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <HyperlinkButton Margin="0,0,20,0"
+                                                 Command="{Binding AdmissionReferralOK_Command}"
+                                                 Style="{StaticResource OKHyperlinkButton}" />
+                                <HyperlinkButton Command="{Binding AdmissionReferralCancel_Command}"
+                                                 Style="{StaticResource CancelHyperlinkButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

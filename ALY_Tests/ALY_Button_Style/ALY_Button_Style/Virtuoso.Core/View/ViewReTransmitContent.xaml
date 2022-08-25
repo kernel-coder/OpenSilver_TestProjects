@@ -1,0 +1,54 @@
+﻿<controls:ChildWindow xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                      x:Class="Virtuoso.Core.View.ViewReTransmitContent"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="1053" Height="684" Foreground="{StaticResource HighlightBrush}"
+                      Title="Re-Transmit File Preview (No Surveys)">
+
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <sdk:DataGrid Grid.Row="0" Name="SurveyGrid" AutoGenerateColumns="False">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Header="Service Line Grouping"
+                                        Binding="{Binding ServiceLineGroupingLabelAndName}" IsReadOnly="True"
+                                        CanUserSort="True" />
+                <sdk:DataGridTextColumn Header="Patient Name" Binding="{Binding PatientFullName}" IsReadOnly="True"
+                                        CanUserSort="True" />
+                <sdk:DataGridTextColumn Header="MRN" Binding="{Binding PatientMRN}" IsReadOnly="True"
+                                        CanUserSort="True" />
+                <sdk:DataGridTextColumn Header="Survey" Binding="{Binding RFADescription}" IsReadOnly="True"
+                                        CanUserSort="True" />
+                <sdk:DataGridTextColumn Header="Survey Date"
+                                        Binding="{Binding M0090, Converter={StaticResource ShortDateTimeConverter}}"
+                                        IsReadOnly="True" CanUserSort="True" />
+                <sdk:DataGridTextColumn Header="Correction Num" Binding="{Binding CORRECTION_NUM}" IsReadOnly="True"
+                                        CanUserSort="True" />
+                <sdk:DataGridTemplateColumn Header="Re-Transmit" Width="Auto" IsReadOnly="True" CanUserSort="True"
+                                            SortMemberPath="CanRetransmit">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="LayoutRoot" Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="18" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <VirtuosoCoreControls:CheckMark Width="16" Height="16" Grid.Column="0"
+                                                                Visibility="{Binding CanRetransmit, Mode=TwoWay, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                                <TextBlock Grid.Column="1" Text="Updated"
+                                           Visibility="{Binding CanRetransmit, Mode=TwoWay, Converter={StaticResource OppositeVisibilityConverter}, FallbackValue=Collapsed}" />
+                            </Grid>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <Button Grid.Row="1" x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75"
+                HorizontalAlignment="Right" />
+    </Grid>
+</controls:ChildWindow>

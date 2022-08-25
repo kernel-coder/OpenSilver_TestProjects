@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.NonServiceTimePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             mc:Ignorable="d">
+
+    <Grid x:Name="NonServiceTypeDetailGrid"
+          Margin="2,4,2,4"
+          BindingValidationError="NonServiceTypePopup_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Non Service Time Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition MinWidth="150" />
+                                </Grid.ColumnDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="0"
+                                                             MinHeight="35"
+                                                             Entity="EncounterNonServiceTime"
+                                                             Property="NonServiceTypeKey" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="1"
+                                                             MinHeight="35"
+                                                             Entity="EncounterNonServiceTime"
+                                                             Property="StartTime" />
+                                <Grid Grid.Row="2"
+                                      x:Name="LayoutRoot"
+                                      Background="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock x:Name="Label"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="End Time"
+                                               TextWrapping="Wrap"
+                                               Style="{StaticResource CoreTextBlockStyle}" />
+                                </Grid>
+                                <VirtuosoCoreControls:vLabel Grid.Row="3"
+                                                             MinHeight="35"
+                                                             Entity="EncounterNonServiceTime"
+                                                             Property="Duration" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="4"
+                                                             MinHeight="35"
+                                                             Entity="EncounterNonServiceTime"
+                                                             Property="Distance"
+                                                             Visibility="{Binding SelectedItem.MileageIsVisible, Mode=TwoWay, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="5"
+                                                             MinHeight="35"
+                                                             Entity="EncounterNonServiceTime"
+                                                             Property="Notes" />
+
+                                <VirtuosoCoreControls:vAsyncComboBoxV2 Grid.Row="0" Grid.Column="1"
+                                                                       ItemsSource="{Binding AvailableNonServiceTypes}"
+                                                                       SelectedValuePath="NonServiceTypeKey"
+                                                                       SelectedValue="{Binding SelectedItem.NonServiceTypeKey, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                       DisplayMemberPath="Description" />
+
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1"
+                                            Grid.Column="1">
+                                    <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                      DateObject="{Binding SelectedItem.StartDatePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                    <toolkit:TimePicker Margin="8,0,0,0"
+                                                        Value="{Binding SelectedItem.StartTimePart, Mode=TwoWay}"
+                                                        Format="{Binding Converter={StaticResource FormatTimeConverter}}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Row="2"
+                                            Grid.Column="1">
+                                    <VirtuosoCoreControls:vDatePicker Width="130"
+                                                                      DateObject="{Binding SelectedItem.EndDatePart, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                    <toolkit:TimePicker Margin="8,0,0,0"
+                                                        Value="{Binding SelectedItem.EndTimePart, Mode=TwoWay}"
+                                                        Format="{Binding Converter={StaticResource FormatTimeConverter}}" />
+                                </StackPanel>
+
+                                <TextBox Grid.Row="3"
+                                         Grid.Column="1"
+                                         Width="150"
+                                         HorizontalAlignment="Left"
+                                         Text="{Binding SelectedItem.Duration, Mode=TwoWay, Converter={StaticResource EmptyStringToNullConverter}, NotifyOnValidationError=True}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999999" />
+
+                                <StackPanel Grid.Row="4"
+                                            Grid.Column="1"
+                                            Visibility="{Binding SelectedItem.MileageIsVisible, Mode=TwoWay, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                                            Orientation="Horizontal">
+                                    <TextBox VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999.9"
+                                             TextAlignment="Right"
+                                             Text="{Binding SelectedItem.Distance, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource RealConverter}}"
+                                             Width="40" />
+                                    <VirtuosoCoreControls:codeLookupRadio Margin="4,0,0,0"
+                                                                          VerticalAlignment="Center"
+                                                                          Wrap="True"
+                                                                          CodeType="Mi|KM"
+                                                                          HorizontalSpacing="4"
+                                                                          ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                          SelectedCode="{Binding SelectedItem.DistanceScale, Mode=TwoWay, NotifyOnValidationError=True}" />
+                                </StackPanel>
+
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="1"
+                                         Text="{Binding SelectedItem.Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnNotifyDataErrors=true}"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

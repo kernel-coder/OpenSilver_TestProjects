@@ -24,7 +24,7 @@
             <!--<VirtuosoCoreConverters:VisibilityAttendingPhysicianConverter x:Key="VisibilityAttendingPhysicianConverter" />-->
             <VirtuosoCoreConverters:BranchVisibilityConverter x:Key="BranchVisibilityConverter" />
             <VirtuosoCoreConverters:ReEvaluateVisibilityConverter x:Key="ReEvaluateVisibilityConverter" />
-            <!--<VirtuosoCoreConverters:TelemonitorLegendVisibility x:Key="TelemonitorLegendVisibility" />-->
+            <VirtuosoCoreConverters:TelemonitorLegendVisibility x:Key="TelemonitorLegendVisibility" />
             <VirtuosoCoreConverters:BoolToOppositeBoolConverter x:Key="OppositeBoolConverter" />
             <VirtuosoCoreConverters:ValueToBoolConverter x:Key="ValueToBoolConverter" />
             <VirtuosoCoreConverters:IsNoVcodesSeverityEnabledConverter x:Key="IsNoVcodesSeverityEnabledConverter" />
@@ -210,6 +210,13 @@
             <VirtuosoCoreConverters:ServiceTypeItemSourceConverter x:Key="ServiceTypeItemSourceConverter" />
             <VirtuosoCoreConverters:MedicationFontStyleConverter x:Key="MedicationFontStyleConverter" />
             <VirtuosoCoreConverters:ActiveServiceTypesPlusMeItemSourceConverter x:Key="ActiveServiceTypesPlusMeItemSourceConverter" />-->
+            <VirtuosoCoreConverters:GraphItemSourceIntervalConverter x:Key="GraphItemSourceIntervalConverter" />
+            <VirtuosoCoreConverters:GraphItemSourceMinimumDate x:Key="GraphItemSourceMinimumDate" />
+            <VirtuosoCoreConverters:GraphItemSourceMaximumDate x:Key="GraphItemSourceMaximumDate" />
+            <VirtuosoCoreConverters:GraphItemSourceMinimumBP x:Key="GraphItemSourceMinimumBP" />
+            <VirtuosoCoreConverters:GraphItemSourceMaximumBP x:Key="GraphItemSourceMaximumBP" />
+            <VirtuosoCoreConverters:TelemonitorGraphItemsSourceConverter x:Key="TelemonitorGraphItemsSourceConverter" />
+
             <VirtuosoCoreConverters:MedicationFontWeightConverter x:Key="MedicationFontWeightConverter" />
             <VirtuosoCoreConverters:PatientDemographicsFontWeightConverter x:Key="PatientDemographicsFontWeightConverter" />
             <VirtuosoCoreConverters:MedicationOpacityConverter x:Key="MedicationOpacityConverter" />

@@ -1,0 +1,262 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientLabPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded">
+
+    <Grid x:Name="PatientLabGrid" Margin="2,4,2,4" BindingValidationError="PatientLab_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Patient Lab/Test Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition MinHeight="35"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="0" MinHeight="35" Entity="PatientLab"
+                                                             Property="Category" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="1" MinHeight="35" Entity="PatientLab"
+                                                             Property="Test"
+                                                             Visibility="{Binding SelectedItem.Category, Converter={StaticResource VisibilityConverterNull}}" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="2" MinHeight="35" Entity="PatientLab"
+                                                             Property="TestDate" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="3" MinHeight="35" Entity="PatientLab"
+                                                             Property="AssociatedDiagnosis" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="4" MinHeight="35" Entity="PatientLab"
+                                                             Property="OrderingPhysicianKey" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="5" MinHeight="35" Entity="PatientLab"
+                                                             Property="OrderDate" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="6" MinHeight="35" Entity="PatientLab"
+                                                             Property="Result"
+                                                             Visibility="{Binding SelectedItem.Category, Converter={StaticResource VisibilityConverterNull}}" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="7" MinHeight="35" Entity="PatientLab"
+                                                             Property="ResultDate" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="8" MinHeight="35" Entity="PatientLab"
+                                                             Property="Normal" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="9" MinHeight="35" Entity="PatientLab"
+                                                             Property="Comment" />
+
+                                <ComboBox Grid.Column="1"
+                                          VerticalAlignment="Center"
+                                          IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                          SelectedValue="{Binding SelectedItem.Category, Mode=TwoWay}"
+                                          SelectedValuePath="Tag">
+                                    <ComboBoxItem Content="Laboratory" Tag="Laboratory" />
+                                    <ComboBoxItem Content="ABG" Tag="ABG" />
+                                    <ComboBoxItem Content="Pulmonary" Tag="Pulmonary" />
+                                    <ComboBoxItem Content="Other Test" Tag="Other" />
+                                </ComboBox>
+
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="1"
+                                                                      Grid.Column="1"
+                                                                      VerticalAlignment="Center"
+                                                                      IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                      SelectedValues="{Binding SelectedItem.Test, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                      SkipNullItem="True"
+                                                                      IncludeOther="True"
+                                                                      CodeType="Laboratory"
+                                                                      SingleSelect="True"
+                                                                      Visibility="{Binding SelectedItem.Category, Converter={StaticResource ConditionalVisibility}, ConverterParameter=Laboratory}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="1"
+                                                                      Grid.Column="1"
+                                                                      VerticalAlignment="Center"
+                                                                      IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                      SelectedValues="{Binding SelectedItem.Test, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                      SkipNullItem="True"
+                                                                      IncludeOther="True"
+                                                                      CodeType="ABGs"
+                                                                      SingleSelect="True"
+                                                                      Visibility="{Binding SelectedItem.Category, Converter={StaticResource ConditionalVisibility}, ConverterParameter=ABG}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="1"
+                                                                      Grid.Column="1"
+                                                                      VerticalAlignment="Center"
+                                                                      IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                      SelectedValues="{Binding SelectedItem.Test, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                      SkipNullItem="True"
+                                                                      IncludeOther="True"
+                                                                      CodeType="Pulmonary"
+                                                                      SingleSelect="True"
+                                                                      Visibility="{Binding SelectedItem.Category, Converter={StaticResource ConditionalVisibility}, ConverterParameter=Pulmonary}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="1"
+                                                                      Grid.Column="1"
+                                                                      VerticalAlignment="Center"
+                                                                      IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                      SelectedValues="{Binding SelectedItem.Test, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                      SkipNullItem="True"
+                                                                      IncludeOther="True"
+                                                                      CodeType="PatOtherTest"
+                                                                      SingleSelect="True"
+                                                                      Visibility="{Binding SelectedItem.Category, Converter={StaticResource ConditionalVisibility}, ConverterParameter=Other}" />
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="2"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding SelectedItem.TestDate, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                  IsEnabled="{Binding SelectedItem.CanFullEdit}" />
+
+                                <VirtuosoCoreControls:codeLookupMulti Grid.Row="3"
+                                                                      Grid.Column="1"
+                                                                      x:Name="associatedDiagnosis"
+                                                                      CodeType="---PatientActiveDiagnosis"
+                                                                      SingleSelect="False"
+                                                                      TextDelimiter=";   "
+                                                                      IncludeOther="False"
+                                                                      SkipNullItem="False"
+                                                                      IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                      IsTabStop="{Binding SelectedItem.CanFullEdit}"
+                                                                      IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                      Patient="{Binding SelectedItem.Patient, Mode=TwoWay}"
+                                                                      SelectedValues="{Binding SelectedItem.AssociatedDiagnosis, Mode=TwoWay}"
+                                                                      VerticalAlignment="Center" />
+
+                                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
+                                    <VirtuosoCoreControls:SmartCombo MinWidth="350"
+                                                                     Width="Auto"
+                                                                     Height="Auto"
+                                                                     VerticalAlignment="Center"
+                                                                     HorizontalAlignment="Left"
+                                                                     SelectedValuePath="PhysicianKey"
+                                                                     ValueMemberPath="FullName"
+                                                                     FilterPath="FullName"
+                                                                     SearchType="Physician"
+                                                                     IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                     IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                     SelectedValue="{Binding SelectedItem.OrderingPhysicianKey, Mode=TwoWay, ValidatesOnNotifyDataErrors=False, NotifyOnValidationError=True}">
+                                        <VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    Text="{Binding FullName, Converter={StaticResource NullToAllConverter}}" />
+                                            </DataTemplate>
+                                        </VirtuosoCoreControls:SmartCombo.ItemTemplate>
+                                    </VirtuosoCoreControls:SmartCombo>
+
+                                    <Button Margin="16,0,2,0" Height="20"
+                                            Tag="{Binding SelectedValue, ElementName=orderingPhysicianKey}"
+                                            Style="{StaticResource InfoButtonRoundStyle}" HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Visibility="{Binding SelectedValue, ElementName=orderingPhysicianKey, Mode=TwoWay, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                            Click="buttonPhysicianDetails_Click">
+                                        <ToolTipService.ToolTip>
+                                            <VirtuosoCoreControls:vRichTextArea ParagraphText="Physician details"
+                                                TextWrapping="Wrap" />
+                                        </ToolTipService.ToolTip>
+                                    </Button>
+                                </StackPanel>
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="5"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                                                  IsEnabled="{Binding SelectedItem.CanFullEdit}"
+                                                                  DateObject="{Binding SelectedItem.OrderDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="1"
+                                         Text="{Binding SelectedItem.Result, Mode=TwoWay, NotifyOnValidationError=True}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999.99"
+                                         Visibility="{Binding SelectedItem.Category, Converter={StaticResource OppositeConditionalVisibility}, ConverterParameter=Other}" />
+
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="1"
+                                         Text="{Binding SelectedItem.Result, Mode=TwoWay, NotifyOnValidationError=True}"
+                                         Visibility="{Binding SelectedItem.Category, Converter={StaticResource ConditionalVisibility}, ConverterParameter=Other}" />
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="7"
+                                                                  Grid.Column="1"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding SelectedItem.ResultDate, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <StackPanel Grid.Row="8"
+                                            Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center">
+                                    <RadioButton Margin="4"
+                                                 Content="Normal"
+                                                 IsChecked="{Binding SelectedItem.Normal, Mode=TwoWay}" />
+                                    <RadioButton Margin="4"
+                                                 Content="Abnormal"
+                                                 IsChecked="{Binding SelectedItem.Abnormal, Mode=TwoWay}" />
+                                </StackPanel>
+
+                                <TextBox Grid.Row="9"
+                                         Grid.Column="1"
+                                         Margin="4,4,4,8"
+                                         Text="{Binding SelectedItem.Comment, Mode=TwoWay, NotifyOnValidationError=True}" />
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

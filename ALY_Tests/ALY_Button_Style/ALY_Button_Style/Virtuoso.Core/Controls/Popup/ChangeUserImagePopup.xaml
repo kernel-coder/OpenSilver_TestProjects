@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.ChangeUserImagePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="ChangeUserImageGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="30" />
+                    <RowDefinition Height="*" MinHeight="30" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0" VerticalAlignment="Top">
+                    <TextBlock Text="Change Image" Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X" Command="{Binding CancelUserPhotoCommand}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Grid.Row="1" Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid Background="White" MinWidth="200">
+                        <StackPanel Margin="0,0,0,20">
+                            <TextBlock Text="Import Image"
+                                       HorizontalAlignment="Left" Margin="4" />
+                            <StackPanel Orientation="Horizontal" Margin="8">
+                                <Image
+                                    Source="{Binding SelectedUser.Photo, Mode=TwoWay, Converter={StaticResource PhotoConverter}, ConverterParameter=User}"
+                                    MaxHeight="150" />
+                                <Button Content="Import Photo" Margin="4" Width="100" Height="30"
+                                        Command="{Binding ImportPhotoCommand}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="OK" Width="60" Margin="10,0" Command="{Binding OKUserPhotoCommand}" />
+                                <Button Content="Cancel" Width="60" Command="{Binding CancelUserPhotoCommand}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

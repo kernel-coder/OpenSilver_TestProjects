@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.OrdersTrackingNoteHistoryPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <Grid x:Name="OrdersTrackingNoteHistoryGrid" Margin="2,4,2,4"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Order Tracking Notes History"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding NoteHistoryCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ItemsControl Grid.Row="0" MinHeight="0" Margin="8,8,8,8" HorizontalAlignment="Stretch"
+                                              ItemsSource="{Binding ChangeHistoryList}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" Margin="0,6,0,0"
+                                                           Text="{Binding ChangeHistoryHeader}" FontWeight="Bold" />
+                                                <ItemsControl Grid.Row="1" MinHeight="0" HorizontalAlignment="Stretch"
+                                                              ItemsSource="{Binding OrdersTrackingHistory}"
+                                                              Margin="12,1,0,0">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="20" />
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition />
+                                                                </Grid.RowDefinitions>
+                                                                <TextBlock Grid.Row="0" Grid.Column="0"
+                                                                           Margin="0,4,0,0" Text="l"
+                                                                           HorizontalAlignment="Left" FontSize="8"
+                                                                           FontFamily="Wingdings" />
+                                                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                                                           TextWrapping="Wrap"
+                                                                           Text="{Binding HistoryText}"
+                                                                           HorizontalAlignment="Left" />
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                <Path Margin="-2,0,-8,0" Grid.Row="3" Grid.Column="0" Fill="DarkGray"
+                                                      Stretch="Fill" Stroke="#3F000000" UseLayoutRounding="False"
+                                                      Data="M2,51 L542.00092,51" StrokeThickness="1" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Command="{Binding NoteHistoryCancel_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.SuppliesPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors;assembly=Virtuoso.Core"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d">
+
+    <Grid x:Name="SupplyDetailGrid" Margin="2,4,2,4" BindingValidationError="SuppliesPopup_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.Resources>
+            <clr:String x:Key="LocationCode">ILOC</clr:String>
+        </Grid.Resources>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Supply Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition MinWidth="150" />
+                                </Grid.ColumnDefinitions>
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="0" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="SupplyKey" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="1" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="SupplyQty" />
+                                <!--<VirtuosoCoreControls:vLabel Grid.Row="2" MinHeight="35" Entity="EncounterSupply" Property="SupplyUnits" />-->
+                                <VirtuosoCoreControls:vLabel Grid.Row="2" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="SupplyCharge" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="3" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="OverrideChg" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="4" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="OverrideAllow" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="5" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="LocationKey" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="6" MinHeight="35" Entity="EncounterSupply"
+                                                             Property="LotNumber"
+                                                             Visibility="{Binding SelectedItem.TrackLots, Converter={StaticResource VisibilityConverter}}" />
+
+                                <VirtuosoCoreControls:vAsyncComboBoxV2 Grid.Row="0" Grid.Column="1"
+                                                                       ItemsSource="{Binding AvailableSupplies}"
+                                                                       SelectedValuePath="SupplyKey"
+                                                                       SelectedValue="{Binding SelectedItem.SupplyKey, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                       DisplayMemberPath="Description1" />
+
+                                <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Row="0"
+                                             Grid.Column="0"
+                                             Text="{Binding SelectedItem.SupplyQty, Mode=TwoWay, Converter={StaticResource EmptyStringToNullConverter}, NotifyOnValidationError=True}"
+                                             VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999.99" />
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="1"
+                                               Margin="5,0"
+                                               Text="{Binding SelectedItem.SupplyUnitsKey, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}" />
+                                </Grid>
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="1"
+                                           Width="150"
+                                           HorizontalAlignment="Left"
+                                           Text="{Binding SelectedItem.SupplyCharge, Mode=TwoWay, NotifyOnValidationError=True, StringFormat='\{0:C\}'}"
+                                           VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="$999.99" />
+                                <TextBox Grid.Row="3"
+                                         Grid.Column="1"
+                                         Width="150"
+                                         HorizontalAlignment="Left"
+                                         Text="{Binding SelectedItem.OverrideChg, Mode=TwoWay, Converter={StaticResource EmptyStringToNullConverter}, NotifyOnValidationError=True, StringFormat='\{0:C\}'}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="$999.99" />
+                                <TextBox Grid.Row="4"
+                                         Grid.Column="1"
+                                         Width="150"
+                                         HorizontalAlignment="Left"
+                                         Text="{Binding SelectedItem.OverrideAllow, Converter={StaticResource EmptyStringToNullConverter}, Mode=TwoWay, NotifyOnValidationError=True, StringFormat='\{0:C\}'}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="$999.99" />
+                                <VirtuosoCoreControls:codeLookup Grid.Row="5"
+                                                                 Grid.Column="1"
+                                                                 x:Name="Supply"
+                                                                 VerticalAlignment="Center"
+                                                                 CodeType="ILOC"
+                                                                 SelectedKey="{Binding SelectedItem.LocationKey, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                 FormatOfSelection="Description"
+                                                                 FormatOfDropDown="Description" />
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="1"
+                                         Text="{Binding SelectedItem.LotNumber, Mode=TwoWay, NotifyOnValidationError=True}"
+                                         Visibility="{Binding SelectedItem.TrackLots, Converter={StaticResource VisibilityConverter}}"
+                                         VirtuosoCoreBehaviors:TextBoxFilters.NumericFormat="999.99" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

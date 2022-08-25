@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientMessagePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="PatientMessageGrid" Margin="2,4,2,4"
+          BindingValidationError="PatientMessageGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Patient Message Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1" VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer" Grid.Row="0" Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="1"
+                                                             Entity="PatientMessage" Property="PatientKey" />
+                                <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" MinWidth="350"
+                                           HorizontalAlignment="Left"
+                                           Text="{Binding CurrentPatient.FullName, Mode=TwoWay}" />
+
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="2"
+                                                             Entity="PatientMessage" Property="MessageText" />
+                                <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,10,0"
+                                         TextWrapping="Wrap"
+                                         AcceptsReturn="True"
+                                         Text="{Binding SelectedItem.MessageText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                <TextBlock MinHeight="35" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"
+                                           Margin="6,0,10,0" Text="{Binding SelectedItem.MessageLastEditedText}"
+                                           TextWrapping="Wrap" />
+
+                                <VirtuosoCoreControls:vLabel MinHeight="35" Grid.Column="0" Grid.Row="4"
+                                                             Entity="PatientMessage" Property="Inactive" />
+                                <CheckBox Grid.Column="1" Grid.Row="4"
+                                          IsChecked="{Binding SelectedItem.Inactive, Mode=TwoWay}" />
+                                <TextBlock Grid.Column="2" Grid.Row="4" Text="{Binding SelectedItem.InactiveText}"
+                                           TextWrapping="Wrap" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

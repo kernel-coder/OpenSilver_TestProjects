@@ -1,0 +1,122 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.Controls.ErrorWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                      Width="900"
+                      Height="550"
+                      Title="ErrorWindow"
+                      Style="{StaticResource ChildWindowStyle}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="IntroductoryText"
+                       Grid.Row="0"
+                       Margin="0"
+                       Text="{Binding Path=ErrorResources.ErrorWindowGenericError, Source={StaticResource ResourceWrapper}}"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Left" />
+
+            <TextBox x:Name="ErrorText"
+                     Grid.Row="1"
+                     TextWrapping="Wrap"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+            <ScrollViewer x:Name="entityErrorsContainer"
+                          IsTabStop="False"
+                          Grid.Row="2"
+                          BorderThickness="0"
+                          VerticalScrollBarVisibility="Auto">
+                <sdk:DataGrid x:Name="entityErrors"
+                              AutoGenerateColumns="False"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalScrollBarVisibility="Auto"
+                              HeadersVisibility="All">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Header="Error Message"
+                                                Binding="{Binding Path=ErrorMessage}"
+                                                IsReadOnly="True" />
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+            </ScrollViewer>
+
+            <!--//FYI: MultiErrorEventArgs
+            //      List<Exception> _errors = new List<Exception>();
+            //      List<string> _entity_errors = new List<string>();-->
+            <ScrollViewer IsTabStop="False"
+                          Grid.Row="3"
+                          BorderThickness="0"
+                          VerticalScrollBarVisibility="Auto">
+                <sdk:DataGrid x:Name="multiErrorExceptions"
+                              AutoGenerateColumns="False"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalScrollBarVisibility="Auto"
+                              HeadersVisibility="All">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Header="Error Message"
+                                                Binding="{Binding Path=Message}"
+                                                IsReadOnly="True" />
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+            </ScrollViewer>
+
+            <ScrollViewer IsTabStop="False"
+                          Grid.Row="4"
+                          BorderThickness="0"
+                          VerticalScrollBarVisibility="Auto">
+                <sdk:DataGrid x:Name="multiEntityErrors"
+                              AutoGenerateColumns="False"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalScrollBarVisibility="Auto"
+                              HeadersVisibility="All">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Header="Entity Error"
+                                                Binding="{Binding}"
+                                                IsReadOnly="True" />
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+            </ScrollViewer>
+
+            <Grid Grid.Row="5" Margin="0,6,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="1" TextWrapping="Wrap" Text="Comment" VerticalAlignment="Top" />
+                <TextBox x:Name="CommentTextBox" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" Height="120"
+                         AcceptsReturn="True" VerticalContentAlignment="Top" TextAlignment="Left" TextWrapping="Wrap"
+                         IsReadOnly="False" VerticalScrollBarVisibility="Auto" />
+            </Grid>
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <Button x:Name="SendErrorButton"
+                    Click="SendDetailButton_Click"
+                    Height="30"
+                    HorizontalAlignment="Right"
+                    Margin="0,10,0,0"
+                    TabIndex="0"
+                    Content="{Binding Path=ApplicationStrings.SendErrorLabel, Source={StaticResource ResourceWrapper}}" />
+
+        </StackPanel>
+    </Grid>
+</controls:ChildWindow>

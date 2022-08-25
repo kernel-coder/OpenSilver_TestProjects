@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.AdmissionProductCodePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="AdmissionProductCodeGrid"
+          Margin="2,4,2,4"
+          BindingValidationError="AdmissionProductCodeGrid_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Product Code Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding AdmissionProductCodeCancel_Command}"
+                            CommandParameter="{Binding AdmissionProductCodeSelectedItem}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="Auto"
+                                                   MinHeight="35" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="1"
+                                                             ForceRequired="Yes"
+                                                             Entity="AdmissionProductCode"
+                                                             Property="ProductCodeKey" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="2"
+                                                             Entity="AdmissionProductCode"
+                                                             Property="FromDate" />
+                                <VirtuosoCoreControls:vLabel MinHeight="35"
+                                                             Grid.Column="0"
+                                                             Grid.Row="3"
+                                                             Entity="AdmissionProductCode"
+                                                             Property="ThruDate" />
+
+                                <VirtuosoCoreControls:codeLookup x:Name="admissionProductCode"
+                                                                 Grid.Row="1"
+                                                                 Grid.Column="1"
+                                                                 CodeType="Product Code"
+                                                                 IsTabStop="True"
+                                                                 IsHitTestVisible="True"
+                                                                 SelectedKey="{Binding AdmissionProductCodeSelectedItem.ProductCodeKey, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}"
+                                                                 DisplayMemberPath="CodeDescription"
+                                                                 VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Stretch" />
+                                <!--  ds 12204 12/23/14 -->
+                                <VirtuosoCoreControls:vDatePicker Grid.Column="1"
+                                                                  Grid.Row="2"
+                                                                  Margin="4"
+                                                                  Width="130"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding AdmissionProductCodeSelectedItem.FromDate, Converter={StaticResource DateTimeMinValueToNullConverter}, 
+                                                                                Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Column="1"
+                                                                  Grid.Row="3"
+                                                                  Margin="4"
+                                                                  Width="130"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding AdmissionProductCodeSelectedItem.ThruDate, Converter={StaticResource DateTimeMinValueToNullConverter}, 
+                                                                                Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1"
+                              Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum"
+                                                   MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding AdmissionProductCodeOK_Command}"
+                                                 CommandParameter="{Binding AdmissionProductCodeSelectedItem}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding AdmissionProductCodeCancel_Command}"
+                                                 CommandParameter="{Binding AdmissionProductCodeSelectedItem}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

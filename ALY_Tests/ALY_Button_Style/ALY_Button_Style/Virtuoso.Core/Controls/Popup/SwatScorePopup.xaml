@@ -1,0 +1,230 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.SwatScorePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             xmlns:tooltip="clr-namespace:Silverlight.Controls.ToolTips;assembly=Silverlight.Controls.ToolTips"
+             mc:Ignorable="d"
+             BindingValidationError="UserControl_BindingValidationError">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="SwatScoreTemplate">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0" Grid.ColumnSpan="6"
+                           VerticalAlignment="Center" FontWeight="Bold"
+                           TextWrapping="Wrap"
+                           Foreground="{StaticResource HighlightBrush}"
+                           Text="{Binding Label, Mode=TwoWay}" />
+
+                <VirtuosoCoreControls:BlockRadioButton Grid.Column="1"
+                                                       Grid.Row="1"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Height="35" Width="140"
+                                                       GroupName="{Binding AnswerGroupName, Mode=OneTime}"
+                                                       Margin="3"
+                                                       Header="1. Not well at all"
+                                                       IsChecked="{Binding Answer1, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+
+                <VirtuosoCoreControls:BlockRadioButton Grid.Column="2"
+                                                       Grid.Row="1"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Height="35" Width="140"
+                                                       GroupName="{Binding AnswerGroupName, Mode=OneTime}"
+                                                       Margin="3"
+                                                       Header="2. Not too well"
+                                                       IsChecked="{Binding Answer2, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+
+                <VirtuosoCoreControls:BlockRadioButton Grid.Column="3"
+                                                       Grid.Row="1"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Height="35" Width="140"
+                                                       GroupName="{Binding AnswerGroupName, Mode=OneTime}"
+                                                       Margin="3"
+                                                       Header="3. Neutral"
+                                                       IsChecked="{Binding Answer3, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+
+                <VirtuosoCoreControls:BlockRadioButton Grid.Column="4"
+                                                       Grid.Row="1"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Height="35" Width="140"
+                                                       GroupName="{Binding AnswerGroupName, Mode=OneTime}"
+                                                       Margin="3"
+                                                       Header="4. Reasonably well"
+                                                       IsChecked="{Binding Answer4, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+
+                <VirtuosoCoreControls:BlockRadioButton Grid.Column="5"
+                                                       Grid.Row="1"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Height="35" Width="140"
+                                                       GroupName="{Binding AnswerGroupName, Mode=OneTime}"
+                                                       Margin="3"
+                                                       Header="5. Extremely well"
+                                                       IsChecked="{Binding Answer5, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}" />
+
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="SWATScoreGrid"
+          Margin="2,4,2,4"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <Button Content="X"
+                            Command="{Binding SWATScoreCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <StackPanel
+                                IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0"
+                                                HorizontalAlignment="Center">
+                                        <TextBlock VerticalAlignment="Center" FontSize="20" FontWeight="Bold"
+                                                   Text="Social Work Assessment Tool (SWAT) - " />
+                                        <TextBlock VerticalAlignment="Center" FontSize="20" FontWeight="Bold"
+                                                   Text="{Binding SwatScorePopupLabel, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
+                                                HorizontalAlignment="Center">
+                                        <TextBlock VerticalAlignment="Center" FontSize="16" Text="HOW WELL IS" />
+                                        <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Bold"
+                                                   Text="{Binding SwatScorePopupLabel, Mode=TwoWay}" Margin="1,0,1,0" />
+                                        <TextBlock VerticalAlignment="Center" FontSize="16"
+                                                   Text="DOING IN RELATION TO EACH ISSUE?" />
+                                        <Button VerticalAlignment="Center" Grid.Column="4" Height="20" Width="20"
+                                                Style="{StaticResource InfoButtonRoundStyle}" Margin="5,0,0,0">
+                                            <tooltip:ToolTipService.ToolTip>
+                                                <tooltip:ToolTip InitialDelay="0" DisplayTime="Forever">
+                                                    <TextBlock TextWrapping="Wrap"
+                                                               Text="Complete the SWAT immediately after each patient and/or primary caregiver visit.  Do not complete it after phone calls or other kinds of interventions.  The Hospice MSW should rate each the patient and the primary caregiver on how they are doing on each issue listed and should be assessed on every visit so that the SWAT can be revised.  If there are no concerns at all regarding the issue, choose 5 for 'extremely well.' There should be no responses of 'not applicable'.  Source: NHPCO Guideline for Use and Completion of SWAT." />
+                                                </tooltip:ToolTip>
+                                            </tooltip:ToolTipService.ToolTip>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                <ListBox ItemsSource="{Binding SwatScoreDatas, Mode=TwoWay}"
+                                         IsTabStop="False"
+                                         TabNavigation="Local"
+                                         ItemContainerStyle="{StaticResource NoSelectListBoxItemStyle}"
+                                         ItemTemplate="{StaticResource SwatScoreTemplate}" />
+
+
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="2" Grid.Column="0" Margin="0,6,0,2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding SwatScorePopupLabel, Mode=TwoWay}" VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       FontSize="24" />
+                            <TextBlock Text="Score: " VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       FontSize="24" />
+                            <TextBlock Text="{Binding PatientCaregiverScore, Mode=TwoWay}" VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="2"
+                                       FontSize="24" Width="30" />
+                            <TextBlock Margin="12,0,4,0" Text="Comments:" VerticalAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="3" />
+                            <TextBox Grid.Row="0" Grid.Column="4" VerticalAlignment="Center"
+                                     Text="{Binding SwatScoreComments, Mode=TwoWay}" TextWrapping="Wrap"
+                                     AcceptsReturn="True" />
+
+                            <sdk:ValidationSummary x:Name="valSum" Grid.Row="1" Grid.Column="0"
+                                                   MaxHeight="150"
+                                                   Grid.ColumnSpan="5" />
+
+                            <StackPanel Grid.Row="2"
+                                        Grid.Column="4"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                 Command="{Binding SWATScoreOK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding SWATScoreCancel_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>

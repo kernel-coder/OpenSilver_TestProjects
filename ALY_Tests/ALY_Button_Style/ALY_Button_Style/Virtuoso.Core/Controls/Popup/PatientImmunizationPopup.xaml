@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientImmunizationPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="PatientImmunizationGrid" Margin="2,4,2,4"
+          BindingValidationError="PatientImmunization_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Immunization Details"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding Cancel2_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid BindingValidationError="PatientImmunization_BindingValidationError"
+                          IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="225" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Column 0-->
+                                <VirtuosoCoreControls:vLabel Grid.Row="0"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             ForceRequired="Yes"
+                                                             Property="Immunization" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="1"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             Property="DateReceived" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="2"
+                                                             MinHeight="35"
+                                                             ForceRequired="Yes"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             Property="ImmunizedBy"
+                                                             Visibility="{Binding SelectedItem.Immunization, Converter={StaticResource VisibilityConverterNullOrZero}}" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="3"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             Property="Contraindications"
+                                                             Visibility="{Binding SelectedItem.ContraindicationsVisible, Converter={StaticResource VisibilityConverter}}" />
+                                <VirtuosoCoreControls:vLabel Grid.Row="4"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             Visibility="{Binding SelectedItem.ReasonForDecliningVisibility, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}"
+                                                             Property="ReasonForDeclining" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="5"
+                                                             Grid.Column="1"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Width="225"
+                                                             Entity="PatientImmunization"
+                                                             Visibility="{Binding SelectedItem.ReasonForDecliningCommentsVisibility, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}"
+                                                             Property="DecliningReasonComment" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="6"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             Property="Comments" />
+
+                                <VirtuosoCoreControls:vLabel Grid.Row="7"
+                                                             MinHeight="35"
+                                                             VerticalAlignment="Center"
+                                                             Entity="PatientImmunization"
+                                                             Property="Inactive" />
+                                <!--End Column 0-->
+
+                                <!--Column 1-->
+                                <VirtuosoCoreControls:codeLookup Grid.Row="0"
+                                                                 Grid.Column="1"
+                                                                 Grid.ColumnSpan="2"
+                                                                 Margin="0,0,0,4"
+                                                                 CodeType="Immunization"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 SelectedKey="{Binding SelectedItem.Immunization,
+                                                                                        Mode=TwoWay,
+                                                                                        NotifyOnValidationError=True,
+                                                                                        Converter={StaticResource ComboBoxItemNullConverter}}" />
+
+                                <VirtuosoCoreControls:vDatePicker Grid.Row="1"
+                                                                  Grid.Column="1"
+                                                                  Grid.ColumnSpan="2"
+                                                                  Margin="0,0,0,4"
+                                                                  MaxWidth="150"
+                                                                  HorizontalAlignment="Left"
+                                                                  DateObject="{Binding SelectedItem.DateReceived, StringFormat=g, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <VirtuosoCoreControls:codeLookup Grid.Row="2"
+                                                                 Grid.Column="1"
+                                                                 Grid.ColumnSpan="2"
+                                                                 Margin="0,0,0,4"
+                                                                 CodeType="ImmProvided"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 Visibility="{Binding SelectedItem.Immunization, Converter={StaticResource VisibilityConverterNullOrZero}}"
+                                                                 SelectedKey="{Binding SelectedItem.ImmunizedBy,
+                                                                                        Mode=TwoWay,
+                                                                                        NotifyOnValidationError=True,
+                                                                                        Converter={StaticResource ComboBoxItemNullConverter}}" />
+
+                                <VirtuosoCoreControls:codeLookup Grid.Row="3"
+                                                                 Grid.Column="1"
+                                                                 Grid.ColumnSpan="2"
+                                                                 Margin="0,0,0,4"
+                                                                 CodeType="ImmContra"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 Visibility="{Binding SelectedItem.ContraindicationsVisible, Converter={StaticResource VisibilityConverter}}"
+                                                                 SelectedKey="{Binding SelectedItem.Contraindications,
+                                                                                        Mode=TwoWay,
+                                                                                        NotifyOnValidationError=True,
+                                                                                        Converter={StaticResource ComboBoxItemNullConverter}}" />
+
+                                <VirtuosoCoreControls:codeLookup Grid.Row="4"
+                                                                 Grid.Column="1"
+                                                                 Grid.ColumnSpan="2"
+                                                                 Margin="0,0,0,4"
+                                                                 CodeType="ImmDecline"
+                                                                 FormatOfDropDown="Description"
+                                                                 FormatOfSelection="Description"
+                                                                 Visibility="{Binding SelectedItem.ReasonForDecliningVisibility, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}"
+                                                                 SelectedKey="{Binding SelectedItem.ReasonForDeclining,
+                                                                                        Mode=TwoWay,
+                                                                                        NotifyOnValidationError=True,
+                                                                                        Converter={StaticResource ComboBoxItemNullConverter}}" />
+
+                                <TextBox Grid.Row="5"
+                                         Grid.Column="2"
+                                         Margin="0,0,0,4"
+                                         MinWidth="300"
+                                         TextWrapping="Wrap"
+                                         Width="Auto"
+                                         Visibility="{Binding SelectedItem.ReasonForDecliningCommentsVisibility, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}"
+                                         Text="{Binding SelectedItem.DecliningReasonComment,
+                                                            Mode=TwoWay,
+                                                            NotifyOnValidationError=True}" />
+
+                                <TextBox Grid.Row="6"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="2"
+                                         Margin="0,0,0,4"
+                                         Text="{Binding SelectedItem.Comments,
+                                                        Mode=TwoWay,
+                                                        NotifyOnValidationError=True}" />
+
+                                <CheckBox Grid.Row="7"
+                                          Grid.Column="1"
+                                          Grid.ColumnSpan="2"
+                                          Margin="0,0,0,4"
+                                          IsChecked="{Binding SelectedItem.Inactive, Mode=TwoWay}" />
+                                <!--End Column 1-->
+
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0" x:Name="hyOK"
+                                                 Command="{Binding OK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding Cancel2_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

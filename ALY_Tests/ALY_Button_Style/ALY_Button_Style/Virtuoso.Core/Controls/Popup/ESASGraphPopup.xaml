@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.ESASGraphPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:VirtuosoCoreViews="clr-namespace:Virtuoso.Core.View;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="ESASGraphGrid"
+
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0"
+                      VerticalAlignment="Top">
+                    <TextBlock Text="Graph (ESAS-r/PPS)"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding ESASGraphCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding ESASPain.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="0" Grid.Column="1"
+                                                                    DataContext="{Binding ESASPain}" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ESASNausea.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="1" Grid.Column="1"
+                                                                    DataContext="{Binding ESASNausea}" />
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ESASAppetite.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="2" Grid.Column="1"
+                                                                    DataContext="{Binding ESASAppetite}" />
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding ESASConstipation.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="3" Grid.Column="1"
+                                                                    DataContext="{Binding ESASConstipation}" />
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding ESASBreath.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="4" Grid.Column="1"
+                                                                    DataContext="{Binding ESASBreath}" />
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding ESASTiredness.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="5" Grid.Column="1"
+                                                                    DataContext="{Binding ESASTiredness}" />
+
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding ESASDrowsiness.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="6" Grid.Column="1"
+                                                                    DataContext="{Binding ESASDrowsiness}" />
+
+                                <TextBlock Grid.Row="7" Grid.Column="0" Text="{Binding ESASDepression.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="7" Grid.Column="1"
+                                                                    DataContext="{Binding ESASDepression}" />
+
+                                <TextBlock Grid.Row="8" Grid.Column="0" Text="{Binding ESASAnxiety.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="8" Grid.Column="1"
+                                                                    DataContext="{Binding ESASAnxiety}" />
+
+                                <TextBlock Grid.Row="9" Grid.Column="0" Text="{Binding ESASWellbeing.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="9" Grid.Column="1"
+                                                                    DataContext="{Binding ESASWellbeing}" />
+
+                                <TextBlock Grid.Row="10" Grid.Column="0" Text="{Binding ReportedBy.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="10" Grid.Column="1"
+                                                                    DataContext="{Binding ReportedBy}" />
+
+                                <TextBlock Grid.Row="11" Grid.Column="0" Text="{Binding HospicePPS.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="11" Grid.Column="1"
+                                                                    DataContext="{Binding HospicePPS}" />
+
+                                <TextBlock Grid.Row="12" Grid.Column="0" Text="{Binding HospiceFAST.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="12" Grid.Column="1"
+                                                                    DataContext="{Binding HospiceFAST}" />
+
+                                <TextBlock Grid.Row="13" Grid.Column="0" Text="{Binding HospiceGDS.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="13" Grid.Column="1"
+                                                                    DataContext="{Binding HospiceGDS}" />
+
+                                <TextBlock Grid.Row="14" Grid.Column="0" Text="{Binding HospiceMMSE.Title}"
+                                           FontWeight="Bold" />
+                                <VirtuosoCoreViews:ESASIntegerGraph Grid.Row="14" Grid.Column="1"
+                                                                    DataContext="{Binding HospiceMMSE}" />
+
+                            </Grid>
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="2"
+                              Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 IsEnabled="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}"
+                                                 Command="{Binding ESASGraphOK_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>

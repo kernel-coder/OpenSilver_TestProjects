@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PatientVerificationHistoryPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="PatientVerificationHistoryGrid"
+          Margin="2,4,2,4"
+          BindingValidationError="PatientVerificationHistory_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Patient Insurance Verification History"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding CancelHistoryCommand}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        Style="{StaticResource InnerPopupBorderStyle}"
+                        VerticalAlignment="Stretch">
+                    <Grid IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <sdk:DataGrid Name="dg"
+                                      ItemsSource="{Binding InsuranceVerifications.View}"
+                                      AutoGenerateColumns="False"
+                                      VerticalAlignment="Stretch"
+                                      RowDetailsVisibilityMode="Visible"
+                                      Loaded="DataGrid_Loaded">
+                            <sdk:DataGrid.Columns>
+
+                                <sdk:DataGridTemplateColumn Header="Verified By"
+                                                            Width="*"
+                                                            SortMemberPath="VerifiedByFullName">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding VerifiedByFullName}"
+                                                       Margin="0,3,3,0" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+
+                                <sdk:DataGridTemplateColumn Header="Verified Date"
+                                                            Width="Auto"
+                                                            SortMemberPath="RequestDateTime">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding RequestDateTime, StringFormat=d}"
+                                                       Margin="0,3,3,0" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+
+                                <sdk:DataGridTemplateColumn Header="Verification Status"
+                                                            Width="Auto">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <VirtuosoCoreControls:codeLookup CodeType="VerificationStatus"
+                                                                             IncludeNullItem="True"
+                                                                             FormatOfDropDown="Description"
+                                                                             FormatOfSelection="Description"
+                                                                             SelectedKey="{Binding VerificationStatus, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                                             VerticalAlignment="Center"
+                                                                             Margin="0,3,3,0" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+
+                                <sdk:DataGridTemplateColumn Header="Verification Reason"
+                                                            Width="*">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding VerificationReason, Mode=TwoWay}"
+                                                     Margin="0,3,3,0" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+
+                                <sdk:DataGridTemplateColumn Header="Effective From"
+                                                            Width="140">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <VirtuosoCoreControls:vDatePicker Width="135"
+                                                                              IsEnabled="{Binding IsEdit, FallbackValue=True}"
+                                                                              HorizontalAlignment="Left"
+                                                                              VerticalAlignment="Center"
+                                                                              DateObject="{Binding EffectiveFrom, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                                                              Margin="0,3,3,0" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+
+                                <sdk:DataGridTemplateColumn Header="Effective Thru"
+                                                            Width="140">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <VirtuosoCoreControls:vDatePicker Width="135"
+                                                                              IsEnabled="{Binding IsEdit, FallbackValue=True}"
+                                                                              HorizontalAlignment="Left"
+                                                                              VerticalAlignment="Center"
+                                                                              DateObject="{Binding EffectiveThru, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                                                              Margin="0,3,3,0" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+
+                                <sdk:DataGridTemplateColumn Width="85">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Width="80"
+                                                    IsEnabled="{Binding IsEdit, FallbackValue=True}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0,3,3,0"
+                                                    Command="{Binding DataContext.InsVerifyShowDetailsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=sdk:DataGridRow}}"
+                                                    Content="{Binding DetailsButtonLabel}" />
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+                                <sdk:DataGridTemplateColumn Header=""
+                                                            Width="25">
+                                    <sdk:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <HyperlinkButton Style="{StaticResource RemoveHyperlinkButtonSmall}"
+                                                             HorizontalAlignment="Center"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0,9,0,0"
+                                                             IsTabStop="False"
+                                                             Width="20"
+                                                             Command="{Binding DataContext.DeleteHeaderCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                                             CommandParameter="{Binding}">
+                                                <ToolTipService.ToolTip>
+                                                    <VirtuosoCoreControls:vRichTextArea ParagraphText="Delete"
+                                                        TextWrapping="Wrap"
+                                                        Width="100" />
+                                                </ToolTipService.ToolTip>
+
+                                            </HyperlinkButton>
+
+                                        </DataTemplate>
+                                    </sdk:DataGridTemplateColumn.CellTemplate>
+                                </sdk:DataGridTemplateColumn>
+                            </sdk:DataGrid.Columns>
+                        </sdk:DataGrid>
+                        <Grid Grid.Row="1"
+                              Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum"
+                                                   MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2"
+                              Grid.Column="2"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <Button Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="Add"
+                                    Command="{Binding DataContext.AddInsuranceVerifyCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                                    Width="100"
+                                    HorizontalAlignment="Left" />
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding Protected, Converter={StaticResource OppositeVisibilityConverter}}">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding OKHistoryCommand}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Command="{Binding CancelHistoryCommand}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,281 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.Controls.PatientAdmissionInfoWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:Core="clr-namespace:Virtuoso.Core;assembly=Virtuoso.Core"
+                      xmlns:CoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      xmlns:sdk="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+                      Title="{Binding WindowTitle}"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Core:BindableDialogResult.DialogResult="{Binding DialogResult, Mode=TwoWay}"
+                      Width="900"
+                      Height="500">
+
+    <controls:ChildWindow.Resources>
+
+        <DataTemplate x:Key="ServiceLineDataTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding ServiceLineGrouping}" Margin="10,0,0,10" />
+            </StackPanel>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="AddressDataTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Type, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}"
+                           FontWeight="Bold" />
+                <TextBlock Text="{Binding Address}" TextWrapping="Wrap" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PhoneDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0">
+                <TextBlock Text="{Binding Number, Converter={StaticResource PhoneConverter}}" />
+                <TextBlock Text="(" Margin="5,0,0,0" />
+                <TextBlock Text="{Binding Type, Converter={StaticResource CodeLookupDescriptionFromKeyConverter}}"
+                           Margin="0" />
+                <TextBlock Text=")" Margin="0" />
+                <TextBlock Margin="5,0,0,0"
+                           Visibility="{Binding Inactive, Converter={StaticResource VisibilityConverter}}"
+                           Text="(inactive)" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ContactDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0">
+                <TextBlock Text="{Binding FullNameInformal}" MinWidth="150" />
+                <TextBlock Text="{Binding HomePhoneNumber, Converter={StaticResource PhoneConverter}}" Margin="0" />
+            </StackPanel>
+        </DataTemplate>
+
+    </controls:ChildWindow.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <CoreControls:VirtuosoBusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}"
+                                        BusyContent="Please wait..."
+                                        DisplayAfter="0:0:1">
+        <StackPanel>
+
+
+            <Grid x:Name="LayoutRoot" Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--<Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />-->
+            </Grid>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,0,10,10" Height="300">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Heading Definitions -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="SSN:" VerticalAlignment="Top" FontWeight="Bold"
+                               Margin="2" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Gender:" VerticalAlignment="Top" FontWeight="Bold"
+                               Margin="2" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="DOB:" VerticalAlignment="Top" FontWeight="Bold"
+                               Margin="2" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Email Address:" VerticalAlignment="Top"
+                               FontWeight="Bold" Margin="2" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Religion:" VerticalAlignment="Top" FontWeight="Bold"
+                               Margin="2" />
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Address:" VerticalAlignment="Top" FontWeight="Bold"
+                               Margin="2" />
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Phone(s):" VerticalAlignment="Top" FontWeight="Bold"
+                               Margin="2" />
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Contact(s):" VerticalAlignment="Top"
+                               FontWeight="Bold" Margin="2" />
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="{Binding AdmissionPhysicianLabel}"
+                               VerticalAlignment="Top" FontWeight="Bold" Margin="2" />
+                    <TextBlock Grid.Row="9" Grid.Column="0" Text="Care Coordinator:" VerticalAlignment="Top"
+                               FontWeight="Bold" Margin="2" />
+                    <TextBlock Grid.Row="10" Grid.Column="0" Text="Admission(s):" VerticalAlignment="Top"
+                               FontWeight="Bold" Margin="2" />
+
+                    <!-- Data/Content Definitions -->
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPatient.SSNLast4}"
+                               VerticalAlignment="Top" Margin="10,0,0,0" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPatient.GenderDescription}"
+                               VerticalAlignment="Top" Margin="10,0,0,0" />
+                    <TextBlock Grid.Row="2" Grid.Column="1"
+                               Text="{Binding CurrentPatient.BirthDate, StringFormat='{}{0:MM/dd/yyyy}'}"
+                               VerticalAlignment="Top" Margin="10,0,0,0" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPatient.EmailDescription}"
+                               VerticalAlignment="Top" Margin="10,0,0,0" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentPatient.ReligionDescription}"
+                               VerticalAlignment="Top" Margin="10,0,0,0" />
+
+
+                    <ListBox Grid.Row="5"
+                             Grid.Column="1"
+                             ItemTemplate="{StaticResource AddressDataTemplate}"
+                             ItemsSource="{Binding ActivePatientAddresses}" VerticalAlignment="Top">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+
+                    <ListBox Grid.Row="6" Grid.Column="1" ItemTemplate="{StaticResource PhoneDataTemplate}"
+                             ItemsSource="{Binding CurrentPatient.PatientPhone}" VerticalAlignment="Top" />
+
+                    <ListBox Grid.Row="7" Grid.Column="1" ItemTemplate="{StaticResource ContactDataTemplate}"
+                             ItemsSource="{Binding CurrentPatient.PatientContact}" VerticalAlignment="Top" />
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="8"
+                                Grid.Column="1">
+                        <Button Margin="6,0,0,0"
+                                Height="20"
+                                Style="{StaticResource InfoButtonRoundStyle}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Visibility="{Binding CurrentAdmissionPhysician, Converter={StaticResource VisibilityConverterNull}, FallbackValue=Collapsed}"
+                                Command="{Binding PhysicianDetailsCommand}">
+                            <ToolTipService.ToolTip>
+                                <TextBlock Text="Physician details" TextWrapping="Wrap" />
+                            </ToolTipService.ToolTip>
+                        </Button>
+                        <TextBlock Text="{Binding CurrentAdmissionPhysicianDetails}" Margin="14,2,10,0"
+                                   VerticalAlignment="Top" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top"
+                                Margin="5,0,0,0">
+                        <TextBlock Text="{Binding FullName}" DataContext="{Binding Coordinator}" />
+                        <TextBlock Text="{Binding Number, Converter={StaticResource PhoneConverter}}"
+                                   DataContext="{Binding CoordinatorPhone}" />
+                    </StackPanel>
+
+                    <sdk:DataGrid Grid.Row="10" Grid.Column="1" Margin="0,10,0,0" VerticalAlignment="Top"
+                                  AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                  HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Auto"
+                                  ItemsSource="{Binding CurrentPatient.Admission, Mode=TwoWay}">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTextColumn Header="Service Line"
+                                                    Binding="{Binding ServiceLineKey, Converter={StaticResource ServiceLineNameFromKeyConverter}}"
+                                                    IsReadOnly="True" Width="Auto" />
+                            <sdk:DataGridTextColumn Header="Refer"
+                                                    Binding="{Binding ReferDateTime, StringFormat='{}{0:MM/dd/yyyy}'}"
+                                                    IsReadOnly="True" Width="Auto" />
+                            <sdk:DataGridTextColumn Header="SOC"
+                                                    Binding="{Binding SOCDate, StringFormat='{}{0:MM/dd/yyyy}'}"
+                                                    IsReadOnly="True" Width="Auto" />
+                            <sdk:DataGridTextColumn Header="Discharge"
+                                                    Binding="{Binding DischargeDateTime, StringFormat='{}{0:MM/dd/yyyy}'}"
+                                                    IsReadOnly="True" Width="Auto" />
+                            <sdk:DataGridTextColumn Header="Status"
+                                                    Binding="{Binding AdmissionStatus, Converter={StaticResource CodeLookupConverter}, ConverterParameter=AdmissionStatus.Description}"
+                                                    IsReadOnly="True" Width="Auto" />
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+
+                </Grid>
+            </ScrollViewer>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="600" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <TextBlock Text="Service Line:" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,10,0" />
+                        <TextBlock Text="{Binding CurrentAdmission.ServiceLineDescription}" Margin="0,0,10,0" />
+                    </StackPanel>
+                    <TextBlock Text="Service Line Groups:" VerticalAlignment="Top" FontWeight="Bold" Margin="0"
+                               HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup.GroupingHeaderName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup.GroupingName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup2.GroupingHeaderName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup2.GroupingName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup3.GroupingHeaderName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup3.GroupingName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup4.GroupingHeaderName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup4.GroupingName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup5.GroupingHeaderName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding CurrentAdmission.CurrentGroup5.GroupingName}"
+                                       VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </StackPanel>
+
+
+                    <ListBox ItemsSource="{Binding CurrentAdmission.ServiceLineGrouping1.ServiceLineGrouping}"
+                             ItemTemplate="{StaticResource ServiceLineDataTemplate}" VerticalAlignment="Top"
+                             Width="600" Visibility="Collapsed">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </StackPanel>
+
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Height="30"
+                        Width="80"
+                        Margin="10,0,0,0"
+                        HorizontalAlignment="Center"
+                        Content="OK"
+                        Command="{Binding CloseCommand}" />
+            </Grid>
+
+        </StackPanel>
+    </CoreControls:VirtuosoBusyIndicator>
+</controls:ChildWindow>

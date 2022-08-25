@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.OrdersTrackingNotePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d">
+
+    <Grid x:Name="OrdersTrackingNotePopupGrid" Margin="2,4,2,4"
+          BindingValidationError="OrdersTrackingNote_BindingValidationError"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <TextBlock Text="Order Tracking Note"
+                               Style="{StaticResource PopupTitleStyle}" />
+                    <Button Content="X"
+                            Command="{Binding NoteCancel_Command}"
+                            Style="{StaticResource PopupCloseButtonStyle}" />
+                </Grid>
+
+                <Border Margin="0,2,0,2"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InnerPopupBorderStyle}">
+                    <Grid BindingValidationError="OrdersTrackingNote_BindingValidationError"
+                          IsHitTestVisible="{Binding Protected, Converter={StaticResource OppositeBoolConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="scrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Height="Auto">
+                            <Grid IsHitTestVisible="{Binding DataContext.IsEdit, ElementName=ControlRoot}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="OTNoteType"
+                                    VerticalAlignment="Center"
+                                    ForceRequired="Yes" />
+                                <TextBox
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    IsReadOnly="True"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding SelectedOrdersTracking.OTNoteTypeCodeDescription, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="OTNoteDate"
+                                    VerticalAlignment="Center"
+                                    ForceRequired="Yes" />
+                                <VirtuosoCoreControls:vDatePicker
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    IsReadOnly="{Binding SelectedOrdersTracking.IsOTNoteDateReadOnly}"
+                                    HorizontalAlignment="Left"
+                                    DateObject="{Binding SelectedOrdersTracking.OTNoteDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="OTNoteText"
+                                    VerticalAlignment="Center"
+                                    ForceRequired="Yes" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    IsReadOnly="{Binding SelectedOrdersTracking.IsOTNoteTextReadOnly}"
+                                    Text="{Binding SelectedOrdersTracking.OTNoteText, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="UpdatedBy"
+                                    VerticalAlignment="Center" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    IsReadOnly="True"
+                                    Text="{Binding SelectedOrdersTracking.RecordedBy, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="PhysicianKey"
+                                    VerticalAlignment="Center"
+                                    Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeOverrideDelivery, Converter={StaticResource VisibilityConverter}}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    IsReadOnly="True"
+                                    Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeOverrideDelivery, Converter={StaticResource VisibilityConverter}}"
+                                    Text="{Binding SelectedOrdersTracking.PhysicianName, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="PhysicianAddressKey"
+                                    VerticalAlignment="Center"
+                                    Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeOverrideDelivery, Converter={StaticResource VisibilityConverter}}" />
+                                <TextBox
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    IsReadOnly="True"
+                                    Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeOverrideDelivery, Converter={StaticResource VisibilityConverter}}"
+                                    Text="{Binding SelectedOrdersTracking.PhysicianAddressType, Mode=TwoWay, NotifyOnValidationError=True}" />
+
+                                <VirtuosoCoreControls:vLabel
+                                    Grid.Row="6"
+                                    Grid.Column="0"
+                                    MinHeight="35"
+                                    Entity="OrdersTracking"
+                                    Property="DeliveryMethod"
+                                    VerticalAlignment="Center"
+                                    Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeOverrideDelivery, Converter={StaticResource VisibilityConverter}}" />
+                                <VirtuosoCoreControls:codeLookup
+                                    Grid.Row="6"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeOverrideDelivery, Converter={StaticResource VisibilityConverter}}"
+                                    CodeType="OrderDelivery"
+                                    IncludeNullItem="False"
+                                    FormatOfDropDown="Description"
+                                    FormatOfSelection="Description"
+                                    SelectedKey="{Binding SelectedOrdersTracking.DeliveryMethod, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </ScrollViewer>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <sdk:ValidationSummary x:Name="valSum" MaxHeight="150" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0"
+                              Margin="0,4,0,2"
+                              Background="White">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                                <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                 Margin="0,0,20,0"
+                                                 Command="{Binding NoteOK_Command}" />
+                                <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                 Visibility="{Binding SelectedOrdersTracking.IsOTNoteTypeChangePhysician, Converter={StaticResource OppositeVisibilityConverter}}"
+                                                 Command="{Binding NoteCancel_Command}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

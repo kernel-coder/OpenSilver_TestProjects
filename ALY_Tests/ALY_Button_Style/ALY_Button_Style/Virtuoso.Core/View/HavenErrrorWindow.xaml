@@ -1,0 +1,40 @@
+﻿<coreview:PageBase x:Class="Virtuoso.Core.View.HavenErrorWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:coreview="clr-namespace:Virtuoso.Core.View;assembly=Virtuoso.Core"
+                   xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                   mc:Ignorable="d"
+                   d:DesignWidth="640"
+                   d:DesignHeight="480"
+                   Style="{StaticResource PageStyle}">
+
+    <Grid x:Name="LayoutRoot">
+        <sdk:DataGrid x:Name="havenErrors"
+                      Margin="10,10,10,10"
+                      ItemsSource="{Binding HavenErrorList, Mode=TwoWay}"
+                      AutoGenerateColumns="False"
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalScrollBarVisibility="Auto"
+                      HeadersVisibility="All">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Header="Severity" Width="Auto"
+                                        Binding="{Binding Path=ErrorType}"
+                                        IsReadOnly="True" />
+                <sdk:DataGridTextColumn Header="Question" Width="Auto"
+                                        Binding="{Binding Path=ErrorCode}"
+                                        IsReadOnly="True" />
+                <sdk:DataGridTemplateColumn Header="Question" Width="*" SortMemberPath="ErrorDescription">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ErrorDescription}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+
+    </Grid>
+</coreview:PageBase>

@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.SignedHEAUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+             mc:Ignorable="d"
+             x:Name="signedHEA_ctrl"
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid x:Name="LayoutRoot">
+        <Grid x:Name="ControlRoot" DataContext="{Binding ElementName=signedHEA_ctrl}">
+            <Grid HorizontalAlignment="Stretch"
+                  Margin="0,6,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Height="32" Text="*"
+                           Margin="3,16,0,0" />
+                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="Date Furnished" />
+                <VirtuosoCoreControls:vDatePicker Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"
+                                                  Width="130"
+                                                  HorizontalAlignment="Left"
+                                                  DateObject="{Binding EncounterHospiceElectionAddendum.DateFurnished, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                  IsEnabled="{Binding EncounterHospiceElectionAddendum.CanEdit}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Height="32" Text="*"
+                           Margin="3,16,0,0" />
+                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="Dated Signature Present" />
+                <VirtuosoCoreControls:codeLookupRadio Grid.Row="1" Grid.Column="2"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Center"
+                                                      Wrap="True"
+                                                      CodeType="YESNO"
+                                                      ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                      Tag="{Binding EncounterHospiceElectionAddendum.DatedSignaturePresent, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                      SelectedCode="{Binding EncounterHospiceElectionAddendum.ProxyDatedSignaturePresent, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                      IsHitTestVisible="{Binding EncounterHospiceElectionAddendum.CanEdit}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Height="32" Text="*"
+                           Margin="3,16,0,0"
+                           Visibility="{Binding EncounterHospiceElectionAddendum.ShowSigned, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="Patient Signature Date"
+                           Visibility="{Binding EncounterHospiceElectionAddendum.ShowSigned, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                <VirtuosoCoreControls:vDatePicker Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"
+                                                  Visibility="{Binding EncounterHospiceElectionAddendum.ShowSigned, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                                                  Width="130"
+                                                  HorizontalAlignment="Left"
+                                                  DateObject="{Binding EncounterHospiceElectionAddendum.SignatureDate, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                  IsEnabled="{Binding EncounterHospiceElectionAddendum.CanEdit}" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Height="32" Text="*"
+                           Margin="3,16,0,0"
+                           Visibility="{Binding EncounterHospiceElectionAddendum.ShowNotSigned, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="Reason Addendum not Signed"
+                           Visibility="{Binding EncounterHospiceElectionAddendum.ShowNotSigned, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                <VirtuosoCoreControls:codeLookup Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"
+                                                 Margin="0,0,8,0"
+                                                 HorizontalAlignment="Stretch"
+                                                 Visibility="{Binding EncounterHospiceElectionAddendum.ShowNotSigned, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                                                 IsEnabled="{Binding EncounterHospiceElectionAddendum.CanEdit}"
+                                                 CodeType="ADNOTSIGN"
+                                                 IncludeNullItem="False"
+                                                 FormatOfDropDown="Description"
+                                                 FormatOfSelection="Description"
+                                                 SelectedKey="{Binding EncounterHospiceElectionAddendum.ReasonNotSigned, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource ComboBoxItemNullConverter}}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Height="32" Text="*"
+                           Margin="3,16,0,0"
+                           Visibility="{Binding EncounterHospiceElectionAddendum.UsingRefusalReason, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Text="Refusal Reason"
+                           Visibility="{Binding EncounterHospiceElectionAddendum.UsingRefusalReason, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                <TextBox Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,8,0"
+                         HorizontalAlignment="Stretch"
+                         Visibility="{Binding EncounterHospiceElectionAddendum.UsingRefusalReason, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                         AcceptsReturn="False"
+                         TextWrapping="Wrap"
+                         Text="{Binding EncounterHospiceElectionAddendum.RefusalReason, Mode=TwoWay, NotifyOnValidationError=True}"
+                         IsReadOnly="{Binding EncounterHospiceElectionAddendum.CanEdit, Converter={StaticResource OppositeBoolConverter}}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.ChangeUserPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="ChangeUserGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8">
+        <Border Style="{StaticResource OuterPopupBorderStyle}">
+            <Border Background="White" Padding="5" CornerRadius="3">
+                <Grid Background="White">
+                    <ListBox ItemsSource="{Binding Users, Mode=TwoWay}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             SelectedItem="{Binding SelectedUser, Mode=TwoWay}" x:Name="listBoxUsers">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel>
+                                </toolkit:WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="4" Margin="8">
+                                    <StackPanel>
+                                        <Image Height="50" Width="50"
+                                               Source="{Binding PhotoThumbnail, Converter={StaticResource PhotoConverter}, ConverterParameter=User}" />
+                                        <TextBlock Text="{Binding FullName}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>

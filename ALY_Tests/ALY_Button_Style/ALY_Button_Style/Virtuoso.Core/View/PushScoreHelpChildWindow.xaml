@@ -1,0 +1,586 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.PushScoreHelpChildWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="730" Height="560" Foreground="{StaticResource HighlightBrush}"
+                      Title="Pressure Ulcer Scale for Healing (PUSH©)">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,0,10,10" Height="480">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Directions" Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold" />
+            <VirtuosoCoreControls:vRichTextArea
+                ParagraphText="Observe and measure the pressure ulcer.  Categorize the ulcer with respect to surface area, exudate and type of wound tissue.  Record a sub-score for each of these ulcer characteristics.  Add the sub-scores to obtain the total score.  A comparison to total scores measured over time provides an indication of the improvement or deterioration in pressure ulcer healing."
+                TextWrapping="Wrap" />
+            <Grid x:Name="LayoutRoot" Margin="0,10,0,10" Height="310">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="LENGTH" TextWrapping="Wrap"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="X" TextWrapping="Wrap"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="WIDTH" TextWrapping="Wrap"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea0" Grid.Row="0" Grid.Column="1"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="0"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="0" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea1" Grid.Row="0" Grid.Column="2"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="1"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="&lt; 0.3"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea2" Grid.Row="0" Grid.Column="3"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="2"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="0.3 - 0.6"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea3" Grid.Row="0" Grid.Column="4"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="3"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="0.7 - 1.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea4" Grid.Row="0" Grid.Column="5"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="4"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="1.1 - 2.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea5" Grid.Row="0" Grid.Column="6"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="5"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="2.1 - 3.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2" />
+                <Border x:Name="borderPushSurfaceArea6" Grid.Row="1" Grid.Column="2"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="6"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="3.1 - 4.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea7" Grid.Row="1" Grid.Column="3"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="7"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="4.1 - 8.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea8" Grid.Row="1" Grid.Column="4"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="8"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="8.1 - 12.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea9" Grid.Row="1" Grid.Column="5"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="9"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="12.1 - 24.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushSurfaceArea10" Grid.Row="1" Grid.Column="6"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="10"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="&gt; 24.0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="7" Grid.RowSpan="2"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="12" Text="Sub-Score" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="textBlockPushSurfaceArea" Grid.Row="1" Grid.Column="0" FontSize="16" Text=""
+                                   Foreground="{StaticResource PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+
+
+                <Border Grid.Row="2" Grid.Column="0" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="EXUDATE" TextWrapping="Wrap"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="AMOUNT" TextWrapping="Wrap"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushExudateAmount0" Grid.Row="2" Grid.Column="1"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="0"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="None" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushExudateAmount1" Grid.Row="2" Grid.Column="2"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="1"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="Light" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushExudateAmount2" Grid.Row="2" Grid.Column="3"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="2"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="Moderate"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushExudateAmount3" Grid.Row="2" Grid.Column="4"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="3"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="Heavy" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="5" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}" />
+                </Border>
+                <Border Grid.Row="2" Grid.Column="6" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}" />
+                </Border>
+                <Border Grid.Row="2" Grid.Column="7" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="12" Text="Sub-Score" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="textBlockPushExudateAmount" Grid.Row="1" Grid.Column="0" FontSize="16"
+                                   Text="" Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+
+
+                <Border Grid.Row="3" Grid.Column="0" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="TISSUE"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="TYPE"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushTissueType0" Grid.Row="3" Grid.Column="1"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="0"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="12" Text="Closed" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushTissueType1" Grid.Row="3" Grid.Column="2"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="1"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="Epithelial"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="12" Text="Tissue" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushTissueType2" Grid.Row="3" Grid.Column="3"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="2"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="Granulation"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="12" Text="Tissue" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushTissueType3" Grid.Row="3" Grid.Column="4"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="3"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="12" Text="Slough" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="borderPushTissueType4" Grid.Row="3" Grid.Column="5"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="4"
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontSize="12" Text="Necrotic"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="12" Text="Tissue" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Grid.Row="3" Grid.Column="6" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2" />
+                <Border Grid.Row="3" Grid.Column="7" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="12" Text="Sub-Score" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="textBlockPushTissueType" Grid.Row="1" Grid.Column="0" FontSize="16" Text=""
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="7"
+                        BorderBrush="{StaticResource HighlightLightBrush}" BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}" />
+                </Border>
+                <Border Grid.Row="4" Grid.Column="7" BorderBrush="{StaticResource HighlightLightBrush}"
+                        BorderThickness="2">
+                    <Grid Background="{StaticResource  PushColorBrushLight}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="10" FontWeight="Bold" Text="TOTAL SCORE"
+                                   Foreground="{StaticResource  PushColorBrush}" VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock x:Name="textBlockPushScore" Grid.Row="1" Grid.Column="0" FontSize="18" Text=""
+                                   Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+            </Grid>
+            <TextBlock Text="Length x Width" FontWeight="Bold" Foreground="{StaticResource  PushColorBrush}" />
+            <VirtuosoCoreControls:vRichTextArea
+                ParagraphText="Measure the greatest length (head to toe) and the greatest width (side to side) using a centimeter ruler.  Multiply these two measurements (length x width) to obtain an estimate of surface area in square centimeters.  Caveat: Do not guess!  Always use a centimeter ruler and always use the same method each time the ulcer is measured."
+                TextWrapping="Wrap" />
+            <TextBlock Text="Exudate Amount" FontWeight="Bold" Foreground="{StaticResource  PushColorBrush}" />
+            <VirtuosoCoreControls:vRichTextArea
+                ParagraphText="Estimate the amount of exudate (drainage) present after removal of the dressing and before applying any topical agent to the ulcer.  Estimate the exudate (drainage) as none, light, moderate or heavy."
+                TextWrapping="Wrap" />
+            <TextBlock Text="Tissue Type" FontWeight="Bold" Foreground="{StaticResource  PushColorBrush}" />
+            <VirtuosoCoreControls:vRichTextArea
+                ParagraphText="This refers to the types of tissue that are present in the wound (ulcer) bed.&lt;LineBreak /&gt;Score as a '4' if there is any necrotic tissue present.&lt;LineBreak /&gt;Score as a '3' if there is any amount of slough present and necrotic tissue is absent.&lt;LineBreak /&gt;Score as a '2' if the wound is clean and contains granulation tissue.&lt;LineBreak /&gt;A superficial wound that is reepithelializing is scores as a '1'.&lt;LineBreak /&gt;When the wound is closed, score as a '0'."
+                TextWrapping="Wrap" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Text="4 - "
+                           Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold" />
+                <VirtuosoCoreControls:vRichTextArea Margin="0,1" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2"
+                                                    ParagraphText="&lt;Bold&gt;Necrotic Tissue (Eschar): &lt;/Bold&gt; black, brown, or tan tissue that adheres firmly to the wound bed or ulcer edges and may be either firmer or softer than surrounding skin."
+                                                    TextWrapping="Wrap" />
+                <TextBlock VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Text="3 - "
+                           Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold" />
+                <VirtuosoCoreControls:vRichTextArea Margin="0,1" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"
+                                                    ParagraphText="&lt;Bold&gt;Slough: &lt;/Bold&gt; yellow or white tissue that adheres to the ulcer bed in strings or thick clumps, or is mucinous,"
+                                                    TextWrapping="Wrap" />
+                <TextBlock VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Text="2 - "
+                           Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold" />
+                <VirtuosoCoreControls:vRichTextArea Margin="0,1" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"
+                                                    ParagraphText="&lt;Bold&gt;Granulation Tissue: &lt;/Bold&gt; pink or beefy red tissue with a shiny, moist, granular appearance."
+                                                    TextWrapping="Wrap" />
+                <TextBlock VerticalAlignment="Top" Grid.Row="3" Grid.Column="1" Text="1 - "
+                           Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold" />
+                <VirtuosoCoreControls:vRichTextArea Margin="0,1" VerticalAlignment="Top" Grid.Row="3" Grid.Column="2"
+                                                    ParagraphText="&lt;Bold&gt;Epithelial Tissue: &lt;/Bold&gt; for superficial ulcers, new pink or shiny tissue (skin) that grows in from the edges or as islands on the ulcer surface."
+                                                    TextWrapping="Wrap" />
+                <TextBlock VerticalAlignment="Top" Grid.Row="4" Grid.Column="1" Text="0 - "
+                           Foreground="{StaticResource  PushColorBrush}" FontWeight="Bold" />
+                <VirtuosoCoreControls:vRichTextArea Margin="0,1" VerticalAlignment="Top" Grid.Row="4" Grid.Column="2"
+                                                    ParagraphText="&lt;Bold&gt;Closed/Resurfaced&lt;/Bold&gt; the wound is completely covered with epithelium (new skin)."
+                                                    TextWrapping="Wrap" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</controls:ChildWindow>

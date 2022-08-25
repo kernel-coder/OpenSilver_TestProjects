@@ -1,0 +1,105 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="Virtuoso.Core.View.ToolsMenu"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid MinHeight="40" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Path Data="M 0,40 50,40 25,0 Z" Fill="{StaticResource HighlightBrush}">
+                </Path>
+            </Grid>
+            <Border Grid.Row="1" Background="{StaticResource HighlightBrush}" CornerRadius="10">
+                <ContentControl x:Name="Menu">
+                    <StackPanel>
+                        <HyperlinkButton Content="HIS"
+                                         Tag="/Virtuoso.Maintenance;component/Views/HISList.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessVisibility}, ConverterParameter='HISCoordinator', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="OASIS"
+                                         Tag="/Virtuoso.Maintenance;component/Views/OASISList.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessVisibility}, ConverterParameter='OASISCoordinator', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="Diagnosis Review"
+                                         Tag="/Virtuoso.Maintenance;component/Views/ICDCoderWorkList.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessVisibility}, ConverterParameter='ICDCoder', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="Insurance Verification - Request"
+                                         Tag="/Virtuoso.Maintenance;component/Views/BatchCreate270List.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         TargetName="_blank"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessPurchasedInsuranceEligibilityVisibility}, ConverterParameter='IntakeAdmin', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="Insurance Verification - Review"
+                                         Tag="/Virtuoso.Maintenance;component/Views/Process271List.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         TargetName="_blank"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessPurchasedInsuranceEligibilityVisibility}, ConverterParameter='IntakeAdmin', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="Hospice IV Pump Manual Entry"
+                                         Tag="/Virtuoso.Maintenance;component/Views/HospicePumpManualList.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         TargetName="_blank"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessPurchasedHospiceEligibilityVisibility}, ConverterParameter='HospicePharmacyIV', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="Hospice Prescription Fill - Manual"
+                                         Tag="/Virtuoso.Maintenance;component/Views/PharmacyFillManualList.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         TargetName="_blank"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessPurchasedHospiceEligibilityVisibility}, ConverterParameter='HospicePharmacyIV', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+                        <HyperlinkButton Content="Hospice Prescription Fill - Import"
+                                         Tag="/Virtuoso.Maintenance;component/Views/PharmacyFillImportList.xaml"
+                                         Margin="8"
+                                         Foreground="White"
+                                         TargetName="_blank"
+                                         IsTabStop="False"
+                                         VerticalAlignment="Top"
+                                         Visibility="{Binding Converter={StaticResource RoleAccessPurchasedHospiceEligibilityVisibility}, ConverterParameter='HospicePharmacyIV', FallbackValue=Collapsed}"
+                                         Click="HyperlinkButton_Click"
+                                         Style="{StaticResource PageHyperlinkButtonStyle}" />
+
+                    </StackPanel>
+                </ContentControl>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

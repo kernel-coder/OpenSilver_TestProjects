@@ -1,0 +1,546 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.ESASFindingsPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:coreview="clr-namespace:Virtuoso.Core.View;assembly=Virtuoso.Core"
+             Name="survivor_popup"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <coreview:DataContextProxy x:Key="DataContextProxy" />
+    </UserControl.Resources>
+    <Grid Margin="2,4,2,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <sdk:DataGrid Grid.Row="0" Grid.Column="0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          ItemsSource="{Binding FindingsList, Mode=TwoWay}"
+                          AutoGenerateColumns="False"
+                          AlternatingRowBackground="{StaticResource AlternatingRowBackgroundBrush}"
+                          GridLinesVisibility="None">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Width="140">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.Label, Mode=TwoWay}">
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding Label, Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[0], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[0], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[0], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[1], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[1], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[1], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[2], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[2], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[2], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[3], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[3], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[3], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[4], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[4], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[4], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[5], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[5], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[5], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[6], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[6], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[6], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[7], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[7], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[7], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[8], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[8], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[8], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[9], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[9], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[9], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[10], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[10], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[10], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[11], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[11], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[11], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[12], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[12], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[12], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Width="*">
+                        <sdk:DataGridTemplateColumn.HeaderStyle>
+                            <Style TargetType="sdk:DataGridColumnHeader"
+                                   BasedOn="{StaticResource CoreDataGridColumnHeaderStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                           Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.DataPoint[13], Mode=TwoWay}">
+                                                    <ToolTipService.ToolTip>
+                                                        <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                                                            <TextBlock
+                                                                Text="{Binding Source={StaticResource DataContextProxy}, Path=DataSource.Header.TooltipBlirb[13], Mode=TwoWay}"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="{StaticResource HighlightBrush}"
+                                                                FontSize="12" />
+                                                        </ToolTip>
+                                                    </ToolTipService.ToolTip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGridTemplateColumn.HeaderStyle>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+                                           Text="{Binding DataPoint[13], Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+            <Path Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,2,0,2" Fill="DarkGray"
+                  Stretch="Fill" Stroke="#3F000000" UseLayoutRounding="False" Data="M2,51 L542.00092,51"
+                  StrokeThickness="3" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="26,6,0,6"
+                       Text="* Reported By:       P = Patient       F = Family Caregiver       C = Caregiver Assisted       H = Health Care  Professional"
+                       TextWrapping="Wrap" Foreground="{StaticResource HighlightBrush}" FontWeight="Bold" FontSize="14" />
+            <Path Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,2,0,2" Fill="DarkGray"
+                  Stretch="Fill" Stroke="#3F000000" UseLayoutRounding="False" Data="M2,51 L542.00092,51"
+                  StrokeThickness="3" />
+            <Grid Grid.Row="4" Margin="0,4,0,2" Background="White">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}" Command="{Binding Cancel_Command}"
+                                     Content="Exit" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

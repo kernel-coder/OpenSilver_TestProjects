@@ -1,0 +1,289 @@
+﻿<controls:ChildWindow x:Class="Virtuoso.Core.View.BradenProtocolsByLevelOfRisk"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Title="Protocols by Level of Risk">
+    <ScrollViewer>
+        <Grid x:Name="LayoutRoot"
+              Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0"
+                  Grid.Row="1"
+                  Margin="60,0,60,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Column="0"
+                        Grid.Row="0"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="2">
+                    <StackPanel Margin="10,3,10,3">
+                        <RichTextBlock IsTextSelectionEnabled="True">
+                            <Paragraph TextAlignment="Center">
+                                <Underline>
+                                    At Risk (15-18)*
+                                </Underline>
+                                <LineBreak />
+                                <LineBreak />
+                                Frequent Turning
+                                <LineBreak />
+                                Maximal Remobilization
+                                <LineBreak />
+                                Protect Heels
+                                <LineBreak />
+                                Manage Moisture, Nutrition
+                                <LineBreak />
+                                and Friction and shear
+                                <LineBreak />
+                                Pressure-Reduction Support Surface
+                                <LineBreak />
+                                If Bed- or Chair-Bound
+                                <LineBreak />
+                                <Italic>
+                                    * If other major risk factors are present
+                                    <LineBreak />
+                                    (advanced age, fever, poor dietary intake of protein,
+                                    <LineBreak />
+                                    diastolic pressure below 60, hemodynamic instability)
+                                    <LineBreak />
+                                    advance to next level of risk
+                                </Italic>
+                            </Paragraph>
+                        </RichTextBlock>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Grid.Row="0"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="0,2,2,2">
+                    <RichTextBlock IsTextSelectionEnabled="True">
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                Manage Moisture
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            Use commercial moisture barrier
+                            <LineBreak />
+                            Use absorbant pads or diapers that
+                            <LineBreak />
+                            Wick &amp; hold moisture
+                            <LineBreak />
+                            Address cause if possible
+                            <LineBreak />
+                            Offer bedpan/urinal and glass of
+                            <LineBreak />
+                            water in conjunction with turning
+                            <LineBreak />
+                            schedules
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+                <Border Grid.Column="0"
+                        Grid.Row="1"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="2,0,2,2">
+                    <RichTextBlock>
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                Moderate Risk (13-14)*
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            Turning Schedule
+                            <LineBreak />
+                            Use Foam Wedges for 30&#186; Lateral
+                            <LineBreak />
+                            Positioning
+                            <LineBreak />
+                            Pressure-Reduction Support Surface
+                            <LineBreak />
+                            Maximal Remobilization
+                            <LineBreak />
+                            Protect Heels
+                            <LineBreak />
+                            Manage Moisture, Nutrition
+                            <LineBreak />
+                            and Friction and Shear
+                            <LineBreak />
+                            <Italic>
+                                * If other major risk factors present,
+                                <LineBreak />
+                                advance to next level of risk
+                            </Italic>
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Grid.Row="1"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="0,0,2,2">
+                    <RichTextBlock>
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                Manage Nutrition
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            Increase protein intake
+                            <LineBreak />
+                            Increase calorie intake to spare
+                            <LineBreak />
+                            Proteins.
+                            <LineBreak />
+                            Supplement with multi-vitamin
+                            <LineBreak />
+                            (Should have vit A, C &amp; E)
+                            <LineBreak />
+                            Act quickly to alleviate deficits
+                            <LineBreak />
+                            Consult dietitian
+                            <LineBreak />
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+                <Border Grid.Column="0"
+                        Grid.Row="2"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="2,0,2,2">
+                    <RichTextBlock>
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                High Risk (10-12)
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            Increase Frequency of Turning
+                            <LineBreak />
+                            Supplement with Small Shifts
+                            <LineBreak />
+                            Pressure Reduction Support Surface
+                            <LineBreak />
+                            Use Foam Wedges for 30&#186; Lateral
+                            <LineBreak />
+                            Positioning
+                            <LineBreak />
+                            Maximal Remobilization
+                            <LineBreak />
+                            Protect Heels
+                            <LineBreak />
+                            Manage Moisture, Nutrition
+                            <LineBreak />
+                            and Friction and Shear
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Grid.Row="2"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="0,0,2,2">
+                    <RichTextBlock>
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                Manage Friction &amp; Shear
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            Elevate HOB no more than 30&#186;
+                            <LineBreak />
+                            Use trapeze when indicated
+                            <LineBreak />
+                            Use lift sheet to move patient
+                            <LineBreak />
+                            Protect elbows &amp; heels if being
+                            <LineBreak />
+                            exposed to friction
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+                <Border Grid.Column="0"
+                        Grid.Row="3"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="2,0,2,2">
+                    <RichTextBlock>
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                Very High Risk (9 or below)
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            All Of the Above
+                            <LineBreak />
+                            +
+                            <LineBreak />
+                            Use Pressure-Relieving Surface if
+                            <LineBreak />
+                            Patient has Intractable Pain
+                            <LineBreak />
+                            or
+                            <LineBreak />
+                            Severe Pain Exacerbated by Turning
+                            <LineBreak />
+                            or
+                            <LineBreak />
+                            Additional Risk Factors
+                            <LineBreak />
+                            <Italic>
+                                *low air loss beds do not substitute for turning
+                                <LineBreak />
+                                schedules
+                            </Italic>
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Grid.Row="3"
+                        BorderBrush="{StaticResource HighlightBrush}"
+                        BorderThickness="0,0,2,2">
+                    <RichTextBlock>
+                        <Paragraph TextAlignment="Center">
+                            <Underline>
+                                Other General Care Issues
+                            </Underline>
+                            <LineBreak />
+                            <LineBreak />
+                            No massage of reddened bony
+                            <LineBreak />
+                            prominences
+                            <LineBreak />
+                            No donut type devices
+                            <LineBreak />
+                            Maintain good hydration
+                            <LineBreak />
+                            Avoid drying the skin
+                        </Paragraph>
+                    </RichTextBlock>
+                </Border>
+
+            </Grid>
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Text="© Barbara Braden, 2001"
+                       FontStyle="Italic" />
+        </Grid>
+    </ScrollViewer>
+
+</controls:ChildWindow>

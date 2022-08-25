@@ -1,0 +1,79 @@
+﻿<controls:ChildWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+                      x:Class="Virtuoso.Core.Controls.OASISPromptForRFA"
+                      xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls;assembly=Virtuoso.Core"
+                      Title="Enter Assessment Date and Reason For Assessment"
+                      Style="{StaticResource ChildWindowStyle}"
+                      Width="700"
+                      Height="520">
+
+    <Grid x:Name="LayoutRoot" Margin="50,5,50,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <VirtuosoCoreControls:vRichTextArea x:Name="versionBlirb" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                            Margin="0,0,0,8"
+                                            ParagraphText="" TextWrapping="Wrap" HorizontalAlignment="Center" />
+
+        <VirtuosoCoreControls:vRichTextArea Grid.Row="1" Grid.Column="0" Margin="0,0,0,8"
+                                            ParagraphText="&lt;Bold&gt;M0090 - Date Assessment Completed:&lt;/Bold&gt;"
+                                            TextWrapping="Wrap" />
+
+        <VirtuosoCoreControls:vDatePicker x:Name="m0090Date" Grid.Row="1" Grid.Column="1" Width="130"
+                                          VerticalAlignment="Center" HorizontalAlignment="Left"
+                                          SelectedDateChanged="m0090Date_SelectedDateChanged" />
+
+        <VirtuosoCoreControls:vRichTextArea Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,8"
+                                            ParagraphText="&lt;Bold&gt;M0100 - This Assessment is Currently Being Completed for the Following Reason:&lt;/Bold&gt;"
+                                            TextWrapping="Wrap" />
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                    Margin="0,0,0,12"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+            <VirtuosoCoreControls:vRichTextArea Margin="18,0,0,0" HorizontalContentAlignment="Left"
+                                                VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                ParagraphText="&lt;Bold&gt;&lt;Underline&gt;Start/Resumption of Care&lt;/Underline&gt;&lt;/Bold&gt;"
+                                                TextWrapping="Wrap" />
+            <RadioButton x:Name="rfa01" GroupName="rfa" Tag="01" Checked="rfa_Checked"
+                         Content="01 - Start of care—further visits planned" />
+            <RadioButton x:Name="rfa03" GroupName="rfa" Tag="03" Checked="rfa_Checked"
+                         Content="03 - Resumption of care (after inpatient stay)" />
+            <VirtuosoCoreControls:vRichTextArea Margin="18,0,0,0" HorizontalContentAlignment="Left"
+                                                VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                ParagraphText="&lt;Bold&gt;&lt;Underline&gt;Follow-Up&lt;/Underline&gt;&lt;/Bold&gt;"
+                                                TextWrapping="Wrap" />
+            <RadioButton x:Name="rfa04" GroupName="rfa" Tag="04" Checked="rfa_Checked"
+                         Content="04 - Recertification (follow-up) reassessment" />
+            <RadioButton x:Name="rfa05" GroupName="rfa" Tag="05" Checked="rfa_Checked" Content="05 - Other follow-up" />
+            <VirtuosoCoreControls:vRichTextArea Margin="18,0,0,0" HorizontalContentAlignment="Left"
+                                                VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                ParagraphText="&lt;Bold&gt;&lt;Underline&gt;Transfer to an Inpatient Facility&lt;/Underline&gt;&lt;/Bold&gt;"
+                                                TextWrapping="Wrap" />
+            <RadioButton x:Name="rfa06" GroupName="rfa" Tag="06" Checked="rfa_Checked"
+                         Content="06 - Transferred to an inpatient facility—patient not discharged from agency" />
+            <RadioButton x:Name="rfa07" GroupName="rfa" Tag="07" Checked="rfa_Checked"
+                         Content="07 - Transferred to an inpatient facility—patient discharged from agency" />
+            <VirtuosoCoreControls:vRichTextArea Margin="18,0,0,0" HorizontalContentAlignment="Left"
+                                                VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                ParagraphText="&lt;Bold&gt;&lt;Underline&gt;Discharge from Agency - Not to an Inpatient Facility&lt;/Underline&gt;&lt;/Bold&gt;"
+                                                TextWrapping="Wrap" />
+            <RadioButton x:Name="rfa08" GroupName="rfa" Tag="08" Checked="rfa_Checked" Content="08 - Death at home" />
+            <RadioButton x:Name="rfa09" GroupName="rfa" Tag="09" Checked="rfa_Checked"
+                         Content="09 - Discharge from agency" />
+        </StackPanel>
+        <Button Grid.Row="4" Grid.Column="0" Width="60" Click="OKButton_Click" Content="OK" />
+        <Button Grid.Row="4" Grid.Column="1" Width="60" Click="CancelButton_Click" Content="Cancel" />
+    </Grid>
+</controls:ChildWindow>

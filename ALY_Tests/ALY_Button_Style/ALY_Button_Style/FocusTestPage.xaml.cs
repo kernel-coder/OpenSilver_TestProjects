@@ -21,10 +21,10 @@ namespace ALY_Button_Style
 
         private void TextBlock1_Click(object sender, RoutedEventArgs e)
         {
-            this.IsTabStop = false;
+           // this.IsTabStop = false;
             //var result = VisualTreeHelper.GetVisualChildren(this);
             //if (result != null) SetTabStop(result, false);
-            var childWindow = new ChildWindow1();
+            var childWindow = new CWFocusTest();
             childWindow.Closed += ChildWindow_Closed;
             childWindow.Show();
             //if (result != null) SetTabStop(result, true);
@@ -38,29 +38,29 @@ namespace ALY_Button_Style
 
         private void SetTabStop(IEnumerable<DependencyObject> controls, bool value)
         {
-            foreach(var item in controls)
-            {
-                if (item.GetType() == typeof(StackPanel) || item.GetType()==typeof(Grid))
-                {
-                    Panel panel = (Panel)item;
-                    SetTabStop(panel.Children, value);
-                }
-                else if (item.GetType() == typeof(Button) || item.GetType()==typeof(TextBox) || item.GetType()==typeof(CheckBox)
-                    || item.GetType()==typeof(RadioButton))
-                {
-                    var ctrl = item as Control;
-                    ctrl.IsTabStop = value;
-                }
-                else if (item.GetType() == typeof(Control))
-                {
-                    var ctrl = item as Control;
-                    ctrl.IsTabStop = value;
-                }
-                else
-                {
+            //foreach(var item in controls)
+            //{
+            //    if (item.GetType() == typeof(StackPanel) || item.GetType()==typeof(Grid))
+            //    {
+            //        Panel panel = (Panel)item;
+            //        SetTabStop(panel.Children, value);
+            //    }
+            //    else if (item.GetType() == typeof(Button) || item.GetType()==typeof(TextBox) || item.GetType()==typeof(CheckBox)
+            //        || item.GetType()==typeof(RadioButton))
+            //    {
+            //        var ctrl = item as Control;
+            //        ctrl.IsTabStop = value;
+            //    }
+            //    else if (item.GetType() == typeof(Control))
+            //    {
+            //        var ctrl = item as Control;
+            //        ctrl.IsTabStop = value;
+            //    }
+            //    else
+            //    {
 
-                }
-            }
+            //    }
+            //}
         }
     }
 }

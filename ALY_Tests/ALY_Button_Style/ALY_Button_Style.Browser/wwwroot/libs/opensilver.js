@@ -16,18 +16,18 @@
 
 
 //new Element("link",   { rel:"stylesheet", src: "cshtml5.css", type: "text/css" });
-var cshtml5Link = document.createElement('link');
-cshtml5Link.setAttribute('rel', 'stylesheet');
-cshtml5Link.setAttribute('type', 'text/css');
-cshtml5Link.setAttribute('href', 'libs/cshtml5.css');
-document.getElementsByTagName('head')[0].appendChild(cshtml5Link);
+var link = document.createElement('link');
+link.setAttribute('rel', 'stylesheet');
+link.setAttribute('type', 'text/css');
+link.setAttribute('href', 'libs/cshtml5.css');
+document.getElementsByTagName('head')[0].appendChild(link);
 
 //new Element("link",   { rel:"stylesheet", src: "flatpickr.css", type: "text/css" });
-var flatpickrLink = document.createElement('link');
-flatpickrLink.setAttribute('rel', 'stylesheet');
-flatpickrLink.setAttribute('type', 'text/css');
-flatpickrLink.setAttribute('href', 'libs/flatpickr.css');
-document.getElementsByTagName('head')[0].appendChild(flatpickrLink);
+var link = document.createElement('link');
+link.setAttribute('rel', 'stylesheet');
+link.setAttribute('type', 'text/css');
+link.setAttribute('href', 'libs/flatpickr.css');
+document.getElementsByTagName('head')[0].appendChild(link);
 
 //new Element("script", { src: "cshtml5.js", type: "application/javascript" });
 var cshtml5Script = document.createElement('script');
@@ -48,84 +48,90 @@ velocityScript.setAttribute('src', 'libs/velocity.js');
 document.getElementsByTagName('head')[0].appendChild(velocityScript);
 
 //new Element("script", { src: "flatpickr.js", type: "application/javascript" });
-var flatpickrScript = document.createElement('script');
-flatpickrScript.setAttribute('type', 'application/javascript');
-flatpickrScript.setAttribute('src', 'libs/flatpickr.js');
-document.getElementsByTagName('head')[0].appendChild(flatpickrScript);
+var velocityScript = document.createElement('script');
+velocityScript.setAttribute('type', 'application/javascript');
+velocityScript.setAttribute('src', 'libs/flatpickr.js');
+document.getElementsByTagName('head')[0].appendChild(velocityScript);
 
 
 //new Element("script", { src: "ResizeSensor.js", type: "application/javascript" });
-var resizeSensorScript = document.createElement('script');
-resizeSensorScript.setAttribute('type', 'application/javascript');
-resizeSensorScript.setAttribute('src', 'libs/ResizeSensor.js');
-document.getElementsByTagName('head')[0].appendChild(resizeSensorScript);
+var velocityScript = document.createElement('script');
+velocityScript.setAttribute('type', 'application/javascript');
+velocityScript.setAttribute('src', 'libs/ResizeSensor.js');
+document.getElementsByTagName('head')[0].appendChild(velocityScript);
 
 //new Element("script", { src: "ResizeObserver.js", type: "application/javascript" });
-var resizeObserverScript = document.createElement('script');
-resizeObserverScript.setAttribute('type', 'application/javascript');
-resizeObserverScript.setAttribute('src', 'libs/ResizeObserver.js');
-document.getElementsByTagName('head')[0].appendChild(resizeObserverScript);
+var velocityScript = document.createElement('script');
+velocityScript.setAttribute('type', 'application/javascript');
+velocityScript.setAttribute('src', 'libs/ResizeObserver.js');
+document.getElementsByTagName('head')[0].appendChild(velocityScript);
 
-//new Element("script", { src: "html2canvas.js", type: "application/javascript" });
-var html2CanvasScript = document.createElement('script');
-html2CanvasScript.setAttribute('type', 'application/javascript');
-html2CanvasScript.setAttribute('src', 'libs/html2canvas.js');
-document.getElementsByTagName('head')[0].appendChild(html2CanvasScript);
+//new Element("script", { src: "UmdTabbable.js", type: "application/javascript" });
+var tabbableScript = document.createElement('script');
+tabbableScript.setAttribute('type', 'application/javascript');
+tabbableScript.setAttribute('src', 'libs/UmdTabbable.js');
+document.getElementsByTagName('head')[0].appendChild(tabbableScript);
 
 
-window.onCallBack = (function() {
-	const opensilver = "OpenSilver";
-	const opensilver_js_callback = "OnCallbackFromJavaScriptBrowser";
-	const opensilver_js_error_callback = "OnCallbackFromJavaScriptError";
-	
-	function prepareCallbackArgs (args) {
-		let callbackArgs;
-		switch (typeof args) {
-			case 'number':
-			case 'string':
-			case 'boolean':
-				callbackArgs = args;
-				break;
-			case 'object':
-				// if we deal with an array, we need to check
-				// that all the items are primitive types.
-				if (Array.isArray(args)) {
-					callbackArgs = args;
-					for (let i = 0; i < args.length; i++) {
-						let itemType = typeof args[i];
-						if (!(args[i] === null || itemType === 'number' || itemType === 'string' || itemType === 'boolean' ||
-							// Check for TypedArray. This is used for reading binary data for FileReader for example
-							(ArrayBuffer.isView(args[i]) && !(args[i] instanceof DataView))
-						)) {
-							callbackArgs = [];
-							break;
-						}
-					}
-					break;
-				}
-				// if args === null, fall to next case.
-			case 'undefined':
-			default:
-				callbackArgs = [];
-				break;
-		}
-	
-		return callbackArgs;
-	}
-	
-	return {
-		OnCallbackFromJavaScript : function (callbackId, idWhereCallbackArgsAreStored, callbackArgsObject, returnValue) {
-			let formattedArgs = prepareCallbackArgs(callbackArgsObject);
-			const res = DotNet.invokeMethod(opensilver, opensilver_js_callback, callbackId, idWhereCallbackArgsAreStored, formattedArgs, returnValue || false);
-			if (returnValue) {
-				return res;
-			}
-		},
-		
-		OnCallbackFromJavaScriptError : function (idWhereCallbackArgsAreStored) {
-			DotNet.invokeMethod(opensilver, opensilver_js_error_callback, idWhereCallbackArgsAreStored);
-		}
-	};
+//new Element("script", { src: "UmdFocusTrap.js", type: "application/javascript" });
+var focusTrapScript = document.createElement('script');
+focusTrapScript.setAttribute('type', 'application/javascript');
+focusTrapScript.setAttribute('src', 'libs/UmdFocusTrap.js');
+document.getElementsByTagName('head')[0].appendChild(focusTrapScript);
+
+window.onCallBack = (function () {
+    const opensilver = "OpenSilver";
+    const opensilver_js_callback = "OnCallbackFromJavaScriptBrowser";
+    const opensilver_js_error_callback = "OnCallbackFromJavaScriptError";
+
+    function prepareCallbackArgs(args) {
+        let callbackArgs;
+        switch (typeof args) {
+            case 'number':
+            case 'string':
+            case 'boolean':
+                callbackArgs = args;
+                break;
+            case 'object':
+                // if we deal with an array, we need to check
+                // that all the items are primitive types.
+                if (Array.isArray(args)) {
+                    callbackArgs = args;
+                    for (let i = 0; i < args.length; i++) {
+                        let itemType = typeof args[i];
+                        if (!(args[i] === null || itemType === 'number' || itemType === 'string' || itemType === 'boolean' ||
+                            // Check for TypedArray. This is used for reading binary data for FileReader for example
+                            (ArrayBuffer.isView(args[i]) && !(args[i] instanceof DataView))
+                        )) {
+                            callbackArgs = [];
+                            break;
+                        }
+                    }
+                    break;
+                }
+            // if args === null, fall to next case.
+            case 'undefined':
+            default:
+                callbackArgs = [];
+                break;
+        }
+
+        return callbackArgs;
+    }
+
+    return {
+        OnCallbackFromJavaScript: function (callbackId, idWhereCallbackArgsAreStored, callbackArgsObject, returnValue) {
+            let formattedArgs = prepareCallbackArgs(callbackArgsObject);
+            const res = DotNet.invokeMethod(opensilver, opensilver_js_callback, callbackId, idWhereCallbackArgsAreStored, formattedArgs, returnValue || false);
+            if (returnValue) {
+                return res;
+            }
+        },
+
+        OnCallbackFromJavaScriptError: function (idWhereCallbackArgsAreStored) {
+            DotNet.invokeMethod(opensilver, opensilver_js_error_callback, idWhereCallbackArgsAreStored);
+        }
+    };
 })();
 
 window.callJS = function (javaScriptToExecute) {
@@ -162,3 +168,29 @@ window.callJSUnmarshalled = function (javaScriptToExecute) {
             return BINDING.js_to_mono_obj(result + " [NOT USABLE DIRECTLY IN C#] (" + resultType + ")");
     }
 }; 
+
+window.focusTrapsActive = {};
+window.activateFocusTrap = function (id) {
+    if (window.focusTrapsActive.hasOwnProperty(id)) {
+        console.log('focus trap already active for ', id);
+        window.focusTrapsActive[id].updateContainerElements();        
+        return;
+    }
+    var trap = window.focusTrap.createFocusTrap('#' + id);
+    window.focusTrapsActive[id] = trap;
+    trap.activate();
+}
+
+window.deactivateFocusTrap = function (id, pid) {
+    if (!window.focusTrapsActive.hasOwnProperty(id)) {
+        console.log('focus trap not active for ', id);
+        return;
+    }
+    window.focusTrapsActive[id].deactivate();
+    delete window.focusTrapsActive[id];
+
+    if (pid) activateFocusTrap(pid);
+}
+window.isFocusTrapActive = function (id) {
+    return window.focusTrapsActive.hasOwnProperty(id);
+}

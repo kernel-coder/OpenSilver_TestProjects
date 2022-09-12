@@ -1,7 +1,7 @@
-namespace Virtuoso.Core.Assets.Icons
-{
-    using System.Windows.Controls;
+using System.Windows.Controls;
 
+namespace Virtuoso.Core.Assets.Icons
+{    
     public partial class AttemptIcon : ContentPresenter
     {
         public AttemptIcon()

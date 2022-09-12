@@ -7,7 +7,7 @@ namespace Virtuoso.Core.Controls
     {
         public CheckMarkCoderReview()
         {
-            //Content = new CheckMarkFilledIcon();
+            Content = new CheckMarkFilledIcon();
             VerticalAlignment = System.Windows.VerticalAlignment.Top;
             Width = Height = 25;
             Margin = new System.Windows.Thickness(0);

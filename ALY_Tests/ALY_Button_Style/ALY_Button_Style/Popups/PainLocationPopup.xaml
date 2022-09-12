@@ -1,0 +1,282 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PainLocationPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+             mc:Ignorable="d">
+    <ContentControl
+        IsEnabled="{Binding IsEdit, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl, AncestorLevel=2}, Mode=TwoWay}">
+        <Grid x:Name="PainLocationGrid"
+              Margin="2,4,2,4"
+              BindingValidationError="painLocationGrid_BindingValidationError"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <clr:String x:Key="Locations">PainWoundLoc</clr:String>
+                <clr:String x:Key="QuestionKey">Pain</clr:String>
+            </Grid.Resources>
+            <Border Style="{StaticResource OuterPopupBorderStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0"
+                          Margin="0"
+                          VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Pain Locations"
+                                   Style="{StaticResource PopupTitleStyle}" />
+                        <Button Content="X"
+                                Command="{Binding Cancel2_Command}"
+                                Style="{StaticResource PopupCloseButtonStyle}" />
+                    </Grid>
+
+                    <Border Margin="0,2,0,2"
+                            Grid.Row="1"
+                            VerticalAlignment="Top"
+                            Style="{StaticResource InnerPopupBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer Grid.Row="0"
+                                          VerticalScrollBarVisibility="Auto"
+                                          Height="Auto">
+                                <ItemsControl
+                                    IsEnabled="{Binding ProtectedSelectedItem, Converter={StaticResource OppositeBoolConverter}}">
+                                    <Grid Background="White"
+                                          IsHitTestVisible="{Binding ProtectedSelectedItem, Converter={StaticResource OppositeBoolConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"
+                                                           MaxHeight="1" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="47" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="47" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="47" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="47" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                            <RowDefinition Height="Auto"
+                                                           MinHeight="35" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Text=""
+                                                   Width="6000" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="1"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainLocation" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="2"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainQuality" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="3"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainRadiates" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="4"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainFrequency" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="5"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainDuration" ForceRequired="Yes"
+                                                                     Visibility="{Binding SelectedItem.ShowPainDuration, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="6"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainInterference" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="7"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainAlleviating" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="8"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainAggravating" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="9"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainSymptoms" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="10"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="PainComments" />
+                                        <VirtuosoCoreControls:vLabel Grid.Row="11"
+                                                                     Entity="AdmissionPainLocation"
+                                                                     Property="FirstIdentifiedDate"
+                                                                     ForceRequired="{Binding SelectedItem.ForceRequiredFirstIdentifiedDate, Mode=TwoWay }" />
+
+                                        <VirtuosoCoreControls:autoCompleteCombo Grid.Column="1"
+                                            Grid.Row="1"
+                                            IsHitTestVisible="{Binding SelectedItem.CanFullEdit}"
+                                            VerticalAlignment="Center"
+                                            ItemsSource="{Binding Source={StaticResource Locations}, Converter={StaticResource CodeLookupItemSourceConverter}}"
+                                            SelectedValue="{Binding SelectedItem.PainLocation, Mode=TwoWay,  NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                            SelectedValuePath="CodeLookupKey"
+                                            ValueMemberPath="CodeDescription">
+                                            <VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding CodeDescription}" />
+                                                </DataTemplate>
+                                            </VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                        </VirtuosoCoreControls:autoCompleteCombo>
+
+                                        <!--<VirtuosoCoreControls:codeLookupMulti Grid.Column="1"
+                                                                              Grid.Row="2"
+                                                                              CodeType="PAINQUALITY"
+                                                                              SelectedValues="{Binding SelectedItem.PainQuality, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                              VerticalAlignment="Center" />-->
+
+                                        <StackPanel Grid.Column="1"
+                                                    Grid.Row="3"
+                                                    Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+
+                                            <VirtuosoCoreControls:codeLookupRadio x:Name="painRadiates"
+                                                VerticalAlignment="Center"
+                                                Wrap="True"
+                                                Width="150"
+                                                CodeType="YESNO"
+                                                ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                SelectedCode="{Binding SelectedItem.PainRadiates, Mode=TwoWay, NotifyOnValidationError=True, Converter={StaticResource BoolToYesNoConverter}}" />
+
+                                            <VirtuosoCoreControls:vLabel Margin="8,0,0,2"
+                                                                         Entity="AdmissionPainLocation"
+                                                                         Property="RadiatesToLocation"
+                                                                         VerticalAlignment="Center"
+                                                                         Visibility="{Binding SelectedCode, ElementName=painRadiates, Converter={StaticResource ConditionalVisibility}, ConverterParameter=1}" />
+
+                                            <VirtuosoCoreControls:autoCompleteCombo Width="350"
+                                                VerticalAlignment="Center"
+                                                ItemsSource="{Binding Source={StaticResource Locations}, Converter={StaticResource CodeLookupItemSourceConverter}}"
+                                                SelectedValue="{Binding SelectedItem.RadiatesToLocation, Mode=TwoWay,  NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, Converter={StaticResource ComboBoxItemNullConverter}}"
+                                                SelectedValuePath="CodeLookupKey"
+                                                ValueMemberPath="CodeDescription"
+                                                Visibility="{Binding SelectedCode, ElementName=painRadiates, Converter={StaticResource ConditionalVisibility}, ConverterParameter=1}">
+                                                <VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding CodeDescription}" />
+                                                    </DataTemplate>
+                                                </VirtuosoCoreControls:autoCompleteCombo.ItemTemplate>
+                                            </VirtuosoCoreControls:autoCompleteCombo>
+
+                                        </StackPanel>
+
+                                        <VirtuosoCoreControls:codeLookupRadio Grid.Column="1"
+                                                                              Grid.Row="4"
+                                                                              CodeType="PAINFREQUENCY"
+                                                                              Wrap="True"
+                                                                              ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                              SelectedCode="{Binding SelectedItem.PainFrequency, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                                              VerticalAlignment="Center" />
+
+
+
+                                        <TextBox x:Name="painComments"
+                                                 Grid.Column="1"
+                                                 Grid.Row="10"
+                                                 AcceptsReturn="True"
+                                                 IsHitTestVisible="True"
+                                                 Text="{Binding SelectedItem.PainComments, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                        <StackPanel Grid.Column="1"
+                                                    Grid.Row="11"
+                                                    Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+
+                                            <VirtuosoCoreControls:vDatePicker Margin="4,0,0,0"
+                                                                              Width="130"
+                                                                              HorizontalAlignment="Left"
+                                                                              IsHitTestVisible="True"
+                                                                              VerticalAlignment="Center"
+                                                                              DateObject="{Binding SelectedItem.FirstIdentifiedDate, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" />
+
+                                            <VirtuosoCoreControls:vLabel Margin="8,0,0,2"
+                                                                         Entity="AdmissionPainLocation"
+                                                                         Property="Resolved"
+                                                                         VerticalAlignment="Center"
+                                                                         Visibility="{Binding SelectedItem.ShowResolved, Converter={StaticResource VisibilityConverter}}" />
+
+                                            <CheckBox Margin="0,0,0,0" VerticalAlignment="Center"
+                                                      HorizontalAlignment="Left"
+                                                      IsChecked="{Binding SelectedItem.Resolved, Mode=TwoWay, NotifyOnValidationError=True}"
+                                                      Visibility="{Binding SelectedItem.ShowResolved, Converter={StaticResource VisibilityConverter}}" />
+
+                                            <TextBlock Margin="-20,0,0,0"
+                                                       Text="{Binding SelectedItem.ResolvedBlirb, Mode=OneWay}" />
+
+                                        </StackPanel>
+                                    </Grid>
+                                </ItemsControl>
+                            </ScrollViewer>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <sdk:ValidationSummary x:Name="valSum"
+                                                       MaxHeight="150" />
+                            </Grid>
+
+                            <Grid Grid.Row="2"
+                                  Margin="0,4,0,2"
+                                  Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <HyperlinkButton Style="{StaticResource OKHyperlinkButton}"
+                                                     Margin="0,0,20,0"
+                                                     Visibility="{Binding ProtectedSelectedItem, Converter={StaticResource OppositeVisibilityConverter}}"
+                                                     Command="{Binding OK_Command}" />
+                                    <HyperlinkButton Style="{StaticResource CancelHyperlinkButton}"
+                                                     Command="{Binding Cancel2_Command}" />
+                                    <StackPanel
+                                        Visibility="{Binding ProtectedSelectedItem, Converter={StaticResource OppositeVisibilityConverter}}">
+                                        <HyperlinkButton Style="{StaticResource DeleteHyperlinkButton}"
+                                                         Margin="20,0,0,0"
+                                                         Visibility="{Binding SelectedItem.CanDelete, Converter={StaticResource VisibilityConverter}}"
+                                                         Command="{Binding Delete_Command}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </Border>
+        </Grid>
+    </ContentControl>
+</UserControl>

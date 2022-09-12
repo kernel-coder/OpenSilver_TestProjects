@@ -7,7 +7,7 @@ namespace Virtuoso.Core.Controls
     {
         public CheckMark()
         {
-            //Content = new CheckMarkIcon();
+            Content = new CheckMarkIcon();
             Width = Height = 25;
             Margin = new System.Windows.Thickness(0);
         }

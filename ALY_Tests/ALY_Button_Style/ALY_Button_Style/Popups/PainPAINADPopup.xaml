@@ -1,0 +1,243 @@
+﻿<UserControl x:Class="Virtuoso.Core.Controls.PainPAINADPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Name="PainPAINAD_PopupWindow"
+             TabNavigation="Cycle"
+             d:DesignHeight="290"
+             d:DesignWidth="812"
+             mc:Ignorable="d">
+    <ContentControl IsEnabled="{Binding IsPAINAD}">
+        <Grid x:Name="PainPAINADGrid"
+              Width="770"
+              Margin="8"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Border Style="{StaticResource OuterPopupBorderStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="30" />
+                        <RowDefinition Height="*" MinHeight="30" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          Margin="0"
+                          VerticalAlignment="Top">
+                        <TextBlock Style="{StaticResource PopupTitleStyle}"
+                                   Text="Pain Assessment in Advanced Dementia Scale (PAINAD)" />
+                        <Button Command="{Binding PainPAINADCancelButton_Click}"
+                                Content="X"
+                                Style="{StaticResource PopupCloseButtonStyle}" />
+                    </Grid>
+                    <Border Grid.Row="1" Style="{StaticResource InnerPopupBorderStyle}">
+                        <Grid Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" MinHeight="35" />
+                                <RowDefinition Height="Auto" MinHeight="35" />
+                                <RowDefinition Height="Auto" MinHeight="35" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       Text="Pain Evaluation - PAINAD"
+                                       d:LayoutOverrides="Height" />
+
+                            <StackPanel Grid.Row="1"
+                                        Margin="4,4,0,4"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Vertical">
+                                <StackPanel Margin="0,4,0,0" Orientation="Vertical">
+                                    <Path Data="M2,51 L742.00092,51"
+                                          Fill="DarkGray"
+                                          Stretch="Fill"
+                                          Stroke="#3F000000"
+                                          StrokeThickness="2"
+                                          UseLayoutRounding="False" />
+                                </StackPanel>
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Margin="0,0,0,0"
+                                               Text="Breathing Independent of Vocalization"
+                                               TextWrapping="Wrap"
+                                               d:LayoutOverrides="Height" />
+                                    <VirtuosoCoreControls:codeLookupRadio Grid.Column="1"
+                                                                          VerticalAlignment="Center"
+                                                                          ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                          CodeType="PAINADBreathing"
+                                                                          IsEnabled="{Binding Protected,
+                                                                                              Converter={StaticResource OppositeBoolConverter}}"
+                                                                          IsHitTestVisible="{Binding IsEdit,
+                                                                                                     Mode=OneWay}"
+                                                                          SelectedCode="{Binding EncounterPain.Breathing,
+                                                                                                 Mode=TwoWay,
+                                                                                                 NotifyOnValidationError=True}" />
+                                </Grid>
+                                <StackPanel Margin="0,4,0,0" Orientation="Vertical">
+                                    <Path Data="M2,51 L742.00092,51"
+                                          Fill="DarkGray"
+                                          Stretch="Fill"
+                                          Stroke="#3F000000"
+                                          StrokeThickness="2"
+                                          UseLayoutRounding="False" />
+                                </StackPanel>
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Margin="0,0,0,0"
+                                               Text="Negative Vocalization"
+                                               TextWrapping="Wrap"
+                                               d:LayoutOverrides="Height" />
+                                    <VirtuosoCoreControls:codeLookupRadio Grid.Column="1"
+                                                                          VerticalAlignment="Center"
+                                                                          ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                          CodeType="PAINADCry"
+                                                                          IsEnabled="{Binding Protected,
+                                                                                              Converter={StaticResource OppositeBoolConverter}}"
+                                                                          IsHitTestVisible="{Binding IsEdit,
+                                                                                                     Mode=OneWay}"
+                                                                          SelectedCode="{Binding EncounterPain.Cry,
+                                                                                                 Mode=TwoWay,
+                                                                                                 NotifyOnValidationError=True}" />
+                                </Grid>
+                                <StackPanel Margin="0,4,0,0" Orientation="Vertical">
+                                    <Path Data="M2,51 L742.00092,51"
+                                          Fill="DarkGray"
+                                          Stretch="Fill"
+                                          Stroke="#3F000000"
+                                          StrokeThickness="2"
+                                          UseLayoutRounding="False" />
+                                </StackPanel>
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Margin="0,0,0,0"
+                                               Text="Facial Expression"
+                                               TextWrapping="Wrap"
+                                               d:LayoutOverrides="Height" />
+                                    <VirtuosoCoreControls:codeLookupRadio Grid.Column="1"
+                                                                          VerticalAlignment="Center"
+                                                                          ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                          CodeType="PAINADFace"
+                                                                          IsEnabled="{Binding Protected,
+                                                                                              Converter={StaticResource OppositeBoolConverter}}"
+                                                                          IsHitTestVisible="{Binding IsEdit,
+                                                                                                     Mode=OneWay}"
+                                                                          SelectedCode="{Binding EncounterPain.Face,
+                                                                                                 Mode=TwoWay,
+                                                                                                 NotifyOnValidationError=True}" />
+                                </Grid>
+                                <StackPanel Margin="0,4,0,0" Orientation="Vertical">
+                                    <Path Data="M2,51 L742.00092,51"
+                                          Fill="DarkGray"
+                                          Stretch="Fill"
+                                          Stroke="#3F000000"
+                                          StrokeThickness="2"
+                                          UseLayoutRounding="False" />
+                                </StackPanel>
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Margin="0,0,0,0"
+                                               Text="Body Language"
+                                               TextWrapping="Wrap"
+                                               d:LayoutOverrides="Height" />
+                                    <VirtuosoCoreControls:codeLookupRadio Grid.Column="1"
+                                                                          VerticalAlignment="Center"
+                                                                          ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                          CodeType="PAINADActivity"
+                                                                          IsEnabled="{Binding Protected,
+                                                                                              Converter={StaticResource OppositeBoolConverter}}"
+                                                                          IsHitTestVisible="{Binding IsEdit,
+                                                                                                     Mode=OneWay}"
+                                                                          SelectedCode="{Binding EncounterPain.Activity,
+                                                                                                 Mode=TwoWay,
+                                                                                                 NotifyOnValidationError=True}" />
+                                </Grid>
+                                <StackPanel Margin="0,4,0,0" Orientation="Vertical">
+                                    <Path Data="M2,51 L742.00092,51"
+                                          Fill="DarkGray"
+                                          Stretch="Fill"
+                                          Stroke="#3F000000"
+                                          StrokeThickness="2"
+                                          UseLayoutRounding="False" />
+                                </StackPanel>
+                                <Grid Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Margin="0,0,0,0"
+                                               Text="Consolability"
+                                               d:LayoutOverrides="Height" />
+                                    <VirtuosoCoreControls:codeLookupRadio Grid.Column="1"
+                                                                          VerticalAlignment="Center"
+                                                                          ChildStyle="{StaticResource CoreRadioButtonStyle}"
+                                                                          CodeType="PAINADConsole"
+                                                                          IsEnabled="{Binding Protected,
+                                                                                              Converter={StaticResource OppositeBoolConverter}}"
+                                                                          IsHitTestVisible="{Binding IsEdit,
+                                                                                                     Mode=OneWay}"
+                                                                          SelectedCode="{Binding EncounterPain.Console,
+                                                                                                 Mode=TwoWay,
+                                                                                                 NotifyOnValidationError=True}" />
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,4,0,0"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                <Button Width="53"
+                                        Margin="0,0,10,0"
+                                        Command="{Binding PainPAINADOKButton_Click}"
+                                        Content="OK"
+                                        d:LayoutOverrides="HorizontalAlignment, Height" />
+                                <Button Width="53"
+                                        Command="{Binding PainPAINADCancelButton_Click}"
+                                        Content="Close"
+                                        d:LayoutOverrides="HorizontalAlignment, Height" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </Border>
+        </Grid>
+    </ContentControl>
+
+</UserControl>

@@ -9,11 +9,10 @@
                     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                     xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                    xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
-                    xmlns:dataPrimitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Data"
-                    xmlns:dataInput="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.Input"
+					xmlns:dataPrimitives="clr-namespace:System.Windows.Controls.Primitives"
+					xmlns:dataInput="clr-namespace:System.Windows.Controls"
 					xmlns:System="clr-namespace:System;assembly=mscorlib"
-                    xmlns:System_Windows_Controls_Primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls"
+					xmlns:System_Windows_Controls_Primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls"
                     xmlns:VirtuosoCoreBehaviors="clr-namespace:Virtuoso.Core.Behaviors"
 					mc:Ignorable="d">
 
@@ -162,7 +161,7 @@
 
 	<!--DataGridCell Style-->
 	<Style x:Key="CoreDataGridCellStyle"
-           TargetType="sdk:DataGridCell">
+           TargetType="data:DataGridCell">
 		<Setter Property="Background" Value="{StaticResource GridBackground}"/>
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 		<Setter Property="VerticalContentAlignment" Value="Stretch"/>

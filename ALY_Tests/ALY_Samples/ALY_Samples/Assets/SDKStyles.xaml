@@ -16,7 +16,6 @@
     xmlns:icons="clr-namespace:Virtuoso.Core.Assets.Icons"
     mc:Ignorable="d">
 
-	<!-- Global Settings-->
     <!-- Global Settings-->
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml"/>
@@ -3603,15 +3602,23 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid x:Name="Overlay" Background="{TemplateBinding OverlayBrush}" HorizontalAlignment="Stretch" Margin="0" Opacity="{TemplateBinding OverlayOpacity}" VerticalAlignment="Top"/>
-                        <Grid x:Name="ContentRoot" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Height="{TemplateBinding Height}" RenderTransformOrigin="0.5,0.5" VerticalAlignment="{TemplateBinding VerticalAlignment}" Width="{TemplateBinding Width}">
-                            <Grid.RenderTransform>
+                        <Border x:Name="ContentRoot"
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                RenderTransformOrigin="0.5,0.5"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}"
+                                MaxWidth="{TemplateBinding MaxWidth}"
+                                MaxHeight="{TemplateBinding MaxHeight}"
+                                MinWidth="{TemplateBinding MinWidth}">
+                            <Border.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Grid.RenderTransform>
+                            </Border.RenderTransform>
                             <!--<Border BorderBrush="{TemplateBinding BorderBrush}"
                                         Background="{StaticResource WhiteColorBrush}"
                                         Effect="{StaticResource DropShadowBrush}">-->
@@ -3639,7 +3646,7 @@
                                     </Border>
                                 </Grid>
                             </Border>
-                        </Grid>
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -3813,20 +3820,23 @@
                               Margin="0"
                               Opacity="{TemplateBinding OverlayOpacity}"
                               VerticalAlignment="Top" />
-                        <Grid x:Name="ContentRoot"
-                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                              Height="{TemplateBinding Height}"
-                              RenderTransformOrigin="0.5,0.5"
-                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                              Width="{TemplateBinding Width}">
-                            <Grid.RenderTransform>
+                        <Border x:Name="ContentRoot"
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                RenderTransformOrigin="0.5,0.5"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}"
+                                MaxWidth="{TemplateBinding MaxWidth}"
+                                MaxHeight="{TemplateBinding MaxHeight}"
+                                MinWidth="{TemplateBinding MinWidth}">
+                            <Border.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform />
-                                    <SkewTransform />
-                                    <RotateTransform />
-                                    <TranslateTransform />
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
                                 </TransformGroup>
-                            </Grid.RenderTransform>
+                            </Border.RenderTransform>
                             <!--<Border BorderBrush="{TemplateBinding BorderBrush}"
                                         Background="{StaticResource WhiteColorBrush}"
                                         Effect="{StaticResource DropShadowBrush}">-->
@@ -3882,7 +3892,7 @@
                                     </Border>
                                 </Grid>
                             </Border>
-                        </Grid>
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -4140,20 +4150,23 @@
                               Margin="0"
                               Opacity="{TemplateBinding OverlayOpacity}"
                               VerticalAlignment="Top" />
-                        <Grid x:Name="ContentRoot"
-                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                              Height="{TemplateBinding Height}"
-                              RenderTransformOrigin="0.5,0.5"
-                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                              Width="{TemplateBinding Width}">
-                            <Grid.RenderTransform>
+                        <Border x:Name="ContentRoot"
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                RenderTransformOrigin="0.5,0.5"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}"
+                                MaxWidth="{TemplateBinding MaxWidth}"
+                                MaxHeight="{TemplateBinding MaxHeight}"
+                                MinWidth="{TemplateBinding MinWidth}">
+                            <Border.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform />
-                                    <SkewTransform />
-                                    <RotateTransform />
-                                    <TranslateTransform />
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
                                 </TransformGroup>
-                            </Grid.RenderTransform>
+                            </Border.RenderTransform>
                             <!--<Border BorderBrush="{TemplateBinding BorderBrush}"
                                         Background="{StaticResource WhiteColorBrush}"
                                         Effect="{StaticResource DropShadowBrush}">-->
@@ -4208,7 +4221,7 @@
                                     </Border>
                                 </Grid>
                             </Border>
-                        </Grid>
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

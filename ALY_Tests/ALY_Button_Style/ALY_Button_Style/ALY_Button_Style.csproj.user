@@ -100,6 +100,18 @@
     <Page Update="Popups\HelpPopupDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Popups\PainFacesPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Popups\PainFLACCPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Popups\PainLocationPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Popups\PainPAINADPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Popups\TaskEditWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -125,6 +137,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MediSpanMedication.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PatientPainLocationUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PatientPainScaleUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\PatientPhoneUserControl.xaml">

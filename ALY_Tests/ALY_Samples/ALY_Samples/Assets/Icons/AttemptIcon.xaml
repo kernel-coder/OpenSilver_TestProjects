@@ -4,7 +4,7 @@
 
     <Viewbox>
         <Canvas Width="100" Height="100">
-            <Path x:Name="path"
+            <Path 
                   Width="100"
                   Height="100"
                   Data="M 43,5L 57,5L 95,95L 80,95L 70,80L 30,80L 20,95L 5,95L 43,5 Z "
@@ -13,7 +13,7 @@
                   Stroke="Black"
                   StrokeThickness="2"
                   UseLayoutRounding="False"/>
-            <Path x:Name="path2"
+            <Path
                   Width="100"
                   Height="100"
                   Data="M 50,38 L 63,66 L 37,66 L 50,38 Z "

@@ -4532,195 +4532,172 @@ namespace Virtuoso.Maintenance.Controls
     //        }
     //    }
 
-    //    public class
-    //        PatientPainLocationUserControlBase : ChildControlBase<PatientPainLocationUserControl, AdmissionPainLocation>
-    //    {
-    //        public PatientPainLocationUserControlBase()
-    //        {
-    //            PopupDataTemplate = "PainLocationPopupDataTemplate";
-    //            AddPressed += OnAddPressed;
-    //            OKPressed += OnOKPressed;
-    //            EditPressed += OnEditPressed;
-    //            CancelPressed += OnCancelPressed;
-    //            DeletePressed += OnDeletePressed;
-    //        }
+    public class
+        PatientPainLocationUserControlBase : ChildControlBase<PatientPainLocationUserControl, AdmissionPainLocation>
+    {
+        public PatientPainLocationUserControlBase()
+        {
+            PopupDataTemplate = "PainLocationPopupDataTemplate";
+            AddPressed += OnAddPressed;
+            OKPressed += OnOKPressed;
+            EditPressed += OnEditPressed;
+            CancelPressed += OnCancelPressed;
+            DeletePressed += OnDeletePressed;
+        }
 
-    //        public override void Cleanup()
-    //        {
-    //            AddPressed -= OnAddPressed;
-    //            OKPressed -= OnOKPressed;
-    //            EditPressed -= OnEditPressed;
-    //            CancelPressed -= OnCancelPressed;
-    //            DeletePressed -= OnDeletePressed;
-    //            base.Cleanup();
-    //        }
+        public override void Cleanup()
+        {
+            AddPressed -= OnAddPressed;
+            OKPressed -= OnOKPressed;
+            EditPressed -= OnEditPressed;
+            CancelPressed -= OnCancelPressed;
+            DeletePressed -= OnDeletePressed;
+            base.Cleanup();
+        }
 
-    //        public void OnAddPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
-    //        {
-    //            e.Entity.Version = 3;
-    //            int maxsite = 1;
-    //            try
-    //            {
-    //                maxsite = ItemsSource.Max(p => p.PainSite);
-    //            }
-    //            catch
-    //            {
-    //                maxsite = 1;
-    //            }
+        public void OnAddPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
+        {
+            e.Entity.Version = 3;
+            int maxsite = 1;
+            try
+            {
+                maxsite = ItemsSource.Max(p => p.PainSite);
+            }
+            catch
+            {
+                maxsite = 1;
+            }
 
-    //            e.Entity.PainSite = ++maxsite;
-    //            ParentViewModel.PopupDataContext = this;
-    //            RaisePropertyChangedProtectedSelectedItem();
-    //        }
+            e.Entity.PainSite = ++maxsite;
+            ParentViewModel.PopupDataContext = this;
+            RaisePropertyChangedProtectedSelectedItem();
+        }
 
-    //        public void OnEditPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
-    //        {
-    //            ParentViewModel.PopupDataContext = this;
-    //            RaisePropertyChangedProtectedSelectedItem();
-    //        }
+        public void OnEditPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
+        {
+            ParentViewModel.PopupDataContext = this;
+            RaisePropertyChangedProtectedSelectedItem();
+        }
 
-    //        public async void OnOKPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
-    //        {
-    //            ParentViewModel.PopupDataContext = null;
-    //            RaisePropertyChangedProtectedSelectedItem();
+        public async void OnOKPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
+        {
+            ParentViewModel.PopupDataContext = null;
+            RaisePropertyChangedProtectedSelectedItem();
 
-    //            // If we are in a Re-Evaluate section popup - even though we set the PopupDataContext to null above - it will now point to the re-eval popup itself
-    //            // If that is the case - defer the save to the underlying re-eval popup 'Include in this Encounter' command - since they may also choose 'cancel' from the underlying re-eval popup
-    //            if (ParentViewModel.PopupDataContext != null)
-    //            {
-    //                return;
-    //            }
+            // If we are in a Re-Evaluate section popup - even though we set the PopupDataContext to null above - it will now point to the re-eval popup itself
+            // If that is the case - defer the save to the underlying re-eval popup 'Include in this Encounter' command - since they may also choose 'cancel' from the underlying re-eval popup
+            if (ParentViewModel.PopupDataContext != null)
+            {
+                return;
+            }
+        }
 
-    //            DynamicFormViewModel vm = ParentViewModel as DynamicFormViewModel;
-    //            if (vm != null)
-    //            {
-    //                await vm.AutoSave_Command("PatientPainLocationControlReEvalOK");
-    //            }
-    //        }
+        public void OnCancelPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
+        {
+            ParentViewModel.PopupDataContext = null;
+            RaisePropertyChangedProtectedSelectedItem();
+        }
 
-    //        public void OnCancelPressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
-    //        {
-    //            ParentViewModel.PopupDataContext = null;
-    //            RaisePropertyChangedProtectedSelectedItem();
-    //        }
+        public void OnDeletePressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
+        {
+            ParentViewModel.PopupDataContext = null;
+            RaisePropertyChangedProtectedSelectedItem();
+        }
 
-    //        public void OnDeletePressed(object sender, UserControlBaseEventArgs<AdmissionPainLocation> e)
-    //        {
-    //            ParentViewModel.PopupDataContext = null;
-    //            RaisePropertyChangedProtectedSelectedItem();
-    //        }
+        public override bool Validate()
+        {
+            bool AllValid = true;
 
-    //        public override bool Validate()
-    //        {
-    //            bool AllValid = true;
+            if (SelectedItem.FirstIdentifiedDate == DateTime.MinValue)
+            {
+                SelectedItem.FirstIdentifiedDate = null;
+            }
 
-    //            if (SelectedItem.FirstIdentifiedDate == DateTime.MinValue)
-    //            {
-    //                SelectedItem.FirstIdentifiedDate = null;
-    //            }
+            if (SelectedItem.FirstIdentifiedDate != null)
+            {
+                SelectedItem.FirstIdentifiedDate = ((DateTime)SelectedItem.FirstIdentifiedDate).Date;
+            }
 
-    //            if (SelectedItem.FirstIdentifiedDate != null)
-    //            {
-    //                SelectedItem.FirstIdentifiedDate = ((DateTime)SelectedItem.FirstIdentifiedDate).Date;
-    //            }
+            if ((SelectedItem.Version == 2) && (SelectedItem.FirstIdentifiedDate == null))
+            {
+                SelectedItem.ValidationErrors.Add(new ValidationResult("The Date First Identified field is required",
+                    new[] { "FirstIdentifiedDate" }));
+                AllValid = false;
+            }
 
-    //            if ((SelectedItem.Version == 2) && (SelectedItem.FirstIdentifiedDate == null))
-    //            {
-    //                SelectedItem.ValidationErrors.Add(new ValidationResult("The Date First Identified field is required",
-    //                    new[] { "FirstIdentifiedDate" }));
-    //                AllValid = false;
-    //            }
+            if ((SelectedItem.FirstIdentifiedDate != null) && (SelectedItem.FirstIdentifiedDate >
+                                                               DateTime.SpecifyKind(DateTime.Today,
+                                                                   DateTimeKind.Unspecified).Date))
+            {
+                SelectedItem.ValidationErrors.Add(new ValidationResult(
+                    "The Date First Identified field cannot be a future date", new[] { "FirstIdentifiedDate" }));
+                AllValid = false;
+            }
 
-    //            if ((SelectedItem.FirstIdentifiedDate != null) && (SelectedItem.FirstIdentifiedDate >
-    //                                                               DateTime.SpecifyKind(DateTime.Today,
-    //                                                                   DateTimeKind.Unspecified).Date))
-    //            {
-    //                SelectedItem.ValidationErrors.Add(new ValidationResult(
-    //                    "The Date First Identified field cannot be a future date", new[] { "FirstIdentifiedDate" }));
-    //                AllValid = false;
-    //            }
+            if (SelectedItem.ResolvedDate == DateTime.MinValue)
+            {
+                SelectedItem.ResolvedDate = null;
+            }
 
-    //            if (SelectedItem.ResolvedDate == DateTime.MinValue)
-    //            {
-    //                SelectedItem.ResolvedDate = null;
-    //            }
+            if (SelectedItem.ResolvedDate != null)
+            {
+                SelectedItem.ResolvedDate = ((DateTime)SelectedItem.ResolvedDate).Date;
+            }
 
-    //            if (SelectedItem.ResolvedDate != null)
-    //            {
-    //                SelectedItem.ResolvedDate = ((DateTime)SelectedItem.ResolvedDate).Date;
-    //            }
+            if ((SelectedItem.ResolvedDate != null) && (SelectedItem.ResolvedDate >
+                                                        DateTime.SpecifyKind(DateTime.Today, DateTimeKind.Unspecified)
+                                                            .Date))
+            {
+                SelectedItem.ValidationErrors.Add(
+                    new ValidationResult("The Resolved Date field cannot be a future date", new[] { "ResolvedDate" }));
+                AllValid = false;
+            }
 
-    //            if ((SelectedItem.ResolvedDate != null) && (SelectedItem.ResolvedDate >
-    //                                                        DateTime.SpecifyKind(DateTime.Today, DateTimeKind.Unspecified)
-    //                                                            .Date))
-    //            {
-    //                SelectedItem.ValidationErrors.Add(
-    //                    new ValidationResult("The Resolved Date field cannot be a future date", new[] { "ResolvedDate" }));
-    //                AllValid = false;
-    //            }
+            if (string.IsNullOrWhiteSpace(SelectedItem.PainDuration))
+            {
+                SelectedItem.PainDuration = null;
+            }
 
-    //            if (string.IsNullOrWhiteSpace(SelectedItem.PainDuration))
-    //            {
-    //                SelectedItem.PainDuration = null;
-    //            }
+            if (SelectedItem.ShowPainDuration && (SelectedItem.PainDuration == null))
+            {
+                string[] memberNames = { "PainDuration" };
+                SelectedItem.ValidationErrors.Add(new ValidationResult("The Pain Duration field is required",
+                    memberNames));
+                AllValid = false;
+            }
 
-    //            if (SelectedItem.ShowPainDuration && (SelectedItem.PainDuration == null))
-    //            {
-    //                string[] memberNames = { "PainDuration" };
-    //                SelectedItem.ValidationErrors.Add(new ValidationResult("The Pain Duration field is required",
-    //                    memberNames));
-    //                AllValid = false;
-    //            }
+            return AllValid;
+        }
 
-    //            return AllValid;
-    //        }
 
-    //        public IPatientService Model
-    //        {
-    //            get { return (IPatientService)GetValue(ModelProperty); }
-    //            set { SetValue(ModelProperty, value); }
-    //        }
 
-    //        public static readonly DependencyProperty ModelProperty =
-    //            DependencyProperty.Register("Model", typeof(IPatientService), typeof(PatientPainLocationUserControl), null);
+        public override void RemoveFromModel(AdmissionPainLocation entity)
+        {
+        }
 
-    //        public override void RemoveFromModel(AdmissionPainLocation entity)
-    //        {
-    //            if (Model == null)
-    //            {
-    //                throw new ArgumentNullException("Model", "Model is NULL");
-    //            }
+        public override void SaveModel(UserControlBaseCommandType command)
+        {
+            // SAVE - regardless of whethe command = OK or CANCEL...
+        }
 
-    //            Model.Remove(entity);
-    //        }
+        private void RaisePropertyChangedProtectedSelectedItem()
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() => { RaisePropertyChanged("ProtectedSelectedItem"); });
+        }
 
-    //        public override void SaveModel(UserControlBaseCommandType command)
-    //        {
-    //            // SAVE - regardless of whethe command = OK or CANCEL...
-    //            if (Model == null)
-    //            {
-    //                throw new ArgumentNullException("Model", "Model is NULL");
-    //            }
-    //        }
+        public bool ProtectedSelectedItem
+        {
+            get
+            {
+                if ((Protected) || (SelectedItem == null))
+                {
+                    return true;
+                }
 
-    //        private void RaisePropertyChangedProtectedSelectedItem()
-    //        {
-    //            Deployment.Current.Dispatcher.BeginInvoke(() => { RaisePropertyChanged("ProtectedSelectedItem"); });
-    //        }
-
-    //        public bool ProtectedSelectedItem
-    //        {
-    //            get
-    //            {
-    //                if ((Protected) || (SelectedItem == null))
-    //                {
-    //                    return true;
-    //                }
-
-    //                return (!SelectedItem.CanEditResolved);
-    //            }
-    //        }
-    //    }
+                return false;
+            }
+        }
+    }
 
     public class PatientPhoneUserControlBase : ChildControlBase<PatientPhoneUserControl, PatientPhone>
     {

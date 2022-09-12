@@ -16,18 +16,18 @@
 
 
 //new Element("link",   { rel:"stylesheet", src: "cshtml5.css", type: "text/css" });
-var link = document.createElement('link');
-link.setAttribute('rel', 'stylesheet');
-link.setAttribute('type', 'text/css');
-link.setAttribute('href', 'libs/cshtml5.css');
-document.getElementsByTagName('head')[0].appendChild(link);
+var cshtml5Link = document.createElement('link');
+cshtml5Link.setAttribute('rel', 'stylesheet');
+cshtml5Link.setAttribute('type', 'text/css');
+cshtml5Link.setAttribute('href', 'libs/cshtml5.css');
+document.getElementsByTagName('head')[0].appendChild(cshtml5Link);
 
 //new Element("link",   { rel:"stylesheet", src: "flatpickr.css", type: "text/css" });
-var link = document.createElement('link');
-link.setAttribute('rel', 'stylesheet');
-link.setAttribute('type', 'text/css');
-link.setAttribute('href', 'libs/flatpickr.css');
-document.getElementsByTagName('head')[0].appendChild(link);
+var flatpickrLink = document.createElement('link');
+flatpickrLink.setAttribute('rel', 'stylesheet');
+flatpickrLink.setAttribute('type', 'text/css');
+flatpickrLink.setAttribute('href', 'libs/flatpickr.css');
+document.getElementsByTagName('head')[0].appendChild(flatpickrLink);
 
 //new Element("script", { src: "cshtml5.js", type: "application/javascript" });
 var cshtml5Script = document.createElement('script');
@@ -48,23 +48,29 @@ velocityScript.setAttribute('src', 'libs/velocity.js');
 document.getElementsByTagName('head')[0].appendChild(velocityScript);
 
 //new Element("script", { src: "flatpickr.js", type: "application/javascript" });
-var velocityScript = document.createElement('script');
-velocityScript.setAttribute('type', 'application/javascript');
-velocityScript.setAttribute('src', 'libs/flatpickr.js');
-document.getElementsByTagName('head')[0].appendChild(velocityScript);
+var flatpickrScript = document.createElement('script');
+flatpickrScript.setAttribute('type', 'application/javascript');
+flatpickrScript.setAttribute('src', 'libs/flatpickr.js');
+document.getElementsByTagName('head')[0].appendChild(flatpickrScript);
 
 
 //new Element("script", { src: "ResizeSensor.js", type: "application/javascript" });
-var velocityScript = document.createElement('script');
-velocityScript.setAttribute('type', 'application/javascript');
-velocityScript.setAttribute('src', 'libs/ResizeSensor.js');
-document.getElementsByTagName('head')[0].appendChild(velocityScript);
+var resizeSensorScript = document.createElement('script');
+resizeSensorScript.setAttribute('type', 'application/javascript');
+resizeSensorScript.setAttribute('src', 'libs/ResizeSensor.js');
+document.getElementsByTagName('head')[0].appendChild(resizeSensorScript);
 
 //new Element("script", { src: "ResizeObserver.js", type: "application/javascript" });
-var velocityScript = document.createElement('script');
-velocityScript.setAttribute('type', 'application/javascript');
-velocityScript.setAttribute('src', 'libs/ResizeObserver.js');
-document.getElementsByTagName('head')[0].appendChild(velocityScript);
+var resizeObserverScript = document.createElement('script');
+resizeObserverScript.setAttribute('type', 'application/javascript');
+resizeObserverScript.setAttribute('src', 'libs/ResizeObserver.js');
+document.getElementsByTagName('head')[0].appendChild(resizeObserverScript);
+
+//new Element("script", { src: "html2canvas.js", type: "application/javascript" });
+var html2CanvasScript = document.createElement('script');
+html2CanvasScript.setAttribute('type', 'application/javascript');
+html2CanvasScript.setAttribute('src', 'libs/html2canvas.js');
+document.getElementsByTagName('head')[0].appendChild(html2CanvasScript);
 
 //new Element("script", { src: "UmdTabbable.js", type: "application/javascript" });
 var tabbableScript = document.createElement('script');

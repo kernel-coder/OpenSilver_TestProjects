@@ -80,7 +80,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -174,7 +174,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -268,7 +268,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -378,7 +378,7 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <!--<Border x:Name="Background" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3"/>
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}" IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3"/>
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}" IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3"/>
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0"/>
                         <Border x:Name="PressedBorder" Background="{StaticResource GrayBrush5}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0"/>
                         <Rectangle x:Name="FocusRectangle" RadiusY="4" RadiusX="4" Margin="-1" Opacity="0" />
@@ -388,9 +388,9 @@
                                      Stroke="{TemplateBinding Background}" />
                             <Ellipse x:Name="DisabledVisualElement" Width="121.334" Height="121.334"
                                      IsHitTestVisible="false" Opacity="0"
-                                     Fill="{StaticResource ControlsDisabledBrush}"
+                                     Fill="{StaticResource DisabledControl}"
                                      Stretch="Fill" StrokeThickness="{TemplateBinding BorderThickness}"
-                                     StrokeLineJoin="Round" Stroke="{StaticResource ControlsDisabledBrush}" />
+                                     StrokeLineJoin="Round" Stroke="{StaticResource DisabledControl}" />
                             <Ellipse x:Name="MouseOverBorder" Width="121.334" Height="121.334"
                                      Opacity="0"
                                      Fill="{StaticResource GrayBrush8}"
@@ -521,7 +521,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -625,7 +625,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -893,7 +893,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -1003,7 +1003,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -1137,7 +1137,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -1551,7 +1551,7 @@
                         <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}" CornerRadius="3" />
-                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource ControlsDisabledBrush}"
+                        <Rectangle x:Name="DisabledVisualElement" Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false" Opacity="0" RadiusY="3" RadiusX="3" />
                         <Border x:Name="MouseOverBorder" Background="{StaticResource GrayBrush8}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3.5" Opacity="0" />
@@ -2024,7 +2024,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="DisabledVisualElement"
-                                   Fill="{StaticResource ControlsDisabledBrush}"
+                                   Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false"
                                    Opacity="0"
                                    RadiusY="3"
@@ -2185,7 +2185,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="DisabledVisualElement"
-                                   Fill="{StaticResource ControlsDisabledBrush}"
+                                   Fill="{StaticResource DisabledControl}"
                                    IsHitTestVisible="false"
                                    Opacity="0"
                                    RadiusY="3"

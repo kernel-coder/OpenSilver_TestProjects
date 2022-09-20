@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="Virtuoso.Maintenance.Controls.PatientPainScaleUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             TabNavigation="Local"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+    <Grid Margin="10,0,0,0">
+        <VisualStateManager.CustomVisualStateManager>
+            <ei:ExtendedVisualStateManager />
+        </VisualStateManager.CustomVisualStateManager>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="PopupStateGroup" ei:ExtendedVisualStateManager.UseFluidLayout="True">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition GeneratedDuration="0:0:0.75" />
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="FACESPopupHidden" />
+                <VisualState x:Name="FACESPopupVisible">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FACESPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FACESPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <AlignmentX>Center</AlignmentX>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FACESPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.Height)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="450" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="FLACCPopupHidden" />
+                <VisualState x:Name="FLACCPopupVisible">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FLACCPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FLACCPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <AlignmentX>Center</AlignmentX>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FLACCPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.Height)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="500" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PAINADPopupHidden" />
+                <VisualState x:Name="PAINADPopupVisible">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PAINADPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PAINADPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <AlignmentX>Center</AlignmentX>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PAINADPopupRoot"
+                                                       Storyboard.TargetProperty="(FrameworkElement.Height)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="500" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <i:Interaction.Behaviors>
+            <ei:DataStateBehavior Binding="{Binding IsFACES}"
+                                  FalseState="FACESPopupHidden"
+                                  TrueState="FACESPopupVisible"
+                                  Value="true" />
+            <ei:DataStateBehavior Binding="{Binding IsFLACC}"
+                                  FalseState="FLACCPopupHidden"
+                                  TrueState="FLACCPopupVisible"
+                                  Value="true" />
+            <ei:DataStateBehavior Binding="{Binding IsPAINAD}"
+                                  FalseState="PAINADPopupHidden"
+                                  TrueState="PAINADPopupVisible"
+                                  Value="true" />
+        </i:Interaction.Behaviors>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="42" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gridPainScale">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0"
+                       Margin="0,4,4,4"
+                       Text="*" />
+            <TextBlock Grid.Column="1"
+                       Margin="0,4"
+                       Text="Pain Assessment"
+                       TextWrapping="Wrap" />
+            <Button x:Name="graphButton"
+                    Grid.Column="2"
+                    Width="23"
+                    Height="23"
+                    HorizontalAlignment="Center"
+                    Command="{Binding GraphCommand}"
+                    CommandParameter="Pain"
+                    Style="{StaticResource GraphButtonStyle}">
+                <ToolTipService.ToolTip>
+                    <ToolTip Template="{StaticResource CoreToolTipTemplate}">
+                        <ToolTip.Content>
+                            <TextBlock Text="Graph of Pain" TextWrapping="Wrap" />
+                        </ToolTip.Content>
+                    </ToolTip>
+                </ToolTipService.ToolTip>
+            </Button>
+            <VirtuosoCoreControls:codeLookup x:Name="painscale"
+                                             Grid.Column="3"
+                                             Width="150"
+                                             Margin="4"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Center"
+                                             CodeType="PAINSCALE"
+                                             FormatOfDropDown="Description"
+                                             FormatOfSelection="Description"
+                                             IsEnabled="{Binding Protected,
+                                                                 Converter={StaticResource OppositeBoolConverter}}"
+                                             SelectedKey="{Binding EncounterPain.PainScale,
+                                                                   Mode=TwoWay,
+                                                                   NotifyOnValidationError=True}"
+                                             SkipUpdateLayout="True" />
+            <TextBlock Grid.Column="4"
+                       Width="34"
+                       Margin="15,4"
+                       VerticalAlignment="Center"
+                       Text="Score"
+                       Visibility="{Binding SelectedKey,
+                                            Mode=TwoWay,
+                                            ElementName=painscale,
+                                            Converter={StaticResource VisibilityConverterNull}}" />
+            <VirtuosoCoreControls:codeLookup x:Name="painScore10"
+                                             Grid.Column="5"
+                                             Width="55"
+                                             Margin="4"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Center"
+                                             CodeType="PAIN10"
+                                             FormatOfDropDown="Description"
+                                             FormatOfSelection="Description"
+                                             IncludeNullItem="False"
+                                             IsEnabled="{Binding Protected,
+                                                                 Converter={StaticResource OppositeBoolConverter}}"
+                                             SelectedKey="{Binding EncounterPain.PainScore10,
+                                                                   Mode=TwoWay,
+                                                                   NotifyOnValidationError=True}"
+                                             Visibility="{Binding SelectedKey,
+                                                                  ElementName=painscale,
+                                                                  Mode=TwoWay,
+                                                                  Converter={StaticResource CodeLookupConditionalVisibilityOnCode},
+                                                                  ConverterParameter=PAINSCALE|10}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ProcessGoals}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </VirtuosoCoreControls:codeLookup>
+            <TextBlock Grid.Column="5"
+                       Width="38"
+                       VerticalAlignment="Center"
+                       Text="PainScoreFACES" />
+            <Button x:Name="painScoreFACES"
+                    Grid.Column="6"
+                    Width="200"
+                    Margin="16,4"
+                    VerticalAlignment="Center"
+                    Command="{Binding PainFaces_Command}"
+                    Content="PainScoreFacesButton" />
+            <TextBlock Grid.Column="5"
+                       Width="38"
+                       VerticalAlignment="Center"
+                       Text="PainScoreFLACC" />
+            <Button x:Name="painScoreFLACC"
+                    Grid.Column="6"
+                    Width="200"
+                    Margin="16,4"
+                    VerticalAlignment="Center"
+                    Command="{Binding PainFLACC_Command}"
+                    Content="PainScoreFLACCButton"/>
+            <TextBlock Grid.Column="5"
+                       Width="38"
+                       VerticalAlignment="Center"
+                       Text="PainScorePAINAD"/>
+            <Button x:Name="painScorePAINAD"
+                    Grid.Column="6"
+                    Width="200"
+                    Margin="16,4"
+                    VerticalAlignment="Center"
+                    Command="{Binding PainPAINAD_Command}"
+                    Content="PainScorePAINADButton"/>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Patient Pain Target"
+                       TextWrapping="Wrap" />
+            <VirtuosoCoreControls:codeLookup x:Name="targetScore10"
+                                             Grid.Row="1"
+                                             Grid.Column="3"
+                                             Width="55"
+                                             Margin="4"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Center"
+                                             CodeType="PAIN10"
+                                             FormatOfDropDown="Description"
+                                             FormatOfSelection="Description"
+                                             IncludeNullItem="False"
+                                             IsEnabled="{Binding Protected,
+                                                                 Converter={StaticResource OppositeBoolConverter}}"
+                                             SelectedKey="{Binding EncounterPain.TargetPain,
+                                                                   Mode=TwoWay,
+                                                                   NotifyOnValidationError=True}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ProcessGoals}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </VirtuosoCoreControls:codeLookup>
+        </Grid>
+
+        <!--  Create Pains Faces Popup  -->
+        <Grid x:Name="FACESPopupRoot"
+              Height="0"
+              Margin="0,0,-750,0"
+              HorizontalAlignment="Right"
+              d:DesignWidth="650">
+            <VirtuosoCoreControls:PainFacesPopup />
+        </Grid>
+
+        <!--  Create Pains FLACC Popup  -->
+        <Grid x:Name="FLACCPopupRoot"
+              Height="0"
+              Margin="0,0,-750,0"
+              HorizontalAlignment="Right"
+              d:DesignWidth="650">
+            <VirtuosoCoreControls:PainFLACCPopup />
+        </Grid>
+
+        <!--  Create Pains PAINAD Popup  -->
+        <Grid x:Name="PAINADPopupRoot"
+              Height="0"
+              Margin="0,0,-750,0"
+              HorizontalAlignment="Right"
+              d:DesignWidth="650">
+            <VirtuosoCoreControls:PainPAINADPopup />
+        </Grid>
+    </Grid>
+</UserControl>

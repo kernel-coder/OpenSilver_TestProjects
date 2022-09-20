@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-09-06-101951-da5e8cf0" />
+    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-09-13-063027-64388bad" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="protobuf-net" Version="3.0.131" />
@@ -43,6 +43,9 @@
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="Assets\Styles.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="BorderLayoutTestView.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="ChildWindow1.xaml">
@@ -156,6 +159,7 @@
     <Compile Include="Behaviors\RightMouseClickDisableBehavior.cs" />
     <Compile Include="Behaviors\TextBoxFilters.cs" />
     <Compile Include="Behaviors\TransitionEffectBehavior.cs" />
+    <Compile Include="BorderLayoutTestView.xaml.cs" />
     <Compile Include="ChildWindow1.xaml.cs" />
     <Compile Include="ChildWindow2.xaml.cs" />
     <Compile Include="ComboItemsTestDlg.xaml.cs" />

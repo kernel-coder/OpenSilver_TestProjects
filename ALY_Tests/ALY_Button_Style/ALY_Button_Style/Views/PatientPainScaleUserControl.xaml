@@ -119,7 +119,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gridPainScale" VerticalAlignment="Top">
+        <Grid x:Name="gridPainScale">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="140" />
@@ -168,21 +168,15 @@
                                              FormatOfSelection="Description"
                                              IsEnabled="{Binding Protected,
                                                                  Converter={StaticResource OppositeBoolConverter}}"
-                                             Visibility="Collapsed"
                                              SelectedKey="{Binding EncounterPain.PainScale,
                                                                    Mode=TwoWay,
                                                                    NotifyOnValidationError=True}"
                                              SkipUpdateLayout="True" />
-            <ComboBox x:Name="cmbItems" Grid.Column="3" Width="150" Margin="4"/>
             <TextBlock Grid.Column="4"
                        Width="34"
                        Margin="15,4"
                        VerticalAlignment="Center"
-                       Text="Score"
-                       Visibility="{Binding SelectedKey,
-                                            Mode=TwoWay,
-                                            ElementName=painscale,
-                                            Converter={StaticResource VisibilityConverterNull}}" />
+                       Text="Score"/>
             <VirtuosoCoreControls:codeLookup x:Name="painScore10"
                                              Grid.Column="5"
                                              Width="55"
@@ -197,12 +191,7 @@
                                                                  Converter={StaticResource OppositeBoolConverter}}"
                                              SelectedKey="{Binding EncounterPain.PainScore10,
                                                                    Mode=TwoWay,
-                                                                   NotifyOnValidationError=True}"
-                                             Visibility="{Binding SelectedKey,
-                                                                  ElementName=painscale,
-                                                                  Mode=TwoWay,
-                                                                  Converter={StaticResource CodeLookupConditionalVisibilityOnCode},
-                                                                  ConverterParameter=PAINSCALE|10}">
+                                                                   NotifyOnValidationError=True}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding ProcessGoals}" />
@@ -212,36 +201,44 @@
             <TextBlock Grid.Column="5"
                        Width="38"
                        VerticalAlignment="Center"
-                       Text="PainScoreFACES" />
+                       Text="PAINFACES.Code" />
             <Button x:Name="painScoreFACES"
                     Grid.Column="6"
                     Width="200"
                     Margin="16,4"
                     VerticalAlignment="Center"
                     Command="{Binding PainFaces_Command}"
-                    Content="PainScoreFacesButton" />
+                    Content="{Binding EncounterPain.PainScoreFacesButton,
+                                      Mode=TwoWay,
+                                      NotifyOnValidationError=True}"/>
             <TextBlock Grid.Column="5"
                        Width="38"
                        VerticalAlignment="Center"
-                       Text="PainScoreFLACC" />
+                       Text="{Binding EncounterPain.PainScoreFLACC,
+                                      Mode=TwoWay}"/>
             <Button x:Name="painScoreFLACC"
                     Grid.Column="6"
                     Width="200"
                     Margin="16,4"
                     VerticalAlignment="Center"
                     Command="{Binding PainFLACC_Command}"
-                    Content="PainScoreFLACCButton"/>
+                    Content="{Binding EncounterPain.PainScoreFLACCButton,
+                                      Mode=TwoWay,
+                                      NotifyOnValidationError=True}"/>
             <TextBlock Grid.Column="5"
                        Width="38"
                        VerticalAlignment="Center"
-                       Text="PainScorePAINAD"/>
+                       Text="{Binding EncounterPain.PainScorePAINAD,
+                                      Mode=TwoWay}"/>
             <Button x:Name="painScorePAINAD"
                     Grid.Column="6"
                     Width="200"
                     Margin="16,4"
                     VerticalAlignment="Center"
                     Command="{Binding PainPAINAD_Command}"
-                    Content="PainScorePAINADButton"/>
+                    Content="{Binding EncounterPain.PainScorePAINADButton,
+                                      Mode=TwoWay,
+                                      NotifyOnValidationError=True}"/>
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="addButtonIcon" width="100%" height="100%" viewBox="0 0 100 100">
+   <rect width="100" height="100" fill="#0d2c6e" id="fillElement" />
+   <path d="M 50,20L 50,80" stroke="#FEFEFE" stroke-width="20.3" stroke-linecap="Round" />
+   <path d="M 20,50L 80,50" stroke="#FEFEFE" stroke-width="20.3" stroke-linecap="Round" />
+</svg>

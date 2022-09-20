@@ -22,7 +22,7 @@
                     Width="275"
                     Height="88"
                     HorizontalAlignment="Left"
-                    BorderBrush="{StaticResource AccentColorBrush}"
+                    BorderBrush="{StaticResource GridBorder}"
                     Visibility="{Binding ShowInkPresenter, Mode=TwoWay, Converter={StaticResource OppositeVisibilityConverter}}">
                 <Image x:Name="inkimage"
                        Source="{Binding Signature, Mode=TwoWay, Converter={StaticResource PhotoConverter}, ConverterParameter=Print}" />
@@ -32,7 +32,7 @@
                     Width="550"
                     Height="175"
                     HorizontalAlignment="Left"
-                    BorderBrush="{StaticResource AccentColorBrush}"
+                    BorderBrush="{StaticResource GridBorder}"
                     Visibility="{Binding ShowInkPresenter, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}">
                 <InkPresenter x:Name="inkPad"
                               Background="Transparent"

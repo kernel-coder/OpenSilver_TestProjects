@@ -29,7 +29,7 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.ColumnSpan="3">
                     <TextBlock
-                        Text="{Binding PainLocation, Converter={StaticResource CodeLookupConverter}, ConverterParameter='PainWoundLoc.Description', StringFormat='\{0\},  '}" />
+                        Text="PainLOCME" />
                     <TextBlock Text="{Binding PainQuality, StringFormat='\{0\}, '}" />
                     <TextBlock
                         Text="{Binding PainFrequency, Converter={StaticResource CodeLookupDescriptionFromCodeConverter}, ConverterParameter='PAINFREQUENCY', StringFormat='\{0\}  '}" />

@@ -5,6 +5,9 @@
     <Compile Update="BorderLayoutTestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="CDComboTest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChildWindow1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +61,9 @@
     <Page Update="BorderLayoutTestView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="CDComboTest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ChildWindow1.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -92,6 +98,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DataGridTest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\SaveFileDialogEx.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="FocusTestPage.xaml">

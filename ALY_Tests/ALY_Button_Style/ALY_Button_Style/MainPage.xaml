@@ -104,7 +104,7 @@
                           MouseLeftButtonDown="OnIP_MouseLeftButtonDown" MouseMove="OnIP_MouseMove" LostMouseCapture="OnIP_LostMouseCapture">
                 </InkPresenter>
                 <Grid  Width="400" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" IsHitTestVisible="False">
-                    <Image x:Name="imageView" Source="/ALY_Button_Style;component/Assets/Images/back.jpg" Width="190" Height="300"/>
+                    <Image x:Name="imageView" Source="/ALY_Button_Style;component/Assets/Images/back.jpg" Width="190" Height="300" Visibility="Collapsed"/>
                 </Grid>
                 
                 <StackPanel x:Name="stackPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" >

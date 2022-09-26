@@ -57,7 +57,7 @@ namespace ALY_Button_Style
         {
             //WriteableBitmap wbBitmap = new WriteableBitmap(imageView.Source as BitmapImage);
             WriteableBitmap wbBitmap = new WriteableBitmap(InkPad, null);
-            //await wbBitmap.WaitToInitialize();
+            await wbBitmap.WaitToInitialize();
             //EditableImage eiImage = new EditableImage(wbBitmap.PixelWidth, wbBitmap.PixelHeight);
 
             try
@@ -87,7 +87,7 @@ namespace ALY_Button_Style
             }
 
             wbBitmap.Render(imageView, null);
-            //await wbBitmap.WaitToRender();
+            await wbBitmap.WaitToRender();
 
             wbBitmap.Invalidate();
             //var bitmap = new BitmapImage();

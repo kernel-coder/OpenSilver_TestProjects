@@ -65,15 +65,27 @@ namespace ALY_Button_Style
 
         private async void Button_Click2(object sender, RoutedEventArgs e)
         {
+            var dlg = new FileDialogs.SaveFileDialogEx();
+            dlg.Title = "Save as dialog";
+            dlg.Filter = "Comma-delimited files (*.csv)|*.csv|All files (*.*)|*.*";
+            dlg.DefaultExt = "csv";
+            dlg.DefaultFileName = "Def Filename";
+            dlg.Accept += (s, ee) =>
+            {
+                dlg.SaveTextToFile("This is the content of the file", dlg.SafeFilename);
+            };
+            dlg.ShowDialog();
+
             //OpenSilver.Profiler.StopMeasuringTime("Time it takes to execute a loop with 10000 items", _t0);
-            ChildWindow1 window = new ChildWindow1();
-            window.Show();
+            //var window = new CDComboTest();
+            //window.Show();
             return;
             var http = new HttpClient();
             var pdfResponse = await http.GetAsync("http://localhost:55593/test.pdf");
             var buffer = await pdfResponse.Content.ReadAsByteArrayAsync();
             DownloadFile(buffer, "testcsv.pdf", true, "application/pdf", true);
         }
+
 
         private async void Button_Click3(object sender, RoutedEventArgs e)
         {

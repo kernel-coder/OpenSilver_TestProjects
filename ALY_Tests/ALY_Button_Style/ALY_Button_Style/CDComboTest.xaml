@@ -1,0 +1,18 @@
+﻿<ChildWindow x:Class="ALY_Button_Style.CDComboTest"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           Width="400" Height="300" 
+           Title="CDComboTest"
+           xmlns:local="clr-namespace:ALY_Button_Style">
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="cmb1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" ItemsSource="{Binding Items}" MaxDropDownHeight="200" CustomLayout="True" />
+
+        <Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+    </Grid>
+</ChildWindow>

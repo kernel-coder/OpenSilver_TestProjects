@@ -292,7 +292,7 @@ namespace Virtuoso.Core.Controls
         {
             WriteableBitmap wbBitmap = new WriteableBitmap(inkPad, new TranslateTransform());
 #if OPENSILVER
-            await wbBitmap.WaitToInitialize();
+           // await wbBitmap.WaitToInitialize();
 #endif
             EditableImage eiImage = new EditableImage(wbBitmap.PixelWidth, wbBitmap.PixelHeight);
 

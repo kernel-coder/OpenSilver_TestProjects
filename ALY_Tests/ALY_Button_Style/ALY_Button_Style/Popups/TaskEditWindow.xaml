@@ -7,8 +7,8 @@
               xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
               Style="{StaticResource ChildWindowNoAnimationStyle}"
               Core:BindableDialogResult.DialogResult="{Binding DialogResult, Mode=TwoWay}"
-              Width="610"
-              Height="400"
+              Width="720"
+              Height="Auto"
               Title="Task Details">
     <Grid x:Name="LayoutRoot" Margin="2">
         <VirtuosoCoreControls:TaskPopup />

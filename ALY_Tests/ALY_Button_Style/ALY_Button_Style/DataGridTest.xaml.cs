@@ -69,7 +69,7 @@ namespace ALY_Button_Style
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            App.Current.Host.Settings.DataGridProgressiveLoadingChunkSize = cbProgressive.IsChecked != null && cbProgressive.IsChecked.Value ? 1 : 0;
+            //App.Current.Host.Settings.DataGridProgressiveLoadingChunkSize = cbProgressive.IsChecked != null && cbProgressive.IsChecked.Value ? 1 : 0;
             var list = new List<HomeScreenTaskPM>();
             int count = 2;
 

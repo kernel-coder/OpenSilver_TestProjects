@@ -15,7 +15,7 @@ namespace ALY_Button_Style
         public App()
         {
 #if OPENSILVER
-            //App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotLoaded = true;
+            App.Current.Host.Settings.ProgressiveRenderingChunkSize = 10;
             // App.Current.Host.Settings.EnableOptimizationWhereCollapsedControlsAreNotRendered = true;
             
 #endif
@@ -28,7 +28,7 @@ namespace ALY_Button_Style
             VirtuosoEntityProperties.BuildEntityMetadata();
 #if OPENSILVER
             UpdateResDic(App.Current.Resources);
-            var mainPage = new DataGridTest(); //  new Virtuoso.Core.Controls.SignatureUserControl();
+            var mainPage = new TestView(); //  new Virtuoso.Core.Controls.SignatureUserControl();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;

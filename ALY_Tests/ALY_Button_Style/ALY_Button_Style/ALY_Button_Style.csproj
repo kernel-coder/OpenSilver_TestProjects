@@ -9,12 +9,12 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.1.0-preview-2022-09-13-063027-64388bad" />
+    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-09-22-082219-b4c7850b" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="protobuf-net" Version="3.0.131" />
     <PackageReference Include="Silverlight.Controls.ToolTips.OpenSilver" Version="1.0.0-private-2022-03-07-122116-31770396" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +46,9 @@
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="BorderLayoutTestView.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="CDComboTest.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="ChildWindow1.xaml">
@@ -82,6 +85,9 @@
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="DataGridTest.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
+	<Page Include="Dialogs\SaveFileDialogEx.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
 	<Page Include="FocusTestPage.xaml">
@@ -160,6 +166,7 @@
     <Compile Include="Behaviors\TextBoxFilters.cs" />
     <Compile Include="Behaviors\TransitionEffectBehavior.cs" />
     <Compile Include="BorderLayoutTestView.xaml.cs" />
+    <Compile Include="CDComboTest.xaml.cs" />
     <Compile Include="ChildWindow1.xaml.cs" />
     <Compile Include="ChildWindow2.xaml.cs" />
     <Compile Include="ComboItemsTestDlg.xaml.cs" />
@@ -217,6 +224,7 @@
     <Compile Include="Data\PatientInfection.cs" />
     <Compile Include="Data\PatientPhone.cs" />
     <Compile Include="Data\ValidationTestEntity.cs" />
+    <Compile Include="Dialogs\SaveFileDialogEx.xaml.cs" />
     <Compile Include="FocusTestPage.xaml.cs" />
     <Compile Include="Framework\EntityExtensions.cs" />
     <Compile Include="Framework\SimpleServiceProvider.cs" />

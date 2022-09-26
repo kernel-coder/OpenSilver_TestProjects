@@ -1,0 +1,31 @@
+﻿<ChildWindow
+    x:Class="FileDialogs.SaveFileDialogEx"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:local="clr-namespace:FileDialogs" Width="400">
+    <Border Padding="15" Background="Gray">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <sdk:Label Grid.Row="0" Grid.Column="0" Content="File name: "/>
+            <TextBox Grid.Row="0" Grid.Column="2" x:Name="tbFilename" PlaceholderText="Filename witout extension"  Padding="5, 0"/>
+            <sdk:Label Grid.Row="2" Grid.Column="0" Content="File type: "/>
+            <ComboBox Grid.Row="2" Grid.Column="2" x:Name="cmbTypes" />
+            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                <Button Content="Cancel" Click="Button_CancelClick" HorizontalAlignment="Left"/>
+                <Button Content="Save" Click="Button_SaveClick" HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+    </Border>
+</ChildWindow>

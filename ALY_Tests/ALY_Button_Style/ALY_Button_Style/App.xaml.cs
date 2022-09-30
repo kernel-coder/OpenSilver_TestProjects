@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Virtuoso.Core.Controls;
 using Virtuoso.Core.Utility;
 using Virtuoso.Maintenance.Controls;
 
@@ -28,7 +29,7 @@ namespace ALY_Button_Style
             VirtuosoEntityProperties.BuildEntityMetadata();
 #if OPENSILVER
             UpdateResDic(App.Current.Resources);
-            var mainPage = new TestView(); //  new Virtuoso.Core.Controls.SignatureUserControl();
+            var mainPage = new WoundPopupV2(); //  new Virtuoso.Core.Controls.SignatureUserControl();
             Window.Current.Content = mainPage;
 #else
             this.Startup += this.Application_Startup;

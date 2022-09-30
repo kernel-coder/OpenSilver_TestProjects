@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ALY_Button_Style.Simulator"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{0CD13C19-A7D0-41AB-8116-82ECE2149246}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Annotation.OpenSilver", "ALY_Button_Style\Annotation\Annotation.OpenSilver.csproj", "{D92BB2E8-3BE6-4123-A983-8234547FD14A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0CD13C19-A7D0-41AB-8116-82ECE2149246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CD13C19-A7D0-41AB-8116-82ECE2149246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD13C19-A7D0-41AB-8116-82ECE2149246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92BB2E8-3BE6-4123-A983-8234547FD14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92BB2E8-3BE6-4123-A983-8234547FD14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92BB2E8-3BE6-4123-A983-8234547FD14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92BB2E8-3BE6-4123-A983-8234547FD14A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

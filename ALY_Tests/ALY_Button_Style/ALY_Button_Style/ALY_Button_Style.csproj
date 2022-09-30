@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-09-22-082219-b4c7850b" />
+    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-09-27-125204-91109232" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="protobuf-net" Version="3.0.131" />
@@ -123,6 +123,12 @@
     <Page Include="Popups\TaskPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\WoundPopupV2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TestView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +176,9 @@
     <Compile Include="ChildWindow1.xaml.cs" />
     <Compile Include="ChildWindow2.xaml.cs" />
     <Compile Include="ComboItemsTestDlg.xaml.cs" />
+    <Compile Include="Controls\AniMan\AniMan.cs" />
+    <Compile Include="Controls\AniMan\AnimanPolygonFactory.cs" />
+    <Compile Include="Controls\AniMan\IAniManControlDataContext.cs" />
     <Compile Include="Controls\autoCompleteCombo.cs" />
     <Compile Include="Controls\BindableDialogResult.cs" />
     <Compile Include="Controls\CacheIconControl.cs" />
@@ -229,6 +238,14 @@
     <Compile Include="Framework\EntityExtensions.cs" />
     <Compile Include="Framework\SimpleServiceProvider.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGrid.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridColumn.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridColumnDefinition.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridLinesVisibility.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridOptions.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridSelectionOption.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridTemplateColumn.cs" />
+    <Compile Include="HtmlDataGrid\HtmlDataGridTextColumn.cs" />
     <Compile Include="ImageBrushSample.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
@@ -239,6 +256,7 @@
     <Compile Include="Popups\PainPAINADPopup.xaml.cs" />
     <Compile Include="Popups\TaskEditWindow.xaml.cs" />
     <Compile Include="Popups\TaskPopup.xaml.cs" />
+    <Compile Include="Popups\WoundPopupV2.xaml.cs" />
     <Compile Include="Shared\AsyncUtility.cs" />
     <Compile Include="Shared\CodeLookup.cs" />
     <Compile Include="Shared\CommandManager.cs" />
@@ -253,6 +271,7 @@
     <Compile Include="Shared\VirtuosoEntityProperties.cs" />
     <Compile Include="Shared\VirtuosoObjectCleanupHelper.cs" />
     <Compile Include="Shared\VisualTreeWalker.cs" />
+    <Compile Include="TestPage.xaml.cs" />
     <Compile Include="TestView.xaml.cs" />
     <Compile Include="ToolkitChartSampleView.xaml.cs" />
     <Compile Include="ValidationTestPage.xaml.cs" />
@@ -281,6 +300,65 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Resource Include="Assets\Images\icon.png" />
+      <Resource Include="Assets\Images\insVerfOn.png" />
+      <Resource Include="Assets\Images\LeftArrow.png" />
+      <Resource Include="Assets\Images\LeftFootDorsal.png" />
+      <Resource Include="Assets\Images\LeftFootLateral.png" />
+      <Resource Include="Assets\Images\LeftFootMedial.png" />
+      <Resource Include="Assets\Images\logo-deltahouse.png" />
+      <Resource Include="Assets\Images\logo.png" />
+      <Resource Include="Assets\Images\MenuBackground.png" />
+      <Resource Include="Assets\Images\messagebox_warning.png" />
+      <Resource Include="Assets\Images\noConnect.png" />
+      <Resource Include="Assets\Images\PasswordBackground.png" />
+      <Resource Include="Assets\Images\patient-female-generic.jpg" />
+      <Resource Include="Assets\Images\patient-male-generic.jpg" />
+      <Resource Include="Assets\Images\PDGMWorkList.png" />
+      <Resource Include="Assets\Images\People.png" />
+      <Resource Include="Assets\Images\Play.JPG" />
+      <Resource Include="Assets\Images\PurpleCalendar.png" />
+      <Resource Include="Assets\Images\PurplePeople.png" />
+      <Resource Include="Assets\Images\RightArrow.png" />
+      <Resource Include="Assets\Images\RightFootDorsal.png" />
+      <Resource Include="Assets\Images\RightFootLateral.png" />
+      <Resource Include="Assets\Images\RightFootMedial.png" />
+      <Resource Include="Assets\Images\Sticker.png" />
+      <Resource Include="Assets\Images\TempoPNG.png" />
+      <Resource Include="Assets\Images\txt_file.png" />
+      <Resource Include="Assets\Images\WongBakerFaces0.PNG" />
+      <Resource Include="Assets\Images\WongBakerFaces10.PNG" />
+      <Resource Include="Assets\Images\WongBakerFaces2.PNG" />
+      <Resource Include="Assets\Images\WongBakerFaces4.PNG" />
+      <Resource Include="Assets\Images\WongBakerFaces6.PNG" />
+      <Resource Include="Assets\Images\WongBakerFaces8.PNG" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Assets\Images\Body.png" />
+      <Resource Include="Assets\Images\Calendar.png" />
+      <Resource Include="Assets\Images\Circles.png" />
+      <Resource Include="Assets\Images\Circles3.png" />
+      <Resource Include="Assets\Images\ClinicalVirtuoso_dht_white.png" />
+      <Resource Include="Assets\Images\ClinicalVirtuoso_forPT_white.png" />
+      <Resource Include="Assets\Images\ClinicalVirtuoso_only_white.png" />
+      <Resource Include="Assets\Images\Crescendo_Icon-on-Side_White.png" />
+      <Resource Include="Assets\Images\Crescendo_logo_only_WHITE.png" />
+      <Resource Include="Assets\Images\Crescendo_logo_WHITE.png" />
+      <Resource Include="Assets\Images\Crescendo_wordmark_black.png" />
+      <Resource Include="Assets\Images\Crescendo_wordmark_white.png" />
+      <Resource Include="Assets\Images\delete.png" />
+      <Resource Include="Assets\Images\documenticon.png" />
+      <Resource Include="Assets\Images\empty.png" />
+      <Resource Include="Assets\Images\favicon128x128.png" />
+      <Resource Include="Assets\Images\favicon16x16.png" />
+      <Resource Include="Assets\Images\favicon32x32.png" />
+      <Resource Include="Assets\Images\favicon48x48.png" />
+      <Resource Include="Assets\Images\HalfCircles.png" />
+      <Resource Include="Assets\Images\HIPPSDecomposition.png" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Resource Include="Assets\Images\AssessmentOverdue.png" />
     </ItemGroup>
 	
@@ -299,6 +377,10 @@
   <ItemGroup>
     <Folder Include="Virtuoso.Server.Data\Validations\" />
     <Folder Include="Virtuoso.Server.Data_Partials\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Annotation\Annotation.OpenSilver.csproj" />
   </ItemGroup>
   
 </Project>

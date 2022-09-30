@@ -176,7 +176,16 @@
     <type fullname="System.Runtime.CompilerServices.CallerMemberNameAttribute">
       <attribute internal="RemoveAttributeInstances" />
     </type>
+    <type fullname="System.Runtime.CompilerServices.CompilerFeatureRequiredAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
     <type fullname="System.Runtime.CompilerServices.CompilerGlobalScopeAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.CompilerServices.InterpolatedStringHandlerArgumentAttribute">
       <attribute internal="RemoveAttributeInstances" />
     </type>
     <type fullname="System.Runtime.CompilerServices.IsReadOnlyAttribute">
@@ -199,6 +208,12 @@
       <attribute internal="RemoveAttributeInstances" />
     </type>
     <type fullname="System.Runtime.Versioning.UnsupportedOSPlatformAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.Versioning.ObsoletedOSPlatformAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.Versioning.RequiresPreviewFeaturesAttribute">
       <attribute internal="RemoveAttributeInstances" />
     </type>
     <type fullname="System.Runtime.Versioning.SupportedOSPlatformGuardAttribute">
@@ -253,7 +268,25 @@
     <type fullname="System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute">
       <attribute internal="RemoveAttributeInstances" />
     </type>
+    <type fullname="System.Diagnostics.CodeAnalysis.StringSyntaxAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Diagnostics.CodeAnalysis.UnscopedRefAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
     <type fullname="System.Runtime.InteropServices.LibraryImportAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.InteropServices.Marshalling.ContiguousCollectionMarshallerAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.InteropServices.Marshalling.MarshalUsingAttribute">
       <attribute internal="RemoveAttributeInstances" />
     </type>
     <type fullname="System.CodeDom.Compiler.GeneratedCodeAttribute">
@@ -265,6 +298,9 @@
       <attribute internal="RemoveAttributeInstances" />
     </type>
     <type fullname="System.Runtime.CompilerServices.NativeIntegerAttribute">
+      <attribute internal="RemoveAttributeInstances" />
+    </type>
+    <type fullname="System.Runtime.CompilerServices.ScopedRefAttribute">
       <attribute internal="RemoveAttributeInstances" />
     </type>
     <!-- Microsoft.CodeAnalysis -->

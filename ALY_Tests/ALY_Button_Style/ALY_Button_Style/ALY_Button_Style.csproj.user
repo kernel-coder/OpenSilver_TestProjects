@@ -133,6 +133,12 @@
     <Page Update="Popups\TaskPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Popups\WoundPopupV2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TestPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TestView.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -5,10 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-    xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
-    xmlns:VirtuosoCoreConverters="clr-namespace:Virtuoso.Core.Converters"
-    xmlns:VirtuosoHomeControls="clr-namespace:Virtuoso.Home.V2.Controls"
     xmlns:icons="clr-namespace:Virtuoso.Core.Assets.Icons"
+    xmlns:VirtuosoHomeControls="clr-namespace:Virtuoso.Home.V2.Controls"
+    xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+    xmlns:VirtuosoCoreConverters="clr-namespace:Virtuoso.Core.Converters"        
     xmlns:local="clr-namespace:ALY_Button_Style" CustomLayout="True">
     <UserControl.Resources>
         <DataTemplate x:Name="PatientInfo">

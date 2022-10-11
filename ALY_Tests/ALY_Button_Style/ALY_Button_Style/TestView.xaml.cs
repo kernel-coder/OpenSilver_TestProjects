@@ -38,6 +38,8 @@ namespace ALY_Button_Style
         private int StepIndex = 0;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var cw1 = new ChildWindow1();
+            cw1.Show();
             //ComboItemsTestDlg dlg = new ComboItemsTestDlg();
             //dlg.IsModal = true;
             //dlg.Show();

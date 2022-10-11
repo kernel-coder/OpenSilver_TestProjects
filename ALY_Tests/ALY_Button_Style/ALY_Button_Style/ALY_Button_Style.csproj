@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-09-27-125204-91109232" />
+    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-10-04-092501-6689291a" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="protobuf-net" Version="3.0.131" />
@@ -96,6 +96,9 @@
 	<Page Include="ImageBrushSample.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="ImportPhotoTestView.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,9 +142,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ValidationTestUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ValidationTestUC2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DynamicFormGraph.xaml">
@@ -247,6 +247,7 @@
     <Compile Include="HtmlDataGrid\HtmlDataGridTemplateColumn.cs" />
     <Compile Include="HtmlDataGrid\HtmlDataGridTextColumn.cs" />
     <Compile Include="ImageBrushSample.xaml.cs" />
+    <Compile Include="ImportPhotoTestView.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
     <Compile Include="Popups\ChangeUserPopup.xaml.cs" />
     <Compile Include="Popups\HelpPopupDialog.xaml.cs" />
@@ -274,9 +275,9 @@
     <Compile Include="TestPage.xaml.cs" />
     <Compile Include="TestView.xaml.cs" />
     <Compile Include="ToolkitChartSampleView.xaml.cs" />
+    <Compile Include="Utilities\ImageToolsUtility.cs" />
     <Compile Include="ValidationTestPage.xaml.cs" />
     <Compile Include="ValidationTestUC.xaml.cs" />
-    <Compile Include="ValidationTestUC2.xaml.cs" />
     <Compile Include="ViewModels\GenericBase.cs" />
     <Compile Include="ViewModels\TaskEditVM.cs" />
     <Compile Include="Views\DynamicFormGraph.xaml.cs" />
@@ -297,6 +298,10 @@
       <Compile Remove="Assets\Icons\AddButtonIcon.svg.cs" />
       <Compile Remove="Assets\Icons\AddButtonRoundIcon.svg.cs" />
       <Compile Remove="Assets\Icons\AlertLateButtonIcon.svg.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Assets\Images\test.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -381,6 +386,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Annotation\Annotation.OpenSilver.csproj" />
+    <ProjectReference Include="..\FileDialogs.OpenSilver\FileDialogs.OpenSilver.csproj" />
   </ItemGroup>
   
 </Project>

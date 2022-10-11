@@ -22,20 +22,25 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <VirtuosoCoreControls:vLabel Grid.Row="0"
                                                      Grid.Column="0"
                                                      Entity="ValidationTestEntity"
-                                                     Property="FirstName" />
+                                                     Property="FirstName">
+                <ToolTipService.ToolTip>
+                    <ToolTip>
+                        <TextBlock Text="Label tooltip"/>
+                    </ToolTip>
+                </ToolTipService.ToolTip>
+            </VirtuosoCoreControls:vLabel>
             <TextBox MaxLength="40"
                                  Grid.Row="0"
                                  Grid.Column="1"
                                  TabIndex="1"
                                  IsTabStop="{Binding IsEdit}"
                                  IsHitTestVisible="{Binding IsEdit}"
-                                 Text="{Binding SelectedItem.FirstName, Mode=TwoWay, NotifyOnValidationError=True}" />
-
+                                 Text="{Binding SelectedItem.FirstName, Mode=TwoWay, NotifyOnValidationError=True}"/>
             <VirtuosoCoreControls:vLabel Grid.Row="1"
                                                      Grid.Column="0"
                                                      Entity="ValidationTestEntity"

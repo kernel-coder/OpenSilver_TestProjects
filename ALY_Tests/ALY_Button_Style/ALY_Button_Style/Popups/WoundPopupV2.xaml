@@ -85,19 +85,16 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <!-- Main AniMan View (Col0) -->
-                                <Viewbox Grid.Row="0" Grid.Column="0"
+                                <Canvas x:Name="AniManCanvas1"
+                                            Grid.Row="0" Grid.Column="0"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width">
-                                    <Canvas x:Name="AniManCanvas1"
                                             Height="781" Width="829"
                                             Tag="{Binding SelectedItem}"
                                             MouseMove="AnimanMouseOver1"
                                             MouseLeave="AnimanMouseLeave"
                                             MouseLeftButtonUp="AnimanLeftClick">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
                                 <!-- Mouse Over Text (only visible when nothing is selected) -->
                                 <TextBlock Grid.Row="0" Grid.Column="0"
                                            x:Name="Selected"
@@ -162,16 +159,13 @@
                                            TextWrapping="Wrap"
                                            Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}" />
 
-                                <Viewbox Grid.Row="0" Grid.Column="1"
+                                <Canvas x:Name="AniManCanvas2"
+                                            Grid.Row="0" Grid.Column="1"
                                          Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width">
-                                    <Canvas x:Name="AniManCanvas2"
                                             Height="225" Width="360">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
 
                                 <TextBlock Grid.Row="1" Grid.Column="0"
                                            Text="Left Medial"
@@ -179,16 +173,13 @@
                                            TextWrapping="Wrap"
                                            Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}" />
 
-                                <Viewbox Grid.Row="1" Grid.Column="1"
+                                <Canvas x:Name="AniManCanvas5"
+                                            Grid.Row="1" Grid.Column="1"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width"
-                                         Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}">
-                                    <Canvas x:Name="AniManCanvas5"
+                                         Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}"
                                             Height="225" Width="360">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
 
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Left Dorsal" VerticalAlignment="Center"
                                            TextWrapping="Wrap"
@@ -197,45 +188,36 @@
                                            TextWrapping="Wrap"
                                            Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}" />
 
-                                <Viewbox Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
+                                <Canvas x:Name="AniManCanvas6"
+                                            Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
                                          Visibility="{Binding AniManLeftDetailShown, Converter={StaticResource VisibilityConverter}}"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width">
-                                    <Canvas x:Name="AniManCanvas6"
                                             Height="450" Width="360">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
 
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Right Lateral" VerticalAlignment="Center"
                                            TextWrapping="Wrap"
                                            Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}" />
-                                <Viewbox Grid.Row="0" Grid.Column="1"
+                                <Canvas x:Name="AniManCanvas3"
+                                            Grid.Row="0" Grid.Column="1"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width"
-                                         Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}">
-                                    <Canvas x:Name="AniManCanvas3"
+                                         Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}"
                                             Height="225" Width="360">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
 
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Right Medial" VerticalAlignment="Center"
                                            TextWrapping="Wrap"
                                            Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}" />
 
-                                <Viewbox Grid.Row="1" Grid.Column="1"
+                                <Canvas x:Name="AniManCanvas4"
+                                            Grid.Row="1" Grid.Column="1"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width"
-                                         Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}">
-                                    <Canvas x:Name="AniManCanvas4"
+                                         Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}"
                                             Height="225" Width="360">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
 
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Right Dorsal" VerticalAlignment="Center"
                                            TextWrapping="Wrap"
@@ -244,16 +226,13 @@
                                            TextWrapping="Wrap"
                                            Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}" />
 
-                                <Viewbox Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
+                                <Canvas x:Name="AniManCanvas7"
+                                            Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         Stretch="Uniform"
-                                         d:LayoutOverrides="Width"
-                                         Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}">
-                                    <Canvas x:Name="AniManCanvas7"
+                                         Visibility="{Binding AniManRightDetailShown, Converter={StaticResource VisibilityConverter}}"
                                             Height="450" Width="360">
-                                    </Canvas>
-                                </Viewbox>
+                                </Canvas>
                             </Grid>
                         </Grid>
                         <!-- Details Row 1 -->

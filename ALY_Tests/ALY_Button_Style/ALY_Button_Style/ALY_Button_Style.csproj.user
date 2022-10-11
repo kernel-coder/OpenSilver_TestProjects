@@ -23,13 +23,13 @@
     <Compile Update="ImageBrushSample.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ImportPhotoTestView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ValidationTestUC.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ValidationTestUC2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -109,6 +109,9 @@
     <Page Update="ImageBrushSample.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ImportPhotoTestView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Popups\ChangeUserPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -149,9 +152,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ValidationTestUC.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ValidationTestUC2.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DynamicFormGraph.xaml">

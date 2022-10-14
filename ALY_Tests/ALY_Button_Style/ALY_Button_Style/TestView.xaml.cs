@@ -18,6 +18,12 @@ using Virtuoso.Home.V2.Controls;
 
 namespace ALY_Button_Style
 {
+    public class Person2
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Designation { get; set; }
+    }
     public partial class TestView : UserControl
     {
         public TestView()
@@ -31,6 +37,16 @@ namespace ALY_Button_Style
             //    comboMulti.Items.Add($"Item {i + 1}");
 
             //}
+
+            List<Person2> personList = new List<Person2>() {
+                new Person2 { ID = 1, Name = "Mukesh", Designation = "Developer" },
+                new Person2 { ID = 2, Name = "Rakesh", Designation = "Developer" },
+                new Person2 { ID = 3, Name = "Rajesh", Designation = "Developer" },
+                new Person2 { ID = 4, Name = "Dinesh", Designation = "Developer" },
+                new Person2 { ID = 5, Name = "Rohit", Designation = "Developer" },
+                new Person2 { ID = 6, Name = "Mohit", Designation = "Developer" }
+            };
+            personListBox.ItemsSource = personList;
         }
 
         private int ItemsToAdd = 1;

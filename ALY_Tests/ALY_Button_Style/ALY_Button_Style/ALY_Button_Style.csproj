@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MvvmLight.OpenSilver" Version="1.0.0-private-2022-03-07-122046-9ca040a2" />
-    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-10-04-092501-6689291a" />
+    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-10-13-111153-910b1163" />
     <PackageReference Include="OpenSilver.OpenRiaServices.Client.Core.4.6" Version="1.0.0-private-2022-03-31-045329-b98d8b74" />
     <PackageReference Include="OpenSilver.SLaB" Version="1.0.0-private-2022-03-28-124308-27a1acc8" />
     <PackageReference Include="protobuf-net" Version="3.0.131" />

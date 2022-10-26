@@ -1,0 +1,102 @@
+﻿<UserControl
+    x:Class="ALY_Button_Style.DnDFocusTest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:VirtuosoCoreControls="clr-namespace:Virtuoso.Core.Controls"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    xmlns:local="clr-namespace:ALY_Button_Style">
+    <UserControl.Resources>
+        <DataTemplate x:Key="CoverageDataTemplate">
+            <Grid MouseLeftButtonDown="CoverageDataTemplate_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" MinWidth="100" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="35" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" Height="15" Width="15" Content="X" VerticalAlignment="Center"
+                        HorizontalAlignment="Left"  
+                        IsTabStop="False"
+                        Style="{StaticResource DeleteButtonStyle}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding InsuranceName}" VerticalAlignment="Center"
+                           HorizontalAlignment="Left" Margin="8,0,0,0" />
+                <TextBox Grid.Row="0" Grid.Column="2"
+                         Text="{Binding BillingPercent, Mode=TwoWay, StringFormat='\{0:0\}', NotifyOnValidationError=True}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="35" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Selected Insurances"
+                                       HorizontalAlignment="Right" Margin="0,0,8,0" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Available Insurances"
+                                       HorizontalAlignment="Right" Margin="0,0,8,0"
+                                       Visibility="{Binding IsEdit, Converter={StaticResource VisibilityConverter}}" />
+        <TextBox Grid.Row="0" Grid.Column="2" Text="test"/>
+
+        <toolkit:ListBoxDragDropTarget x:Name="lbddTarget1"
+                                                           Grid.Row="1"
+                                                           Grid.Column="0"
+                                                           Margin="0,8,8,8"
+                                                           HorizontalContentAlignment="Stretch"
+                                                           VerticalContentAlignment="Stretch"
+                                                           AllowedSourceEffects="Copy"
+                                                           AllowDrop="True"
+                                                           IsTabStop="True">
+            <ListBox x:Name="AdmCovLBox"
+                                         SelectedIndex="0"
+                                         ItemsSource="{Binding LeftSource, Mode=TwoWay}"
+                                         BorderThickness="1"
+                                         IsTabStop="False"
+                                         IsEnabled="{Binding IsEdit, Mode=TwoWay}"
+                                         ItemTemplate="{StaticResource CoverageDataTemplate}">
+            </ListBox>
+        </toolkit:ListBoxDragDropTarget>
+
+        <toolkit:ListBoxDragDropTarget x:Name="lbddTarget2"
+                                                           Grid.Row="1"
+                                                           Grid.Column="1"
+                                                           Margin="8"
+                                                           IsTabStop="False"
+                                                           HorizontalContentAlignment="Stretch"
+                                                           VerticalContentAlignment="Stretch"
+                                                           AllowedSourceEffects="Copy"
+                                                           AllowDrop="True">
+            <ListBox x:Name="InsuranceLBox"
+                                         ItemsSource="{Binding RightSource}"
+                                         BorderThickness="1"
+                                         IsTabStop="False"
+                                         IsEnabled="{Binding IsEdit}"
+                                         AllowDrop="True">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" MinHeight="35" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                                           Text="{Binding InsuranceKey}"
+                                                           MouseLeftButtonDown="Ins_MouseLeftButtonDown" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </toolkit:ListBoxDragDropTarget>
+    </Grid>
+</UserControl>

@@ -20,6 +20,9 @@
     <Compile Update="DataGridTest.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="DnDFocusTest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ImageBrushSample.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -101,6 +104,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Dialogs\SaveFileDialogEx.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DnDFocusTest.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="FocusTestPage.xaml">

@@ -90,6 +90,9 @@
 	<Page Include="Dialogs\SaveFileDialogEx.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
+	<Page Include="DnDFocusTest.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</Page>
 	<Page Include="FocusTestPage.xaml">
 	  <Generator>MSBuild:Compile</Generator>
 	</Page>
@@ -234,6 +237,8 @@
     <Compile Include="Data\PatientPhone.cs" />
     <Compile Include="Data\ValidationTestEntity.cs" />
     <Compile Include="Dialogs\SaveFileDialogEx.xaml.cs" />
+    <Compile Include="DnDFocusTest.xaml.cs" />
+    <Compile Include="ExpressionViewModel.cs" />
     <Compile Include="FocusTestPage.xaml.cs" />
     <Compile Include="Framework\EntityExtensions.cs" />
     <Compile Include="Framework\SimpleServiceProvider.cs" />
